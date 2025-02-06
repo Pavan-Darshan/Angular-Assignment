@@ -1,0 +1,13 @@
+.footer-content {
+    width: 99%;
+    position: absolute;
+    bottom: 0;
+    left: 0.5%;
+    text-align: center;
+    padding: 1em;
+    background-color: rgb(241, 240, 240);
+    border-top: 1px solid #c9cbcc;
+   
+   border-radius: 10px;
+    box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+  }

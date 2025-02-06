@@ -9,6 +9,8 @@ import { map } from "rxjs";
 export class ServerService{
 
 http :HttpClient =inject(HttpClient);
+loggedUser:LoginUser[]=[]; // logged user
+isAccountLogged :boolean=false;
 
 
  onLogAdmin(){

@@ -1,1 +1,67 @@
-<p>user works!</p>
+<app-user-header hidden></app-user-header>
+<div class="main" >
+    
+    <button  class="createBtn" (click)="Onclick()">Create</button>
+</div>
+
+    <div style="margin: 20px;">
+        <label for="dropdown">Select Issue Type:</label>
+        <p-dropdown 
+          id="dropdown" 
+          [options]="categories" 
+          [(ngModel)]="selectedCategory" 
+          optionLabel="name" 
+          placeholder="Select an issue"
+        ></p-dropdown>
+
+      
+        <div *ngIf="selectedCategory.name ==='Hardware'">
+          <h3>Selected Category: {{ selectedCategory.name }}</h3>
+          
+    
+                <p-dropdown 
+                id="dropdown" 
+                [options]="Hardware" 
+                [(ngModel)]="selectedCategory1" 
+                placeholder="Select an issue"
+              ></p-dropdown>
+           
+        </div>
+        <div *ngIf="selectedCategory.name ==='Software'">
+            <h3>Selected Category: {{ selectedCategory.name }}</h3>
+            
+      
+                  <p-dropdown 
+                  id="dropdown" 
+                  [options]="Software" 
+                  [(ngModel)]="selectedCategory1" 
+                  placeholder="Select an issue"
+                ></p-dropdown>
+             
+          </div>
+        
+        <div *ngIf="selectedCategory.name ==='Access Management'">
+            <h3>Selected Category: {{ selectedCategory.name }}</h3>
+            
+      
+                  <p-dropdown 
+                  id="dropdown" 
+                  [options]="Management" 
+                  [(ngModel)]="selectedCategory1" 
+                  placeholder="Select an issue"
+                ></p-dropdown>
+             
+          </div>
+        
+
+
+
+      
+        </div>
+      
+    
+    
+
+
+
+<app-user-footer></app-user-footer>

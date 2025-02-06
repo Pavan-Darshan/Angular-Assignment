@@ -1,0 +1,46 @@
+<div class="container">
+
+    <div class="logo">
+        <img src="app/Images/logo1.png" alt="">
+    </div>
+   <div class="innerContainer">
+    
+            <div class="card flex justify-center" class="mode">
+                <p-toggleswitch [(ngModel)]="checked" /> <!--User mode-->
+            </div>
+           
+            <p-overlaybadge severity="danger" value="4" class="inbox" >
+                <i class="pi pi-comments" ></i> <!--User inbox-->
+            </p-overlaybadge>
+
+            <p-overlay-badge value="4" severity="danger" class="inline-flex" > <!--User image and Notification-->
+                <p-avatar class="p-overlay-badge" label={{firstLetter}} shape="circle"  />
+            </p-overlay-badge>
+
+            <div class="UserName">
+                <span>{{loggedUser?.userName}}</span><br>
+                <span>Admin</span>
+            </div>
+
+
+            <div class="card flex justify-center" class="setting">
+                <p-drawer #drawerRef [(visible)]="visible">
+                    
+                </p-drawer>
+                <p-button (click)="visible = true" icon="pi pi-bars" class="menubtn"/>
+            </div>
+
+            
+            
+        
+       
+            
+       
+       
+        
+        <div class="setting"></div>
+    </div>
+    
+
+
+</div>
