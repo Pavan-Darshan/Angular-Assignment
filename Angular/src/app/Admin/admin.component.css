@@ -1,0 +1,35 @@
+.container{
+    width: 100%;
+    height: 100%;
+}
+
+
+.main{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(186, 189, 187);
+    position: absolute;
+    left: 0;
+    top: 95px;
+
+}
+.dashboardBtn{
+    background-color: white;
+    width: 8%;
+    height: 50%; 
+    border: none;
+    margin-top: 12px;
+    margin-left: 20px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.router{
+    width: 99%;
+    height: 50%;
+    margin-left: 0.5%;
+    margin-top: 10%;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 1px rgb(47, 47, 48); 
+
+}

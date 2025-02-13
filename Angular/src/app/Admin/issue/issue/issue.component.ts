@@ -1,22 +1,29 @@
-import { Component, inject, OnChanges, OnInit } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { FormsModule } from '@angular/forms';  // For ngModel
-import { DropdownModule } from 'primeng/dropdown';
-import { CommonModule } from '@angular/common';
-import { Ticket } from '../../Model/Ticket';
-import { ServerService } from '../../Services/service/server.service';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { DateTime } from '../../../Model/date-time';
+import { Ticket } from '../../../Model/Ticket';
+import { ServerService } from '../../../Services/service/server.service';
 import { map } from 'rxjs';
-import { DateTime } from '../../Model/date-time';
 
+
+
+interface Priority {
+  name: string;
+  code: string;
+}
+
+interface Issue {
+  label: string;
+  value: string;
+  code :string;
+}
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.css',
-  standalone :false,
-  providers: [ButtonModule,DropdownModule,FormsModule,CommonModule]
+  selector: 'app-issue',
+  templateUrl: './issue.component.html',
+  styleUrl: './issue.component.css',
+  standalone : false
 })
-export class UserComponent implements OnInit {
+export class IssueComponent implements OnInit,OnChanges{
   
 
   constructor(private serverService : ServerService){}
@@ -34,6 +41,9 @@ export class UserComponent implements OnInit {
   ngOnInit(){
     this.featchIssueData ();
    
+  }
+  ngOnChanges(){
+    this.featchIssueData ();
   }
 
 
@@ -100,10 +110,6 @@ export class UserComponent implements OnInit {
   }
 
 
-
-
-
-    
   
 
   showMessage(issue : Ticket){
@@ -157,6 +163,71 @@ export class UserComponent implements OnInit {
     this.isPopupVisible = true;  
   }
   }
-  
- 
+
+
+  onDeleteUser(dataBaseId : string,id : string){
+    (this.serverService.onDeleteUser(dataBaseId,id)) ? alert("User ID : "+id+" is deleted"):alert("User ID : "+id+" is not deleted");
+  }
+
+
+  editDisplay :boolean = false;
+  editUserData : any;
+  priorityID : string ='';
+  assigneeID : string = '';
+  statusID : string ='';
+  lastModifiedDateTime : string = '';
+  Priority : Priority[]= [
+    { name: 'Low', code: 'Low' },
+    { name: 'MEDIUM', code: 'MEDIUM' },
+    { name: 'HIGH', code: 'HIGH' },
+    { name: 'CRITICAL', code: 'CRITICAL' }
+  ];
+
+  Assignee : any[] = [
+    {name: 'Admin-Pavan',id :'101'},
+    {name : 'Admin-Darshan',id : '102'}
+  ]
+
+  Status : any[] = [
+    { label: 'Open',id :'Open'},
+    {label: 'InProgress',id :'InProgress'},
+    {label: 'Waiting',id :'Waiting'},
+    {label: 'Fixed',id :'Fixed'},
+    {label: 'Closed',id :'Closed'}
+    
+  ]
+
+  onEdit(user : any){
+    this.editUserData =user;
+
+  this.priorityID = user.priorityId;
+  this. assigneeID = user.assigneeId;
+  this.statusID = user.statusId;
+  this.lastModifiedDateTime = user.lastModifiedDateTime;
+  this.editDisplay=true;
+      
+  }
+
+  onUpdate(){
+    this.editUserData.priorityId=this.priorityID;
+    this.editUserData.assigneeId = this.assigneeID;
+    this.editUserData.statusId = this.statusID;
+    this.editUserData.lastModifiedDateTime=DateTime
+   console.log(this.editUserData);
+
+   this.serverService.onUpdate(this.editUserData.dataBaseId, this.editUserData) ? 
+   alert('Updated Successfully...'):alert("Not Updated...!")
+
+   this.editDisplay=false;
+   this.editUserData='';
+   this.featchIssueData ();
+   
+
+  }
+
+  cancelTicket(){
+    this.editDisplay=false;
+    this.editUserData='';
+
+  }
 }

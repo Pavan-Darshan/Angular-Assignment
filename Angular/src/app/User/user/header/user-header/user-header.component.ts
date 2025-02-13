@@ -14,10 +14,9 @@ import { LoginUser } from '../../../../Model/loginUser';
 
 @Component({
   selector: 'app-user-header',
-  imports: [FormsModule, ToggleSwitch,DrawerModule,ButtonModule,
-    AvatarModule,OverlayBadgeModule,BadgeModule],
   templateUrl: './user-header.component.html',
-  styleUrl: './user-header.component.css'
+  styleUrl: './user-header.component.css',
+  standalone : false
 })
 export class UserHeaderComponent {
   checked: boolean = false;

@@ -13,7 +13,7 @@
     top: 95px;
 
 }
-.createBtn,.dashboardBtn{
+.dashboardBtn{
     background-color: white;
     width: 8%;
     height: 50%; 
@@ -106,6 +106,13 @@
     .p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
         display: none;
     }
+   
+}
+.editBtn,.deleteBtn{
+    width: 50%;
+    height: 50%;
+    margin-left: 5px;
+    margin-bottom: 5px;
 }
 
 @media screen and (max-width: 960px) {
@@ -146,6 +153,8 @@
         }
     }
 }
+
+
 
 /* .kanbanContainer{
     width: 100%;
@@ -380,3 +389,79 @@ div>section>p{
     margin-left: 3%;
  }
   
+
+ /* Edit Form */
+
+ .editFormBackground{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 60px;
+    
+}
+
+.editForm{
+    width: 50%;
+    height: 90%;
+    background-color: white;
+    margin: auto;
+    border-radius: 10px;
+    padding-bottom: 30px;
+    overflow-y: auto;
+    position: absolute;
+    top: 20px;
+    left: 25%;
+    
+}
+.editForm>p{
+  
+    width: 100%;
+    background-color: red;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    position:sticky;
+    top: 0;
+}
+div>section{
+    width: 95%;
+    display: flex;
+    margin: auto;
+    gap: 2.5%;
+    
+}
+div>section>p{
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    
+}
+
+.statusMain{
+    width: 95%;
+    display: flex;
+    margin: auto;
+   
+}
+.statusMain>div{
+    width: 100%;
+    
+}
+.statusMain>div .p-select{
+    width: 97%;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    margin: 1.5%;
+   
+}
+.editMessageCard{
+    width: 95%;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+
+}

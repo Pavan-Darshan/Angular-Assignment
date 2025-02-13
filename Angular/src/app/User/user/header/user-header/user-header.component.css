@@ -4,7 +4,7 @@
 .container{
     background-color: rgb(241, 240, 240);
     width: 98%;
-    position: fixed;
+    position: absolute;
     left:1%;
     top: 1%;
     border-radius: 10px;

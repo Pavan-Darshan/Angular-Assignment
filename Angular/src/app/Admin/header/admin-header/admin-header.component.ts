@@ -13,10 +13,9 @@ import { ServerService } from '../../../Services/service/server.service';
 
 @Component({
   selector: 'app-admin-header',
-  imports: [FormsModule, ToggleSwitch,DrawerModule,ButtonModule,
-     AvatarModule,OverlayBadgeModule,BadgeModule],
   templateUrl: './admin-header.component.html',
-  styleUrl: './admin-header.component.css'
+  styleUrl: './admin-header.component.css',
+  standalone :false
 })
 export class AdminHeaderComponent {
 

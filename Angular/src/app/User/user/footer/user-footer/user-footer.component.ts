@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { DialogModule } from 'primeng/dialog';
+
 
 @Component({
   selector: 'app-user-footer',
-  imports: [DialogModule],
   templateUrl: './user-footer.component.html',
-  styleUrl: './user-footer.component.css'
+  styleUrl: './user-footer.component.css',
+  standalone : false
 })
 export class UserFooterComponent {
 
