@@ -1,1 +1,326 @@
-<p>user-list works!</p>
+<div >
+    <div class="navBar">
+        <div><h2>User Details</h2></div>
+        <div>
+            <p-button>Filter</p-button>
+            <p-button (onClick)="onAddUser()">Add</p-button>
+
+        </div>
+    </div>
+    <div>
+        <p-table #dt
+            [value]="featchedUserList"
+            [(selection)]="selectedIssue"
+            dataKey="id"
+            [rowHover]="true"
+            [rows]="5"
+            [showCurrentPageReport]="true"
+            [totalRecords]="featchedUserList.length"
+           
+            [paginator]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        
+        
+            <!-- <ng-template #caption>
+                 [loading]="loading"
+                <div class="flex justify-between">
+                    <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" />
+                    <p-iconField iconPosition="left">
+                        <p-inputIcon>
+                            <i class="pi pi-search"></i>
+                        </p-inputIcon>
+                        <input pInputText type="text" [(ngModel)]="searchValue"  placeholder="Keyboard Search" />
+                    </p-iconField>
+                </div>
+            </ng-template> -->
+            <ng-template #header>
+                <tr >
+                    
+                    <th pSortableColumn="name" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            Name
+                        </div>
+                    </th>
+                    <th pSortableColumn="country.name" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            User Type
+                        </div>
+                    </th>
+                    <th pSortableColumn="representative.name" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            Phone Number
+                        </div>
+                    </th>
+                    <th pSortableColumn="date" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            
+                           Email
+                        </div>
+                    </th>
+                    <th pSortableColumn="balance" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            Address
+                           
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            Country
+                            
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            State
+                            
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                        City
+                            
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                        PostalCode
+                          
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                        Locale
+                            
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                        TimeZone
+                            
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                        Created Source
+                          
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                        Created Source Type
+                           
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                        Created Source Date
+                           
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                        Modified Source
+                           
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            Modified Source Type
+                           
+                        </div>
+                    </th>
+                    <th pSortableColumn="status" style="min-width: 10rem">
+                        <div class="flex justify-between items-center">
+                            Modified Source Date
+                           
+                        </div>
+                    </th>
+                </ng-template>
+                <ng-template pTemplate="body" let-user>
+                <tr class="p-selectable-row" (click)="onSelectUser(user)">
+            
+                    <td>
+                        <p>{{user.userName}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.userType}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.phone}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.emailAddress}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.address}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.country}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.state}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.city}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.postalCode}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.locale}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.timeZone}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.createdSource}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.createdSourceType}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.createdSourceDate}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.modifiedSource}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.modifiedSourceType}}</p>
+                    </td>
+                    <td>
+                        <p>{{user.modifiedSourceDate}}</p>
+                    </td>
+                    
+                    <td>
+                        <!-- <button class="editBtn" (click)="onEdit(user)">Edit</button>
+                        <button class="deleteBtn" (click)="onDeleteUser(user.dataBaseId, user.reportedId)">Delete</button> -->
+                    </td>
+                
+                </tr>
+            </ng-template>
+            <ng-template #emptymessage >
+                <tr>
+                    <td colspan="11">No customers found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
+
+
+<div class="container" *ngIf="addForm">
+    <form *ngIf="isCreate" (ngSubmit)="isCreate ? onUserData(createForm) : onUpdeted(createForm)" #createForm="ngForm">
+    
+   
+        <div class="containerDetails">
+        
+            <div  class="userHeading">
+                <div class="userHeading1">
+                    <div *ngIf="isCreate">Create User</div>
+                    <div *ngIf="isEdit">Edit User  </div>
+                </div>
+                
+                <div (click)="onClose()" class="userHeading2"><i class="pi pi-times" ></i></div>
+            </div>
+            
+            <div>
+                <section>Basic Details</section>
+            
+                <div class="formContainer">
+                    <div class="formContainer1">
+                        <p-floatlabel variant="on">
+                            <input pInputText id="over_label" [(ngModel)]="userName" autocomplete="off" name="userName" required/>
+                            <label for="over_label">User Name*</label>
+                        </p-floatlabel>
+                        <p-floatlabel variant="on">
+                            <input pInputText id="type" [(ngModel)]="userType" autocomplete="off" name="userType" required/>
+                            <label for="type">User Type*</label>
+                        </p-floatlabel>
+                        <p-floatlabel variant="on">
+                            <input pInputText id="email" [(ngModel)]="userEmail" autocomplete="off" name="emailAddress" required/>
+                            <label for="email">Email ID*</label>
+                        </p-floatlabel>
+                        
+                        <p-floatlabel variant="on">
+                            <input pInputText id="phone" [(ngModel)]="userPhone" autocomplete="off" name="userPhone" required/>
+                            <label for="phone">Phone Number*</label>
+                        </p-floatlabel>
+                        <div class="checkBox">
+                            <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="theme" name="theme" />
+                            <label for="theme">    Dark Theme</label>
+                        </div>
+                    </div>
+                    <div class="formContainer2" >
+                        <p-floatlabel variant="on">
+                            <input pInputText id="source" [(ngModel)]="createdSource" autocomplete="off" name="createdSource"/>
+                            <label for="source">Created Source </label>
+                        </p-floatlabel>
+                        <p-floatlabel variant="on">
+                            <input pInputText id="sourceType" [(ngModel)]="createdSourceType" autocomplete="off" name="createdSourceType"/>
+                            <label for="sourceType">Created Source Type</label>
+                        </p-floatlabel>
+                        <p-floatlabel variant="on">
+                            <input pInputText id="sourceDate" [(ngModel)]="createdSourceDate" autocomplete="off" name="createdSourceDate"/>
+                            <label for="sourceDate">Created Source Date</label>
+                        </p-floatlabel>
+                        <p-floatlabel variant="on">
+                            <input pInputText id="modifiedSource" [(ngModel)]="modifiedSource" autocomplete="off" name="modifiedSource"/>
+                            <label for="modifiedSource">Last Modified Source</label>
+                        </p-floatlabel>
+                        <p-floatlabel variant="on">
+                            <input pInputText id="modifiedSourceType" [(ngModel)]="modifiedSourceType" autocomplete="off" name="modifiedSourceType"/>
+                            <label for="modifiedSourceType">Last Modified Source Type</label>
+                        </p-floatlabel>
+                        <p-floatlabel variant="on">
+                            <input pInputText id="modifiedSourceDate" [(ngModel)]="modifiedSourceDate" autocomplete="off" name="modifiedSourceDate"/>
+                            <label for="modifiedSourceDate">Last Modified Source Date</label>
+                        </p-floatlabel> 
+                    </div>
+                </div>   
+            
+                <div>
+                    <section>Adress Details</section>
+                    <div class="address">
+                        <div class="address1">
+                            <p-floatlabel variant="on">
+                                <textarea pTextarea id="over_label" [(ngModel)]="userAddress" rows="5" cols="30" style="resize: none" class="h-full" name="address"></textarea>
+                                <label for="on_label">Address</label>
+                            </p-floatlabel>
+                            <p-floatlabel variant="on">
+                                <input pInputText id="country" [(ngModel)]="userCountry" autocomplete="off" name="country"/>
+                                <label for="country">Country*</label>
+                            </p-floatlabel>
+                            <p-floatlabel variant="on">
+                                <input pInputText id="state" [(ngModel)]="userState" autocomplete="off" name="state"/>
+                                <label for="state">State*</label>
+                            </p-floatlabel>
+                        </div>
+                        <div class="address2">
+                            <p-floatlabel variant="on">
+                                <input pInputText id="city" [(ngModel)]="userCity" autocomplete="off" name="city"/>
+                                <label for="city">City*</label>
+                            </p-floatlabel>
+                            <p-floatlabel variant="on">
+                                <input pInputText id="postalCode" [(ngModel)]="userPostalCode" autocomplete="off" name="postalCode"/>
+                                <label for="postalCode">Postal Code*</label>
+                            </p-floatlabel>
+                            <p-floatlabel variant="on">
+                                <input pInputText id="locale" [(ngModel)]="userLocale" autocomplete="off" name="locale"/>
+                                <label for="locale">Locale*</label>
+                            </p-floatlabel>
+                            <p-floatlabel variant="on">
+                                <input pInputText id="timeZone" [(ngModel)]="userTimeZone" autocomplete="off" name="timeZone"/>
+                                <label for="timeZone">TimeZone*</label>
+                            </p-floatlabel>
+                        </div>
+                    </div>
+                </div>
+                <p-button *ngIf="isCreate" type="Submit">Save</p-button>
+                <p-button *ngIf="isEdit" type="Submit">Update</p-button>
+            </div>
+            
+        </div>
+    </form>
+
+</div>

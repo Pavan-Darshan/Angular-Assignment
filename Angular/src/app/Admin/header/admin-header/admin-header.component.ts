@@ -8,7 +8,7 @@ import { DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { Drawer } from 'primeng/drawer';
-import { LoginUser } from '../../../Model/loginUser';
+import { User } from '../../../Model/loginUser';
 import { ServerService } from '../../../Services/service/server.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class AdminHeaderComponent {
 
   @ViewChild('drawerRef') drawerRef!: Drawer;
 
-  loggedUser?: LoginUser;
+  loggedUser?: User;
     serverService :ServerService = inject(ServerService);
     firstLetter:string='';
     

@@ -1,0 +1,192 @@
+.navBar{
+    width: 100%;
+    display: flex;
+}
+.navBar>div:first-child{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 70%; 
+   
+}
+.navBar>div:last-child{
+    position: relative;
+    top: 0;
+    left: 0%;
+    width: 30%;
+}
+.navBar ::ng-deep.p-button{
+    width: 25% ;
+    height: 50%;
+    position: relative;
+    left: 38%;
+    top: 25%;
+    margin-left: 5%;
+}
+/* Popup window */
+.container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 60px;
+    
+}
+.containerDetails{
+    width: 80%;
+    height: 94%;
+    background-color: white;
+    margin: auto;
+    /* border-radius: 10px;
+    padding-bottom: 30px;
+    padding: 10px; */
+    border-radius: 10px;
+    overflow-y: auto;
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    padding: 1%;
+    
+}
+.userHeading{
+    width: 100%;
+    height: 4%;
+    border: none;
+    display: grid;
+    grid-template-columns: 95% 5%;
+}
+.userHeading1{
+    width: 100%;
+   
+    font-size: 20px;
+}
+.userHeading2>i{
+    margin-left: 50%;
+    font-size: 24px;
+}
+
+
+
+
+.containerDetails>div:nth-child(2){
+    width: 100%;
+    height: 54%;
+    border: 1px solid black;
+}
+.containerDetails>div:nth-child(3) {
+    width: 100%;
+    height: 34%;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+.containerDetails>div:nth-child(3)>section{
+    background-color: rgb(223, 226, 228);
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px solid black;
+   
+    
+}
+.containerDetails>div:nth-child(2)>section{ 
+    background-color: rgb(223, 226, 228);
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid black;
+
+}
+.containerDetails ::ng-deep.p-button{
+    width: 20%;
+    height: 5%;
+    position: relative;
+    left: 40%;
+    top: 3%;
+    background-color: rgb(144, 210, 194);
+    
+}
+
+.formContainer{
+    display: flex !important;
+    width: 100% !important;
+}
+.formContainer1{
+    border: none !important;
+    width: 50% !important ;
+    
+}
+.formContainer2{
+    border: none !important;
+    width: 50% !important;
+    
+}
+.formContainer1 .p-floatlabel>input,
+.checkBox {
+        margin-top: 14px;
+        margin-bottom: 14px;
+        margin-left: 10%;
+        width: 80% ;
+}
+.formContainer1 .p-floatlabel>label{
+    width:20% ;
+    margin-left: 10%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.formContainer2 .p-floatlabel>input{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 10%;
+    width: 80% ;
+}
+.formContainer2 .p-floatlabel>label{
+    width: 30%;
+    margin-left: 10%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.address{
+    width: 100%;
+    height: 80%;
+    display: flex;
+}
+.address1{
+    width: 50%;
+    height: 85%;
+}
+.address2{
+    width: 50%;
+    height: 85%;
+}
+.address1 .p-floatlabel>input, .address1 .p-floatlabel>textarea {
+    width: 80%;
+    height: 5%;
+    margin-top: 1.5%;
+    margin-left: 10%;
+
+}
+.address1 .p-floatlabel>label{
+    width: 30%;
+   
+    margin-top: 1.4%;
+    margin-left: 10%;
+
+}
+.address2 .p-floatlabel>input{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 1.5%;
+
+}
+.address2 .p-floatlabel>label{
+    width: 30%;
+    margin-left: 10%;
+    margin-top: 1.5%;
+
+}

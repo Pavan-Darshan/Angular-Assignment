@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { LoginUser } from '../../../../Model/loginUser';
+import { User } from '../../../../Model/loginUser';
 import { ServerService } from '../../../../Services/service/server.service';
 import { Ticket } from '../../../../Model/Ticket';
 import { Comment } from '../../../../Model/comment';
@@ -50,7 +50,7 @@ export class FormComponent {
 
   @Output() isForm  = new EventEmitter();
 
-  loggedUser?: LoginUser;
+  loggedUser?: User;
 
   
   ngOnInit() {

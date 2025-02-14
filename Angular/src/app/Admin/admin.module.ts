@@ -34,16 +34,19 @@ import { InputTextModule } from "primeng/inputtext";
 import { FluidModule } from "primeng/fluid";
 import { Tag } from "primeng/tag";
 import { ProgressBar } from "primeng/progressbar";
+import { CheckboxModule } from 'primeng/checkbox';
+
 
 @NgModule({
     declarations:[AdminComponent,AdminDashboardComponent,AdminHeaderComponent ,
         AdminFooterComponent,IssueComponent, UserListComponent],
 
-    imports:[AdminRoutingModule,
-        CommonModule,
-        RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,
-                    ButtonModule,DialogModule,FormsModule, ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,
-                    AvatarModule,OverlayBadgeModule,BadgeModule,FluidModule,InputTextModule,FloatLabel,Select,DropdownModule],
+    imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,
+            Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule, 
+            ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,
+            FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule],
+
+            providers:[],
         
     exports:[AdminRoutingModule]
 })

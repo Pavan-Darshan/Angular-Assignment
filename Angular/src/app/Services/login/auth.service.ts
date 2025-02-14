@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { ServerService } from "../service/server.service";
-import { LoginUser } from "../../Model/loginUser";
+import { User } from "../../Model/loginUser";
 import { filter, map } from "rxjs";
 import { __values } from "tslib";
 
@@ -15,8 +15,8 @@ export class AuthService{
     route :Router =inject(Router);
     serverService :ServerService =inject(ServerService);
 
-    isAdminUser : LoginUser[] =[];
-    isUsers : LoginUser[] =[];
+    isAdminUser : User[] =[];
+    isUsers : User[] =[];
 
 
      
@@ -28,7 +28,7 @@ export class AuthService{
               if(response.hasOwnProperty(key))
               {
                     if(key === 'admin'){
-                    let temp :LoginUser[]=[]
+                    let temp :User[]=[]
                     temp.push({...response[key]});
 
                     temp.forEach((user)=>{      
@@ -37,16 +37,17 @@ export class AuthService{
                     }
 
                     else{
-                        let temp :LoginUser[]=[]
+                        let temp :User[]=[]
                         temp.push({...response[key]});
     
                         temp.forEach((user)=>{      
                         this.isUsers.push(...Object.values(user));
                         
+                        
                     })  
                 }
             }
-        }
+        } console.log(this.isUsers);
             return this.isUsers;
      }))
         

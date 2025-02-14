@@ -2,7 +2,7 @@ import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { AuthService } from '../Services/login/auth.service';
 import { Route, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { LoginUser } from '../Model/loginUser';
+import { User } from '../Model/loginUser';
 import { ServerService } from '../Services/service/server.service';
 
 @Component({
@@ -16,9 +16,9 @@ export class LoginComponent {
   authService :AuthService = inject(AuthService);
   serverService : ServerService = inject(ServerService);
   route :Router =inject(Router);
-  logInUser : LoginUser[]=[]
+  logInUser : User[]=[]
 
-  loggedUser : LoginUser []=[];
+  loggedUser : User []=[];
   isAccountLogged =false;
 
 

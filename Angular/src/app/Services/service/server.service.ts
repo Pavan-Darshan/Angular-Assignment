@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { LoginUser } from "../../Model/loginUser";
+import { User } from "../../Model/loginUser";
 import { map, Subject } from "rxjs";
 import { Ticket } from "../../Model/Ticket";
 
@@ -11,12 +11,12 @@ export class ServerService{
 
 http :HttpClient =inject(HttpClient);
 errorSubject :Subject<HttpErrorResponse> =new Subject<HttpErrorResponse>();
-loggedUser:LoginUser[]=[]; // logged user
+loggedUser:User[]=[]; // logged user
 isAccountLogged :boolean=false;
 
 
  onLogAdmin(){
-      return  this.http.get<{[key : string]:LoginUser }>('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser.json')
+      return  this.http.get<{[key : string]:User }>('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser.json')
 
 }
 
@@ -46,8 +46,17 @@ onUpdate(dataBaseId : string ,data :Ticket){
 
 onDeleteUser(dataBaseId : string,id :string){
     return this.http.delete('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/Issues/'+dataBaseId+'.json')
-    .subscribe(()=>{
-       
-    })
+    .subscribe(()=>{})
+}
+
+onUserList(){
+    return this.http.get<[key : String]>('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users.json')
+}
+onUserCreate(userData : any){
+    return this.http.post('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users.json',userData)
+}
+onUpdateUser(dataBaseId : string, data: User){
+    return this.http.post('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+dataBaseId+'.json',data)
+  
 }
 }

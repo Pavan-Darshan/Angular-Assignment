@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { LoginUser } from "../../Model/loginUser";
+import { User } from "../../Model/loginUser";
 
 @Injectable({
     providedIn:"root"
@@ -7,9 +7,9 @@ import { LoginUser } from "../../Model/loginUser";
 
 export class LoginUserDetails{
 
-    admin : LoginUser [] =[
+    admin : User [] =[
 
-        new LoginUser('101','Admin','admin@mail.com','1234'),
+        
 
     ]
 

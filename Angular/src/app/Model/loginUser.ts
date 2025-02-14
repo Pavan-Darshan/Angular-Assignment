@@ -1,4 +1,4 @@
-export class LoginUser{
+export interface User{
     userName : string;
     userId : string;
     emailAddress : string;
@@ -7,13 +7,26 @@ export class LoginUser{
     lastModifiedDateTime ?:string;
     dataBaseId ?:string;
 
-    constructor(id : string, name :string, email : string, password : string,createdDateTime :string, lastModifiedDateTime :string, dataBaseId :string ){
-        this.userId = id;
-        this.userName =name;
-        this.emailAddress = email;
-        this.password = password;
-        this.createdDateTime =createdDateTime;
-        this.lastModifiedDateTime =lastModifiedDateTime;
-        this.dataBaseId = dataBaseId;
-    }
+
+  userType : string ;
+  userPhone ?: number ;
+ 
+  createdSource : string;
+  createdSourceType : string;
+  createdSourceDate : string ;
+  modifiedSource : string ;
+  modifiedSourceType : string;
+  modifiedSourceDate : string ;
+  checked : boolean ;
+
+  address : string ;
+  state : string ;
+  country : string;
+  userState : string ;
+  city : string ;
+  postalCode ?: number;
+  locale : string ;
+  timeZone : string ;
+
+   
 }

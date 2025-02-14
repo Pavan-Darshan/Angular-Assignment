@@ -10,7 +10,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { Drawer } from 'primeng/drawer';
 import { LoginComponent } from '../../../../login/login.component';
 import { ServerService } from '../../../../Services/service/server.service';
-import { LoginUser } from '../../../../Model/loginUser';
+import { User } from '../../../../Model/loginUser';
 
 @Component({
   selector: 'app-user-header',
@@ -25,7 +25,7 @@ export class UserHeaderComponent {
 
   @ViewChild('drawerRef') drawerRef!: Drawer;
 
-  loggedUser?: LoginUser;
+  loggedUser?: User;
   serverService :ServerService = inject(ServerService);
   firstLetter:string='';
   login :LoginComponent = inject(LoginComponent);
