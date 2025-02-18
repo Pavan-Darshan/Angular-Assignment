@@ -1,227 +1,261 @@
-<div >
-    <div class="navBar">
-        <div><h2>User Details</h2></div>
-        <div>
-            <p-button>Filter</p-button>
-            <p-button (onClick)="onAddUser()">Add</p-button>
+<div class="mainContainer">
+    
+        <div class="mainDetails" [class.closed]="isSidebarVisible">
+            <div class="navBar" >
+                <div>
+                    <h2>User Details</h2></div>
+                <div>
+                    <div><p-button (onClick)="filterOpen()">Filter<i class="pi pi-filter-fill"></i></p-button></div>
+                    <div>  <p-button (onClick)="onAddUser()">Add<i class="pi pi-plus"></i></p-button></div>
 
-        </div>
-    </div>
-    <div>
-        <p-table #dt
-            [value]="featchedUserList"
-            [(selection)]="selectedIssue"
-            dataKey="id"
-            [rowHover]="true"
-            [rows]="5"
-            [showCurrentPageReport]="true"
-            [totalRecords]="featchedUserList.length"
-           
-            [paginator]="true"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
-        
-        
-            <!-- <ng-template #caption>
-                 [loading]="loading"
-                <div class="flex justify-between">
-                    <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" />
-                    <p-iconField iconPosition="left">
-                        <p-inputIcon>
-                            <i class="pi pi-search"></i>
-                        </p-inputIcon>
-                        <input pInputText type="text" [(ngModel)]="searchValue"  placeholder="Keyboard Search" />
-                    </p-iconField>
                 </div>
-            </ng-template> -->
-            <ng-template #header>
-                <tr >
-                    
-                    <th pSortableColumn="name" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            Name
-                        </div>
-                    </th>
-                    <th pSortableColumn="country.name" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            User Type
-                        </div>
-                    </th>
-                    <th pSortableColumn="representative.name" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            Phone Number
-                        </div>
-                    </th>
-                    <th pSortableColumn="date" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            
-                           Email
-                        </div>
-                    </th>
-                    <th pSortableColumn="balance" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            Address
-                           
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            Country
-                            
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            State
-                            
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                        City
-                            
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                        PostalCode
-                          
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                        Locale
-                            
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                        TimeZone
-                            
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                        Created Source
-                          
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                        Created Source Type
-                           
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                        Created Source Date
-                           
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                        Modified Source
-                           
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            Modified Source Type
-                           
-                        </div>
-                    </th>
-                    <th pSortableColumn="status" style="min-width: 10rem">
-                        <div class="flex justify-between items-center">
-                            Modified Source Date
-                           
-                        </div>
-                    </th>
-                </ng-template>
-                <ng-template pTemplate="body" let-user>
-                <tr class="p-selectable-row" (click)="onSelectUser(user)">
-            
-                    <td>
-                        <p>{{user.userName}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.userType}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.phone}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.emailAddress}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.address}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.country}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.state}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.city}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.postalCode}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.locale}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.timeZone}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.createdSource}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.createdSourceType}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.createdSourceDate}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.modifiedSource}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.modifiedSourceType}}</p>
-                    </td>
-                    <td>
-                        <p>{{user.modifiedSourceDate}}</p>
-                    </td>
-                    
-                    <td>
-                        <!-- <button class="editBtn" (click)="onEdit(user)">Edit</button>
-                        <button class="deleteBtn" (click)="onDeleteUser(user.dataBaseId, user.reportedId)">Delete</button> -->
-                    </td>
+            </div>
+            <div class="tableContainer"  >
+                <p-table class='tables' #dt
+                    [value]="(isFilterApplied) ? onFilterUserList : featchedUserList"
+                    [(selection)]="selectedIssue"
+                    dataKey="id"
+                    [rowHover]="true"
+                    [rows]="7"
+                    [showCurrentPageReport]="true"
+                    [totalRecords]="featchedUserList.length"
                 
-                </tr>
-            </ng-template>
-            <ng-template #emptymessage >
-                <tr>
-                    <td colspan="11">No customers found.</td>
-                </tr>
-            </ng-template>
-        </p-table>
+                    [paginator]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+                
+                
+                    <!-- <ng-template #caption>
+                        [loading]="loading"
+                        <div class="flex justify-between">
+                            <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" />
+                            <p-iconField iconPosition="left">
+                                <p-inputIcon>
+                                    <i class="pi pi-search"></i>
+                                </p-inputIcon>
+                                <input pInputText type="text" [(ngModel)]="searchValue"  placeholder="Keyboard Search" />
+                            </p-iconField>
+                        </div>
+                    </ng-template> -->
+                    <ng-template #header>
+                        <tr >
+                            
+                            <th pSortableColumn="userName" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                    Name
+                                    <p-sortIcon field="userName" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="userType" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                    User Type
+                                    <p-sortIcon field="userType" />
+                                </div>
+                            </th>
+                            <th pSortableColumn= "phone" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                    Phone Number
+                                    <p-sortIcon field="phone" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="emailAddress" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                Email
+                                <p-sortIcon field="emailAddress" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="address" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                    Address
+                                    <p-sortIcon field="address" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="country" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                    Country
+                                    <p-sortIcon field="country" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="state" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                    State
+                                    <p-sortIcon field="state" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="city" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                City
+                                <p-sortIcon field="city" /> 
+                                </div>
+                            </th>
+                            <th pSortableColumn="postalCode" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                PostalCode
+                                <p-sortIcon field="postalCode" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="locale" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                Locale
+                                <p-sortIcon field="locale" /> 
+                                </div>
+                            </th>
+                            <th pSortableColumn="timeZone" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                TimeZone
+                                <p-sortIcon field="timeZone" /> 
+                                </div>
+                            </th>
+                            <th pSortableColumn="createdSource" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                Created Source
+                                <p-sortIcon field="createdSource" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="createdSourceType" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                Created Source Type
+                                <p-sortIcon field="createdSourceType" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="createdSourceDate" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                Created Source Date
+                                <p-sortIcon field="createdSourceDate" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="modifiedSource" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                Modified Source
+                                <p-sortIcon field="modifiedSource" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="modifiedSourceType" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                    Modified Source Type
+                                    <p-sortIcon field="modifiedSourceType" />
+                                </div>
+                            </th>
+                            <th pSortableColumn="modifiedSourceDate" style="min-width: 10rem">
+                                <div class="flex justify-between items-center">
+                                    Modified Source Date
+                                    <p-sortIcon field="modifiedSourceDate" />
+                                </div>
+                            </th>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-user>
+                        <tr class="p-selectable-row" (click)="onSelectUser(user)">
+                    
+                            <td ><p pTooltip="{{user.userName}}" tooltipPosition="left">{{user.userName}}</p></td>
+                            <td ><p pTooltip="{{user.userType}}" tooltipPosition="left">{{user.userType}}</p></td>
+                            <td ><p pTooltip="{{user.phone}}" tooltipPosition="left">{{user.phone}}</p></td>
+                            <td><p pTooltip="{{user.emailAddress}}" tooltipPosition="left">{{user.emailAddress}}</p></td>
+                            <td ><p pTooltip="{{user.address}}" tooltipPosition="left">{{user.address}}</p></td>
+                            <td ><p pTooltip="{{user.country}}" tooltipPosition="left">{{user.country}}</p></td>
+                            <td ><p pTooltip="{{user.state}}" tooltipPosition="left">{{user.state}}</p></td>
+                            <td><p pTooltip="{{user.city}}" tooltipPosition="left">{{user.city}}</p></td>
+                            <td><p pTooltip="{{user.postalCode}}" tooltipPosition="left">{{user.postalCode}}</p></td >
+                            <td ><p pTooltip="{{user.locale}}" tooltipPosition="left">{{user.locale}}</p></td>
+                            <td ><p pTooltip="{{user.timeZone}}" tooltipPosition="left">{{user.timeZone}}</p></td>
+                            <td ><p pTooltip="{{user.createdSource}}" tooltipPosition="left">{{user.createdSource}}</p></td>
+                            <td ><p pTooltip="{{user.createdSourceType}}" tooltipPosition="left">{{user.createdSourceType}}</p></td>
+                            <td ><p pTooltip="{{user.createdSourceDate}}" tooltipPosition="left">{{user.createdSourceDate}}</p></td>
+                            <td><p pTooltip="{{user.modifiedSource}}" tooltipPosition="left">{{user.modifiedSource}}</p></td>
+                            <td ><p pTooltip="{{user.modifiedSourceType}}" tooltipPosition="left">{{user.modifiedSourceType}}</p></td>
+                            <td ><p pTooltip="{{user.modifiedSourceDate}}" tooltipPosition="left">{{user.modifiedSourceDate}}</p></td>
+                            
+                            
+                        
+                        </tr>
+                    </ng-template>
+                    <ng-template #emptymessage >
+                        <tr>
+                            <td colspan="17">No customers found.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>    
+                
+            </div>
+        </div>
+
+        <!-- Filter for user -->
+        <div class="filterMain" *ngIf="isFilterHidden">
+            <div class="filterHeading">
+                <h2>Filter</h2>
+                <div (click)="filterOpen()"><i class="pi pi-times" ></i></div>
+            </div>
+            
+                <div class="filterDetails">
+                    <form (ngSubmit)="filterApply(filterForm)" #filterForm="ngForm">
+                    <p-floatlabel variant="on">
+                        <input pInputText id="over_label" [(ngModel)]="filterUserName" autocomplete="off" name="userName" required/>
+                        <label for="over_label">User Name*</label>
+                    </p-floatlabel>
+                    
+                    <p-floatlabel variant="on">
+                        <input pInputText id="email" [(ngModel)]="filterUserEmail" autocomplete="off" name="emailAddress" required/>
+                        <label for="email">Email ID*</label>
+                    </p-floatlabel>
+                    
+                    <p-floatlabel variant="on">
+                        <input pInputText id="source" [(ngModel)]="filterCreatedSource" autocomplete="off" name="createdSource"/>
+                        <label for="source">Created Source </label>
+                    </p-floatlabel>
+                
+                    <p-floatlabel variant="on">
+                        <input pInputText id="sourceType" [(ngModel)]="filterCreatedSourceType" autocomplete="off" name="createdSourceType"/>
+                        <label for="sourceType">Created Source Type</label>
+                    </p-floatlabel>
+                    <p-floatlabel variant="on">
+                        <input pInputText id="sourceDate" [(ngModel)]="filterCreatedSourceDate" autocomplete="off" name="createdSourceDate"/>
+                        <label for="sourceDate">Created Source Date</label>
+                    </p-floatlabel>
+                    <p-floatlabel variant="on">
+                        <input pInputText id="modifiedSource" [(ngModel)]="filterModifiedSource" autocomplete="off" name="modifiedSource"/>
+                        <label for="modifiedSource">Last Modified Source</label>
+                    </p-floatlabel>
+                    <p-floatlabel variant="on">
+                        <input pInputText id="modifiedSourceType" [(ngModel)]="filterModifiedSourceType" autocomplete="off" name="modifiedSourceType"/>
+                        <label for="modifiedSourceType">Last Modified Source Type</label>
+                    </p-floatlabel>
+                
+                    <p-floatlabel variant="on">
+                        <input pInputText id="modifiedSourceDate" [(ngModel)]="filterModifiedSourceDate" autocomplete="off" name="modifiedSourceDate"/>
+                        <label for="modifiedSourceDate">Last Modified Source Date</label>
+                    </p-floatlabel> 
+                    <div class="filterApplyReset">
+                        <p-button (onClick)="resetFilter()">Reset</p-button>
+                        <p-button type="Submit">Apply</p-button>
+                    </div>
+                </form>
+                </div>
+            
+             
+             
+
+
+        <div >
+
     </div>
+
+    </div> 
+
 
 </div>
 
 
+
+<!-- Upadet And Delete Form -->
+
 <div class="container" *ngIf="addForm">
-    <form *ngIf="isCreate" (ngSubmit)="isCreate ? onUserData(createForm) : onUpdeted(createForm)" #createForm="ngForm">
-    
-   
+    <form (ngSubmit)="isCreate ? onUserData(createForm) : onUpdeted(createForm)" #createForm="ngForm">
         <div class="containerDetails">
-        
             <div  class="userHeading">
                 <div class="userHeading1">
                     <div *ngIf="isCreate">Create User</div>
                     <div *ngIf="isEdit">Edit User  </div>
                 </div>
                 
-                <div (click)="onClose()" class="userHeading2"><i class="pi pi-times" ></i></div>
+                <div (click)="onClose(createForm)" class="userHeading2"><i class="pi pi-times" ></i></div>
             </div>
             
             <div>
@@ -278,7 +312,8 @@
                         </p-floatlabel> 
                     </div>
                 </div>   
-            
+            </div>
+            <div>
                 <div>
                     <section>Adress Details</section>
                     <div class="address">
@@ -316,9 +351,19 @@
                         </div>
                     </div>
                 </div>
-                <p-button *ngIf="isCreate" type="Submit">Save</p-button>
-                <p-button *ngIf="isEdit" type="Submit">Update</p-button>
+                
             </div>
+
+            <div class="buttonContainer">
+                <div *ngIf="isCreate" class="buttonContainer1">
+                    <p-button  type="Submit">Save</p-button>
+                </div>
+                <div *ngIf="isEdit" class="buttonContainer2">
+                    <p-button type="Submit">Update</p-button>
+                     <p-button (onClick)="onUserDelete(createForm)" >Delete</p-button>
+                </div>
+            </div>
+                
             
         </div>
     </form>

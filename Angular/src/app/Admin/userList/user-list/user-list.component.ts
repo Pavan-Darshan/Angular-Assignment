@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../../../Services/service/server.service';
-import { EmailValidator, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { User } from '../../../Model/loginUser';
-import { DateTime } from '../../../Model/date-time';
-import { map } from 'rxjs';
+
+import { DateTime } from '../../../Model/DateTime';
 
 @Component({
   selector: 'app-user-list',
@@ -12,7 +12,7 @@ import { map } from 'rxjs';
   standalone : false
 })
 export class UserListComponent implements OnInit {
-  featchedUserList: any[]=[];
+  featchedUserList: any[]=[]; // all Users
   selectedIssue :any;
   isEdit : boolean = false;
   isCreate : boolean = false;
@@ -38,26 +38,24 @@ export class UserListComponent implements OnInit {
   userLocale : string ='';
   userTimeZone : string ='';
 
-
+  isFilterApplied = false;
 
   addForm : boolean =false;
   
 
-  constructor(private sereverService : ServerService){}
+  constructor(private sereverService : ServerService, private date : DateTime){}
 
   ngOnInit(){
-      this.sereverService.onUserList()
-      .pipe(map((response)=>
-            {
-          
-            let data :any [] = [];
-            
-            for(let key in response){
-              if(response.hasOwnProperty(key))
-                data.push({...response[key],dataBaseId:key})
-            }
-            return data;
-          }))
+      
+    this.feacthUserDetails();
+      
+  }
+
+
+  // Featching user details
+  feacthUserDetails(){
+    this.sereverService.onUserList()
+     
           .subscribe((res)=>{
               this.featchedUserList=res;
               // setTimeout(()=>{
@@ -66,8 +64,7 @@ export class UserListComponent implements OnInit {
              
               console.log(this.featchedUserList);
           })
-      
-      
+
   }
   onAddUser(){
     this.addForm = true;
@@ -76,12 +73,13 @@ export class UserListComponent implements OnInit {
   }
   onUserData(formdata : NgForm){
     
-    this.createdSourceDate = DateTime;
+    this.createdSourceDate = this.date.getCurrentTime();
     let newUser : User={...formdata.value, dataBaseId  : '',createdDateTime : DateTime, lastModifiedDateTime :'---', password :'1111',userId :'1003'};
-    this.sereverService.onUserCreate(newUser).subscribe();
+    this.sereverService.onUserCreate(newUser).subscribe(()=>this.feacthUserDetails());
     console.log(newUser);
     console.log(this.userAddress);
     this.addForm = false;
+    
 
   }
   onSelectUser(user : User){
@@ -110,43 +108,95 @@ export class UserListComponent implements OnInit {
   this.userPostalCode = user.postalCode;
   this.userLocale = user.locale;
   this.userTimeZone = user.timeZone;
+
   }
 
 
   //Close the form
-  onClose(){
+  onClose(formdata : NgForm){
     this.addForm = false;
     this.isCreate = false;
     this.isEdit = false ;
-
-        
-  this.userName = '';
-  this.userType = '';
-  this.userPhone =Number('') ;
-  this.userEmail = '';
-  this.createdSource = '';
-  this.createdSourceType = '';
-  this.createdSourceDate = '';
-  this.modifiedSource = '';
-  this.modifiedSourceType = '';
-  this.modifiedSourceDate = '';
-  this.checked ;
-
-  this.userAddress = '';
-  this.userCountry = '';
-  this.userState = '';
-  this.userCity = '';
-  this.userPostalCode = Number('');
-  this.userLocale = '';
-  this.userTimeZone = '';
+    formdata.reset();
 
   }
 
-  onUpdeted(formdata :NgForm){
-    this.createdSourceDate = DateTime;
-    let newUser : User={...formdata.value, dataBaseId  : formdata.value.dataBaseId, lastModifiedDateTime :DateTime};
-    this.sereverService.onUpdateUser(formdata.value.dataBaseId,newUser).subscribe();
+  // update user
+  onUpdeted(formdata :NgForm){  
+    console.log("updating...");
+    console.log(formdata.value);
+    
+    let newData = this.featchedUserList.find((user)=> user.emailAddress === formdata.value.emailAddress);
+    
+    let updateUserData : User = {...formdata.value, dataBaseId  : newData.dataBaseId, lastModifiedDateTime :DateTime, createdDateTime :newData.createdDateTime, password : newData.password,userId :newData.userId };
+    this.sereverService.onUpdateUser(newData.dataBaseId,updateUserData).subscribe(()=>{this.feacthUserDetails();});
+    this.addForm = false;
+    this.isCreate =false;
+    this.isEdit =false;
     
 
   }
+
+  onUserDelete(formdata : NgForm){
+      
+    let deleteUser = this.featchedUserList.find((user)=> user.emailAddress === formdata.value.emailAddress) ;
+
+    confirm(`Do you want to delete "`+deleteUser.userName+`"`) ? 
+    this.sereverService.onDeleteUser(deleteUser.dataBaseId).subscribe(()=> this.feacthUserDetails()) : null;
+    this.addForm = false;
+    this.isCreate =false;
+    this.isEdit =false;    
+  }
+
+
+
+
+  isFilterHidden=false
+  isSidebarVisible = false;
+
+  filterOpen(){
+    this.isSidebarVisible = !this.isSidebarVisible;
+    if(this.isSidebarVisible)
+      this.isFilterHidden=true;
+    else
+      this.isFilterHidden=false;
+
+  }
+
+  filterUserName ='';
+  filterUserEmail ='';
+  filterCreatedSource = '';
+  filterCreatedSourceType = '';
+  filterCreatedSourceDate = '';
+  filterModifiedSource ='';
+  filterModifiedSourceType ='';
+  filterModifiedSourceDate = '';
+
+  onFilterUserList : any[]=[];
+
+  filterApply(filterForm : NgForm){
+    
+    this.onFilterUserList = this.featchedUserList.filter((user) => (
+      (filterForm.value.userName ? user.userName === filterForm.value.userName : true) &&
+      (filterForm.value.emailAddress ? user.emailAddress === filterForm.value.emailAddress : true) &&
+      (filterForm.value.createdSource ? user.createdSource === filterForm.value.createdSource : true) &&
+      (filterForm.value.createdSourceType ? user.createdSourceType === filterForm.value.createdSourceType : true) &&
+      (filterForm.value.createdDateTime ? user.createdDateTime === filterForm.value.createdDateTime : true) &&
+      (filterForm.value.modifiedSource ? user.modifiedSource === filterForm.value.modifiedSource : true) &&
+      (filterForm.value.modifiedSourceType ? user.modifiedSourceType === filterForm.value.modifiedSourceType : true) &&
+      (filterForm.value.modifiedSourceDate ? user.modifiedSourceDate === filterForm.value.modifiedSourceDate : true)
+    ));
+    
+    this.isFilterApplied = true;
+    filterForm.reset();
+  
+    
+  }
+
+  resetFilter(){
+    
+    this.onFilterUserList = this.featchedUserList;
+    
+  }
+  
 }

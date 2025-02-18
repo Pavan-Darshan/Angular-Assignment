@@ -1,46 +1,41 @@
 <div class="container">
 
     <div class="logo">
-        <img src="app/Images/logo1.png" alt="">
+        <img src="app/Images/logo2.png" alt="">
     </div>
    <div class="innerContainer">
-    
-            <div class="card flex justify-center" class="mode">
-                <p-toggleswitch [(ngModel)]="checked" /> <!--User mode-->
-            </div>
-           
-            <p-overlaybadge severity="danger" value="4" class="inbox" >
-                <i class="pi pi-comments" ></i> <!--User inbox-->
-            </p-overlaybadge>
 
-            <p-overlay-badge value="4" severity="danger" class="inline-flex" > <!--User image and Notification-->
-                <p-avatar class="p-overlay-badge" label={{firstLetter}} shape="circle"  />
-            </p-overlay-badge>
-
-            <div class="UserName">
-                <span>{{loggedUser?.userName}}</span><br>
-                <span>Admin</span>
-            </div>
-
-
-            <div class="card flex justify-center" class="setting">
-                <p-drawer #drawerRef [(visible)]="visible">
-                    
-                </p-drawer>
-                <p-button (click)="visible = true" icon="pi pi-bars" class="menubtn"/>
-            </div>
-
-            
-            
+        <div hidden>
+            <i class="pi pi-sun" style="font-size: 1.3rem"></i>
         
-       
-            
-       
-       
+        </div>
+        <div>
+            <i class="pi pi-moon" style="font-size: 1.3rem"></i>
+        </div>
+
+        <div class="notification">
+            <p-button label="Emails" badge="2" label="Notifications" icon="pi pi-bell" />
+        </div>
+
         
-        <div class="setting"></div>
+        <div class="nameTag">
+            <div>
+                <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}}/>
+            </div>
+           <div class="userName">
+                <div><p>{{loggedUser?.userName}}</p></div>
+                <div><p>Admin</p></div>
+           </div>
+        </div>
+
+        <div>
+            <i class="pi pi-spin pi-cog" style="font-size: 1.3rem" label="Toggle" (click)="menu.toggle($event)" ></i>
+            <p-tieredmenu #menu [model]="items" [popup]="true" />
+
+        </div>
+
     </div>
     
-
-
 </div>
+
+

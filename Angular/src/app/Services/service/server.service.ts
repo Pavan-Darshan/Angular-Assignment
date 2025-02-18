@@ -44,19 +44,37 @@ onUpdate(dataBaseId : string ,data :Ticket){
 
 }
 
-onDeleteUser(dataBaseId : string,id :string){
+onDeleteUserIssue(dataBaseId : string){
     return this.http.delete('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/Issues/'+dataBaseId+'.json')
     .subscribe(()=>{})
 }
 
 onUserList(){
     return this.http.get<[key : String]>('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users.json')
+    .pipe(map((response)=>
+        {
+      
+        let data :any [] = [];
+        
+        for(let key in response){
+          if(response.hasOwnProperty(key))
+            data.push({...response[key],dataBaseId:key})
+        }
+        return data;
+      }))
 }
+
 onUserCreate(userData : any){
     return this.http.post('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users.json',userData)
 }
+
 onUpdateUser(dataBaseId : string, data: User){
-    return this.http.post('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+dataBaseId+'.json',data)
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+dataBaseId+'.json',data)
   
+}
+
+onDeleteUser(dataBaseId : string){
+    return this.http.delete('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+dataBaseId+'.json')
+    
 }
 }

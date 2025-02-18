@@ -1,8 +1,11 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { DateTime } from '../../../Model/date-time';
 import { Ticket } from '../../../Model/Ticket';
 import { ServerService } from '../../../Services/service/server.service';
 import { map } from 'rxjs';
+import { User } from '../../../Model/loginUser';
+import { DateTime } from '../../../Model/DateTime';
+
+
 
 
 
@@ -26,7 +29,9 @@ interface Issue {
 export class IssueComponent implements OnInit,OnChanges{
   
 
-  constructor(private serverService : ServerService){}
+  constructor(
+    private serverService : ServerService, private date : DateTime){}
+  
 
   isFormActive :boolean = false;
   featchedIssueList :Ticket []=[];
@@ -40,12 +45,14 @@ export class IssueComponent implements OnInit,OnChanges{
 
   ngOnInit(){
     this.featchIssueData ();
+
+
    
   }
   ngOnChanges(){
     this.featchIssueData ();
   }
-
+ 
 
 
 
@@ -59,7 +66,7 @@ export class IssueComponent implements OnInit,OnChanges{
   }
   
 
-  // Featching issue List 
+  // Featching issue List --------------------->
   featchIssueData(){
     this.serverService.featchIssueList()
     .pipe(map((response)=>
@@ -87,7 +94,7 @@ export class IssueComponent implements OnInit,OnChanges{
   }
 
 
-  // splitting the issues status to array
+  // splitting the issues status to array-------------->
 
   groupedIssues: any = {
     open: [],
@@ -137,20 +144,20 @@ export class IssueComponent implements OnInit,OnChanges{
     //Adding comment-------------------------------->
     viewIssueDetails.comment?.push({
       comment:plainText,
-      commentedDate:DateTime,
+      commentedDate: this.date.getCurrentTime(),
       commenter:this.serverService.loggedUser[0].userName
     })
 
     this.serverService.onUpdate(''+viewIssueDetails.dataBaseId,viewIssueDetails);
 
-      //Reset
+      //Reset----------------------------------------->
     this.commentDisplay =false;
     this.viewIssueDetails={};
     this.text='';
         
   }
 
-
+  // Open Commented window ------------------------------>
   isPopupVisible: boolean = false;
   popupPosition = { top: 0, left: 0 };
 
@@ -164,9 +171,18 @@ export class IssueComponent implements OnInit,OnChanges{
   }
   }
 
+// Deletre User-------------------------------------------->
+  onDeleteUser(user : User){
+    console.log(user.lastModifiedDateTime?.slice(0,11));
+    let date =user.lastModifiedDateTime
+     let d = new Date(`${date}`)
+     console.log(d.valueOf())
 
-  onDeleteUser(dataBaseId : string,id : string){
-    (this.serverService.onDeleteUser(dataBaseId,id)) ? alert("User ID : "+id+" is deleted"):alert("User ID : "+id+" is not deleted");
+    confirm('Do you want to delete ...?')?
+            ((this.serverService.onDeleteUserIssue(""+user.dataBaseId)) ? 
+            alert("User ID : "+user.userId+" is deleted"):alert("User ID : "+user.userId+" is not deleted"))
+            :
+            null
   }
 
 
@@ -207,18 +223,23 @@ export class IssueComponent implements OnInit,OnChanges{
   this.editDisplay=true;
       
   }
-
+    
   onUpdate(){
     this.editUserData.priorityId=this.priorityID;
     this.editUserData.assigneeId = this.assigneeID;
     this.editUserData.statusId = this.statusID;
-    this.editUserData.lastModifiedDateTime=DateTime
-   console.log(this.editUserData);
+
+    this.editUserData.lastModifiedDateTime = this.date.getCurrentTime();
+
+    console.log(this.editUserData.lastModifiedDateTime);
+
+    
 
    this.serverService.onUpdate(this.editUserData.dataBaseId, this.editUserData) ? 
    alert('Updated Successfully...'):alert("Not Updated...!")
 
    this.editDisplay=false;
+ 
    this.editUserData='';
    this.featchIssueData ();
    
@@ -230,4 +251,17 @@ export class IssueComponent implements OnInit,OnChanges{
     this.editUserData='';
 
   }
+
+// Time Validation for 7 days
+  getTimeDate(user :User){
+      let currentTime = this.date.getCurrentTime();
+      const newDate = (new Date(`${currentTime}`).valueOf()) - (new Date(`${user.lastModifiedDateTime}`).valueOf());
+      
+      if(newDate>=604800){
+        return true
+      }
+      return false;
+  }
 }
+
+

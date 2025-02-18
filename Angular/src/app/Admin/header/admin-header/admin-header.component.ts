@@ -1,15 +1,8 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { ToggleSwitch } from 'primeng/toggleswitch';
-import { FormsModule } from '@angular/forms';
-
-import { OverlayBadgeModule } from 'primeng/overlaybadge';
-import { BadgeModule } from 'primeng/badge';
-import { DrawerModule } from 'primeng/drawer';
-import { ButtonModule } from 'primeng/button';
-import { AvatarModule } from 'primeng/avatar';
 import { Drawer } from 'primeng/drawer';
 import { User } from '../../../Model/loginUser';
 import { ServerService } from '../../../Services/service/server.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-admin-header',
@@ -19,6 +12,9 @@ import { ServerService } from '../../../Services/service/server.service';
 })
 export class AdminHeaderComponent {
 
+  items: MenuItem[] | undefined;
+
+    
   checked: boolean = false;
   visible: boolean = false;
 
@@ -34,6 +30,76 @@ export class AdminHeaderComponent {
     ngOnInit(){
       this.loggedUser=this.serverService.loggedUser[0];
       this.firstLetter=this.loggedUser.userName.slice(0,1);
+
+      this.items = [
+        {
+            label: 'File',
+            icon: 'pi pi-file',
+            items: [
+                {
+                    label: 'New',
+                    icon: 'pi pi-plus',
+                    items: [
+                        {
+                            label: 'Document',
+                            icon: 'pi pi-file'
+                        },
+                        {
+                            label: 'Image',
+                            icon: 'pi pi-image'
+                        },
+                        {
+                            label: 'Video',
+                            icon: 'pi pi-video'
+                        }
+                    ]
+                },
+                {
+                    label: 'Open',
+                    icon: 'pi pi-folder-open'
+                },
+                {
+                    label: 'Print',
+                    icon: 'pi pi-print'
+                }
+            ]
+        },
+        {
+            label: 'Edit',
+            icon: 'pi pi-file-edit',
+            items: [
+                {
+                    label: 'Copy',
+                    icon: 'pi pi-copy'
+                },
+                {
+                    label: 'Delete',
+                    icon: 'pi pi-times'
+                }
+            ]
+        },
+        {
+            label: 'Search',
+            icon: 'pi pi-search'
+        },
+        {
+            separator: true
+        },
+        {
+            label: 'Share',
+            icon: 'pi pi-share-alt',
+            items: [
+                {
+                    label: 'Slack',
+                    icon: 'pi pi-slack'
+                },
+                {
+                    label: 'Whatsapp',
+                    icon: 'pi pi-whatsapp'
+                }
+            ]
+        }
+    ]
     
       
     }
@@ -42,6 +108,7 @@ export class AdminHeaderComponent {
       this.drawerRef.close(e);
   }
 
+  
  
 
  

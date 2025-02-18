@@ -1,28 +1,126 @@
-.navBar{
+
+
+@import "primeicons/primeicons.css";
+
+.mainContainer{
     width: 100%;
+    height: 100%;
+    color: white;
     display: flex;
+  
 }
-.navBar>div:first-child{
+
+.mainDetails{
+    width: 100%;
+    height: 75vh;
+    color: white;
     position: relative;
-    top: 0;
     left: 0;
-    width: 70%; 
+    top: 0;
+    transition: width 0.5s ease-in-out;
+    
    
 }
-.navBar>div:last-child{
-    position: relative;
-    top: 0;
-    left: 0%;
-    width: 30%;
+
+
+.filterMain{
+    width: 20%;
+    height: 71vh;
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 23px;
+    background-color: rgba(25, 5, 249,0.5) !important;
+}
+
+.mainDetails.closed {
+    width: 80%; 
+    
+  }
+ 
+
+
+.navBar{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    background-color: rgba(25, 5, 249,0.5) !important;
+    margin-top: 1.5%;
+    
+}
+.navBar>div:first-child{
+  
+    width: 85%; 
+    height: 100%;
+  
+}
+.navBar>div:first-child>h2{
+   position: relative;
+   top: 7px;
+   left: 20px;
+ 
+}
+.navBar>div:last-child{ 
+    width: 15%;
+    height: 100%; 
+    display: flex; 
+    justify-content:space-evenly;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border: none;
+    
+   
 }
 .navBar ::ng-deep.p-button{
-    width: 25% ;
-    height: 50%;
-    position: relative;
-    left: 38%;
-    top: 25%;
-    margin-left: 5%;
+
+   
+    width: 80px ;
+    height: 30px;
+    border: none;
+    background-color: rgba(25, 5, 249,0.5) !important;
+
+    
 }
+.tableContainer{
+    width: 100%;
+    height: 90% ;
+    margin-top: 0.5%; 
+    
+}
+
+
+
+
+th{
+    background-color: rgba(25, 5, 249,0.5) !important;
+    height: 50px;
+    color: white;
+}
+th div{
+    color: white; 
+    font-size: 16px;
+}
+.p-selectable-row{
+    background-color: rgba(255, 255, 255, 0.1) !important; 
+    height: 50px;
+    color: white;
+}
+
+td {
+    white-space: nowrap;       
+    overflow:hidden;          
+    text-overflow: ellipsis;    
+    max-width: 150px;           
+  }
+.p-selectable-row:hover{
+    color:red !important;
+    font-size: 24px;
+}
+
+
+
+
+
 /* Popup window */
 .container{
     width: 100%;
@@ -37,11 +135,8 @@
 .containerDetails{
     width: 80%;
     height: 94%;
-    background-color: white;
+    background-color: rgb(46, 51, 88) !important;
     margin: auto;
-    /* border-radius: 10px;
-    padding-bottom: 30px;
-    padding: 10px; */
     border-radius: 10px;
     overflow-y: auto;
     position: absolute;
@@ -64,67 +159,62 @@
 }
 .userHeading2>i{
     margin-left: 50%;
-    font-size: 24px;
+    font-size: 20px;
+    border-radius: 6px;
+    border: 2px solid white;
+    background-color: red;
 }
-
-
-
 
 .containerDetails>div:nth-child(2){
     width: 100%;
     height: 54%;
-    border: 1px solid black;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 .containerDetails>div:nth-child(3) {
     width: 100%;
     height: 34%;
-    border: 1px solid black;
+    border: 1px solid white;
     margin-top: 10px;
+    border-radius: 10px;
+    
 }
-.containerDetails>div:nth-child(3)>section{
-    background-color: rgb(223, 226, 228);
+.containerDetails>div:nth-child(3) section, 
+.containerDetails>div:nth-child(2)>section{
+    background-color: rgb(126, 127, 129);
     position: relative;
     left: 0;
     top: 0;
     width: 100%;
-    height: 15%;
-    border-bottom: 1px solid black;
+    height: 24px;
+    border-bottom: 1px solid white;
+    font-size: 16px;
+   padding-left: 10px;
+   padding-top: 3px;
+   border-top-right-radius :10px;
+   border-top-left-radius :10px;
    
     
 }
-.containerDetails>div:nth-child(2)>section{ 
-    background-color: rgb(223, 226, 228);
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 30px;
-    border-bottom: 1px solid black;
 
-}
-.containerDetails ::ng-deep.p-button{
-    width: 20%;
-    height: 5%;
-    position: relative;
-    left: 40%;
-    top: 3%;
-    background-color: rgb(144, 210, 194);
-    
-}
+
 
 .formContainer{
     display: flex !important;
     width: 100% !important;
+    height: 80% !important;
+    padding-top: 10px;
 }
 .formContainer1{
     border: none !important;
     width: 50% !important ;
+    height: 80% !important;
     
 }
 .formContainer2{
     border: none !important;
     width: 50% !important;
-    
+    height: 80% !important;
 }
 .formContainer1 .p-floatlabel>input,
 .checkBox {
@@ -132,18 +222,21 @@
         margin-bottom: 14px;
         margin-left: 10%;
         width: 80% ;
+        height: 10% !important ;
 }
 .formContainer1 .p-floatlabel>label{
     width:20% ;
     margin-left: 10%;
     margin-top: 10px;
     margin-bottom: 10px;
+    
 }
 .formContainer2 .p-floatlabel>input{
     margin-top: 8px;
     margin-bottom: 8px;
     margin-left: 10%;
     width: 80% ;
+    height: 8% !important ;
 }
 .formContainer2 .p-floatlabel>label{
     width: 30%;
@@ -169,6 +262,7 @@
     height: 5%;
     margin-top: 1.5%;
     margin-left: 10%;
+    border-radius: 10px;
 
 }
 .address1 .p-floatlabel>label{
@@ -189,4 +283,94 @@
     margin-left: 10%;
     margin-top: 1.5%;
 
+}
+
+/* .containerDetails ::ng-deep.p-button{
+    width: 20%;
+    height: 5%;
+    position: relative;
+    left: 40%;
+    top: 3%;
+    background-color: rgb(144, 210, 194);
+    
+} */
+.buttonContainer{
+    width: 100%;
+    height: 6%;
+    display: flex;
+}
+.buttonContainer1{
+    width: 100%;
+    height: 100%;
+}
+.buttonContainer1 ::ng-deep.p-button{
+    width: 20%;
+    height: 80%;
+    position: relative;
+    left: 40%;
+    top: 20%;
+    background-color: rgb(144, 210, 194);
+
+} 
+.buttonContainer2{
+    width: 100%;
+    height: 100%;
+}
+.buttonContainer2 ::ng-deep.p-button{
+    width: 20%;
+    height: 80%;
+    position: relative;
+    left: 0;
+    top: 20%;
+    margin-left: 20%;
+    background-color: rgb(97, 226, 194);
+    border: none;
+
+} 
+
+
+.filterHeading{
+    width: 100%;
+    height: 8%;
+    border-bottom: 1px solid white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 70%;
+
+
+}
+.filterHeading h2{
+   margin-left: 5px;
+}
+.filterDetails{
+    width: 100%;
+    height: 90%;
+    padding: 2%;
+
+    
+}
+.filterDetails form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    
+}
+
+
+.filterDetails .p-floatlabel>input{
+    width: 100%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.filterApplyReset{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+::ng-deep.filterApplyReset .p-button{
+    width: 55px;
+    height: 25px;
 }

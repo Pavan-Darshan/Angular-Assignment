@@ -1,35 +1,63 @@
+@import "primeicons/primeicons.css";
+
+
 .container{
     width: 100%;
     height: 100%;
+    color: white !important;
+    background-color: black !important;
+    /* color: black;
+    background-color: white; */
+
+   
 }
+.header{
+    width: 100%;
+    height: 8%;
+}
+
 
 
 .main{
     width: 100%;
-    height: 50px;
-    background-color: rgb(186, 189, 187);
-    position: absolute;
-    left: 0;
-    top: 95px;
+    height: 5%;
+    background-color: rgba(25, 5, 249,0.5) !important;
+    position: relative;
+    left: 0%;
+    top: 0;
+    padding-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 10px;
 
 }
 .dashboardBtn{
-    background-color: white;
-    width: 8%;
-    height: 50%; 
+    position: relative;
+    left: 0%;
+    top: 0%;
+    background-color: rgba(0, 0, 0,0) !important;
     border: none;
-    margin-top: 12px;
-    margin-left: 20px;
-    font-size: 16px;
+    width: 100px;
+    height: 30px; 
+    font-size: 14px;
     border-radius: 10px;
+    color: white;
+    
 }
 
 .router{
-    width: 99%;
-    height: 50%;
-    margin-left: 0.5%;
-    margin-top: 10%;
-    border-radius: 10px;
-    box-shadow: 0 0 5px 1px rgb(47, 47, 48); 
+    width: 100%;
+    margin-top: 1%;
+    height: 73%;
+    /* overflow: auto; */
 
+}
+.footer{
+    width: 100%;
+    height: 8%;
+    margin-top: 1.8%;
+   
+    
 }

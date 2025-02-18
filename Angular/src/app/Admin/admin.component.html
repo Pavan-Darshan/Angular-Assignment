@@ -1,17 +1,23 @@
 <div class="container">
-    <app-admin-header></app-admin-header>
+    <div class="header">
+        <app-admin-header ></app-admin-header >
+    </div>
+    
     <div class="main" >
+        
     
-        <a routerLink="dashboard"><button  class="dashboardBtn" >Dashboard</button></a>
-        <a routerLink="issue"><button  class="dashboardBtn" >Issue</button></a>
-        <a routerLink="userList"><button  class="dashboardBtn" >Users</button></a>
-    
+        <button  class="dashboardBtn"  routerLink="dashboard">Dashboard <i class="pi pi-home"></i></button>
+        <button  class="dashboardBtn" routerLink="issue">Issue <i class="pi pi-ticket"></i></button>
+        <button  class="dashboardBtn" routerLink="userList" >Users <i class="pi pi-users"></i></button>
+
         
     </div>
     <div class="router" >
-        <router-outlet></router-outlet>
+        <router-outlet ></router-outlet >
         
     </div>
-
-    <app-admin-footer hidden></app-admin-footer>
+   <div class="footer">
+    <app-admin-footer ></app-admin-footer>
+   </div>
+   
 </div>

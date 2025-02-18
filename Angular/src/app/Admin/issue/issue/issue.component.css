@@ -1,46 +1,10 @@
 .container{
     width: 100%;
-    height: 100%;
+    height: 100%;   
+
 }
 
 
-.main{
-    width: 100%;
-    height: 50px;
-    background-color: rgb(186, 189, 187);
-    position: absolute;
-    left: 0;
-    top: 95px;
-
-}
-.dashboardBtn{
-    background-color: white;
-    width: 8%;
-    height: 50%; 
-    border: none;
-    margin-top: 12px;
-    margin-left: 20px;
-    font-size: 16px;
-    border-radius: 10px;
-}
-.createBtn{
-    margin-left: 50px !important;
-}
-.router{
-    width: 99%;
-    height: 50%;
-    margin-left: 0.5%;
-    margin-top: 10%;
-    border-radius: 10px;
-    box-shadow: 0 0 5px 1px rgb(47, 47, 48); 
-
-}
-.form{
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
 
 
 /* Table */
@@ -91,6 +55,8 @@
 
         .p-datatable-tbody > tr > td {
             cursor: auto;
+            
+
         }
 
         .p-dropdown-label:not(.p-placeholder) {
@@ -154,55 +120,129 @@
     }
 }
 
+.p-tabpanels {
+    background: rgba(255, 255, 255,0) !important;
 
-
-/* .kanbanContainer{
+}
+:host ::ng-deep .p-tablist-tab-list {
     width: 100%;
-    height: 100%;
+    background-color:rgba(0, 0, 0, 0.1) !important; 
     
-    display: flex;
-    
+
+}
+
+.tablist{
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0.5) !important; 
    
-    background-color: bisque;
+
+}
+.p-tab-active {
+    background: var(--p-tabs-tab-active-background);
+    border-color: var(--p-tabs-tab-active-border-color);
+   color: white;
+   font-size: 20px;
+   border-bottom: 2px solid rgb(255, 30, 0);
+    
+}
+.noIssue{
+    text-align: center;
+}
+
+.tableContainer{
+    width: 100%;
+    height: 100% ;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    
+}
+:host ::ng-deep.p-datatable-header {
+    
+    background-color: rgba(255, 255, 255, 0.1) !important;
    
 }
-.kanbanContainer>div{
-    width: 17%;
-    height: 100vh;
-    background-color: aquamarine;
-    margin-left: 1.5%;
-    margin-right: 1.5%;
-} */
+
+:host ::ng-deep th{
+    background-color: rgba(25, 5, 249,0.5) !important;
+    border: none;   
+}
+th div{
+    color: white;
+}
+.p-selectable-row{
+    background-color: rgba(255, 255, 255, 0.1) !important; 
+    height: 50px;
+    color: white;
+    
+}
+
+td {
+    white-space: nowrap;       
+    overflow:hidden;          
+    text-overflow: ellipsis;    
+    max-width: 150px;    
+    border: none;       
+  }
+.p-selectable-row:hover{
+    color:red !important;
+    font-size: 24px;
+}
+
+
+
 
 .kanbanContainer {
+    width: 100%;
+    height: 63vh;
     display: flex;
     justify-content: space-between;
+    color: white;
+    position: relative;
+    top: 0px;
+    
+  
+  
+    
 }
 
 .kanbanColumn {
-    width: 18%;
-    background-color: #f4f4f4;
+    width: 20%;
+    height: 100%;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+
+   
+}
+.kanbanColumn::-webkit-scrollbar {
+    display: none;
 }
 
 .kanbanColumn h3 {
     text-align: center;
+    font-size: 18px;
     margin-bottom: 15px;
+    background-color: rgb(0, 0, 0) !important;
+    
+
+}
+.statusName{
+    position: sticky;
+    top: 0%;
+    z-index: 999;
+
 }
 
 .kanbanCard {
-    background-color: white;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(25, 5, 249,0.5) !important;
+    
 }
 
 .kanbanCard h4 {
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -217,30 +257,46 @@
     color: yellow;
     font-size: 22px;
 }
+/* list */
+.search{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.filterCancel{
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255,0);
+    text-align :center;
+   
+}
+.filterCancel i{
+    font-size: 24px;
+    margin-top: 4px;
+    color: white;
+
+}
+
+
 .commentMain{
-    border-top: 1px solid black ;
-    box-shadow: 0px -4px 5px rgba(11, 11, 11, 0.1);
+    border-top: 1px solid rgb(255, 255, 255) ;
     display: flex;
     padding: 2%;
    
 }
-.commentMain button{
-    width: 18%;
-    height: 100%;
+.commentMain i{
+    width: 15%;
+    height: 60%;
     border: none;
-    border-radius: 50%;
-    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
     position: relative;
     left: 60%;
     margin-top: 1%;
     text-align: center;
-    background-color: white;
+    font-size: 12px;
+    
    
 }
-.commentMain button>i{
-    font-size: 16px;
-    color: blue;
-}
+
 .commentbtn{
     width: 100% !important;
 }

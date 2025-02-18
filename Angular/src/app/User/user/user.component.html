@@ -29,7 +29,7 @@
                                 <div class="kanbanCard">
                                     <!-- <h4>{{ issue.userName }}</h4> -->
                                     <p><strong>Code : </strong> {{ issue.categoryId }} <span>{{issue.subCategoryId}}</span></p>
-                                    <p><strong>Subject:</strong> {{ issue.subject }}</p>
+                                    <p><strong>Subject :</strong> {{ issue.subject }}</p>
                                     
                                     <p><strong>Priority:</strong> {{ issue.priorityId }}</p>
                                     <div class="commentMain"> <!--User image and Notification-->
@@ -112,10 +112,10 @@
                     <ng-template #header>
                         <tr >
                             
-                            <th pSortableColumn="name" style="min-width: 10rem">
+                            <th pSortableColumn="userName" style="min-width: 10rem">
                                 <div class="flex justify-between items-center">
                                     Name
-                                    <p-sortIcon field="name" />
+                                    <p-sortIcon field="userName" />
                                     <p-columnFilter type="text" field="name" display="menu" class="ml-auto" />
                                 </div>
                             </th>
@@ -155,10 +155,10 @@
                                     <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
                                 </div>
                             </th>
-                            <th pSortableColumn="status" style="min-width: 10rem">
+                            <th pSortableColumn="statusId" style="min-width: 10rem">
                                 <div class="flex justify-between items-center">
                                 StatusId
-                                    <p-sortIcon field="balance" />
+                                    <p-sortIcon field="statusId" />
                                     <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
                                 </div>
                             </th>

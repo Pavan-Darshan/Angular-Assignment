@@ -4,7 +4,8 @@ import { User } from '../../../../Model/loginUser';
 import { ServerService } from '../../../../Services/service/server.service';
 import { Ticket } from '../../../../Model/Ticket';
 import { Comment } from '../../../../Model/comment';
-import { DateTime } from '../../../../Model/date-time';
+import { DateTime } from '../../../../Model/DateTime';
+
 
 
 
@@ -30,7 +31,8 @@ interface Issue {
 
 export class FormComponent {
 
-  serverService :ServerService = inject(ServerService);
+
+  constructor(private serverService :ServerService, private date : DateTime){}
 
   ticketID : string='7246';
   subject : string = ' ';
@@ -125,7 +127,7 @@ export class FormComponent {
     // Date and time
    
   
-    const createDateTime=DateTime.slice(0,11)+""+DateTime.slice(12)    //27-Jul-2022 10:00 AM
+    const createDateTime= this.date.getCurrentTime().slice(0,11)+""+this.date.getCurrentTime().slice(12)    //27-Jul-2022 10:00 AM
     
     this.newTicket={
       ticketId : this.ticketID,

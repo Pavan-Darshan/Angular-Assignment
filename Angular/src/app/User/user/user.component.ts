@@ -6,8 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Ticket } from '../../Model/Ticket';
 import { ServerService } from '../../Services/service/server.service';
 import { map } from 'rxjs';
-import { DateTime } from '../../Model/date-time';
-
+import { DateTime } from '../../Model/DateTime';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +18,7 @@ import { DateTime } from '../../Model/date-time';
 export class UserComponent implements OnInit {
   
 
-  constructor(private serverService : ServerService){}
+  constructor(private serverService : ServerService, private date : DateTime){}
 
   isFormActive :boolean = false;
   featchedIssueList :Ticket []=[];
@@ -131,7 +130,7 @@ export class UserComponent implements OnInit {
     //Adding comment-------------------------------->
     viewIssueDetails.comment?.push({
       comment:plainText,
-      commentedDate:DateTime,
+      commentedDate:this.date.getCurrentTime(),
       commenter:this.serverService.loggedUser[0].userName
     })
 

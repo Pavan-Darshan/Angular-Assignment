@@ -35,18 +35,33 @@ import { FluidModule } from "primeng/fluid";
 import { Tag } from "primeng/tag";
 import { ProgressBar } from "primeng/progressbar";
 import { CheckboxModule } from 'primeng/checkbox';
+import { ChartModule } from 'primeng/chart';
+import { MenuModule } from 'primeng/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Tooltip } from 'primeng/tooltip';
+import { TieredMenu } from 'primeng/tieredmenu';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+
+
+
+
+
+
+
+
+
 
 
 @NgModule({
     declarations:[AdminComponent,AdminDashboardComponent,AdminHeaderComponent ,
         AdminFooterComponent,IssueComponent, UserListComponent],
 
-    imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,
-            Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule, 
-            ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,
-            FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule],
+    imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tooltip,
+            Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,
+            ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,TieredMenuModule,
+            FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule, ChartModule,MenuModule,BrowserAnimationsModule],
 
-            providers:[],
+            providers: [],
         
     exports:[AdminRoutingModule]
 })
