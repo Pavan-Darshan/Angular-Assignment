@@ -1,4 +1,31 @@
 .container{
     width: 100%;
-    height: 100vh;
+    height: 75vh;
+    display: grid;
+    grid-template-columns: auto auto;
+
 }
+.compLeft{
+    width: 100%;
+    height: 100%;
+    border-right: 5px solid white;
+    
+
+}
+
+.compRight{
+    width: 100%;
+    height: 100%;
+  
+   
+}
+.compRight>div:first-child{
+    border-bottom: 5px solid white;
+}
+
+.lineCard{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+

@@ -1,3 +1,22 @@
 <div class="container">
-<h2> Charts are need to do</h2>
+    <div class="compLeft">
+        
+        <p-chart type="bar" [data]="barChart" [options]="" height="70vh" width="50vw" />
+       
+    </div>
+    <div class="compRight">
+        <div class="lineCard">
+            <p-chart class="lineChart" type="line" [data]="lineChart" [options]="" height="35vh" width="45vw"/>
+        </div>
+        <div class="lineCard">
+            
+            <div>
+                <p-chart type="pie" [data]="pieChart" [options]="" height="35vh" width="22vw"/>
+            </div>
+            <div>
+                <p-chart type="doughnut" [data]="doughnutChart" [options]="" height="35vh" width="22vw"/>
+            </div>
+        </div>
+        
+    </div>
 </div>

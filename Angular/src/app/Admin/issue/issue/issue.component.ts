@@ -85,10 +85,9 @@ export class IssueComponent implements OnInit,OnChanges{
         setTimeout(()=>{
           this.loading=false
         },2000)
-       
-        console.log(this.featchedIssueList);
-
+        
         this.groupIssuesByStatus(); // type of status
+        
     })
 
   }

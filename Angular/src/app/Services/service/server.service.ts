@@ -14,6 +14,8 @@ errorSubject :Subject<HttpErrorResponse> =new Subject<HttpErrorResponse>();
 loggedUser:User[]=[]; // logged user
 isAccountLogged :boolean=false;
 
+getStatus ={};
+
 
  onLogAdmin(){
       return  this.http.get<{[key : string]:User }>('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser.json')

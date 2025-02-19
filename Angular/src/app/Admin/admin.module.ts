@@ -45,13 +45,6 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 
 
 
-
-
-
-
-
-
-
 @NgModule({
     declarations:[AdminComponent,AdminDashboardComponent,AdminHeaderComponent ,
         AdminFooterComponent,IssueComponent, UserListComponent],

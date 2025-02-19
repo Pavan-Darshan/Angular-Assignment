@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { ServerService } from "../service/server.service";
 import { User } from "../../Model/loginUser";
-import { filter, map } from "rxjs";
+import {  map } from "rxjs";
 import { __values } from "tslib";
 
 @Injectable({
@@ -42,7 +42,7 @@ export class AuthService{
     
                         temp.forEach((user)=>{      
                         this.isUsers.push(...Object.values(user));
-                        
+                 
                         
                     })  
                 }

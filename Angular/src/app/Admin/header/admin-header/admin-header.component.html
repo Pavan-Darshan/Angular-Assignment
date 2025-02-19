@@ -29,12 +29,34 @@
         </div>
 
         <div>
-            <i class="pi pi-spin pi-cog" style="font-size: 1.3rem" label="Toggle" (click)="menu.toggle($event)" ></i>
+            <i class="pi pi-spin pi-cog" style="font-size: 1.3rem" label="Toggle" (click)="visible = true" ></i>
             <p-tieredmenu #menu [model]="items" [popup]="true" />
 
         </div>
 
     </div>
+    
+</div>
+
+
+<!-- Drawe---------------- -->
+<div class="card flex justify-center" class="profile">
+    <p-drawer [(visible)]="visible" [closable]="false">
+        <ng-template #header>
+            <div >
+                <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}}/>
+                
+                <span class="font-bold">{{loggedUser?.userName}}</span>
+            </div>
+        </ng-template>
+       
+        <ng-template #footer>
+            <div >
+                <button pButton label="Account" icon="pi pi-user" class="w-full" outlined></button>
+                <button pButton label="Logout" icon="pi pi-sign-out" class="w-full" severity="danger" text></button>
+            </div>
+        </ng-template>
+    </p-drawer>
     
 </div>
 
