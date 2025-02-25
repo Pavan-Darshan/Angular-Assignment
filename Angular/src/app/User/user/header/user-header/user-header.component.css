@@ -2,88 +2,166 @@
 @import "primeicons/primeicons.css";
 
 .container{
-    background-color: rgb(241, 240, 240);
-    width: 98%;
-    position: absolute;
-    left:1%;
-    top: 1%;
-    border-radius: 10px;
-    box-shadow: 0 0 5px 1px rgb(47, 47, 48);
-    display: flex;
+   
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left:0%;
+    top: 0%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    
 }
 .logo {
-    width: 5%;
-    height: 8%;
-    position: relative;
-    left: 4%;
-    
+    width: 100%;
+    height: 60px;
 }
 
 .logo img{
-    width: 100%;
-    height: 100%;
-    margin-top: 5px;
-}
-.innerContainer{
-    width: 40%;
-    position: relative;
-    left: 55%;
-    top: 0;
-    display: flex;
-   column-gap:7%;
-    margin-top: 1%;
-   
-}
-/* ::ng-deep.inline-flex .p-avatar{
-    background-color: rgb(188, 90, 249) !important;
-    color: rgb(244, 243, 243) !important;
-    width: 30px;
-    height: 30px;
-} */
-.UserName{
-    width: 35%;
-    height: 70%;
-    border: none;
-    box-shadow: 0 0 2px 2px rgb(49, 47, 47);
-    border-radius: 10px;
-    text-align: center;   
-}
-.UserName>span:first-child{
-    font-size: 20px; 
-}
-.UserName>span:last-child{
-    font-size: 12px;
-    color:red;
+    width: 100px;
+    height: 60px;
+    
     
 }
-.p-overlay-badge{
-    width: 32px;
-    height: 32px;
-    background-color: black;
-    color: yellow;
-    font-size: 24px;
-    margin-top: 5px;
+.innerContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    gap: 15px;
 }
-.inbox{
-   margin-top: 5px;
+.nameTag{
+    width: 150px;
+    display: flex;
+    gap: 10%;
+    justify-content: flex-start;
+    align-items: center;
+    border-right: 1px solid red;
 }
-.mode{
-    margin-top: 8px; 
-}
+.userName>div:first-child>p{
+    font-size: 18px;
 
-/*inbox*/
-.pi-comments{
-    font-size: 32px;
-    color: blue;
 }
+.userName>div:last-child>p{
+    font-size: 14px;
+    color: red;
 
+}
 ::ng-deep.p-button{
-    width: 40px;
-    height: 70%;
+
+ border: none;
+}
+
+::ng-deep.p-drawer button {
+    margin: 18px;
+    width: 70%;
+    background-color: red !important;
+  }
+
+
+::ng-deep.p-button {
+    background-color: blue !important;
+    border: none;
+  }
+
+
+.profile{
+    width: 50px;
+    height: 100%;
+   
 }
 
 
 
+/* ::ng-deep.p-drawer > div {
+    background-color: var(--background-color, black); 
+    color: var(--text-color, white);
+  } */
+  
+  ::ng-deep.p-drawer button {
+    margin: 18px;
+    width: 70%;
+    background-color: red;
+  }
+  ::ng-deep.p-button {
+    background-color: blue;
+    border: none;
+  }
+
+  .items>div{
+    width: 100%;
+    padding: 5%;
+    
+  }
+
+  .items>div>span{
+    margin-left: 3%;
+  }
+  
+  .font-bold {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+
+  .mobileView{
+    display: block !important;
+}
+.mobileViewOn{
+    display: none !important;
+}
+.items{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    margin-top: 20%;
+}
+.items>div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 
 
 
+  @media only screen and (max-width: 426px) {
+    .logo img{
+        width: 50px;
+        height: 50px;
+        
+        
+    }
+    .profile{
+        width: 50%;
+        height: 100%;
+       
+    }
+    .mobileView{
+        display: none !important;
+    }
+    .mobileViewOn{
+        display: block !important;
+    }
+
+    ::ng-deep.p-drawer-left {
+        top: 0;
+        left: 0;
+        width: 16rem !important;
+        height: 100%;
+    }
+ 
+    
+  }
+  @media only screen and (max-width: 376px) {
+
+    ::ng-deep.p-drawer-left {
+        top: 0;
+        left: 0;
+        width: 14rem !important;
+        height: 100%;
+    }
+  }

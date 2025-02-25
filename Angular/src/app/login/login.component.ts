@@ -1,9 +1,10 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { AuthService } from '../Services/login/auth.service';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../Model/loginUser';
 import { ServerService } from '../Services/service/server.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -21,20 +22,28 @@ export class LoginComponent {
   loggedUser : User []=[];
   isAccountLogged =false;
 
+  constructor(private messageService: MessageService, private activeRoute : ActivatedRoute) {}
 
-    ngOnInit(){
-       this.authService.onLoginAdmin().subscribe({
-        next: (res) => {
-          this.logInUser=res;
-        },
-        error: (error) => {
-        }
-      })
+  ngOnInit(){
+    this.authService.onLoginAdmin().subscribe({
+    next: (res) => {
+      this.logInUser=res;
+    },
+    error: (error) => {
     }
+  })
 
+  this.activeRoute.queryParamMap.subscribe((queries)=>{
+  if( Boolean( queries.get('logout'))){
+    this.authService.logOut();
+    alert("You are logged out.....!")
+  }
+  })
+}
 
+ 
 
-   onLogIn(email :string, password : string){
+onLogIn(email :string, password : string){
 let admin =  this.authService.isAdminUser.find((user)=> user.emailAddress === email && user.password === password);
         
  if(admin !== undefined){
@@ -42,7 +51,8 @@ let admin =  this.authService.isAdminUser.find((user)=> user.emailAddress === em
   this.loggedUser.push(admin);
   this.serverService.loggedUser.push(admin);
   this.serverService.isAccountLogged=true;
-  this.route.navigate(['/admin']);
+  this.authService.loggedSuccess();
+  this.route.navigate(['/admin/dashboard']);
   }
   else{
     let user=this.authService.isUsers.find((user)=> user.emailAddress === email && user.password === password);
@@ -52,11 +62,18 @@ let admin =  this.authService.isAdminUser.find((user)=> user.emailAddress === em
       this.loggedUser.push(user);
       this.serverService.loggedUser.push(user);
       this.serverService.isAccountLogged=true;
-      this.route.navigate(['/user'])
+      this.authService.loggedSuccess();
+      this.route.navigate(['/user/dashboard'])
     }
-    else
-      alert("UserName and Password not Correct");   
+    else{
+      this.show() ;
+      this.authService.logOut();
+    }
  }
 }
 
+
+show() {
+  this.messageService.add({ severity: 'info', summary: 'Info', detail: 'UserName and Password not Correct', life: 3000 });
+}
 }

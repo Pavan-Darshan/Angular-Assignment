@@ -1,20 +1,20 @@
 <div class="container">
     <div class="compLeft">
         
-        <p-chart type="bar" [data]="barChart" [options]="" height="70vh" width="50vw" />
+        <p-chart type="bar" [data]="barChart" [options]="options" height="70vh" width="50vw" class="barChart " />
        
     </div>
     <div class="compRight">
         <div class="lineCard">
-            <p-chart class="lineChart" type="line" [data]="lineChart" [options]="" height="35vh" width="45vw"/>
+            <p-chart class="lineChart" type="line" [data]="lineChart" [options]="options" height="35vh" width="45vw"/>
         </div>
-        <div class="lineCard">
+        <div class="lineCard1">
             
             <div>
-                <p-chart type="pie" [data]="pieChart" [options]="" height="35vh" width="22vw"/>
+                <p-chart class="pieChart" type="pie" [data]="pieChart" [options]="" height="35vh" width="22vw"/>
             </div>
             <div>
-                <p-chart type="doughnut" [data]="doughnutChart" [options]="" height="35vh" width="22vw"/>
+                <p-chart class="doughnut" type="doughnut" [data]="doughnutChart" [options]="" height="35vh" width="22vw"/>
             </div>
         </div>
         

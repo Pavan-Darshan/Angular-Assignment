@@ -1,382 +1,100 @@
-.container{
-    width: 100%;
-    height: 100%;
-}
 
-
-.main{
-    width: 100%;
-    height: 50px;
-    background-color: rgb(186, 189, 187);
-    position: absolute;
-    left: 0;
-    top: 95px;
-
-}
-.createBtn,.dashboardBtn{
-    background-color: white;
-    width: 8%;
-    height: 50%; 
-    border: none;
-    margin-top: 12px;
-    margin-left: 20px;
-    font-size: 16px;
-    border-radius: 10px;
-}
-.createBtn{
-    margin-left: 50px !important;
-}
-.router{
-    width: 99%;
-    height: 50%;
-    margin-left: 0.5%;
-    margin-top: 10%;
-    border-radius: 10px;
-    box-shadow: 0 0 5px 1px rgb(47, 47, 48); 
-
-}
-.form{
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-
-/* Table */
-
-:host ::ng-deep {
-    .p-paginator {
-        .p-paginator-current {
-            margin-left: auto;
-        }
-    }
-
-    .p-progressbar {
-        height: .5rem;
-        background-color: #D8DADC;
-
-        .p-progressbar-value {
-            background-color: #607D8B;
-        }
-    }
-
-    .table-header {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .p-calendar .p-datepicker {
-        min-width: 25rem;
-
-        td {
-            font-weight: 400;
-        }
-    }
-
-    .p-datatable.p-datatable-customers {
-        .p-datatable-header {
-            padding: 1rem;
-            text-align: center;
-            font-size: 1rem;
-        }
-
-         .p-paginator {
-            padding: 1rem;
-        } 
-
-        .p-datatable-thead > tr > th {
-            text-align: center;
-        }
-
-        .p-datatable-tbody > tr > td {
-            cursor: auto;
-        }
-
-        .p-dropdown-label:not(.p-placeholder) {
-            text-transform: uppercase;
-        }
-    }
-
-    .p-w-100 {
-        width: 100%;
-    }
-
-    /* Responsive */
-    .p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 960px) {
-    :host ::ng-deep {
-        .p-datatable {
-            &.p-datatable-customers {
-                .p-datatable-thead > tr > th,
-                .p-datatable-tfoot > tr > td {
-                    display: none !important;
-                }
-
-                .p-datatable-tbody > tr {
-                    border-bottom: 1px solid var(--layer-2);
-
-                    > td {
-                        text-align: left;
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
-                        border: 0 none;
-
-                        .p-column-title {
-                            min-width: 30%;
-                            display: inline-block;
-                            font-weight: bold;
-                        }
-
-                        p-progressbar {
-                            width: 100%;
-                        }
-
-                        &:last-child {
-                            border-bottom: 1px solid var(--surface-d);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-/* .kanbanContainer{
-    width: 100%;
-    height: 100%;
-    
+.container {
     display: flex;
-    
-   
-    background-color: bisque;
-   
-}
-.kanbanContainer>div{
-    width: 17%;
+    flex-direction: column;
+    width: 100vw;
     height: 100vh;
-    background-color: aquamarine;
-    margin-left: 1.5%;
-    margin-right: 1.5%;
-} */
-
-.kanbanContainer {
-    display: flex;
-    justify-content: space-between;
-}
-
-.kanbanColumn {
-    width: 18%;
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.kanbanColumn h3 {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.kanbanCard {
-    background-color: white;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.kanbanCard h4 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.kanbanCard p {
-    margin: 5px 0;
-}
-
-.p-overlay-badge{
-    width: 24px;
-    height: 24px;
-    background-color: black;
-    color: yellow;
-    font-size: 22px;
-}
-.commentMain{
-    border-top: 1px solid black ;
-    box-shadow: 0px -4px 5px rgba(11, 11, 11, 0.1);
-    display: flex;
-    padding: 2%;
-   
-}
-.commentMain button{
-    width: 18%;
-    height: 100%;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
-    position: relative;
-    left: 60%;
-    margin-top: 1%;
-    text-align: center;
-    background-color: white;
-   
-}
-.commentMain button>i{
-    font-size: 16px;
-    color: blue;
-}
-.commentbtn{
-    width: 100% !important;
-}
+  }
   
 
-.commentView{
+  .header {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding-bottom: 60px;
-    
-}
-.commentDetails{
-    width: 50%;
-    height: 90%;
-    background-color: white;
-    margin: auto;
-    border-radius: 10px;
-    padding-bottom: 30px;
-    overflow-y: auto;
-    position: absolute;
-    top: 20px;
-    left: 25%;
-    
-}
-.commentDetails>p{
+    height: 8%; 
+    background-color: #2c3e50; 
+  }
   
-    width: 100%;
-    background-color: red;
-    padding: 10px;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position:sticky;
-    top: 0;
-}
-
-div>section{
-    width: 80%;
+  
+  .main {
     display: flex;
-    margin: auto;
+    justify-content: flex-start;
+    align-items: center;
     gap: 10px;
-    
-}
-div>section>p{
-    width: 100%;
-    padding: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-    
-}
-.btns{
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto auto;
-
-    
-}
-.btns ::ng-deep.p-button{
-    width: 50%;
-    height:80%;
-    margin-left: 25%;
-    margin-top: 5%;
+    padding-left: 10px;
+    height: 4%; 
+    background-color: #a1c6f1; 
    
-   
-}
-.description>p{
-    white-space: normal;  
-  word-wrap: break-word;  
-  overflow-wrap: break-word;  
-  word-break: break-all;  
-  max-width: 100%;  
-
-}
-.messageCard{
-    width: 80%;
-    margin: auto;
-    padding-bottom: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-}
-
-.popup {
-    width: 20%;
-    height: 60%;
-    position: absolute;
-    background: rgb(212, 209, 209);
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    overflow-y: auto;
   }
-  .commentPopUp{
-    width: 98%;
-    background-color: white;
-    position: relative;
-    top: 0;
-    left: 1%;
-    margin-bottom: 5%;
-    border-radius: 10px;
-    
-   /* text wrap*/
-    white-space: normal;  
-    word-wrap: break-word;  
-    overflow-wrap: break-word;  
-    word-break: break-all;  
-    max-width: 100%;  
-  }
-
-  .commentPopUpHeader{
-    width: 100%;
-    display: flex;
-    border-bottom: 1px solid rgb(68, 67, 67);
-
-  }
-  .commentPopUpHeader>div:last-child{
-    
-    width: 80%;
-    padding-left: 20px;
-    
-
-  }
-  .commentPopUpHeader>div:first-child{
-    
-    width: 20%;
-
-  }
-  .commentPopUpHeader>div:first-child>.p-overlay-badge{
-    position: absolute;
-    top: 9%;
-    left: 4.5%;
-    font-size: 32px;
-    width: 36px;
-    height: 36px;
-  }
-  .commentPopUpHeaderMain{
-    padding-bottom: 5px;
-    box-shadow: 0  0 3px 2px rgba(17, 19, 16, 0.5);
-    border: none;
-    border-radius: 10px;
-  }
- .commentPopUpHeaderMain>div:last-child{
-    width: 94%;
-    margin-left: 3%;
- }
   
+  .dashboardBtn {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    width: 140px; 
+    height: 20px; 
+    font-size: 14px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dashboardBtn:hover {
+    background-color: rgba(233, 142, 142, 0.5);
+  }
+  .router {
+    flex: 1; 
+    overflow: auto;
+  }
+  
+
+  .footer {
+    width: 100%;
+    height: 7%;
+    background-color: #2c3e50; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Mobile and Tablet Responsive Styles */
+@media (max-width: 768px) {
+  
+
+  .main {
+      justify-content: center;
+      align-items: center;
+      height: auto;
+      flex-direction: column; 
+      gap: 10px;
+  }
+
+  .dashboardBtn {
+      width: 30%;
+      font-size: 14px; 
+      padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .main {
+      gap: 10px;
+  }
+
+  .dashboardBtn {
+      width: 50%; 
+      padding: 10px 15px;
+      font-size: 12px;
+      border-radius: 8px;
+  }
+
+  .header {
+      height: 50px; 
+  }
+
+  .footer {
+      height: 50px; 
+  }
+}

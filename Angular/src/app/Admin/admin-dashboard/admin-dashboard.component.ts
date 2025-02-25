@@ -63,7 +63,8 @@ export class AdminDashboardComponent  {
       inProgress: [],
       waiting: [],
       fixed: [],
-      closed: []
+      closed: [],
+
     };
     OpenJan :number =0;
    OpenFeb : number =0;
@@ -97,6 +98,18 @@ export class AdminDashboardComponent  {
     fixedNov : number = 0;
     fixedDec: number = 0;
     fixed : number [] = [];
+   
+hardware : any[] =[];
+software : any[] =[];
+accessManagement : any[] =[];
+
+
+high : any []= [];
+critical : any []= [];
+medium : any []= [];
+low : any []= [];
+
+
 
 
   
@@ -107,36 +120,53 @@ export class AdminDashboardComponent  {
       this.groupedIssues.waiting = this.List.filter(issue => issue.statusId === 'Waiting');
       this.groupedIssues.fixed = this.List.filter(issue => issue.statusId === 'Fixed');
       this.groupedIssues.closed = this.List.filter(issue => issue.statusId === 'Closed');
+
+
       
+
+      this.hardware=this.List.filter((issue)=> issue.categoryId == 'Hardware');
+      this.software=this.List.filter((issue)=> issue.categoryId == 'Software');
+      this.accessManagement=this.List.filter((issue)=> issue.categoryId == 'Access Management');
+
+
+      this.high=this.List.filter((issue)=> issue.priorityId == 'HIGH');
+      this.low=this.List.filter((issue)=> issue.priorityId == 'LOW');
+      this.critical=this.List.filter((issue)=> issue.priorityId == 'CRITICAL');
+      this.medium=this.List.filter((issue)=> issue.priorityId == 'MEDIUM');
+      
+
+
+
+
     
 
-      this.groupedIssues.open.forEach((element: any) => {
-        ((element.createDateTime.slice(3,6)==='Jan') ? (this.OpenJan+=1): null) ||
-        ((element.createDateTime.slice(3,6)==='Feb') ? (this.OpenFeb+=1): null) ||
-        ((element.createDateTime.slice(3,6)==='Sep') ? (this.OpenSep+=1): null) ||
-        ((element.createDateTime.slice(3,6)==='Oct') ? (this.OpenOct+=1): null) ||
-        ((element.createDateTime.slice(3,6)==='Nov') ? (this.OpenNov+=1): null) ||
-        ((element.createDateTime.slice(3,6)==='Dec') ? (this.OpenDec+=1): null)
-        
-    });
+this.groupedIssues.open.forEach((element: any) => {
+  ((element.createDateTime.slice(3,6)==='Jan') ? (this.OpenJan+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Feb') ? (this.OpenFeb+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Sep') ? (this.OpenSep+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Oct') ? (this.OpenOct+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Nov') ? (this.OpenNov+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Dec') ? (this.OpenDec+=1): null)
+  
+});
 
-    this.groupedIssues.inProgress.forEach((element: any) => {
-      ((element.createDateTime.slice(3,6)==='Jan') ? (this.progessJan+=1): null) ||
-      ((element.createDateTime.slice(3,6)==='Feb') ? (this.progessFeb+=1): null) ||
-      ((element.createDateTime.slice(3,6)==='Sep') ? (this.progessSep+=1): null) ||
-      ((element.createDateTime.slice(3,6)==='Oct') ? (this.progessOct+=1): null) ||
-      ((element.createDateTime.slice(3,6)==='Nov') ? (this.progessNov+=1): null) ||
-      ((element.createDateTime.slice(3,6)==='Dec') ? (this.progessDec+=1): null)
-      
-  });
-  this.groupedIssues.waiting.forEach((element: any) => {
-    ((element.createDateTime.slice(3,6)==='Jan') ? (this.waitingJan+=1): null) ||
-    ((element.createDateTime.slice(3,6)==='Feb') ? (this.waitingFeb+=1): null) ||
-    ((element.createDateTime.slice(3,6)==='Sep') ? (this.waitingSep+=1): null) ||
-    ((element.createDateTime.slice(3,6)==='Oct') ? (this.waitingOct+=1): null) ||
-    ((element.createDateTime.slice(3,6)==='Nov') ? (this.waitingNov+=1): null) ||
-    ((element.createDateTime.slice(3,6)==='Dec') ? (this.waitingDec+=1): null)
+  this.groupedIssues.inProgress.forEach((element: any) => {
+    ((element.createDateTime.slice(3,6)==='Jan') ? (this.progessJan+=1): null) ||
+    ((element.createDateTime.slice(3,6)==='Feb') ? (this.progessFeb+=1): null) ||
+    ((element.createDateTime.slice(3,6)==='Sep') ? (this.progessSep+=1): null) ||
+    ((element.createDateTime.slice(3,6)==='Oct') ? (this.progessOct+=1): null) ||
+    ((element.createDateTime.slice(3,6)==='Nov') ? (this.progessNov+=1): null) ||
+    ((element.createDateTime.slice(3,6)==='Dec') ? (this.progessDec+=1): null)
     
+});
+this.groupedIssues.waiting.forEach((element: any) => {
+  ((element.createDateTime.slice(3,6)==='Jan') ? (this.waitingJan+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Feb') ? (this.waitingFeb+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Sep') ? (this.waitingSep+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Oct') ? (this.waitingOct+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Nov') ? (this.waitingNov+=1): null) ||
+  ((element.createDateTime.slice(3,6)==='Dec') ? (this.waitingDec+=1): null)
+  
 });
 this.groupedIssues.fixed.forEach((element: any) => {
   ((element.createDateTime.slice(3,6)==='Jan') ? (this.fixedJan+=1): null) ||
@@ -149,137 +179,140 @@ this.groupedIssues.fixed.forEach((element: any) => {
 });
 
 
+
+
+
     this.Open = [this.OpenSep, this.OpenOct,this.OpenNov, this.OpenDec, this.OpenJan, this.OpenFeb];
     this.progress =[this.progessSep, this.progessOct, this.progessNov, this.progessDec, this.progessJan, this.progessFeb];
     this.waiting =[this.waitingSep, this.waitingOct, this.waitingNov, this.waitingDec, this.waitingJan, this.waitingFeb];
     this.fixed =[this.fixedSep, this.fixedOct, this.fixedNov, this.fixedDec, this.fixedJan, this.fixedFeb];
-    console.log(this.OpenFeb);
-``
+  
+
 
 
 
 
     
-    this.lineChart = {
-      labels: ['Aug', 'September', 'October', 'November', 'December', 'January', 'February'],
-      datasets: [
-          {
-            label: 'Hardware',
-            data: [65, 59, 80, 81, 56, 14, 55],
-            fill: false,
-            tension: 0.5
-          },
-          {
-            label: 'Software',
-            data: [28, 48, 40, 19, 86, 27, 90],
-            fill: false,
-            tension: 0.5,
-          },
-          {
-            label: 'Access Management',
-            data: [12, 27, 34, 47, 16, 54, 36],
-            fill: false,
-            tension: 0.5,
-            borderDash: [5, 5]
-        }
-      ]
-  };
+this.lineChart = {
+labels: [ 'September', 'October', 'November', 'December', 'January', 'February'],
+datasets: [
+  {
+    label: 'Hardware',
+    data: [ 59, 80, 81, 56, 14, 55],
+    fill: false,
+    tension: 0.5
+  },
+  {
+  label: 'Software',
+  data: [28, 40, 19, 86, 27, 90],
+  fill: false,
+  tension: 0.5,
+  },
+  {
+  label: 'Access Management',
+  data: [12, 34, 47, 16, 54, 36],
+  fill: false,
+  tension: 0.5,
+  borderDash: [5, 5]
+}
+  ]
+};
 
-    this.barChart = {
-      labels: ['September', 'October', 'November', 'December', 'January', 'February'],
-      datasets: [
-          {
-            label: 'Open',
-            data: [ 15, 28, 19, 56, 71, 38] ,
-            backgroundColor: 'rgb(255, 0, 0)', 
-            borderColor: 'rgb(255, 0, 0)'
-          },
-      //     {
-      //       label: 'Assigned',
-      //       data: [ 48, 40, 19, 86, 27, 8],
-      //       backgroundColor: 'rgb(255, 255, 0)', 
-      //       borderColor: 'rgb(255, 255, 0)'
-             
-      //     },
-          {
-            label: 'In Progress',
-            data: [ 27, 34, 47, 16, 54, 36],
-            backgroundColor: 'rgb(0, 0, 255)', 
-            borderColor: 'rgb(0, 0, 255)'
-            
-        },
-      //   {
-      //     label: 'Completed',
-      //     data: [ 45, 74, 8, 16, 64, 26],
-      //     backgroundColor: 'rgb(0, 255, 0)', 
-      //     borderColor: 'rgb(0, 255, 0)',     
-      // },
-      
-      ]
-    };
+this.barChart = {
+labels: ['September', 'October', 'November', 'December', 'January', 'February'],
+datasets: [
+  {
+    label: 'Open',
+    data: this.Open ,
+    backgroundColor: 'rgb(255, 0, 0)', 
+    borderColor: 'rgb(255, 0, 0)'
+  },
+//     {
+//       label: 'Assigned',
+//       data: [ 48, 40, 19, 86, 27, 8],
+//       backgroundColor: 'rgb(255, 255, 0)', 
+//       borderColor: 'rgb(255, 255, 0)'
+        
+//     },
+  {
+    label: 'In Progress',
+    data: this.progress,
+    backgroundColor: 'rgb(0, 0, 255)', 
+    borderColor: 'rgb(0, 0, 255)'
+    
+},
+  {
+  label: 'Fixed',
+  data: this.fixed,
+  backgroundColor: 'rgb(0, 255, 0)', 
+  borderColor: 'rgb(0, 255, 0)',     
+},
+
+]
+};
   
 
-  this.doughnutChart = {
-    labels: ['Low','Medium','High','Critical'],
-    datasets: [
-        {
-            label: ['Priority'],
-            data: [25, 21, 10, 9],
-            fill: true,
-            
-        },
-    ]
-  };
+this.doughnutChart = {
+  labels: ['Low','Medium','High','Critical'],
+  datasets: [
+    {
+    label: ['Priority'],
+    data: [this.low.length, this.medium.length, this.high.length, this.critical.length],
+    fill: true,
+
+    },
+  ]
+};
 
   this.pieChart = {
     labels: ['Hardware', 'Software', 'Access Management'],
     datasets: [
         {
           label: ['Category'],
-          data: [65, 42,26],
+          data: [this.hardware.length, this.software.length , this.accessManagement.length],
           
         },
         
     ]
   };
 
-//   this.options = {
-//     maintainAspectRatio: false,
-//     aspectRatio: 0.8,
-//     plugins: {
-//         tooltip: {
-//             mode: 'index',
-//             intersect: false
-//         },
-//         legend: {
-//             labels: {
-//                 color: 'red'
-//             }
-//         }
-//     },
-//     scales: {
-//         x: {
-//             stacked: true,
-//             ticks: {
-//                 color: 'green'
-//             },
-//             grid: {
-//                 color: 'blue',
-//                 drawBorder: false
-//             }
-//         },
-//         y: {
-//             stacked: true,
-//             ticks: {
-//                 color: 'yellow'
-//             },
-//             grid: {
-//                 color: 'white',
-//                 drawBorder: false
-//             }
-//         }
-//     }
-// };
+  this.options = {
+    maintainAspectRatio: false,
+    aspectRatio: 0.8,
+    plugins: {
+        tooltip: {
+            mode: 'index',
+            intersect: false
+        },
+        legend: {
+            labels: {
+                color: 'red'
+            }
+        }
+    },
+    scales: {
+        x: {
+            stacked: false,
+            ticks: {
+                color: 'green'
+            },
+            grid: {
+                // color for x lines
+                drawBorder: true
+            }
+        },
+        y: {
+            stacked: false,
+            ticks: {
+                color: 'blue'
+            },
+            grid: {
+                // color for y lines
+                drawBorder: true
+            }
+        }
+    }
+};
 
   }
 

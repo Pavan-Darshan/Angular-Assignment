@@ -17,7 +17,7 @@ export class AuthService{
 
     isAdminUser : User[] =[];
     isUsers : User[] =[];
-
+    isLogged :boolean =false;
 
      
     onLoginAdmin(){
@@ -41,16 +41,26 @@ export class AuthService{
                         temp.push({...response[key]});
     
                         temp.forEach((user)=>{      
-                        this.isUsers.push(...Object.values(user));
-                 
-                        
+                        this.isUsers.push(...Object.values(user));  
                     })  
                 }
             }
-        } console.log(this.isUsers);
+        } 
             return this.isUsers;
      }))
         
+    }
+
+    loggedSuccess(){
+        this.isLogged =true;
+    }
+
+    logOut(){
+        this.isLogged = false;
+    }
+
+    isAuthenticated(){
+        return this.isLogged;
     }
 
 }

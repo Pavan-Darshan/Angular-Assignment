@@ -1,11 +1,214 @@
-/* You can add global styles to this file, and also import other style files */
+
 @import "primeicons/primeicons.css";
-
-
 
 *{
     margin: 0;
     padding: 0;
-   
-    
+ 
+}
+
+/* Light Mode */
+:root {
+    --background-color: white;
+    --text-color: black;
+    --button-background: #f0f0f0;
+    --button-text-color: black;
+    --table-row-background-light: #f0f0f0;
+    --table-row-text-light: #000; 
+    --table-header-background-light: #e0e0e0; 
+    --table-header-text-light: #000; 
+    --paginator-background-light: #f0f0f0;
+    --paginator-text-light: #000000;
+    --paginator-hover-light: #dcdcdc;
+    --paginator-border-light: #ddd;
+    --paginator-selected-background-light: #434344; 
+    --paginator-selected-text-light: #ffffff; 
+    --form-background-light: white;
+    --form-text-color-light: black;
+    --form-border-light: #ccc;
+    --tab-background-color-light: #ffffff;
+    --tab-text-color-light: black;
+
+  
+  }
+  
+  /* Dark Mode */
+  body.dark-mode {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --button-background: #333333;
+    --button-text-color: #ffffff;
+    --table-row-background-dark: #000000;
+    --table-row-text-dark: #fff; 
+    --table-header-background-dark: #444444; 
+    --table-header-text-dark: #fff;
+    --paginator-background-dark: #333333;
+    --paginator-text-dark: #ffffff;
+    --paginator-hover-dark: #444444;
+    --paginator-border-dark: #555;
+    --paginator-selected-background-dark: #434344; 
+    --paginator-selected-text-dark: #ffffff;
+    --form-background-dark: #333333;
+    --form-text-color-dark: white;
+    --form-border-dark: #555;
+    --tab-background-color-dark: black;
+     --tab-text-color-dark: white;
+
+
+
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+  }
+  
+  button {
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.5;
+  }
+.p-datatable-tbody > tr {
+  background-color: var(--table-row-background-light);
+  color: var(--table-row-text-light);
+  transition: background-color 0.5s ease, color 0.5s ease !important;
+}
+
+
+body:not(.dark-mode) .p-datatable-tbody > tr {
+  background-color: var(--table-row-background-light);
+  color: var(--table-row-text-light);
+  
+}
+
+
+body.dark-mode .p-datatable-tbody > tr {
+  background-color: var(--table-row-background-dark);
+  color: var(--table-row-text-dark);
+ 
+}
+  
+body:not(.dark-mode) .p-datatable-thead th {
+  background-color: var(--table-header-background-light);
+  color: var(--table-header-text-light);
+  transition: background-color 0.5s ease, color 0.5s ease !important;
+}
+
+body.dark-mode .p-datatable-thead th {
+  background-color: var(--table-header-background-dark);
+  color: var(--table-header-text-dark);
+  transition: background-color 0.5s ease, color 0.5s ease !important;
+}
+
+.p-paginator {
+  background-color: var(--paginator-background-light); 
+  color: var(--paginator-text-light); 
+  border: 1px solid var(--paginator-border-light); 
+  position: fixed !important;
+  top: 84%;
+  left :1%;
+  width: 98%;
+}
+
+body.dark-mode .p-paginator {
+  background-color: var(--paginator-background-dark); 
+  color: var(--paginator-text-dark); 
+  border: 1px solid var(--paginator-border-dark); 
+}
+
+
+.p-paginator-page.p-paginator-page-selected {
+  background-color: var(--paginator-selected-background-light); 
+  color: var(--paginator-selected-text-light); 
+}
+
+
+body.dark-mode .p-paginator-page.p-paginator-page-selected {
+  background-color: var(--paginator-selected-background-dark); 
+  color: var(--paginator-selected-text-dark); 
+}
+
+
+.p-paginator .p-paginator-pages .p-paginator-page:hover {
+   background-color: var(--paginator-hover-light);
+}
+
+body.dark-mode .p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background-color: var(--paginator-hover-dark);
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: var(--paginator-hover-light);
+  color: var(--paginator-text-light);
+}
+
+body.dark-mode .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: var(--paginator-hover-dark);
+  color: var(--paginator-text-dark);
+}
+form {
+  background-color: var(--form-background-light) !important; 
+  color: var(--form-text-color-light) !important;
+}
+
+body.light-mode form {
+  background-color:var(--form-background-light) !important;
+  color: var(--form-text-color-light) !important;
+}
+
+body.dark-mode form {
+  background-color:  var(--form-background-dark) !important; 
+  color: var(--form-text-color-dark) !important;
+}
+.p-tablist-tab-list{
+  background-color: var(--tab-background-color-light) !important;
+  color: var(--tab-text-color-light) !important;
+}
+body.dark-mode .p-tablist-tab-list{
+  background-color: var(--tab-background-color-dark) !important;
+  color: var(--tab-text-color-dark) !important;
+}
+
+.p-tab{
+  color: var(--tab-text-color-dark) !important;
+}
+
+body.dark-mode .p-tab{
+  color: var(--tab-text-color-dark) !important;
+}
+
+
+.kanbanColumn{
+  background-color: #F3F5F8;
+  
+}
+body.dark-mode .kanbanColumn {
+  background-color: rgb(45, 42, 42);
+  color: white;
+}
+.kanbanCard {
+  background-color: #F3F5F8;
+  color: black;
+  box-shadow: 0 0 2px 2px rgb(213, 213, 213) !important;
+  font-size: 12px !important;
+
+}
+body.dark-mode .kanbanCard {
+  background-color: rgb(93, 93, 93);
+  color: white;
+}
+.p-drawer {
+  background-color: var(  --background-color);
+  color: var(  --text-color);
+}
+body.dark-mode .p-drawer{
+  background-color: var(  --background-color);
+  color: var(  --text-color);
 }

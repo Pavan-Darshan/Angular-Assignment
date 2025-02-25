@@ -1,259 +1,34 @@
 <div class="container">
-
-<app-user-header></app-user-header>
-<div class="main" >
+    <div class="header">
+        <app-user-header ></app-user-header >
+    </div>
     
-    <a routerLink="dashboard"><button  class="dashboardBtn" >Dashboard</button></a>
-    <!-- <a routerLink="ticket"><button  class="createBtn" (click)="onCreateTicket()" >Create</button></a> -->
-    <button  class="createBtn" (click)="onCreateTicket()" >Create</button>
-</div>
-
-<div class="router" >
-    <!-- <router-outlet ></router-outlet> -->
-    <p-tabs value="0">
-        <p-tablist>
-            <p-tab value="0">Kanban</p-tab>
-            <p-tab value="1">List</p-tab>
-        </p-tablist>
-        <p-tabpanels>
-            
-            <p-tabpanel value="0">
-                <!--Main ontainer-->
-                <div class="kanbanContainer"> 
-                    <!--Loop through the all status of manual array-->
-                    <div class="kanbanColumn" *ngFor="let status of ['open', 'inProgress', 'waiting', 'fixed', 'closed']">
-                        <!--pipe for upperacse-->
-                        <h3>{{ status | uppercase }}</h3> 
-                        <div *ngIf="groupedIssues[status].length > 0">
-                            <div *ngFor="let issue of groupedIssues[status]">
-                                <div class="kanbanCard">
-                                    <!-- <h4>{{ issue.userName }}</h4> -->
-                                    <p><strong>Code : </strong> {{ issue.categoryId }} <span>{{issue.subCategoryId}}</span></p>
-                                    <p><strong>Subject :</strong> {{ issue.subject }}</p>
-                                    
-                                    <p><strong>Priority:</strong> {{ issue.priorityId }}</p>
-                                    <div class="commentMain"> <!--User image and Notification-->
-                                        <p-avatar class="p-overlay-badge" label={{issue.userName[0]}} shape="circle" title={{issue.userName}}/>
-                                        
-                                        <button (click)="showMessage(issue)"> <i class="pi pi-comments"></i></button>
-
-                                        <p-overlaybadge severity="danger" value={{issue.comment.length-1}} class="inbox">
-                                                <button class="commentbtn" (click)="openPopup($event)"><i class="pi pi-comments"></i></button>
-                                        </p-overlaybadge>
-                                        
-                                       
-                                        <!--popUp open and close-->
-                                        <div *ngIf="isPopupVisible" class="popup" [ngStyle]="{ top: popupPosition.top + 'px', left: popupPosition.left + 'px' }">
-                            
-                                                <div class="commentPopUp" *ngFor="let comment of issue.comment">
-                                        
-                                                    <div class="commentPopUpHeaderMain" *ngIf="comment.commenter!=''">
-                                                        <div class="commentPopUpHeader">
-                                                            <div>
-                                                                <p-avatar class="p-overlay-badge" label={{comment.commenter[0]}} shape="circle" title={{comment.commenter}}/>
-                                                            </div>
-                                                            <div>
-                                                                <p>{{comment.commenter}}</p>
-                                                                <p>{{comment.commentedDate}}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <p>{{comment.comment}}</p>
-                                                        </div>
-                                                
-                                                    </div>
-                                                    
-                                                </div>
-                                            
-                                            
-                                        </div>
-                                        
-
-                                    
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div *ngIf="groupedIssues[status]?.length === 0">
-                            <p>No issues in this status.</p>
-                        </div>
-                    </div>
-                </div>
-            </p-tabpanel>
-            
-            
-            
-            <p-tabpanel value="1">
-                <p-table #dt
-                    [value]="featchedIssueList"
-                    [(selection)]="selectedIssue"
-                    dataKey="id"
-                    [rowHover]="true"
-                    [rows]="5"
-                    [showCurrentPageReport]="true"
-                    [totalRecords]="featchedIssueList.length"
-                    [loading]="loading"
-                    [paginator]="true"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
-                
-                
-                    <!-- <ng-template #caption>
-                        <div class="flex justify-between">
-                            <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" />
-                            <p-iconField iconPosition="left">
-                                <p-inputIcon>
-                                    <i class="pi pi-search"></i>
-                                </p-inputIcon>
-                                <input pInputText type="text" [(ngModel)]="searchValue"  placeholder="Keyboard Search" />
-                            </p-iconField>
-                        </div>
-                    </ng-template> -->
-                    <ng-template #header>
-                        <tr >
-                            
-                            <th pSortableColumn="userName" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                    Name
-                                    <p-sortIcon field="userName" />
-                                    <p-columnFilter type="text" field="name" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="country.name" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                    RepoterID
-                                    <p-sortIcon field="country.name" />
-                                    <p-columnFilter type="text" field="country.name" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="representative.name" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                    CategoryID
-                                    <p-sortIcon field="country.name" />
-                                    <p-columnFilter type="text" field="country.name" display="menu" class="ml-auto" />
-                                
-                                </div>
-                            </th>
-                            <th pSortableColumn="date" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                    SubCategoryID
-                                    <p-sortIcon field="date" />
-                                    <p-columnFilter type="date" field="date" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="balance" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                    Subject
-                                    <p-sortIcon field="balance" />
-                                    <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="status" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                    Descrption
-                                    <p-sortIcon field="balance" />
-                                    <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="statusId" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                StatusId
-                                    <p-sortIcon field="statusId" />
-                                    <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="status" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                PriorityID
-                                    <p-sortIcon field="balance" />
-                                    <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="status" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                Created Date Time
-                                    <p-sortIcon field="balance" />
-                                    <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="status" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                Last Modified Date Time
-                                    <p-sortIcon field="balance" />
-                                    <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                            <th pSortableColumn="status" style="min-width: 10rem">
-                                <div class="flex justify-between items-center">
-                                AssigneeID
-                                    <p-sortIcon field="balance" />
-                                    <p-columnFilter type="numeric" field="balance" display="menu" class="ml-auto" />
-                                </div>
-                            </th>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-user>
-                        <tr class="p-selectable-row" >
-                    
-                            <td>
-                                <p>{{user.userName}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.reportedId}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.categoryId}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.subCategoryId}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.subject}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.description}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.statusId}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.priorityId}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.createDateTime}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.lastModifiedDateTime}}</p>
-                            </td>
-                            <td>
-                                <p>{{user.assigneeId}}</p>
-                            </td>
-                        
-                        </tr>
-                    </ng-template>
-                    <ng-template #emptymessage >
-                        <tr>
-                            <td colspan="11">No customers found.</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-
-            </p-tabpanel>
-        </p-tabpanels>
+    <div class="main" >
         
-    </p-tabs>
-
+    
+        <button  class="dashboardBtn"  routerLink="dashboard">Dashboard <i class="pi pi-home"></i></button>
+        <button  class="dashboardBtn" routerLink="myTicket">My Ticket <i class="pi pi-book"></i></button>
+        <button  class="dashboardBtn" routerLink="createTicket">Create <i class="pi pi-ticket"></i></button>
+    
+    </div>
+    <div class="router" >
+        <router-outlet ></router-outlet >
+        
+    </div>
+   <div class="footer">
+    <app-user-footer/>
+   </div>
+   
 </div>
 
 
 
 
-<app-user-footer hidden></app-user-footer>
 
-</div>
 
-<div class="form">
-<app-form *ngIf="isFormActive" (isForm)="onSaveTicket($event)"></app-form>
-</div>
+
+
+<!--
 
 <div class="commentView" *ngIf="commentDisplay">
     <div class="commentDetails">
@@ -289,8 +64,8 @@
             <p>Description : {{viewIssueDetails.description}}</p>
         </section>
         <div class="messageCard">
-            <p-editor [(ngModel)]="text"  />
-        </div>
+            <p-editor [(ngModel)]="text"  /> -->
+        <!-- </div>
         <div class="card flex justify-center" class="btns">
             <p-button label="Submit" icon="pi pi-check"  (onClick)="onSaveComment(viewIssueDetails)"/> <p-button label="Cancel" icon="pi pi-times" (onClick)="commentViewCancel()"/>
         </div>
@@ -299,4 +74,4 @@
 
     </div>
 
-</div>
+</div> --> 

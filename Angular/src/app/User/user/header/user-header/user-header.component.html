@@ -1,34 +1,94 @@
 <div class="container">
 
     <div class="logo">
-        <img src="app/Images/logo1.png" alt="">
+        <img src="app/Images/logo2.png" alt="">
     </div>
    <div class="innerContainer">
-        <div class="card flex justify-center" class="mode">
-            <p-toggleswitch [(ngModel)]="checked" /> <!--User mode-->
+
+        <div (click)="toggleDarkMode()">
+            <i class="pi pi-sun" style="font-size: 1.3rem"></i>
+          </div>
+       
+
+        <div class="notification" class="mobileView">
+            <p-button label="Emails" badge="2" label="Notifications" icon="pi pi-bell" />
+        </div>
+        <!-- <div class="card flex justify-center" class="mobileViewOn">
+            <i class="pi pi-bell text-3xl" pBadge value="2"></i>
+        </div> -->
+
+        
+        <div class="nameTag">
+            <div>
+                <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}}/>
+            </div>
+           <div class="userName">
+                <div><p>{{loggedUser?.userName}}</p></div>
+                <div><p>User</p></div>
+           </div>
         </div>
         
-        <p-overlaybadge severity="danger" value="4" class="inbox" >
-            <i class="pi pi-comments" ></i> <!--User inbox-->
-        </p-overlaybadge>
 
-        <p-overlay-badge value="3" severity="danger" class="inline-flex" > <!--User image and Notification-->
-            <p-avatar class="p-overlay-badge" label={{firstLetter}} shape="circle"  />
-        </p-overlay-badge>
+        <div>
+            <i class="pi pi-spin pi-cog" style="font-size: 1.3rem" label="Toggle" (click)="visible = true" ></i>
+            <p-tieredmenu #menu [model]="items" [popup]="true" />
 
-        <div class="UserName">
-            <span>{{loggedUser?.userName}}</span><br> <!-- Username -->
-            <span>User</span>
-        </div>
-
-
-        <div class="card flex justify-center" class="setting">
-            <p-drawer #drawerRef [(visible)]="visible">
-                
-            </p-drawer>
-            <p-button (click)="visible = true" icon="pi pi-bars" class="menubtn"/>
         </div>
 
     </div>
-
+    
 </div>
+
+
+<!-- Drawe---------------- -->
+<div class="card flex justify-center" class="profile">
+    <p-drawer [(visible)]="visible" [closable]="false">
+        <ng-template #header>
+            <div >
+                <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}}/>
+                
+                <span class="font-bold">{{loggedUser?.userName}}</span>
+            </div>
+        </ng-template>
+        <hr>
+        <div class="items">
+
+            <div>
+                <i class="pi pi-home mr-2"></i>
+                <span class="font-medium">Dashboard</span>
+            </div>
+            <div>
+                <i class="pi pi-bookmark mr-2"></i>
+                 <span class="font-medium">Bookmarks</span>
+            </div>
+           <div>
+                <i class="pi pi-chart-line mr-2"></i>
+                <span class="font-medium">Reports</span>
+           </div>
+           <div>
+                <i class="pi pi-users mr-2"></i>
+                <span class="font-medium">Team</span>
+           </div>
+
+           <div>
+                <i class="pi pi-comments mr-2"></i>
+                <span class="font-medium">Messages</span>
+           </div>
+           
+           <div>
+                <i class="pi pi-calendar mr-2"></i>
+                <span class="font-medium">Calendar</span>
+           </div>
+
+        </div>
+       
+        <ng-template #footer>
+            <div class="logout">
+                <p-button  label="Logout" icon="pi pi-sign-out"  routerLink="/" [queryParams] ="{logout : true}"/>
+            </div>
+        </ng-template>
+    </p-drawer>
+    
+</div>
+
+

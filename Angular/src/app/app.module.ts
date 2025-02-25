@@ -20,7 +20,7 @@ import { BadgeModule } from "primeng/badge";
 import { RouterLink } from "@angular/router";
 import { UserModule } from "./User/user/user.module";
 import { AdminModule } from "./Admin/admin.module";
-
+import { Toast } from 'primeng/toast';
 
 
 
@@ -28,7 +28,7 @@ import { AdminModule } from "./Admin/admin.module";
 @NgModule({
     declarations:[AppComponent,LoginComponent],
     imports:[BrowserModule, RoutingModule, HttpClientModule,
-            ButtonModule,DialogModule,FormsModule, ToggleSwitch,DrawerModule,
+            ButtonModule,DialogModule,FormsModule, ToggleSwitch,DrawerModule,Toast,
             ButtonModule,AvatarModule,OverlayBadgeModule,BadgeModule,RouterLink,UserModule,AdminModule],
     bootstrap:[AppComponent],
     providers:[provideAnimationsAsync(),providePrimeNG({ theme: {preset: Aura}}),LoginComponent]

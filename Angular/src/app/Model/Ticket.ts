@@ -15,4 +15,5 @@ export  interface Ticket{
   userName? : string,
   comment : Comment[],
   dataBaseId ?:string,
+  imageData ?: string
 }

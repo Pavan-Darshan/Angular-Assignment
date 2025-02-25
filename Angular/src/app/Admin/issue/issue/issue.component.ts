@@ -4,9 +4,8 @@ import { ServerService } from '../../../Services/service/server.service';
 import { map } from 'rxjs';
 import { User } from '../../../Model/loginUser';
 import { DateTime } from '../../../Model/DateTime';
-
-
-
+import { MessageService } from 'primeng/api';
+import { NgForm } from '@angular/forms';
 
 
 interface Priority {
@@ -14,39 +13,62 @@ interface Priority {
   code: string;
 }
 
-interface Issue {
-  label: string;
-  value: string;
-  code :string;
-}
+
 
 @Component({
   selector: 'app-issue',
   templateUrl: './issue.component.html',
   styleUrl: './issue.component.css',
-  standalone : false
+  standalone : false,
 })
 export class IssueComponent implements OnInit,OnChanges{
   
 
   constructor(
-    private serverService : ServerService, private date : DateTime){}
+    private serverService : ServerService, private date : DateTime, private messageService: MessageService){}
+  
   
 
   isFormActive :boolean = false;
   featchedIssueList :Ticket []=[];
   selectedIssue : Ticket []=[];
-
+  filteredIssues :any []=[];
   searchValue =''
   loading:boolean= true;
   commentDisplay : boolean =false;
   viewIssueDetails ?:any;
-  text :string=''
+  text :string='';
+  editDisplay :boolean = false;
+  editUserData : any;
+  priorityID : string ='';
+  assigneeID : string = '';
+  statusID : string ='';
+  lastModifiedDateTime : string = '';
+
+  isStatusClosed : boolean = false;
+  isSatatusOpen : boolean = false;
+  
+  filterUserName : string ='';
+  filterRepoterId : string ='';
+  filterAssigneeId  : string ='';
+  filterCategory : string ='';
+  filterPriority : string ='';
+  filterStatus : string ='';
+ 
+
+  // checking for Toast message--------------->
+  checkePriority : string='';
+  checkStatus : string ='';
+  checkAssignee : string ='';
+
+  categories = [
+    { label: 'Hardware', value: 'Hardware' },
+    { label: 'Software', value: 'Software' },
+    { label: 'Access Management', value: 'Access Management' }
+  ];
 
   ngOnInit(){
     this.featchIssueData ();
-
-
    
   }
   ngOnChanges(){
@@ -85,10 +107,14 @@ export class IssueComponent implements OnInit,OnChanges{
         setTimeout(()=>{
           this.loading=false
         },2000)
+
         
+        this.filteredIssues = [...this.featchedIssueList]; // copying data to filter in table list
         this.groupIssuesByStatus(); // type of status
+  
         
     })
+    
 
   }
 
@@ -121,6 +147,8 @@ export class IssueComponent implements OnInit,OnChanges{
   showMessage(issue : Ticket){
     this.commentDisplay =true;
     this.viewIssueDetails={...issue};
+    this.fileView(this.viewIssueDetails)
+    
   }
 
   commentViewCancel(){
@@ -141,34 +169,18 @@ export class IssueComponent implements OnInit,OnChanges{
    
     
     //Adding comment-------------------------------->
-    viewIssueDetails.comment?.push({
+    viewIssueDetails.comment?.unshift({
       comment:plainText,
       commentedDate: this.date.getCurrentTime(),
       commenter:this.serverService.loggedUser[0].userName
     })
-
     this.serverService.onUpdate(''+viewIssueDetails.dataBaseId,viewIssueDetails);
 
-      //Reset----------------------------------------->
-    this.commentDisplay =false;
-    this.viewIssueDetails={};
     this.text='';
         
   }
 
-  // Open Commented window ------------------------------>
-  isPopupVisible: boolean = false;
-  popupPosition = { top: 0, left: 0 };
-
-  openPopup(event: MouseEvent) { 
-    if (this.isPopupVisible) {
-    this.isPopupVisible = false;  
-  } else {
-    this.popupPosition.top = event.clientY-225;
-    this.popupPosition.left = event.clientX+25;
-    this.isPopupVisible = true;  
-  }
-  }
+ 
 
 // Deletre User-------------------------------------------->
   onDeleteUser(user : User){
@@ -178,21 +190,16 @@ export class IssueComponent implements OnInit,OnChanges{
      console.log(d.valueOf())
 
     confirm('Do you want to delete ...?')?
-            ((this.serverService.onDeleteUserIssue(""+user.dataBaseId)) ? 
+            ((this.serverService.onDeleteUserIssue(""+user.dataBaseId).subscribe(()=>{})) ? 
             alert("User ID : "+user.userId+" is deleted"):alert("User ID : "+user.userId+" is not deleted"))
             :
             null
   }
 
 
-  editDisplay :boolean = false;
-  editUserData : any;
-  priorityID : string ='';
-  assigneeID : string = '';
-  statusID : string ='';
-  lastModifiedDateTime : string = '';
+  
   Priority : Priority[]= [
-    { name: 'Low', code: 'Low' },
+    { name: 'Low', code: 'LOW' },
     { name: 'MEDIUM', code: 'MEDIUM' },
     { name: 'HIGH', code: 'HIGH' },
     { name: 'CRITICAL', code: 'CRITICAL' }
@@ -213,54 +220,155 @@ export class IssueComponent implements OnInit,OnChanges{
   ]
 
   onEdit(user : any){
+
     this.editUserData =user;
+
+    (user.statusId === 'Closed')?this.isStatusClosed=true: null;
+    ( user.statusId === 'Open')?this.isSatatusOpen=true: this.isSatatusOpen=false;
+    
+
+    // Toast message Checking-------------->
+    this.checkePriority = user.priorityId;
+    this. checkAssignee = user.assigneeId;
+    this.checkStatus = user.statusId;
+
+    
 
   this.priorityID = user.priorityId;
   this. assigneeID = user.assigneeId;
   this.statusID = user.statusId;
   this.lastModifiedDateTime = user.lastModifiedDateTime;
   this.editDisplay=true;
-      
+  
+   
   }
-    
+  
   onUpdate(){
+    
+
     this.editUserData.priorityId=this.priorityID;
     this.editUserData.assigneeId = this.assigneeID;
     this.editUserData.statusId = this.statusID;
 
     this.editUserData.lastModifiedDateTime = this.date.getCurrentTime();
 
-    console.log(this.editUserData.lastModifiedDateTime);
+   this.serverService.onUpdate(this.editUserData.dataBaseId, this.editUserData).subscribe( ()=> this.featchIssueData()) ? 
+   null:alert("Not Updated...!")
 
-    
+  // checking for toast message-------------------------->
+   if(this.checkePriority !=   this.editUserData.priorityId )
+    this.showIssue(this.editUserData,'Priority',this.checkePriority, this.editUserData.priorityId);
+  else if(this.checkAssignee !=   this.editUserData.assigneeId) 
+    this.showIssue(this.editUserData,'Assignee',this.checkAssignee, this.editUserData.assigneeId); 
+  else if(this.checkStatus !=   this.editUserData.statusId)
+    this.showIssue(this.editUserData,'Status',this.checkStatus ,this.editUserData.statusId);
 
-   this.serverService.onUpdate(this.editUserData.dataBaseId, this.editUserData) ? 
-   alert('Updated Successfully...'):alert("Not Updated...!")
-
+  
+  // Reset the all fields
    this.editDisplay=false;
- 
-   this.editUserData='';
-   this.featchIssueData ();
+   this.isStatusClosed = false;
+   this.isSatatusOpen = false;
    
+   this.editUserData='';
 
   }
 
   cancelTicket(){
     this.editDisplay=false;
     this.editUserData='';
+    this.isStatusClosed = false;
 
   }
 
-// Time Validation for 7 days
+// Time Validation for 7 days--------------------------------------------------->
   getTimeDate(user :User){
-      let currentTime = this.date.getCurrentTime();
-      const newDate = (new Date(`${currentTime}`).valueOf()) - (new Date(`${user.lastModifiedDateTime}`).valueOf());
-      
-      if(newDate>=604800){
-        return true
-      }
-      return false;
+    return (
+      (new Date(`${this.date.getCurrentTime()}`).valueOf()) - 
+      (new Date(`${user.lastModifiedDateTime}`).valueOf()) > 604800000) ?  true : false ;
+  }
+
+
+  // filter for  list of issues in table----------------------------------------->
+  searchIssue() {
+  if (this.searchValue) {
+    this.filteredIssues = this.featchedIssueList.filter(issue =>
+      issue.userName?.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.reportedId .toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.categoryId.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.subCategoryId.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.subject.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.description.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.statusId.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.priorityId.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.createDateTime.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.lastModifiedDateTime.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      issue.assigneeId.toLowerCase().includes(this.searchValue.toLowerCase())
+    );
+  } 
+  else {
+    this.filteredIssues = [...this.featchedIssueList]; 
   }
 }
+
+
+// Clear filter --------------------------------------------->
+clearFilter(){
+  this.searchValue='';
+  this.filteredIssues = [...this.featchedIssueList]; 
+}
+
+
+//Toast window-------------------------------------->
+showIssue(issue :any,state : string, from : string, to :string) {
+  this.messageService.add({ severity: 'info', summary: 'Info', 
+    detail: "Ticket ID : "+issue.ticketId +" and "+state+" changed from "+from+" to "+to+"....", life: 5000 });
+}
+
+// Search filter by dropdown
+filterApply(data : NgForm){
+  this.filteredIssues = this.filteredIssues.filter((issue) => (
+    (data.value.filterUserName ? issue.userName?.toLowerCase().trim() === data.value.filterUserName.toLowerCase().trim() : true) &&
+    (data.value.filterRepoterId ? issue.reportedId.toLowerCase().trim() === data.value.filterRepoterId.toLowerCase().trim() : true) &&
+    (data.value.filterAssigneeId ? issue.assigneeId.toLowerCase().trim() === data.value.filterAssigneeId.toLowerCase().trim() : true) &&
+    (data.value.filterCategory ? issue.categoryId.toLowerCase().trim() === data.value.filterCategory.toLowerCase().trim() : true) &&
+    (data.value.filterPriority ? issue.priorityId.toLowerCase().trim() === data.value.filterPriority.toLowerCase().trim() : true) &&
+    (data.value.filterStatus ? issue.statusId.toLowerCase().trim() === data.value.filterStatus.toLowerCase().trim() : true) 
+   
+     ));
+     data.reset();
+  
+  
+}
+
+// Search filter Reset by dropdown
+resetFilter(){
+  this.filteredIssues = this.featchedIssueList;
+  
+}
+
+
+// download File--------------------------------------------->
+
+downloadImage(Issue : Ticket ) {
+  const base64Image = ''+Issue.imageData;
+  const a = document.createElement('a');
+  a.href = base64Image;
+  a.download = 'image.png';
+  a.click();
+}
+  
+// file view------------------------------------------>
+fileView(issue : any){
+  const base64Image = issue.imageData;
+  const img = new Image();
+  img.src = base64Image;
+  img.onload = () => {
+    document.querySelector('.image')?.appendChild(img);
+  };
+
+}
+}
+
+
 
 

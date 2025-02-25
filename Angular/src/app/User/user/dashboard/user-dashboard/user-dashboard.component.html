@@ -1,0 +1,392 @@
+
+<div class="container">
+    <p-tabs value="0">
+        <p-tablist class="tablist">
+            <p-tab value="0">Kanban</p-tab>
+            <p-tab value="1">List</p-tab>
+        </p-tablist>
+        <p-tabpanels>   
+            <p-tabpanel value="0"> 
+                <!--Main ontainer-->
+                <div class="kanbanContainer"> 
+                    <!--Loop through the all status of manual array-->
+                    <div class="kanbanColumn" *ngFor="let status of ['open', 'inProgress', 'waiting', 'fixed', 'closed']">
+                        <!--pipe for upperacse-->
+                        <div class="statusName"><h3>{{ status | uppercase }}</h3> </div>
+                        <div *ngIf="groupedIssues[status].length > 0" class="row">
+                            <div *ngFor="let issue of groupedIssues[status]">
+                                <div class="kanbanCard">
+                                    <p><strong>Code : </strong> {{ issue.categoryId }} <span>{{issue.subCategoryId}}</span></p>
+                                    <p><strong>Subject:</strong> {{ issue.subject }}</p>
+                                    <p><strong>Priority:</strong> {{ issue.priorityId }}</p>
+                                    <div class="commentMain"> <!--User image and Notification-->
+                                        <p-avatar class="p-overlay-badge" label={{issue.userName[0]}} shape="circle" title={{issue.userName}}/>
+                                        <i class="pi pi-replay" (click)="showMessage(issue)"></i>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="noIssue" *ngIf="groupedIssues[status]?.length === 0">
+                            <p>No issues in this status.</p>
+                        </div>
+                    </div>
+                </div>
+            </p-tabpanel>
+            
+            
+            
+            <p-tabpanel value="1" class="tableContainer">
+                <p-table #dt
+                    [value]="filteredIssues"
+                    [(selection)]="selectedIssue"
+                    dataKey="id"
+                    [rowHover]="true"
+                    [rows]="10"
+                    [showCurrentPageReport]="true"
+                    [totalRecords]="filteredIssues.length"
+                    [loading]="loading"
+                    [paginator]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+                
+                
+                  <ng-template #caption>
+                        <div class="flex justify-between" class="search">
+                           
+                            <p-iconField iconPosition="right">
+                                <p-inputIcon>
+                                    <i class="pi pi-search"></i>
+                                </p-inputIcon>
+                                <input pInputText type="text" [(ngModel)]="searchValue" (keyup)="searchIssue()" placeholder="Keyboard Search" />
+                                <p-inputIcon *ngIf="searchValue!=''">
+                                    <i class="pi pi-times" (click)="clearFilter()"></i>
+                                </p-inputIcon>
+                            </p-iconField>
+                            <!-- filter window ------------------------------------------>
+                            <div class="filterCancel" >
+                                <p-button  icon="pi pi-filter" (onClick)="op.toggle($event)"  />
+                                <p-overlayPanel #op class="filterButton" >
+                                    <form (ngSubmit)="filterApply(filterForm)" #filterForm="ngForm">
+                                        <div>
+                                            <input type="text" pInputText [(ngModel)]="filterUserName" placeholder="User Name" name="filterUserName" />
+                                        </div>
+                                        <div>
+                                            <input type="text" pInputText [(ngModel)]="filterRepoterId" placeholder="Reporter ID" name="filterRepoterId" />
+                                        </div>
+                                        <div>
+                                            <input type="text" pInputText [(ngModel)]="filterAssigneeId" placeholder="Assignee ID" name="filterAssigneeId"/>
+                                        </div>
+                                        <div >
+                                            <p-floatlabel class="w-full md:w-56" variant="on" class="category">
+                                                <p-select [options]="categories" [(ngModel)]="filterCategory" optionLabel="label" optionValue="value" name="filterCategory">  </p-select>
+                                                <label for="over_label">Select Category</label>
+                                            </p-floatlabel>
+                                        </div>
+                                        <div >
+                                            <p-floatlabel class="w-full md:w-56" variant="on" class="category">
+                                                <p-select [options]="Priority" [(ngModel)]="filterPriority" optionLabel="name" optionValue="code" name="filterPriority">  </p-select>
+                                                <label for="over_label">Priority</label>
+                                            </p-floatlabel>
+                                        </div>
+                                        <div >
+                                            <p-floatlabel class="w-full md:w-56" variant="on" class="category">
+                                                <p-select [options]="Status" [(ngModel)]="filterStatus" optionLabel="label" optionValue="label" name="filterStatus">  </p-select>
+                                                <label for="over_label">Status</label>
+                                            </p-floatlabel>
+                                        </div>
+                                        <div class="filterApplyReset">
+                                            <p-button (onClick)="resetFilter()">Reset</p-button>
+                                            <p-button type="Submit" >Apply</p-button>
+                                        </div>
+                                    </form>
+                                </p-overlayPanel>
+                                
+                            </div>
+                        </div>
+                    </ng-template>
+                        <ng-template #header>
+                            <tr >
+                                
+                                <th pSortableColumn="name" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                        Name
+                                    </div>
+                                </th>
+                                <th pSortableColumn="country.name" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                        RepoterID  
+                                    </div>
+                                </th>
+                                <th pSortableColumn="representative.name" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                        CategoryID
+                                    </div>
+                                </th>
+                                <th pSortableColumn="date" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                        SubCategoryID
+                                    
+                                    </div>
+                                </th>
+                                <th pSortableColumn="balance" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                        Subject
+                                    
+                                    </div>
+                                </th>
+                                <th pSortableColumn="status" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                        Descrption
+                                        
+                                    </div>
+                                </th>
+                                <th pSortableColumn="status" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                    StatusId
+                                        
+                                    </div>
+                                </th>
+                                <th pSortableColumn="status" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                    PriorityID
+                                    
+                                    </div>
+                                </th>
+                                <th pSortableColumn="status" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                    Created Date Time
+                                        
+                                    </div>
+                                </th>
+                                <th pSortableColumn="status" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                    Modified Date Time
+                                        
+                                    </div>
+                                </th>
+                                <th pSortableColumn="status" style="min-width: 10rem">
+                                    <div class="flex justify-between items-center">
+                                    AssigneeID
+                                    
+                                    </div>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-user>
+                            <tr class="p-selectable-row"  (click)="onEdit(user)">
+                        
+                                <td >
+                                    <p pTooltip="{{user.userName}}" tooltipPosition="left">{{user.userName}}</p>
+                                </td>
+                                <td >
+                                    <p pTooltip="{{user.reportedId}}" tooltipPosition="left">{{user.reportedId}}</p>
+                                </td>
+                                <td >
+                                    <p pTooltip="{{user.categoryId}}" tooltipPosition="left">{{user.categoryId}}</p>
+                                </td>
+                                <td >
+                                    <p pTooltip="{{user.subCategoryId}}" tooltipPosition="left">{{user.subCategoryId}}</p>
+                                </td>
+                                <td  >
+                                    <p pTooltip="{{user.subject}}" tooltipPosition="left">{{user.subject}}</p>
+                                </td>
+                                <td >
+                                    <p pTooltip="{{user.description}}" tooltipPosition="left">{{user.description}}</p>
+                                </td>
+                                <td >
+                                    <p pTooltip="{{user.statusId}}" tooltipPosition="left">{{user.statusId}}</p>
+                                </td >
+                                <td >
+                                    <p pTooltip="{{user.priorityId}}" tooltipPosition="left">{{user.priorityId}}</p>
+                                </td>
+                                <td >
+                                    <p pTooltip="{{user.priorityId}}" tooltipPosition="left">{{user.createDateTime}}</p>
+                                </td>
+                                <td >
+                                    <p pTooltip="{{user.lastModifiedDateTime}}" tooltipPosition="left">{{user.lastModifiedDateTime}}</p>
+                                </td>
+                                <td >
+                                    <p pTooltip="{{user.assigneeId}}" tooltipPosition="left">{{user.assigneeId}}</p>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    <ng-template #emptymessage >
+                        <tr>
+                            <td colspan="11">No customers found.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </p-tabpanel>
+        </p-tabpanels>
+    
+    </p-tabs>
+</div>
+
+
+
+<!-- Commented window  -->
+<div class="commentView" *ngIf="commentDisplay">
+    <div class="commentDetails">
+        <div class="nav">
+            <i class="pi pi-times" (click)=" commentViewCancel()"></i>   
+        </div>
+        <div class="detailsContainer">
+            <div class="detailsContainerLeft">
+                <div class="ticketHeader">
+                   <div>
+                        <p>Ticket ID : {{viewIssueDetails.ticketId}} /  {{viewIssueDetails.categoryId}}  / <i class="pi pi-bookmark-fill"></i>   <span>{{viewIssueDetails.subCategoryId}}</span></p>
+                   </div>  
+                   <div class="ticketdetails">
+                        <div>
+                            <h4>Subject</h4>
+                            <p>{{viewIssueDetails.subject}}</p>
+                        </div>
+                        <section class="description">
+                            <h4>Description</h4>
+                            <p>{{viewIssueDetails.description}}</p>
+                        </section>
+                    </div>  
+                </div>
+                <div class="comment">
+                    <div class="detailsCard">
+                        <div>
+                            <section>
+                                <p>Assignee</p> <p>{{viewIssueDetails.assigneeId}}</p>
+                            </section>
+                            <section>
+                                <p>Reporter</p> <p>{{viewIssueDetails.reportedId}}</p>
+                            </section>
+                            <section>
+                                <p>Priority</p> <p>{{viewIssueDetails.priorityId}}</p>
+                            </section>
+                        </div>
+                       <div>
+                            <section>
+                                <p>Status</p> <p>{{viewIssueDetails.statusId}}</p>
+                            </section>
+                            <section>
+                                <p>Created</p> <p>{{viewIssueDetails.createDateTime}}</p>
+                            </section>
+                            <section>
+                                <p>Modified</p> <p>{{viewIssueDetails.lastModifiedDateTime}}</p>
+                            </section>
+                       </div>
+                       <div class="ImageContainer">
+                            <div class="image">
+                                <!-- Image preview -->
+                            </div>
+                            <div>
+                                <button (click)="downloadImage(viewIssueDetails)">Download</button>
+                            </div>
+                       </div>
+                    </div>
+                    <div class="commentHead">
+                        <h4>Comment</h4>
+                    </div>
+                    <div class="messageCard">
+                        <div>
+                            <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{viewIssueDetails.userName?.slice(0,1)}}/>
+                        </div>
+                        <div class="message">
+                            <p-editor  [(ngModel)]="text"  />
+                        </div>
+                    </div>
+                    <div class="commentPost">
+                        <div (click)=" onSaveComment(viewIssueDetails)">
+                            <span>Send<i class="pi pi-send"  ></i> </span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="detailsContainerRight">
+                <div class="viewCommentHead">
+                    <p>Activity</p>
+                </div>
+                <div class="scrollComment">
+                    <div class="singleComment" *ngFor="let comment of viewIssueDetails.comment" >
+                        <div class="showComment" *ngIf="comment.commenter!=''">
+
+                            <div class="head">
+                                <div>
+                                    <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{comment.commenter?.slice(0,1)}}/>
+                                </div>
+                                <div>
+                                    <p>{{comment.commenter}}</p>  
+                                    <p>{{comment.commentedDate}}</p>  
+                                </div>
+                            </div>
+                            <div class="scrollMessage">
+                                <p>{{comment.comment}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+
+
+<!-- Edit Form --> 
+<div class="editFormBackground"  *ngIf="editDisplay">
+    <div class="editForm">
+        <p>Ticket  Detail<i class="pi pi-times" (click)="cancelTicket()"></i> </p>
+            <div class="detailsMain">
+            <section>
+                <p>Name : {{editUserData.userName}}</p>
+                <p>RepoterID : {{editUserData.reportedId}} </p>
+            </section>
+            <section>
+                <p>Category : {{editUserData.categoryId}} </p>
+                <p>SubCategoryID :  {{editUserData.subCategoryId}} </p>
+            </section>
+            <section>
+                <p>Created Date Time :  {{editUserData.createDateTime}} </p>
+                <p>Last Modified Date Time : {{lastModifiedDateTime}}</p>
+            </section>
+            
+            <section>
+                <p>Subject : {{editUserData.subject}} </p>
+            </section>
+            <section class="descriptionEdit">
+                <p>Descrption : {{editUserData.description}}</p>
+            </section>
+            
+        </div>
+
+        <div class="statusMain">
+            <div>
+                <p-floatlabel class="w-full md:w-56" variant="on">
+                    <p-select [(ngModel)]="statusID" inputId="status_label" optionValue="id" [options]="Status" optionLabel="label" styleClass="full" readonly></p-select >
+                    <label for="priority_label">Status</label>
+                </p-floatlabel>
+            </div>
+            <div>
+                <p-floatlabel class="w-full md:w-56" variant="on">
+                    <p-select [(ngModel)]="priorityID" inputId="priority_label" optionValue="code" [options]="Priority" optionLabel="name" styleClass="full" readonly></p-select>
+                    <label for="priority_label">Priority</label>
+                    </p-floatlabel>
+
+            </div>
+            <div>
+                <p-floatlabel class="w-full md:w-56" variant="on">
+                    <p-select [(ngModel)]="assigneeID" inputId="assignee_label" optionValue="id" [options]="Assignee" optionLabel="name" styleClass="full"  readonly></p-select>
+                    <label for="assignee_label">Assignee</label>
+                </p-floatlabel>
+            </div>
+            
+        </div>
+
+        <div class="editMessageCard">
+            <p-editor [(ngModel)]="text"  />
+        </div>
+        <div class="card flex justify-center" class="btns">
+            <p-button label="Submit" icon="pi pi-check" (onClick)="onUpdate()"/> 
+            <p-button  label="Cancel" icon="pi pi-times" (onClick)="cancelTicket()"/>
+        </div>
+    </div>
+</div> 
+ 

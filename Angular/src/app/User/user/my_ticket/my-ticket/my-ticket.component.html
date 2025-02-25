@@ -1,0 +1,228 @@
+<div>
+  <p-table
+    #dt
+    [value]="filteredIssues"
+    [(selection)]="selectedIssue"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [totalRecords]="filteredIssues.length"
+    [loading]=""
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  >
+    <ng-template #caption>
+      <div class="flex justify-between" class="search">
+        <p-iconField iconPosition="right">
+          <p-inputIcon>
+            <i class="pi pi-search"></i>
+          </p-inputIcon>
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="searchValue"
+            (keyup)="searchIssue()"
+            placeholder="Keyboard Search"
+          />
+          <p-inputIcon *ngIf="searchValue != ''">
+            <i class="pi pi-times" (click)="clearFilter()"></i>
+          </p-inputIcon>
+        </p-iconField>
+        <!-- filter window ------------------------------------------>
+        <div class="filterCancel">
+          <p-button icon="pi pi-filter" (onClick)="op.toggle($event)" />
+          <p-overlayPanel #op class="filterButton">
+            <form (ngSubmit)="filterApply(filterForm)" #filterForm="ngForm">
+              <div>
+                <input
+                  type="text"
+                  pInputText
+                  [(ngModel)]="filterUserName"
+                  placeholder="User Name"
+                  name="filterUserName"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  pInputText
+                  [(ngModel)]="filterRepoterId"
+                  placeholder="Reporter ID"
+                  name="filterRepoterId"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  pInputText
+                  [(ngModel)]="filterAssigneeId"
+                  placeholder="Assignee ID"
+                  name="filterAssigneeId"
+                />
+              </div>
+              <div>
+                <p-floatlabel
+                  class="w-full md:w-56"
+                  variant="on"
+                  class="category"
+                >
+                  <p-select
+                    [options]="categories"
+                    [(ngModel)]="filterCategory"
+                    optionLabel="label"
+                    optionValue="value"
+                    name="filterCategory"
+                  >
+                  </p-select>
+                  <label for="over_label">Select Category</label>
+                </p-floatlabel>
+              </div>
+              <div>
+                <p-floatlabel
+                  class="w-full md:w-56"
+                  variant="on"
+                  class="category"
+                >
+                  <p-select
+                    [options]="Priority"
+                    [(ngModel)]="filterPriority"
+                    optionLabel="name"
+                    optionValue="code"
+                    name="filterPriority"
+                  >
+                  </p-select>
+                  <label for="over_label">Priority</label>
+                </p-floatlabel>
+              </div>
+              <div>
+                <p-floatlabel
+                  class="w-full md:w-56"
+                  variant="on"
+                  class="category"
+                >
+                  <p-select
+                    [options]="Status"
+                    [(ngModel)]="filterStatus"
+                    optionLabel="label"
+                    optionValue="label"
+                    name="filterStatus"
+                  >
+                  </p-select>
+                  <label for="over_label">Status</label>
+                </p-floatlabel>
+              </div>
+              <div class="filterApplyReset">
+                <p-button (onClick)="resetFilter()">Reset</p-button>
+                <p-button type="Submit">Apply</p-button>
+              </div>
+            </form>
+          </p-overlayPanel>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="representative.name" style="min-width: 10rem">
+          <div class="flex justify-between items-center">Category</div>
+        </th>
+        <th pSortableColumn="date" style="min-width: 10rem">
+          <div class="flex justify-between items-center">SubCategory</div>
+        </th>
+        <th pSortableColumn="balance" style="min-width: 10rem">
+          <div class="flex justify-between items-center">Subject</div>
+        </th>
+        <th pSortableColumn="status" style="min-width: 10rem">
+          <div class="flex justify-between items-center">Descrption</div>
+        </th>
+        <th pSortableColumn="status" style="min-width: 10rem">
+          <div class="flex justify-between items-center">StatusId</div>
+        </th>
+        <th pSortableColumn="status" style="min-width: 10rem">
+          <div class="flex justify-between items-center">PriorityID</div>
+        </th>
+        <th pSortableColumn="status" style="min-width: 10rem">
+          <div class="flex justify-between items-center">Created Date Time</div>
+        </th>
+        <th pSortableColumn="status" style="min-width: 10rem">
+          <div class="flex justify-between items-center">
+            Modified Date Time
+          </div>
+        </th>
+        <th pSortableColumn="status" style="min-width: 6rem">
+          <div class="flex justify-between items-center">AssigneeID</div>
+        </th>
+        <th pSortableColumn="status" style="min-width: 6rem">
+          <div class="flex justify-between items-center">Action</div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr class="p-selectable-row">
+        <td>
+          <p pTooltip="{{ user.categoryId }}" tooltipPosition="left">
+            {{ user.categoryId }}
+          </p>
+        </td>
+        <td>
+          <p pTooltip="{{ user.subCategoryId }}" tooltipPosition="left">
+            {{ user.subCategoryId }}
+          </p>
+        </td>
+        <td>
+          <p pTooltip="{{ user.subject }}" tooltipPosition="left">
+            {{ user.subject }}
+          </p>
+        </td>
+        <td>
+          <p pTooltip="{{ user.description }}" tooltipPosition="left">
+            {{ user.description }}
+          </p>
+        </td>
+        <td>
+          <p pTooltip="{{ user.statusId }}" tooltipPosition="left">
+            {{ user.statusId }}
+          </p>
+        </td>
+        <td>
+          <p pTooltip="{{ user.priorityId }}" tooltipPosition="left">
+            {{ user.priorityId }}
+          </p>
+        </td>
+        <td>
+          <p pTooltip="{{ user.createDateTime }}" tooltipPosition="left">
+            {{ user.createDateTime }}
+          </p>
+        </td>
+        <td>
+          <p pTooltip="{{ user.lastModifiedDateTime }}" tooltipPosition="left">
+            {{ user.lastModifiedDateTime }}
+          </p>
+        </td>
+        <td>
+          <p pTooltip="{{ user.assigneeId }}" tooltipPosition="left">
+            {{ user.assigneeId }}
+          </p>
+        </td>
+        <td>
+          <p>
+            <i
+              class="pi pi-trash"
+              style="color: slateblue"
+              (click)="deleteIssue(user)"
+            ></i>
+          </p>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="11">No customers found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<div class="card flex justify-center">
+  <p-toast />
+</div>

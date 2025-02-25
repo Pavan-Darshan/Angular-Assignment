@@ -2,55 +2,68 @@
 
 @import "primeicons/primeicons.css";
 
+.path{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    font-size: 12px;
+    padding-left: 1%;
+
+}
+.path span{
+    color: red;
+}
+
 .mainContainer{
     width: 100%;
-    height: 100%;
-    color: white;
+    height: 95%;
     display: flex;
-  
+
 }
 
 .mainDetails{
     width: 100%;
-    height: 75vh;
-    color: white;
+    height: 98%;
     position: relative;
     left: 0;
     top: 0;
     transition: width 0.5s ease-in-out;
-    
-   
+    border-radius: 10px;
+   border: none !important;
+
 }
 
 
 .filterMain{
-    width: 20%;
-    height: 71vh;
+    width: 18%;
+    height: 98%;
+    margin-left: 1%;
     border-radius: 10px;
-    margin: 10px;
-    margin-top: 17px;
-    background-color: rgba(25, 5, 249,0.5) !important;
+    border: 1px solid #007bff;
+    
 }
 
 .mainDetails.closed {
     width: 80%; 
-    
   }
  
 
 
 .navBar{
     width: 100%;
-    height: 8%;
+    height: 6%;
     display: flex;
-    background-color: rgba(25, 5, 249,0.5) !important;
-    margin-top: 1.5%;
-    
+
 }
 .navBar>div:first-child{
   
-    width: 85%; 
+    width: 75%; 
     height: 100%;
+    display: flex; 
+    justify-content:flex-start;
+    align-items: center;
   
 }
 .navBar>div:first-child>h2{
@@ -60,64 +73,86 @@
  
 }
 .navBar>div:last-child{ 
-    width: 15%;
+    width: 25%;
     height: 100%; 
     display: flex; 
-    justify-content:space-evenly;
+    justify-content:flex-end;
     align-items: center;
     gap: 10px;
-    flex-shrink: 0;
-    border: none;
-    
    
+    border: none;
+
 }
 .navBar ::ng-deep.p-button{
-
-   
     width: 80px ;
-    height: 30px;
+    height: 24px;
     border: none;
-    background-color: rgba(25, 5, 249,0.5) !important;
-
-    
+ 
 }
+
 .tableContainer{
     width: 100%;
     height: 90% ;
     margin-top: 0.5%; 
+
+}
+
+
+::ng-deep th{
+    width: 100px !important;
+    height: 40px !important;
+}
+
+
+::ng-deep.p-datatable-thead > tr > th {
+ 
+    height: 10px !important;
+    padding: 5px !important; 
+
+   
+
+}
+::ng-deep.p-datatable-thead > tr > td {
+    height: 10px !important;
+    padding: 0 !important;
+}
+
+th div{
+    width: auto !important;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    font-size: 14px;
+    min-width: 165px; 
+    padding: 0 !important;
+
     
 }
 
 
-
-
-th{
-    background-color: rgba(25, 5, 249,0.5) !important;
-    height: 50px;
-    color: white;
-}
-th div{
-    color: white; 
-    font-size: 16px;
-}
 .p-selectable-row{
-    background-color: rgba(255, 255, 255, 0.1) !important; 
-    height: 50px;
-    color: white;
+    height: 20px;
+
 }
+
 
 td {
+    font-size: 13px;
+    border: none !important;
     white-space: nowrap;       
     overflow:hidden;          
-    text-overflow: ellipsis;    
-    max-width: 150px;           
+    text-overflow: ellipsis;  
+    max-width: 150px;  
+ 
+   
   }
-.p-selectable-row:hover{
-    color:red !important;
-    font-size: 24px;
-}
+  td p{
+    text-align: center;
+  }
 
-
+:host ::ng-deep.p-paginator {
+    padding:0 !important;
+} 
 
 
 
@@ -128,14 +163,14 @@ td {
     position: absolute;
     left: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     padding-bottom: 60px;
     
 }
-.containerDetails{
+.formCreate{
+  
     width: 80%;
     height: 94%;
-    background-color: rgb(46, 51, 88) !important;
     margin: auto;
     border-radius: 10px;
     overflow-y: auto;
@@ -145,12 +180,25 @@ td {
     padding: 1%;
     
 }
+.containerDetails{
+    width: 94%;
+    height: 98%;
+    border-radius: 10px;
+    overflow-y: auto;
+    position: absolute;
+    top: 1%;
+    left: 3%;
+   
+    
+
+    
+}
 .userHeading{
     width: 100%;
     height: 4%;
     border: none;
     display: grid;
-    grid-template-columns: 95% 5%;
+    grid-template-columns: 90% 10%;
 }
 .userHeading1{
     width: 100%;
@@ -158,36 +206,34 @@ td {
     font-size: 20px;
 }
 .userHeading2>i{
-    margin-left: 50%;
+    margin-left: 80%;
     font-size: 20px;
-    border-radius: 6px;
-    border: 2px solid white;
-    background-color: red;
+    
 }
 
 .containerDetails>div:nth-child(2){
     width: 100%;
     height: 54%;
-    border: 1px solid white;
     border-radius: 10px;
+    border: 1px solid #007bff;
 }
 .containerDetails>div:nth-child(3) {
     width: 100%;
     height: 34%;
-    border: 1px solid white;
+    border: 1px solid #007bff;
     margin-top: 10px;
     border-radius: 10px;
     
 }
 .containerDetails>div:nth-child(3) section, 
 .containerDetails>div:nth-child(2)>section{
-    background-color: rgb(126, 127, 129);
+    background-color: rgb(115, 148, 216);
     position: relative;
     left: 0;
     top: 0;
     width: 100%;
     height: 24px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #007bff;
     font-size: 16px;
    padding-left: 10px;
    padding-top: 3px;
@@ -204,6 +250,7 @@ td {
     width: 100% !important;
     height: 80% !important;
     padding-top: 10px;
+
 }
 .formContainer1{
     border: none !important;
@@ -285,15 +332,7 @@ td {
 
 }
 
-/* .containerDetails ::ng-deep.p-button{
-    width: 20%;
-    height: 5%;
-    position: relative;
-    left: 40%;
-    top: 3%;
-    background-color: rgb(144, 210, 194);
-    
-} */
+
 .buttonContainer{
     width: 100%;
     height: 6%;
@@ -309,7 +348,6 @@ td {
     position: relative;
     left: 40%;
     top: 20%;
-    background-color: rgb(144, 210, 194);
 
 } 
 .buttonContainer2{
@@ -323,22 +361,35 @@ td {
     left: 0;
     top: 20%;
     margin-left: 20%;
-    background-color: rgb(97, 226, 194);
     border: none;
 
 } 
 
+/* filter */
 
 .filterHeading{
     width: 100%;
     height: 8%;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #007bff;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    column-gap: 70%;
+   
 
 
+}
+.filterHeading>div:first-child{
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+   
+}
+.filterHeading>div:last-child{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+   
 }
 .filterHeading h2{
    margin-left: 5px;
@@ -362,8 +413,6 @@ td {
 
 .filterDetails .p-floatlabel>input{
     width: 100%;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.1);
 }
 .filterApplyReset{
     display: flex;
@@ -374,3 +423,156 @@ td {
     width: 55px;
     height: 25px;
 }
+
+@media only screen and (max-width: 480px) {
+   
+
+    .formCreate{
+  
+        width: 90%;
+        height: 94%;
+        margin: auto;
+        border-radius: 10px;
+        overflow-y: auto;
+        position: absolute;
+        top: 20px;
+        left: 5%;
+        padding: 1%;
+        
+    }
+    .userHeading2>i{
+        margin-left: 0% !important;
+        font-size: 20px;
+        
+    }
+    .formContainer{
+        display: flex !important;
+        flex-direction: column;
+        width: 100% !important;
+        height: auto !important;
+        padding-top: 10px;
+    
+    }
+    .formContainer1{
+        border: none !important;
+        width: 100% !important ;
+        height: auto !important;
+        
+    }
+    .formContainer2{
+        border: none !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+    .containerDetails>div:nth-child(2){
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 1px solid #007bff;
+    }
+    .containerDetails>div:nth-child(3) {
+        width: 100%;
+        height: auto;
+        border: 1px solid #007bff;
+        margin-top: 10px;
+        border-radius: 10px;
+        
+    }
+    .address{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .address1{
+        width: 100%;
+        height: auto;
+    }
+    .address2{
+        width: 100%;
+        height: auto;
+        padding-bottom: 5px;
+    }
+    .mainDetails{
+        width: 100vw;
+        height: 98%;
+        position: relative;
+        left: 0;
+        top: 0;
+        transition: width 0.5s ease-in-out;
+        border-radius: 10px;
+       border: none !important;
+    
+    }
+    .filterMain{
+        width: 70% !important;
+        height: 98%;
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid #007bff;
+        
+    }
+    .filterHeading{
+        width: 98%;
+        height: 8%;
+        border-bottom: 1px solid #007bff;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    
+    }
+    .filterHeading h2{
+        font-size: 20px;
+    }
+    .mainDetails.closed {
+        width: 28%; 
+      }
+  
+}
+
+@media only screen and (max-width: 768px) and (min-width :481px){
+
+    .userHeading2>i{
+        margin-left: 62%;
+        font-size: 20px;
+        
+    }
+
+}
+
+@media only screen and (max-width: 1024px) and (min-width :481px){
+
+    .filterMain{
+        width: 40% !important;
+        height: 98%;
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid #007bff;
+        
+    }
+    .mainDetails.closed {
+        width: 58%; 
+      }
+      .userHeading2>i{
+        margin-left: 65%;
+        font-size: 20px;
+        
+    }
+}
+@media only screen and (max-width: 1440px) and (min-width :1025px){
+
+    .filterMain{
+        width: 40% !important;
+        height: 98%;
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid #007bff;
+        
+    }
+    .mainDetails.closed {
+        width: 58%; 
+      }
+}
+
+
+

@@ -41,6 +41,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Tooltip } from 'primeng/tooltip';
 import { TieredMenu } from 'primeng/tieredmenu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+import { MessageService } from 'primeng/api';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+
 
 
 
@@ -50,12 +53,15 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
         AdminFooterComponent,IssueComponent, UserListComponent],
 
     imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tooltip,
-            Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,
+            Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,OverlayPanelModule,
             ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,TieredMenuModule,
             FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule, ChartModule,MenuModule,BrowserAnimationsModule],
 
-            providers: [],
+            providers: [MessageService],
         
     exports:[AdminRoutingModule]
 })
-export class AdminModule{}
+export class AdminModule{
+
+    
+}

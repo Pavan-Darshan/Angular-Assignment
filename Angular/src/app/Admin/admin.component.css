@@ -1,62 +1,100 @@
-@import "primeicons/primeicons.css";
 
-
-.container{
-    width: 100%;
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
     height: 100vh;
-    color: white !important;
-    background-color: black !important;
-    /* color: black;
-    background-color: white; */
+  }
+  
 
-   
-}
-.header{
+  .header {
     width: 100%;
-    height: 8%;
-}
-
-
-
-.main{
-    width: 100%;
-    height: 5%;
-    background-color: rgba(25, 5, 249,0.5) !important;
-    position: relative;
-    left: 0%;
-    top: 0;
-    padding-left: 10px;
+    height: 8%; 
+    background-color: #3c5268; 
+  }
+  
+  
+  .main {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-shrink: 0;
     gap: 10px;
-
-}
-.dashboardBtn{
-    position: relative;
-    left: 0%;
-    top: 0%;
-    background-color: rgba(0, 0, 0,0) !important;
+    padding-left: 10px;
+    height: 4%; 
+    background-color: #a1c6f1; 
+   
+  }
+  
+  .dashboardBtn {
+    background-color: rgba(0, 0, 0, 0);
     border: none;
-    width: 100px;
-    height: 30px; 
+    width: 120px; 
+    height: 20px; 
     font-size: 14px;
     border-radius: 10px;
-    color: white;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dashboardBtn:hover {
+    background-color: rgba(233, 142, 142, 0.5);
+  }
+  .router {
+    flex: 1; 
+    overflow: auto;
+  }
+  
+
+  .footer {
+    width: 100%;
+    height: 7%;
+    background-color: #3c5268; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Mobile and Tablet Responsive Styles */
+@media (max-width: 768px) {
+  
+
+  .main {
+      justify-content: center;
+      align-items: center;
+      height: auto;
+      flex-direction: column; 
+      gap: 10px;
+  }
+
+  .dashboardBtn {
+      width: 30%;
+      font-size: 14px; 
+      padding: 12px;
+  }
 }
 
-.router{
-    width: 100%;
-    margin-top: 1%;
-    height: 73%;
-    /* overflow: auto; */
+@media (max-width: 480px) {
+  
+  .main {
+      gap: 10px;
+  }
 
-}
-.footer{
-    width: 100%;
-    height: 8%;
-    margin-top: 1.8%;
-   
+  .dashboardBtn {
+      width: 50%; 
+      padding: 10px 15px;
+      font-size: 12px;
+      border-radius: 8px;
+  }
+
+  .header {
+      height: 50px; 
+  }
+
+  .footer {
+      height: 50px; 
+  }
 }

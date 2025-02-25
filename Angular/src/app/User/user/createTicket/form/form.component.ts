@@ -5,6 +5,10 @@ import { ServerService } from '../../../../Services/service/server.service';
 import { Ticket } from '../../../../Model/Ticket';
 import { Comment } from '../../../../Model/comment';
 import { DateTime } from '../../../../Model/DateTime';
+import { Router } from '@angular/router';
+import { TicketUniqueId } from '../../../../Model/ticket-Id-Create';
+import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -32,9 +36,13 @@ interface Issue {
 export class FormComponent {
 
 
-  constructor(private serverService :ServerService, private date : DateTime){}
+  constructor(private serverService :ServerService, 
+            private date : DateTime, 
+            private ticketUniqueID : TicketUniqueId,
+           private http : HttpClient){}
+   route :Router =inject(Router);
 
-  ticketID : string='7246';
+  ticketID : string='';
   subject : string = ' ';
   description :string='';
   categoryID: string = '';
@@ -47,10 +55,7 @@ export class FormComponent {
     commentedDate:'',
   }]
 
-  
 
-
-  @Output() isForm  = new EventEmitter();
 
   loggedUser?: User;
 
@@ -62,7 +67,7 @@ export class FormComponent {
 
 
   priority : Priority[]= [
-    { name: 'Low', code: 'Low' },
+    { name: 'LOW', code: 'LOW' },
     { name: 'MEDIUM', code: 'MEDIUM' },
     { name: 'HIGH', code: 'HIGH' },
     { name: 'CRITICAL', code: 'CRITICAL' }
@@ -105,6 +110,7 @@ export class FormComponent {
   availableIssues : Issue[]= [];
 
   onCategoryChange() {
+    
     switch (this.categoryID) {
       case 'Hardware':
         this.availableIssues = this.hardwareIssues;
@@ -122,15 +128,13 @@ export class FormComponent {
     this.subCategoryID = '';  // Reset 
   }
 
-  onSaveTicket(){
+  onSaveTicket(formDetails : NgForm){
 
     // Date and time
-   
-  
-    const createDateTime= this.date.getCurrentTime().slice(0,11)+""+this.date.getCurrentTime().slice(12)    //27-Jul-2022 10:00 AM
+    const createDateTime= this.date.getCurrentTime().slice(0,11)+""+this.date.getCurrentTime().slice(12) ;   //27-Jul-2022 10:00 AM
     
     this.newTicket={
-      ticketId : this.ticketID,
+      ticketId : this.ticketUniqueID.generateUniqueId(),
       categoryId : this.categoryID, 
       subCategoryId : this.subCategoryID,
       assigneeId : '---',
@@ -140,22 +144,42 @@ export class FormComponent {
       statusId : 'Open',
       priorityId : this.priorityID,
       createDateTime :createDateTime,
-      lastModifiedDateTime : '---',
+      lastModifiedDateTime : createDateTime,
       userName:''+this.loggedUser?.userName,
-      comment :this.comment
+      comment :this.comment,
+      imageData:this.imageData
   
     }
+    formDetails.reset();
 
-  
-    let sucesss=this.serverService.createTicket(this.newTicket,''+this.loggedUser?.userId);
-    if(sucesss)
-      alert(`Ticket Created Successfully. Ticket ID : ${this.ticketID}`);
+    // Alert for Ticket created------------------------------------------------------->
+    this.serverService.createTicket(this.newTicket,''+this.loggedUser?.userId) ?
+      alert(`Ticket Created Successfully. Ticket ID : ${this.newTicket.ticketId}`) : null;
 
-    this.isForm.emit(false);
+    this.route.navigate(['/user/dashboard']);
   }
 
   cancelTicket(){
-    this.isForm.emit(false);
+    this.route.navigate(['/user/dashboard'])
   }
 
+// Image to json----------------------------------------------------------------------->
+  imageData : string='';
+
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+
+    if (file) {
+      this.convertToJson(file);
+    }
+  }
+
+  private convertToJson(file: File): void {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.imageData = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 }

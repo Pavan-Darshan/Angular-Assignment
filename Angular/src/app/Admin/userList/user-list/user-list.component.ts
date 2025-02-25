@@ -4,12 +4,14 @@ import { NgForm } from '@angular/forms';
 import { User } from '../../../Model/loginUser';
 
 import { DateTime } from '../../../Model/DateTime';
+import { UserUniqueId } from '../../../Model/user-Id-Create';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
-  standalone : false
+  standalone : false,
+  
 })
 export class UserListComponent implements OnInit {
   featchedUserList: any[]=[]; // all Users
@@ -39,11 +41,24 @@ export class UserListComponent implements OnInit {
   userTimeZone : string ='';
 
   isFilterApplied = false;
-
   addForm : boolean =false;
+  isFilterHidden=false
+  isSidebarVisible = false;
+
+//Filter data set----------------------------------->
+  filterUserName ='';
+  filterUserEmail ='';
+  filterCreatedSource = '';
+  filterCreatedSourceType = '';
+  filterCreatedSourceDate = '';
+  filterModifiedSource ='';
+  filterModifiedSourceType ='';
+  filterModifiedSourceDate = '';
+  onFilterUserList : any[]=[];
+
   
 
-  constructor(private sereverService : ServerService, private date : DateTime){}
+  constructor(private sereverService : ServerService, private date : DateTime , private userUniqueId : UserUniqueId){}
 
   ngOnInit(){
       
@@ -70,17 +85,23 @@ export class UserListComponent implements OnInit {
     this.addForm = true;
     this.isCreate = true; // Heading Changing
     this.isEdit = false ;
-  }
+  } 
   onUserData(formdata : NgForm){
     
-    this.createdSourceDate = this.date.getCurrentTime();
-    let newUser : User={...formdata.value, dataBaseId  : '',createdDateTime : DateTime, lastModifiedDateTime :'---', password :'1111',userId :'1003'};
-    this.sereverService.onUserCreate(newUser).subscribe(()=>this.feacthUserDetails());
-    console.log(newUser);
-    console.log(this.userAddress);
-    this.addForm = false;
+    if(this.emailValidation(formdata.value.emailAddress)){
+      alert("Eamil is already used.......");
+      this.addForm = true;
+    this.isCreate = true; // Heading Changing
+    this.isEdit = false ;
     
-
+    }
+    else{
+    this.createdSourceDate = this.date.getCurrentTime();
+    let newUser : User={...formdata.value, dataBaseId  : '',createdDateTime : DateTime, lastModifiedDateTime :'---', password :'1111',userId : this.userUniqueId.generateUserId()};
+    this.sereverService.onUserCreate(newUser).subscribe(()=>this.feacthUserDetails())?
+    alert("User created and User ID : "+newUser.userId):null;
+    this.addForm = false;
+    }
   }
   onSelectUser(user : User){
     this.addForm = true;  // Heading Changing
@@ -112,7 +133,7 @@ export class UserListComponent implements OnInit {
   }
 
 
-  //Close the form
+  // Close the form---------------------------->
   onClose(formdata : NgForm){
     this.addForm = false;
     this.isCreate = false;
@@ -121,13 +142,9 @@ export class UserListComponent implements OnInit {
 
   }
 
-  // update user
+  // update user--------------------------------------->
   onUpdeted(formdata :NgForm){  
-    console.log("updating...");
-    console.log(formdata.value);
-    
     let newData = this.featchedUserList.find((user)=> user.emailAddress === formdata.value.emailAddress);
-    
     let updateUserData : User = {...formdata.value, dataBaseId  : newData.dataBaseId, lastModifiedDateTime :DateTime, createdDateTime :newData.createdDateTime, password : newData.password,userId :newData.userId };
     this.sereverService.onUpdateUser(newData.dataBaseId,updateUserData).subscribe(()=>{this.feacthUserDetails();});
     this.addForm = false;
@@ -138,8 +155,7 @@ export class UserListComponent implements OnInit {
   }
 
   onUserDelete(formdata : NgForm){
-      
-    let deleteUser = this.featchedUserList.find((user)=> user.emailAddress === formdata.value.emailAddress) ;
+    let deleteUser = this.featchedUserList.find((user)=> user.emailAddress === formdata.value.emailAddress);
 
     confirm(`Do you want to delete "`+deleteUser.userName+`"`) ? 
     this.sereverService.onDeleteUser(deleteUser.dataBaseId).subscribe(()=> this.feacthUserDetails()) : null;
@@ -149,11 +165,7 @@ export class UserListComponent implements OnInit {
   }
 
 
-
-
-  isFilterHidden=false
-  isSidebarVisible = false;
-
+// filter Open or close--------------------------->
   filterOpen(){
     this.isSidebarVisible = !this.isSidebarVisible;
     if(this.isSidebarVisible)
@@ -163,40 +175,38 @@ export class UserListComponent implements OnInit {
 
   }
 
-  filterUserName ='';
-  filterUserEmail ='';
-  filterCreatedSource = '';
-  filterCreatedSourceType = '';
-  filterCreatedSourceDate = '';
-  filterModifiedSource ='';
-  filterModifiedSourceType ='';
-  filterModifiedSourceDate = '';
 
-  onFilterUserList : any[]=[];
 
+  // Side bar filter----------------------------------------------->
   filterApply(filterForm : NgForm){
-    
     this.onFilterUserList = this.featchedUserList.filter((user) => (
-      (filterForm.value.userName ? user.userName === filterForm.value.userName : true) &&
-      (filterForm.value.emailAddress ? user.emailAddress === filterForm.value.emailAddress : true) &&
-      (filterForm.value.createdSource ? user.createdSource === filterForm.value.createdSource : true) &&
-      (filterForm.value.createdSourceType ? user.createdSourceType === filterForm.value.createdSourceType : true) &&
-      (filterForm.value.createdDateTime ? user.createdDateTime === filterForm.value.createdDateTime : true) &&
-      (filterForm.value.modifiedSource ? user.modifiedSource === filterForm.value.modifiedSource : true) &&
-      (filterForm.value.modifiedSourceType ? user.modifiedSourceType === filterForm.value.modifiedSourceType : true) &&
-      (filterForm.value.modifiedSourceDate ? user.modifiedSourceDate === filterForm.value.modifiedSourceDate : true)
+      (filterForm.value.userName ? user.userName?.toLowerCase() === filterForm.value.userName.toLowerCase() : true) &&
+      (filterForm.value.emailAddress ? user.emailAddress?.toLowerCase()  === filterForm.value.emailAddress.toLowerCase()  : true) &&
+      (filterForm.value.createdSource ? user.createdSource?.toLowerCase()  === filterForm.value.createdSource.toLowerCase()  : true) &&
+      (filterForm.value.createdSourceType ? user.createdSourceType?.toLowerCase()  === filterForm.value.createdSourceType.toLowerCase()  : true) &&
+      (filterForm.value.createdDateTime ? user.createdDateTime?.toLowerCase()  === filterForm.value.createdDateTime.toLowerCase()  : true) &&
+      (filterForm.value.modifiedSource ? user.modifiedSource?.toLowerCase()  === filterForm.value.modifiedSource.toLowerCase()  : true) &&
+      (filterForm.value.modifiedSourceType ? user.modifiedSourceType?.toLowerCase()  === filterForm.value.modifiedSourceType.toLowerCase()  : true) &&
+      (filterForm.value.modifiedSourceDate ? user.modifiedSourceDate?.toLowerCase()  === filterForm.value.modifiedSourceDate.toLowerCase()  : true)
     ));
     
     this.isFilterApplied = true;
     filterForm.reset();
-  
     
   }
 
   resetFilter(){
-    
     this.onFilterUserList = this.featchedUserList;
     
+  }
+
+
+  // email validation---------------------------------------------->
+  emailValidation(email : string) : boolean{
+     return this.featchedUserList.some((user)=>{
+        return ((user.emailAddress?.toLowerCase().trim()) === (email.toLowerCase().trim()));
+        
+      })
   }
   
 }

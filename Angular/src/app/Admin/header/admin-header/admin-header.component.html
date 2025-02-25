@@ -1,21 +1,21 @@
 <div class="container">
 
     <div class="logo">
-        <img src="app/Images/logo2.png" alt="">
+        <img src="app/Images/logo2.png" alt=""> 
     </div>
    <div class="innerContainer">
 
-        <div hidden>
+        <div (click)="toggleDarkMode()">
             <i class="pi pi-sun" style="font-size: 1.3rem"></i>
-        
-        </div>
-        <div>
-            <i class="pi pi-moon" style="font-size: 1.3rem"></i>
-        </div>
+          </div>
+       
 
-        <div class="notification">
+        <div class="notification" class="mobileView">
             <p-button label="Emails" badge="2" label="Notifications" icon="pi pi-bell" />
         </div>
+        <!-- <div class="card flex justify-center" class="mobileViewOn">
+            <i class="pi pi-bell text-3xl" pBadge value="2"></i>
+        </div> -->
 
         
         <div class="nameTag">
@@ -39,21 +39,55 @@
 </div>
 
 
-<!-- Drawe---------------- -->
+<!-- Drawer---------------- -->
 <div class="card flex justify-center" class="profile">
-    <p-drawer [(visible)]="visible" [closable]="false">
+    <p-drawer [(visible)]="visible" [closable]="false"> 
         <ng-template #header>
-            <div >
+            <div class="logoUserName">
                 <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}}/>
                 
                 <span class="font-bold">{{loggedUser?.userName}}</span>
+
+                <!-- <span>
+                    <p-button type="button" (click)="closeCallback($event)" icon="pi pi-times" rounded="true" outlined="true" styleClass="h-8 w-8"></p-button>
+                </span> -->
             </div>
         </ng-template>
-       
+        <hr>
+        <div class="items">
+
+            <div>
+                <i class="pi pi-home mr-2"></i>
+                <span class="font-medium">Dashboard</span>
+            </div>
+            <div>
+                <i class="pi pi-bookmark mr-2"></i>
+                 <span class="font-medium">Bookmarks</span>
+            </div>
+           <div>
+                <i class="pi pi-chart-line mr-2"></i>
+                <span class="font-medium">Reports</span>
+           </div>
+           <div>
+                <i class="pi pi-users mr-2"></i>
+                <span class="font-medium">Team</span>
+           </div>
+
+           <div>
+                <i class="pi pi-comments mr-2"></i>
+                <span class="font-medium">Messages</span>
+           </div>
+           
+           <div>
+                <i class="pi pi-calendar mr-2"></i>
+                <span class="font-medium">Calendar</span>
+           </div>
+
+        </div>
+ 
         <ng-template #footer>
-            <div >
-                <button pButton label="Account" icon="pi pi-user" class="w-full" outlined></button>
-                <button pButton label="Logout" icon="pi pi-sign-out" class="w-full" severity="danger" text></button>
+            <div class="logout">
+                <p-button  label="Logout" icon="pi pi-sign-out"  routerLink="/" [queryParams] ="{logout : true}"/>
             </div>
         </ng-template>
     </p-drawer>

@@ -3,6 +3,7 @@ import { Drawer } from 'primeng/drawer';
 import { User } from '../../../Model/loginUser';
 import { ServerService } from '../../../Services/service/server.service';
 import { MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-header',
@@ -13,7 +14,9 @@ import { MenuItem } from 'primeng/api';
 export class AdminHeaderComponent {
 
   items: MenuItem[] | undefined;
+  constructor(private router : Router){
 
+  }
     
   checked: boolean = false;
   visible: boolean = false;
@@ -38,9 +41,11 @@ export class AdminHeaderComponent {
       this.drawerRef.close(e);
   }
 
-  
- 
 
- 
+  toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  
 
 }

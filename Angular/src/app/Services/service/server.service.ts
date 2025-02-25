@@ -9,7 +9,7 @@ import { Ticket } from "../../Model/Ticket";
 })
 export class ServerService{
 
-http :HttpClient =inject(HttpClient);
+http :HttpClient = inject(HttpClient);
 errorSubject :Subject<HttpErrorResponse> =new Subject<HttpErrorResponse>();
 loggedUser:User[]=[]; // logged user
 isAccountLogged :boolean=false;
@@ -42,13 +42,13 @@ featchIssueList(){
 
 onUpdate(dataBaseId : string ,data :Ticket){
  
-    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/Issues/'+dataBaseId+'.json',data).subscribe();
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/Issues/'+dataBaseId+'.json',data)
 
 }
 
 onDeleteUserIssue(dataBaseId : string){
     return this.http.delete('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/Issues/'+dataBaseId+'.json')
-    .subscribe(()=>{})
+    
 }
 
 onUserList(){

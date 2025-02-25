@@ -1,6 +1,27 @@
+
+
+.path{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    font-size: 12px;
+    padding-left: 1%;
+
+
+}
+.path span{
+    color: red;
+}
+
+
+
+
 .container{
     width: 100%;
-    height: 100%;   
+    height: 93%;   
+    margin-top: 0.5%;
 
 }
 
@@ -126,33 +147,43 @@
 }
 :host ::ng-deep .p-tablist-tab-list {
     width: 100%;
-    background-color:rgba(0, 0, 0, 0.1) !important; 
-    
-
+    height: 25px;
+    font-size: 10px;
+    display: flex;
+    justify-items: flex-end;
+    gap: 10px;
+  
 }
 
 .tablist{
     width: 100%;
-    background-color:rgba(0, 0, 0, 0.5) !important; 
-   
-
+    height: 20px !important;
+    font-size: 10px !important;
+    border: none !important;
 }
+.p-tab{
+    height: 20px !important;
+    padding: 0;
+    border: none !important;
+    margin-left: 10px;
+}
+
 .p-tab-active {
-    background: var(--p-tabs-tab-active-background);
-    border-color: var(--p-tabs-tab-active-border-color);
-   color: white;
-   font-size: 20px;
-   border-bottom: 2px solid rgb(255, 30, 0);
+    font-size: 16px !important;
     
 }
 .noIssue{
     text-align: center;
 }
-
+.p-tabpanel{
+    width: 100%;
+    height: 100% ;
+   background-color: red !important;
+}
 .tableContainer{
     width: 100%;
     height: 100% ;
-    background-color: rgba(255, 255, 255, 0.1) !important;
+   
     
 }
 :host ::ng-deep.p-datatable-header {
@@ -162,30 +193,60 @@
 }
 
 :host ::ng-deep th{
-    background-color: rgba(25, 5, 249,0.5) !important;
+    width: 100px;
     border: none;   
 }
-th div{
-    color: white;
+
+th{
+    font-size: 12px;
+    padding: 0 !important;
+    text-align: center;
 }
-.p-selectable-row{
-    background-color: rgba(255, 255, 255, 0.1) !important; 
-    height: 50px;
-    color: white;
+
+
+
+ 
+
+::ng-deep.p-datatable-thead > tr > th {
+    height: 10px !important;
+    padding: 5px !important;  
+}
+::ng-deep.p-datatable-thead > tr > td {
+    height: 10px !important;
+    padding: 0 !important;
+}
+
+th div{
+
+    width: auto !important;
+    font-size: 14px;
+    text-align: center;
     
 }
 
+.p-selectable-row{
+    height: 20px;
+
+}
+
+
 td {
+    font-size: 13px;
+    border: none !important;
     white-space: nowrap;       
     overflow:hidden;          
     text-overflow: ellipsis;    
-    max-width: 150px;    
-    border: none;       
+    max-width: 150px;     
+   
   }
-.p-selectable-row:hover{
-    color:red !important;
-    font-size: 24px;
-}
+  td p{
+    text-align: center;
+  }
+
+  ::ng-deep.p-paginator {
+    padding:0 !important;
+} 
+
 
 
 
@@ -195,24 +256,22 @@ td {
     height: 63vh;
     display: flex;
     justify-content: space-between;
-    color: white;
     position: relative;
-    top: 0px;
-    
-  
-  
-    
+    top: 0px;  
+    flex-wrap: wrap;  
 }
-
 .kanbanColumn {
-    width: 20%;
+    width: 19%; 
     height: 100%;
     padding: 10px;
     border-radius: 8px;
     overflow-y: scroll;
-
-   
+    margin-bottom: 15px;
 }
+
+
+
+
 .kanbanColumn::-webkit-scrollbar {
     display: none;
 }
@@ -221,30 +280,99 @@ td {
     text-align: center;
     font-size: 18px;
     margin-bottom: 15px;
-    background-color: rgb(0, 0, 0) !important;
-    
 
 }
 .statusName{
     position: sticky;
     top: 0%;
-    z-index: 999;
+    z-index: 1;
 
 }
 
 .kanbanCard {
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: rgba(25, 5, 249,0.5) !important;
-    
 }
+
 
 .kanbanCard h4 {
     margin: 0;
     font-size: 14px;
     font-weight: bold;
 }
+
+.CRITICAL{
+    background-color: red !important;
+    color: rgb(255, 255, 255) !important;
+    padding: 3px 10px 3px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight:normal;
+}
+
+.HIGH{
+    background-color: blue !important;
+    color: rgb(255, 255, 255) !important;
+    padding: 3px 10px 3px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight:normal;
+}
+
+.MEDIUM{
+   background-color: yellow !important;
+   color: rgb(0, 0, 0) !important;
+   padding: 3px 10px 3px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight:normal;
+}
+
+.LOW{
+    background-color: green!important;
+    color: rgb(255, 255, 255) !important;
+    padding: 3px 10px 3px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight:normal;
+}
+
+ 
+.OPEN{
+    color: blue;
+   text-shadow: 0px 0px 5px rgb(64, 63, 63);
+}
+
+.INPROGRESS{
+    /* color: yellow;
+   text-shadow: 0px 0px 5px rgb(64, 63, 63); */
+    color: blue;
+   text-shadow: 0px 0px 5px rgb(64, 63, 63);
+}
+.WAITING{
+    /* color: orange;
+   text-shadow: 0px 0px 5px rgb(129, 126, 125); */
+    color: blue;
+   text-shadow: 0px 0px 5px rgb(64, 63, 63);
+}
+
+.FIXED{
+    /* color: green;
+    text-shadow: 0px 0px 5px rgb(64, 63, 63); */
+     color: blue;
+   text-shadow: 0px 0px 5px rgb(64, 63, 63);
+}
+
+.CLOSED{
+    /* color: purple;
+   text-shadow: 0px 0px 5px rgb(64, 63, 63); */
+    color: blue;
+   text-shadow: 0px 0px 5px rgb(64, 63, 63);
+} 
+
+
 
 .kanbanCard p {
     margin: 5px 0;
@@ -257,29 +385,78 @@ td {
     color: yellow;
     font-size: 22px;
 }
+
+.kanbanCard span{
+    color: rgb(254, 0, 0);
+    font-weight: bold;
+}
+
+
 /* list */
 .search{
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  padding-right: 10px;
+}
+.search input{
+    height: 25px !important;
+    font-size: 14px !important;
+
+}
+
+::ng-deep.p-datatable-header {
+    padding: 5px !important;
+   
+}
+
+.search .p-iconField {
+    padding: 5px !important;
+    
 }
 .filterCancel{
-    width: 32px;
-    height: 32px;
-    background-color: rgba(255, 255, 255,0);
+    width: 12px !important;
+    height: 12px; 
     text-align :center;
+    
    
 }
 .filterCancel i{
-    font-size: 24px;
+    font-size: 10px !important;
     margin-top: 4px;
-    color: white;
+}
+.filterCancel ::ng-deep.p-button{
+    width: 25px !important;
+    height: 25px !important;
+}
+.filterButton {
+    width: 100%;
+    height: 100%;
+}
+.p-select{
+    width: 100%;
+}
 
+.filterApplyReset{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.filterApplyReset ::ng-deep.p-button{
+    height: 70% !important;
+}
+::ng-deep .p-popover-content>form {  
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
 }
 
 
+
+
 .commentMain{
-    border-top: 1px solid rgb(255, 255, 255) ;
+    border-top: 1px solid rgb(129, 147, 238) ;
     display: flex;
     padding: 2%;
    
@@ -289,7 +466,7 @@ td {
     height: 60%;
     border: none;
     position: relative;
-    left: 60%;
+    left: 75%;
     margin-top: 1%;
     text-align: center;
     font-size: 12px;
@@ -301,8 +478,8 @@ td {
     width: 100% !important;
 }
   
-
-.commentView{
+/* comment window */
+ .commentView{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -310,60 +487,90 @@ td {
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
     padding-bottom: 60px;
+    z-index: 10;
     
 }
 .commentDetails{
-    width: 50%;
+    width: 90%;
     height: 90%;
-    background-color: white;
-    margin: auto;
-    border-radius: 10px;
-    padding-bottom: 30px;
-    overflow-y: auto;
+    background-color:white;
+   border-radius: 10px;
     position: absolute;
-    top: 20px;
-    left: 25%;
-    
+    top:5%;
+    left: 5%;
+    color: black;
 }
-.commentDetails>p{
-  
+.nav{
     width: 100%;
-    background-color: red;
-    padding: 10px;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position:sticky;
-    top: 0;
-}
-
-div>section{
-    width: 80%;
+    height: 6%;
+    border : none;
     display: flex;
-    margin: auto;
-    gap: 10px;
-    
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #D8DADC;
 }
-div>section>p{
-    width: 100%;
-    padding: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-    
+.nav i{
+    font-size: 24px;
+    color: black;
+    margin-right: 10px;
+   
 }
-.btns{
+.detailsContainer{
     width: 100%;
+    height: 94%;
     display: grid;
-    grid-template-columns: auto auto;
-
-    
+    grid-template-columns: 70% 30%;
 }
-.btns ::ng-deep.p-button{
-    width: 50%;
-    height:80%;
-    margin-left: 25%;
-    margin-top: 5%;
-   
-   
+.detailsContainerRight{
+    width: 97%;
+    height: 97%;
+    margin: 1%;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: auto;
+    margin-top:2.2%;
+}
+.detailsContainerRight::-webkit-scrollbar {
+    display: none;
+}
+.detailsContainerLeft{
+    width: 98%;
+    height: 97%;
+    display: grid;
+    grid-template-rows: 40% 60%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 1%;
+}
+.ticketHeader{
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid skyblue;
+}
+.ticketHeader>div:first-child{
+    width: 100%;
+    height: 20%;
+}
+.ticketdetails{
+    width: 100%;
+    height: 80%;
+}
+
+.ticketHeader p span{
+    color:rgb(0, 0, 254);
+    margin-left: 5px;
+}
+.ticketHeader p{
+    font-size: 20px;
+}
+.ticketHeader i{
+    color: red;
+}
+.description{
+    width: 100%;
+    height: 80%;
+    border-top: 1px solid rgb(122, 189, 223);
 }
 .description>p{
     white-space: normal;  
@@ -371,136 +578,293 @@ div>section>p{
   overflow-wrap: break-word;  
   word-break: break-all;  
   max-width: 100%;  
+  
 
 }
+.ticketdetails>div:first-child{
+    margin-top: 10px;
+    width: 100%;
+    height: 25%;
+}
+.ticketdetails p{
+    font-size: 16px;
+
+}
+.comment{
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+
 .messageCard{
-    width: 80%;
-    margin: auto;
-    padding-bottom: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 50%;
+    display: grid;
+    grid-template-columns: 7% 93%;
+  
+}
+::ng-deep.p-editor .p-editor-content .ql-editor {
+    height: 110px !important;
+    border: 1px solid black;
+
 }
 
-.popup {
-    width: 20%;
-    height: 60%;
-    position: absolute;
-    background: rgb(212, 209, 209);
-    padding: 10px;
+.commentPost{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+}
+.commentPost>div{
+    width: 80px;
+    height: 80%;
+    background-color: rgb(185, 185, 187);
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    overflow-y: auto;
-  }
-  .commentPopUp{
-    width: 98%;
-    background-color: white;
-    position: relative;
-    top: 0;
-    left: 1%;
-    margin-bottom: 5%;
-    border-radius: 10px;
+    cursor: pointer;
     
-   /* text wrap*/
-    white-space: normal;  
+}
+.commentPost>div span{
+    margin-left: 5px ;
+    font-size: 16px;
+}
+.commentPost>div i{
+    font-size: 14px;
+    margin-left: 10px;
+}
+.messageCard>div:first-child{
+    width: 100%;
+    height: 100%;
+   
+
+}
+.messageCard>div:first-child>.p-avatar{
+    font-size: 32px;
+   margin-left: 10px;
+   margin-top: 30px;
+    
+}
+
+.message {
+    width: 100%;
+    height:150px;
+    margin-top: 10px;
+}
+
+
+
+.detailsCard{
+    width: 100%;
+    height: 30%;
+    display: grid;
+    grid-template-columns: 30% 30% 40%;
+    
+}
+.detailsCard>div {
+    display: flex;
+    flex-direction: column;
+}
+.detailsCard>div>section{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items: center;
+}
+.detailsCard>div>section>p{
+    padding: 1.5%;
+}
+.ImageContainer{
+    width: 100% !important;
+    height: 100% !important;
+ 
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+.image{
+    width: 180px;
+    height: 100px;
+    
+}
+::ng-deep .image img{
+    width: 50% !important;
+    height: 90% !important;
+    
+} 
+.commentHead{
+    width: 100%;
+    height: 8%;
+}
+.viewCommentHead{
+    width: 100%;
+    height: 5%;
+    background-color: rgb(243, 238, 238);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    
+}
+.viewCommentHead>p{
+    font-size: 18px;
+}
+.scrollComment{
+    width: 100%;
+    height: 90%;
+    overflow: auto;
+}
+
+.scrollComment::-webkit-scrollbar {
+    display: none;
+}
+.singleComment{
+    width: 94%;
+    box-shadow: 0 0 1px 1px rgb(221, 219, 219);
+    margin: 3%;
+    border-radius: 5px;
+    
+}
+.showComment{
+    width: 100%;
+    height: 100%;
+
+}
+.showComment .head{
+    
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 2px;
+    border-bottom: 1px solid rgb(210, 203, 203);
+}
+
+.showComment .head>div:first-child{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.showComment .head>div:first-child>.p-avatar{
+   font-size: 24px;
+   background-color: rgba(25, 5, 249,1);
+   
+}
+.showComment .head>div:nth-child(2){
+    width: 100%;
+    display: flex;
+    
+}
+
+.showComment .head>div:nth-child(2)>p:first-child{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.showComment .head>div:nth-child(2)>p:last-child{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+.scrollMessage{
+    width: 96%;
+   padding: 2%;
+   white-space: normal;  
     word-wrap: break-word;  
     overflow-wrap: break-word;  
     word-break: break-all;  
-    max-width: 100%;  
-  }
+    max-width: 100%; 
+} 
 
-  .commentPopUpHeader{
+
+
+.editFormBackground{
     width: 100%;
-    display: flex;
-    border-bottom: 1px solid rgb(68, 67, 67);
-
-  }
-  .commentPopUpHeader>div:last-child{
-    
-    width: 80%;
-    padding-left: 20px;
-    
-
-  }
-  .commentPopUpHeader>div:first-child{
-    
-    width: 20%;
-
-  }
-  .commentPopUpHeader>div:first-child>.p-overlay-badge{
-    position: absolute;
-    top: 9%;
-    left: 4.5%;
-    font-size: 32px;
-    width: 36px;
-    height: 36px;
-  }
-  .commentPopUpHeaderMain{
-    padding-bottom: 5px;
-    box-shadow: 0  0 3px 2px rgba(17, 19, 16, 0.5);
-    border: none;
-    border-radius: 10px;
-  }
- .commentPopUpHeaderMain>div:last-child{
-    width: 94%;
-    margin-left: 3%;
- }
-  
-
- /* Edit Form */
-
- .editFormBackground{
-    width: 100%;
-    height: 100%;
+    height: 100vh;
     position: absolute;
     left: 0;
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
     padding-bottom: 60px;
-    
+    z-index: 100;
 }
 
 .editForm{
     width: 50%;
     height: 90%;
     background-color: white;
+    color: black;
     margin: auto;
     border-radius: 10px;
     padding-bottom: 30px;
-    overflow-y: auto;
     position: absolute;
     top: 20px;
     left: 25%;
-    
+    z-index: 200;
+    overflow: hidden;
 }
 .editForm>p{
-  
     width: 100%;
     background-color: red;
     padding: 10px;
     text-align: center;
     color: white;
     font-size: 20px;
-    position:sticky;
-    top: 0;
+    
 }
-div>section{
+.editForm>p>i{
+    margin-left: 80%;
+}
+.detailsMain{
+    width: 100%;
+    height: 50%;
+   border: none;
+}
+.detailsMain>section{
     width: 95%;
+    height: 12%;
     display: flex;
     margin: auto;
-    gap: 2.5%;
+    margin-top: 1.5%;
+    gap: 1.5%;
+
     
 }
-div>section>p{
+.detailsMain>section>p{
     width: 100%;
+    height: 100%;
     padding: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-    
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+    font-size: 14px;
+   
+}
+.statusClosed>p{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+}
+.descriptionEdit{
+    width: 95%;
+    height: 30% !important;
+    overflow: auto;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+}
+.descriptionEdit>p{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+   
 }
 
-.statusMain{
+ .statusMain{
     width: 95%;
+    height: 8%;
     display: flex;
     margin: auto;
+
    
 }
 .statusMain>div{
@@ -515,9 +879,584 @@ div>section>p{
 }
 .editMessageCard{
     width: 95%;
+    height: 26%;
     margin: auto;
-    padding: 10px;
-    margin-top: 20px;
+    padding: 5px;
+    border: none;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+} 
+.btns{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .row{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        overflow: auto;
+    }
+    .kanbanContainer {
+        flex-direction: column; 
+        height: auto;
+    }
+
+    .kanbanColumn {
+        width: 100%; 
+        padding: 5px;
+    }
+
+    .kanbanColumn h3 {
+        font-size: 14px;  
+        margin-bottom: 10px;
+    }
+
+    .kanbanCard {
+        width: 200px;
+        flex-shrink: 0; 
+        padding: 8px; 
+        margin: 10px; 
+    }
+
+    .kanbanCard p {
+        font-size: 12px; 
+    }
+
+  
+    .noIssue p {
+        font-size: 14px;
+    }
+
+
+/* comment view */
+
+.commentDetails{
+    width: 96%;
+    height: 96%;
+    background-color:white;
+   border-radius: 10px;
+    position: absolute;
+    top:2%;
+    left: 2%;
+    color: black;
+}
+.detailsContainer{
+    width: 100%;
+    height: 96%;
+    display: flex;
+    flex-direction: column;
+    
+  
+}
+.detailsContainerLeft{
+    width: 98%;
+    height: 60%;
+    display: grid;
+    grid-template-rows: 40% 60%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 1%;
+}
+.detailsContainerRight{
+    width: 98%;
+    height: 30%;
+    margin: 1%;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top:1%;
+}
+.viewCommentHead{
+    width: 100%;
+    height: 12%;
+    background-color: rgb(243, 238, 238);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    
+}
+.viewCommentHead>p{
+    font-size: 18px;
+    font-weight:bold ;
+}
+.detailsCard p{
+    font-size: 13px;
+}
+.ticketdetails p{
+    font-size: 14px;
+}
+
+::ng-deep.p-editor .p-editor-content .ql-editor {
+    height: 70px !important;
+    
+    
+}
+
+.messageCard{
+    width: 100%;
+    height: 25%;
+}
+
+.commentPost>div{
+    width: 10%;
+    height: 100%;
+    background-color: blue;
+    color: white;
+    z-index: 1;
+    margin-top: 80px;
+}
+.ImageContainer button{
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.image{
+    width: 180px;
+    height: 100px;
+    
+}
 
 }
+
+@media only screen and (max-width: 426px) {
+    .kanbanColumn {
+        width: 100%;  
+        padding: 3px;
+    }
+
+    .kanbanColumn h3 {
+        font-size: 12px;  
+        margin-bottom: 8px;
+    }
+
+    .kanbanCard {
+        flex-shrink: 0; 
+        padding: 6px;  
+    }
+
+    .kanbanCard p {
+        font-size: 11px;  
+    }
+
+   
+    .p-overlay-badge {
+        width: 20px;
+        height: 20px;
+        font-size: 18px;
+    }
+
+
+    /* comment view */
+
+    .ticketHeader p{
+        font-size: 16px;
+    }
+
+.commentDetails{
+    width: 96%;
+    height: 96%;
+    background-color:white;
+   border-radius: 10px;
+    position: absolute;
+    top:2%;
+    left: 2%;
+    color: black;
+}
+.detailsContainer{
+    width: 100%;
+    height: 96%;
+    display: flex;
+    flex-direction: column;
+    
+  
+}
+.detailsContainerLeft{
+    width: 98%;
+    height: 65%;
+    display: grid;
+    grid-template-rows: 40% 60%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 1%;
+    overflow: auto;
+    
+}
+.detailsContainerRight{
+    width: 98%;
+    height: 30%;
+    margin: 1%;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top:1%;
+}
+.viewCommentHead{
+    width: 100%;
+    height: 12%;
+    background-color: rgb(243, 238, 238);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    
+}
+.viewCommentHead>p{
+    font-size: 18px;
+    font-weight:bold ;
+}
+.detailsCard{
+    width: 100%;
+    height: 50%;
+   display: flex !important;
+   flex-direction: column !important;
+  
+    
+}
+.detailsCard p{
+    font-size: 13px;
+}
+.ticketdetails p{
+    font-size: 14px;
+}
+.messageCard{
+    width: 100%;
+    height: 50%;
+}
+.message{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+::ng-deep.p-editor .p-editor-content .ql-editor {
+    height: 80px !important;
+    width: 378px !important;
+    margin-left: 0px !important;
+    
+    
+    
+}
+/* .p-editor .p-editor-toolbar {
+    display: none;
+} */
+.messageCard{
+    width: 100%;
+    height: 25%;
+    display: block;
+}
+.messageCard>div:first-child{
+    display: none;
+}
+
+.commentPost>div{
+    width: 30%;
+    height: 75%;
+    background-color: blue;
+    color: white;
+    z-index: 1;
+    margin-top: 210px;
+}
+.commentPost{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    
+    
+}
+.ImageContainer button{
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+.commentHead{
+    width: 100%;
+    height: 8%;
+    margin-top: 170px;
+}
+
+}
+
+@media only screen and (max-width: 376px) {
+
+    ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 80px !important;
+        width: 330px !important;
+        margin-left: 0px !important;
+        
+        
+        
+    }
+}
+
+@media only screen and (max-width: 320px) {
+
+    ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 80px !important;
+        width: 280px !important;
+        margin-left: 0px !important;
+        
+        
+        
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .editForm{
+        width: 90%;
+        height: 90%;
+        background-color: white;
+        color: black;
+        margin: auto;
+        border-radius: 10px;
+        padding-bottom: 30px;
+        position: absolute;
+        top: 20px;
+        left: 5%;
+        z-index: 200;
+        overflow: hidden;
+    }
+    .editForm>p{
+        width: 100%;
+        background-color: red;
+        padding: 10px;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        
+    }
+    .editForm>p>i{
+        margin-left: 76% !important;
+    }
+    .detailsMain>section>p{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+        font-size: 13px;
+
+       
+    }
+
+
+}
+
+
+/*  comment view responsive */
+@media only screen and (max-width: 1440px) {
+    .editForm{
+        width: 90%;
+        height: 90%;
+        background-color: white;
+        color: black;
+        margin: auto;
+        border-radius: 10px;
+        padding-bottom: 30px;
+        position: absolute;
+        top: 20px;
+        left: 5%;
+        z-index: 200;
+        overflow: hidden;
+    }
+    .editForm>p>i{
+        margin-left: 86%;
+    }
+
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .editForm{
+        width: 80%;
+        height: 90%;
+        background-color: white;
+        color: black;
+        margin: auto;
+        border-radius: 10px;
+        padding-bottom: 30px;
+        position: absolute;
+        top: 20px;
+        left: 10%;
+        z-index: 200;
+        overflow: hidden;
+    }
+    .editForm>p>i{
+        margin-left: 81%;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    .editForm{
+        width: 90%;
+        height: auto;
+        background-color: white;
+        color: black;
+        margin: auto;
+        border-radius: 10px;
+        padding-bottom: 10px;
+        position: absolute;
+        top: 10px;
+        left: 5%;
+        z-index: 200;
+        overflow: hidden;
+    }
+    .editForm>p{
+        width: 100%;
+        background-color: red;
+        padding: 10px;
+       
+        color: white;
+        font-size: 18px;
+        
+    }
+    .editForm>p>i{
+        margin-left: 60% !important;
+    }
+    .detailsMain{
+        width: 100%;
+        height: auto;
+       border: none;
+    }
+    .detailsMain>section{
+        width: 95%;
+        height: 12%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        margin-top: 1%;
+        
+        
+    }
+    .detailsMain>section>p{
+        margin-top: 5px;
+    }
+    .descriptionEdit{
+        width: 95%;
+        height: 30% !important;
+        overflow: auto;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+    }
+    .descriptionEdit>p{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+       
+    }
+    .statusMain{
+        width: 95%;
+        height: 10%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        margin-top: 3%;
+    
+       
+    }
+    .statusMain>div{
+        margin-top: 3%;
+    }
+    .statusMain>div .p-select{
+        width: 97%;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+        
+       
+    }
+    .editMessageCard{
+        width: 100%;
+        height: 28%;
+        margin: auto;
+        padding: 10px;
+        border: none;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+        overflow: auto;
+        margin-top: 10px;
+    
+    } 
+    
+    ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 80px !important;
+        width: 362px !important;
+        margin-left: 0px !important;
+    }
+    .btns{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 16px;
+    }
+
+}
+
+
+
+@media only screen and (max-width: 376px) {
+    ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 50px !important;
+        width: 316px !important;
+        margin-left: 0px !important;
+    }
+    .detailsMain>section>p{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+        font-size: 12px;
+       
+    }
+    .editForm>p{
+        width: 100%;
+        background-color: red;
+        padding: 10px;
+       
+        color: white;
+        font-size: 18px;
+        
+    }
+    .editForm>p>i{
+        margin-left: 58% !important;
+    }
+
+}
+@media only screen and (max-width: 321px) {
+    ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 50px !important;
+        width: 267px !important;
+        margin-left: 0px !important;
+    }
+    .editForm>p>i{
+        margin-left: 52%;
+    }
+    .editForm>p{
+        width: 100%;
+        background-color: red;
+        padding: 10px;
+        color: white;
+        font-size: 18px;
+        
+    }
+    .editForm>p>i{
+        margin-left: 50% !important;
+    }
+
+}
+

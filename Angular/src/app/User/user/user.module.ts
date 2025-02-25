@@ -40,17 +40,26 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { Slider } from 'primeng/slider';
 import { ProgressBar } from 'primeng/progressbar';
 import { EditorModule } from 'primeng/editor';
+import { AdminRoutingModule } from '../../Admin/admin-routing.module';
+import { Tooltip } from 'primeng/tooltip';
+import { TieredMenu, TieredMenuModule } from 'primeng/tieredmenu';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ChartModule } from 'primeng/chart';
+import { MenuModule } from 'primeng/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { MyTicketComponent } from './my_ticket/my-ticket/my-ticket.component';
 
 
 
 @NgModule({
-  declarations: [UserComponent,UserHeaderComponent, UserFooterComponent,FormComponent],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,
-                ButtonModule,DialogModule,FormsModule, ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,
-                AvatarModule,OverlayBadgeModule,BadgeModule,FluidModule,InputTextModule,FloatLabel,Select,DropdownModule],
+  declarations: [UserComponent,UserHeaderComponent, UserFooterComponent,FormComponent ,UserDashboardComponent,MyTicketComponent],
+  imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tooltip,OverlayPanelModule,
+             Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,
+             ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,TieredMenuModule,
+             FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule, ChartModule,MenuModule,BrowserAnimationsModule],
+ 
   exports: [UserRoutingModule] 
 })
 export class UserModule { 

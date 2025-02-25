@@ -3,72 +3,156 @@
     width: 100%;
     height: 97vh;
    border:1px solid white;
-   background-image: linear-gradient(to bottom right,rgb(59, 224, 242),rgb(235, 53, 217));
-   
-   
-
+    background-image: linear-gradient(to bottom right,rgb(59, 224, 242),rgb(235, 53, 217));
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .Login-Container{
     width:70%;
     height: 60%;
-    
-    margin: 9% auto ;
-    display: grid;
-    grid-template-columns: 45% 55%;
-    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 10px rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .Logo-Container{
-    width: 100%;
+    width: 50%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-right: 5px solid white;
     
 }
 
 
 .Login-Details{
-    width: 100%;
+    width: 50%;
     height: 100%;
-    padding-left: 25%;
-    padding-top: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2%;
     
-     
 }
+     
 .Login-Details img{
     width: 100px;
     height: 100px;
-    margin-left: 90px;
+
     border-radius: 20%;
-}
+} 
 
 .Login-Details>input{
     width: 60%;
     height: 7%;
     border-radius: 10px;
-    margin-top: 25px;
-    padding-left: 10px;
+    padding: 10px;
     box-shadow: 2px 2px 1px 2px rgb(27, 3, 248);
 }
 button{
     width: 30%;
     height: 7%;
-    margin-top: 25px;
-    margin-left: 15%;
     border-radius: 10px;
     box-shadow: 2px 2px 1px 2px rgb(27, 3, 248);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-label>input{
-    margin-top: 20px;
-    
-}
+
 
 .Logo-Container img{
     width: 250px;
     height: 250px;
-    margin-left: 100px;
-    margin-top: 75px;
     box-shadow: 0px 0px 15px 2px  black;
     border: 1px solid greenyellow;
     border-radius: 10%;
     
+}
+
+@media only screen and (max-width: 768px) {
+    .Logo-Container img{
+        width: 200px;
+        height: 200px;
+        box-shadow: 0px 0px 15px 2px  black;
+        border: 1px solid greenyellow;
+        border-radius: 10%;
+        
+    }
+    .Login-Details>input{
+        width: 80%;
+        height: 8%;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 2px 2px 1px 2px rgb(27, 3, 248);
+    }
+    button{
+        width: 30%;
+        height: 8%;
+        border-radius: 10px;
+        box-shadow: 2px 2px 1px 2px rgb(27, 3, 248);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+@media only screen and (max-width: 426px) {
+    .Login-Container{
+        width:80%;
+        height: 80%;
+        border-radius: 20px;
+        box-shadow: 0 0 20px 10px rgb(255, 255, 255);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    .Logo-Container{
+        width: 100%;
+        height: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 5px solid white;
+        border-right: none;
+        
+    }
+
+    .Login-Details{
+        width: 100%;
+        height: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2%;
+        
+    }
+
+    .Login-Container{
+        flex-direction: column;
+        
+    }
+    .Login-Details>input{
+        width: 80%;
+        height: 10%;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 2px 2px 1px 2px rgb(27, 3, 248);
+    }
+    button{
+        width: 30%;
+        height: 10%;
+        border-radius: 10px;
+        box-shadow: 2px 2px 1px 2px rgb(27, 3, 248);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

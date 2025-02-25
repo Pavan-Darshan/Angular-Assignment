@@ -8,37 +8,29 @@
     position: relative;
     left:0%;
     top: 0%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-shrink: 0;
-    gap: 10px;
-    
+    display: grid;
+    grid-template-columns: 20% 80%;
     
 }
 .logo {
-    width: 100px;
+    width: 100%;
     height: 60px;
-    
 }
 
 .logo img{
     width: 100px;
     height: 60px;
-    margin-top: 5%;
-    margin-left: 30%;
+    
     
 }
 .innerContainer{
-    width: 25%;
+    width: 100%;
     height: 100%;
     display: flex;
-    justify-content: flex-start;
-    gap: 5%;
+    justify-content: flex-end;
     align-items: center;
-    flex-shrink: 0;
-    margin-left: 65%;
+    padding-right: 20px;
+    gap: 15px;
 }
 .nameTag{
     width: 150px;
@@ -58,27 +50,100 @@
 
 }
 ::ng-deep.p-button{
-    background-color: rgba(25, 5, 249,0.5) !important;
  border: none;
 }
 
 
 .profile{
-    width: 100%;
+    width: 50px;
     height: 100%;
    
 }
-::ng-deep.p-drawer>div{
-    background-color: black;
-    border: 1px solid white;
-    color: white;
+
+
+  
+  ::ng-deep.p-drawer button {
+    margin: 18px;
+    width: 70%;
+    background-color: red;
+  }
+  ::ng-deep.p-button {
+    background-color: blue !important;
+    border: none;
+  }
+
+  .items>div{
+    width: 100%;
+    padding: 5%;
+    
+  }
+
+  .items>div>span{
+    margin-left: 3%;
+  }
+  
+  .font-bold {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+
+  .mobileView{
+    display: block !important;
 }
-::ng-deep.p-drawer button{
-    margin:18px;
-    background-color: rgba(25, 5, 249,0.5) !important;
-    color: white;
+.mobileViewOn{
+    display: none !important;
 }
-.font-bold{
-   margin-left: 10px;
-   font-size: 20px;
+.items{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    margin-top: 20%;
 }
+.items>div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+
+  @media only screen and (max-width: 426px) {
+    .logo img{
+        width: 50px;
+        height: 50px;
+        
+        
+    }
+    .profile{
+        width: 50%;
+        height: 100%;
+       
+    }
+    .mobileView{
+        display: none !important;
+    }
+    .mobileViewOn{
+        display: block !important;
+    }
+
+    ::ng-deep.p-drawer-left {
+        top: 0;
+        left: 0;
+        width: 16rem !important;
+        height: 100%;
+    }
+ 
+    
+  }
+  @media only screen and (max-width: 376px) {
+
+    ::ng-deep.p-drawer-left {
+        top: 0;
+        left: 0;
+        width: 14rem !important;
+        height: 100%;
+    }
+  }
