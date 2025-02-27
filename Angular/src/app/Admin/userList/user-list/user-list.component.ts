@@ -70,21 +70,24 @@ export class UserListComponent implements OnInit {
   // Featching user details
   feacthUserDetails(){
     this.sereverService.onUserList()
-     
-          .subscribe((res)=>{
-              this.featchedUserList=res;
-              // setTimeout(()=>{
-              //   this.loading=false
-              // },2000)
-             
-              console.log(this.featchedUserList);
-          })
+  
+    .subscribe((res)=>{
+        this.featchedUserList=res;
+        // setTimeout(()=>{
+        //   this.loading=false
+        // },2000)
+        
+        console.log(this.featchedUserList);
+    })
 
   }
   onAddUser(){
     this.addForm = true;
     this.isCreate = true; // Heading Changing
     this.isEdit = false ;
+    this.createdSourceDate =this.date.getCurrentTime();
+    this.modifiedSourceDate =this.date.getCurrentTime();
+
   } 
   onUserData(formdata : NgForm){
     
@@ -97,7 +100,7 @@ export class UserListComponent implements OnInit {
     }
     else{
     this.createdSourceDate = this.date.getCurrentTime();
-    let newUser : User={...formdata.value, dataBaseId  : '',createdDateTime : DateTime, lastModifiedDateTime :'---', password :'1111',userId : this.userUniqueId.generateUserId()};
+    let newUser : User = {...formdata.value,checked:formdata.value.checked, dataBaseId  : '',createdDateTime : this.date.getCurrentTime(), lastModifiedDateTime : this.date.getCurrentTime(), password :'1111',userId : this.userUniqueId.generateUserId()};
     this.sereverService.onUserCreate(newUser).subscribe(()=>this.feacthUserDetails())?
     alert("User created and User ID : "+newUser.userId):null;
     this.addForm = false;
@@ -107,8 +110,7 @@ export class UserListComponent implements OnInit {
     this.addForm = true;  // Heading Changing
     this.isCreate = false;
     this.isEdit = true ;
-    
-    
+
   this.userName = user.userName;
   this.userType =user.userType;
   this.userPhone = user.userPhone ;
@@ -119,9 +121,8 @@ export class UserListComponent implements OnInit {
   this.modifiedSource = user.modifiedSource;
   this.modifiedSourceType = user.modifiedSourceType;
   this.modifiedSourceDate = user.modifiedSourceDate;
-  this.checked =user.checked;
+  this.checked =user.theme;
   this.createdDateTime = user.createdDateTime;
-
   this.userAddress = user.address;
   this.userCountry = user.country;
   this.userState = user.state;

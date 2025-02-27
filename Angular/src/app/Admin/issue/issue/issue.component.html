@@ -28,10 +28,28 @@
                                 </div>
                                 
                             </div>
+                            
                         </div>
+                        
                         <div class="noIssue" *ngIf="groupedIssues[status]?.length === 0">
                             <p>No issues in this status.</p>
                         </div>
+                        <div *ngIf="status === 'open' && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button  (click)="loadOpen()" >Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        <div *ngIf="status === 'inProgress'  && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button  (click)="loadinProgress()" >Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        <div *ngIf="status === 'waiting' && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button  (click)="loadwaiting()" >Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        <div *ngIf="status === 'fixed' && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button  (click)="loadfixed()" >Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        <div *ngIf="status === 'closed' && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button (click)="loadclosed()">Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        
                     </div>
                 </div>
             </p-tabpanel>

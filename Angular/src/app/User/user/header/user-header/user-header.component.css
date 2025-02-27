@@ -73,8 +73,36 @@
    
 }
 
-
-
+.menuSetting{
+  width: 100%;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+ 
+ 
+}
+.menu{
+  width: 100%;
+  height: 70px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.menu p{
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 2px 2px rgb(151, 150, 150);
+  padding: 5px;
+}
+.logMenu{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
 /* ::ng-deep.p-drawer > div {
     background-color: var(--background-color, black); 
     color: var(--text-color, white);
@@ -126,6 +154,46 @@
     align-items: center;
 }
 
+/* password window */
+
+.passwordContainer{
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+gap: 20px;
+
+}
+.passwordResetButton{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 10px;
+  
+}
+.passwordContainer ::ng-deep.p-inputtext {
+  width: 100% !important;
+}
+.passwordContainer
+.passwordResetButton ::ng-deep.p-button{
+  width: 100%;
+  height: 30px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.passwordResetButton ::ng-deep.p-button .p-button-icon {
+  font-size: 10px;
+}
+
+::ng-deep .p-button-text.p-button-secondary {
+  background-color: aliceblue !important;
+  color: black !important;
+}
 
 
   @media only screen and (max-width: 426px) {

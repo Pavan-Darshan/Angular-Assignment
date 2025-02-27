@@ -11,7 +11,7 @@
 :root {
     --background-color: white;
     --text-color: black;
-    --button-background: #f0f0f0;
+    --button-background: #e5e0e0;
     --button-text-color: black;
     --table-row-background-light: #f0f0f0;
     --table-row-text-light: #000; 
@@ -36,7 +36,7 @@
   body.dark-mode {
     --background-color: #121212;
     --text-color: #ffffff;
-    --button-background: #333333;
+    --button-background: #3d3b3b;
     --button-text-color: #ffffff;
     --table-row-background-dark: #000000;
     --table-row-text-dark: #fff; 
@@ -211,4 +211,34 @@ body.dark-mode .kanbanCard {
 body.dark-mode .p-drawer{
   background-color: var(  --background-color);
   color: var(  --text-color);
+}
+
+.editForm{
+  background-color: var(--form-background-light);
+  color: var(--form-text-color-light);
+  border: 1px solid rgb(0, 0, 0);
+}
+body.dark-mode .editForm {
+  background-color: var(--form-background-dark);
+  color: var(--form-text-color-dark);
+  border: 1px solid white;
+}
+.container {
+  background-color: var(--form-background-light);
+  color: var(--form-text-color-light);
+  border: none;
+}
+body.dark-mode .container {
+  background-color: var(--form-background-dark);
+  color: var(--form-text-color-dark);
+  border: 1px solid white;
+}
+.p-dialog {
+  background-color: var(--form-background-light);
+  color: var(--form-text-color-light);
+}
+body.dark-mode .p-dialog  {
+  background-color: var(--form-background-dark);
+  color: var(--form-text-color-dark);
+  border: 1px solid white;
 }

@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 })
 export class AdminComponent {
 
+  // active : boolean=false;
   
 
 }

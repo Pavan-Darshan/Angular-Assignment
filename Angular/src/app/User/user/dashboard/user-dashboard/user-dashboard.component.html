@@ -1,4 +1,6 @@
-
+<div class="path">
+    <p>DashBoard /</p>
+</div>
 <div class="container">
     <p-tabs value="0">
         <p-tablist class="tablist">
@@ -12,23 +14,37 @@
                     <!--Loop through the all status of manual array-->
                     <div class="kanbanColumn" *ngFor="let status of ['open', 'inProgress', 'waiting', 'fixed', 'closed']">
                         <!--pipe for upperacse-->
-                        <div class="statusName"><h3>{{ status | uppercase }}</h3> </div>
-                        <div *ngIf="groupedIssues[status].length > 0" class="row">
+                        <div class="statusName" [ngClass]="status | uppercase "><h3>{{ status | uppercase }}</h3> </div>
+                        <div *ngIf="groupedIssues[status].length > 0" class="row" >
                             <div *ngFor="let issue of groupedIssues[status]">
                                 <div class="kanbanCard">
                                     <p><strong>Code : </strong> {{ issue.categoryId }} <span>{{issue.subCategoryId}}</span></p>
                                     <p><strong>Subject:</strong> {{ issue.subject }}</p>
-                                    <p><strong>Priority:</strong> {{ issue.priorityId }}</p>
+                                    <p><strong>Priority : </strong> <span [ngClass]="issue.priorityId">{{ issue.priorityId }}</span></p>
                                     <div class="commentMain"> <!--User image and Notification-->
                                         <p-avatar class="p-overlay-badge" label={{issue.userName[0]}} shape="circle" title={{issue.userName}}/>
                                         <i class="pi pi-replay" (click)="showMessage(issue)"></i>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                         <div class="noIssue" *ngIf="groupedIssues[status]?.length === 0">
                             <p>No issues in this status.</p>
+                        </div>
+                        <div *ngIf="status === 'open' && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button  (click)="loadOpen()" >Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        <div *ngIf="status === 'inProgress'  && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button  (click)="loadinProgress()" >Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        <div *ngIf="status === 'waiting' && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button  (click)="loadwaiting()" >Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        <div *ngIf="status === 'fixed' && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button  (click)="loadfixed()" >Load More <i class="pi pi-refresh" ></i></button>
+                        </div>
+                        <div *ngIf="status === 'closed' && !(groupedIssues[status].length < 5)" class="loadButton">
+                            <button (click)="loadclosed()">Load More <i class="pi pi-refresh" ></i></button>
                         </div>
                     </div>
                 </div>
@@ -334,6 +350,7 @@
 <div class="editFormBackground"  *ngIf="editDisplay">
     <div class="editForm">
         <p>Ticket  Detail<i class="pi pi-times" (click)="cancelTicket()"></i> </p>
+        <hr>
             <div class="detailsMain">
             <section>
                 <p>Name : {{editUserData.userName}}</p>
@@ -359,23 +376,17 @@
 
         <div class="statusMain">
             <div>
-                <p-floatlabel class="w-full md:w-56" variant="on">
-                    <p-select [(ngModel)]="statusID" inputId="status_label" optionValue="id" [options]="Status" optionLabel="label" styleClass="full" readonly></p-select >
-                    <label for="priority_label">Status</label>
-                </p-floatlabel>
+               
+                <p>Status : {{editUserData.statusId}}</p>
+                
             </div>
             <div>
-                <p-floatlabel class="w-full md:w-56" variant="on">
-                    <p-select [(ngModel)]="priorityID" inputId="priority_label" optionValue="code" [options]="Priority" optionLabel="name" styleClass="full" readonly></p-select>
-                    <label for="priority_label">Priority</label>
-                    </p-floatlabel>
-
+               
+                    <p>Priority :{{editUserData.priorityId}}</p>
             </div>
             <div>
-                <p-floatlabel class="w-full md:w-56" variant="on">
-                    <p-select [(ngModel)]="assigneeID" inputId="assignee_label" optionValue="id" [options]="Assignee" optionLabel="name" styleClass="full"  readonly></p-select>
-                    <label for="assignee_label">Assignee</label>
-                </p-floatlabel>
+            
+                <p>Assignee :{{editUserData.assigneeId}}</p>
             </div>
             
         </div>

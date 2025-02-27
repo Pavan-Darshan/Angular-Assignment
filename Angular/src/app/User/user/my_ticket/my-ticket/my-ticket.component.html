@@ -1,3 +1,7 @@
+<div class="path">
+  <p>DashBoard / <span> Repoted </span></p>
+</div>
+
 <div>
   <p-table
     #dt
@@ -34,24 +38,6 @@
           <p-button icon="pi pi-filter" (onClick)="op.toggle($event)" />
           <p-overlayPanel #op class="filterButton">
             <form (ngSubmit)="filterApply(filterForm)" #filterForm="ngForm">
-              <div>
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="filterUserName"
-                  placeholder="User Name"
-                  name="filterUserName"
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  pInputText
-                  [(ngModel)]="filterRepoterId"
-                  placeholder="Reporter ID"
-                  name="filterRepoterId"
-                />
-              </div>
               <div>
                 <input
                   type="text"
@@ -207,9 +193,9 @@
         <td>
           <p>
             <i
-              class="pi pi-trash"
+              class="pi pi-pencil"
               style="color: slateblue"
-              (click)="deleteIssue(user)"
+              (click)="editTicket(user)"
             ></i>
           </p>
         </td>
@@ -225,4 +211,119 @@
 
 <div class="card flex justify-center">
   <p-toast />
+</div>
+
+<div class="main" *ngIf="isEdit">
+  <form action="" (ngSubmit)="onSaveTicket(formDetails)" #formDetails="ngForm">
+    <div class="container">
+      <div class="heading">
+        <div><p>Bug Record Form</p></div>
+        <div><i class="pi pi-times" (click)="cancelTicket()"></i></div>
+      </div>
+
+      <!-- Priority-->
+      <div class="priority">
+        <p-floatlabel class="w-full md:w-56" variant="on">
+          <p-select
+            [(ngModel)]="priorityID"
+            inputId="over_label"
+            optionValue="code"
+            [options]="Priority"
+            optionLabel="name"
+            name="priorityID"
+            styleClass="full"
+            required
+          />
+          <label for="over_label">Priority*</label>
+        </p-floatlabel>
+      </div>
+
+      <!-- category-->
+      <div class="category">
+        <p-floatlabel class="w-full md:w-56" variant="on" class="category">
+          <p-select
+            [options]="categories"
+            [(ngModel)]="categoryID"
+            optionLabel="label"
+            optionValue="value"
+            (onFocus)="onCategoryChange()"
+            name="category"
+            required
+          >
+          </p-select>
+          <label for="over_label">Select Category*</label>
+        </p-floatlabel>
+      </div>
+      <!-- Sub category-->
+      <div class="subCategory">
+        <p-floatlabel class="w-full md:w-56" variant="on">
+          <p-select
+            [options]="availableIssues"
+            [(ngModel)]="subCategoryID"
+            optionLabel="label"
+            optionValue="code"
+            name="subCategory"
+            required
+          >
+          </p-select>
+          <label for="over_label">Select Issue</label>
+        </p-floatlabel>
+      </div>
+      <!-- Subject-->
+      <div class="subject">
+        <p-floatlabel variant="on">
+          <input
+            pInputText
+            id="subject"
+            [(ngModel)]="subject"
+            autocomplete="off"
+            name="subject"
+            required
+          />
+          <label for="subject">Subject</label>
+        </p-floatlabel>
+      </div>
+      <div
+        class="card flex flex-wrap justify-center items-stretch gap-4"
+        class="description"
+      >
+        <p-floatlabel variant="on">
+          <textarea
+            pInputText
+            id="over_label"
+            [(ngModel)]="description"
+            rows="5"
+            cols="30"
+            style="resize: none"
+            class="h-full"
+            name="description"
+          ></textarea>
+          <label for="on_label">Description</label>
+        </p-floatlabel>
+      </div>
+
+      <div class="timeDetails">
+        <!-- <p>Created Date Time : {{createdDateTime}}</p> -->
+        <p>Modified Date Time : {{ modifieDateTime }}</p>
+        <p>Assignee ID : {{ AssigneeID }}</p>
+      </div>
+
+      <div>
+        <input type="file" (change)="onFileChange($event)" name="file" />
+      </div>
+      <div class="card flex justify-center" class="btns">
+        <p-button
+          label="Update"
+          type="Submit"
+          icon="pi pi-check"
+          [disabled]="formDetails.invalid"
+        />
+        <p-button
+          label="Cancel"
+          icon="pi pi-times"
+          (onClick)="cancelTicket()"
+        />
+      </div>
+    </div>
+  </form>
 </div>

@@ -79,4 +79,31 @@ onDeleteUser(dataBaseId : string){
     return this.http.delete('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+dataBaseId+'.json')
     
 }
+onAdminSenior(themeColor :boolean){
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/admin/adminSenior/theme.json',themeColor)
+}  
+onAdmin102(themeColor :boolean){
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/admin/admin102/theme.json',themeColor)
+
+}
+onThemeChange(dataBaseId : string,themeColor :boolean){
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+dataBaseId+'/theme.json',themeColor)
+}
+
+reSetUserPassword(dataBaseId : string, password : string){
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+dataBaseId+'/password.json',password)
+}
+reSetAdminSeniorPassword(password : string){
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/admin/adminSenior/password.json',password)
+}
+reSetAdminPassword(password : string){
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/admin/adminSenior/password.json',password)
+}
+
+
+onAdminSeniorNotification(count : number){
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/admin/adminSenior/notification.json',count)
+}  
+
+
 }

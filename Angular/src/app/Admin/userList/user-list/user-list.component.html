@@ -247,25 +247,25 @@
                 <div class="formContainer">
                     <div class="formContainer1">
                         <p-floatlabel variant="on">
-                            <input pInputText id="over_label" [(ngModel)]="userName" autocomplete="off" name="userName" required  placeholder="User Name*"/>
+                            <input pInputText id="over_label" [(ngModel)]="userName" autocomplete="off" name="userName"  placeholder="User Name*" required/>
                             
                         </p-floatlabel>
                         <p-floatlabel variant="on">
-                            <input pInputText id="type" [(ngModel)]="userType" autocomplete="off" name="userType" required  placeholder="User Type*"/>
+                            <input pInputText id="type" [(ngModel)]="userType" autocomplete="off" name="userType" required  placeholder="User Type*" required/>
                         
                         </p-floatlabel>
                         <p-floatlabel variant="on">
-                            <input pInputText id="email" [(ngModel)]="userEmail" autocomplete="off" name="emailAddress" required placeholder="Email ID*"/>
+                            <input pInputText id="email" [(ngModel)]="userEmail" autocomplete="off" name="emailAddress" required placeholder="Email ID*" required/>
                             
                         </p-floatlabel>
                         
                         <p-floatlabel variant="on">
-                            <input pInputText id="phone" [(ngModel)]="userPhone" autocomplete="off" name="userPhone" required placeholder="Phone Number*"/>
+                            <input pInputText id="phone" [(ngModel)]="userPhone" autocomplete="off" name="userPhone" required placeholder="Phone Number*" required/>
                           
                         </p-floatlabel>
                         <div class="checkBox">
-                            <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="theme" name="theme" placeholder="Dark Theme"/>
-                    
+                            <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="theme" name="theme" />
+                            Dark Theme
                         </div>
                     </div>
                     <div class="formContainer2" >
@@ -278,7 +278,7 @@
                          
                         </p-floatlabel>
                         <p-floatlabel variant="on">
-                            <input pInputText id="sourceDate" [(ngModel)]="createdSourceDate" autocomplete="off" name="createdSourceDate" placeholder="Created Source Date"/>
+                            <input pInputText id="sourceDate" [(ngModel)]="createdSourceDate" autocomplete="off" name="createdSourceDate" placeholder="Created Source Date" readonly/>
                       
                         </p-floatlabel>
                         <p-floatlabel variant="on">
@@ -290,7 +290,7 @@
                            
                         </p-floatlabel>
                         <p-floatlabel variant="on">
-                            <input pInputText id="modifiedSourceDate" [(ngModel)]="modifiedSourceDate" autocomplete="off" name="modifiedSourceDate" placeholder="Last Modified Source Date"/>
+                            <input pInputText id="modifiedSourceDate" [(ngModel)]="modifiedSourceDate" autocomplete="off" name="modifiedSourceDate" placeholder="Last Modified Source Date" readonly/>
                             
                         </p-floatlabel> 
                     </div>
@@ -335,10 +335,10 @@
 
             <div class="buttonContainer">
                 <div *ngIf="isCreate" class="buttonContainer1">
-                    <p-button  type="Submit">Save</p-button>
+                    <p-button  type="Submit" [disabled]="createForm.invalid">Save</p-button>
                 </div>
                 <div *ngIf="isEdit" class="buttonContainer2">
-                    <p-button type="Submit">Update</p-button>
+                    <p-button type="Submit" [disabled]="createForm.invalid"></p-button>
                      <p-button (onClick)="onUserDelete(createForm)" >Delete</p-button>
                 </div>
             </div>

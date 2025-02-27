@@ -5,11 +5,12 @@
                 <div><p>Bug Record Form</p></div>
                 <div> <i class="pi pi-times" (click)=" cancelTicket()"></i>  </div>
             </div>
+            <hr>
 
             <!-- Priority-->
             <div class="priority">
                 <p-floatlabel class="w-full md:w-56" variant="on" >
-                    <p-select [(ngModel)]="priorityID" inputId="over_label" optionValue="code" [options]="priority" optionLabel="name" name="priorityID" styleClass="full"/>
+                    <p-select [(ngModel)]="priorityID" inputId="over_label" optionValue="code" [options]="priority" optionLabel="name" name="priorityID" styleClass="full" required/>
                     <label for="over_label">Priority</label>
                 </p-floatlabel>
             
@@ -23,7 +24,7 @@
                         [(ngModel)]="categoryID"  
                         optionLabel="label"  
                         optionValue="value"  
-                        (onFocus)="onCategoryChange()" name="category">  
+                        (onFocus)="onCategoryChange()" name="category" required>  
                     </p-select>
                     <label for="over_label">Select Category</label>
                 </p-floatlabel>
@@ -35,7 +36,7 @@
                         [options]="availableIssues"  
                         [(ngModel)]="subCategoryID" 
                         optionLabel="label"  
-                        optionValue="code" name="subCategory">
+                        optionValue="code" name="subCategory" required>
                     </p-select>
                     <label for="over_label">Select Issue</label>
                 </p-floatlabel>
@@ -43,7 +44,7 @@
             <!-- Subject-->
             <div class="subject">
                 <p-floatlabel  variant="on">
-                    <input pInputText id="subject" [(ngModel)]="subject" autocomplete="off" name="subject"/>
+                    <input pInputText id="subject" [(ngModel)]="subject" autocomplete="off" name="subject" required/>
                     <label for="subject">Subject</label>
                 </p-floatlabel>
             </div>
@@ -57,7 +58,7 @@
                 <input type="file" (change)="onFileChange($event)" name="file"/>
             </div>
             <div class="card flex justify-center" class="btns">
-                <p-button label="Submit" type="Submit" icon="pi pi-check" /> <p-button label="Cancel" icon="pi pi-times" (onClick)="cancelTicket()"/>
+                <p-button label="Submit" type="Submit" icon="pi pi-check" [disabled]="formDetails.invalid"/> <p-button label="Cancel" icon="pi pi-times" (onClick)="cancelTicket()"/>
             </div>
         </div>
     </form>

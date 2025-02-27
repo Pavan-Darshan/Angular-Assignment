@@ -7,7 +7,7 @@ import { CanActivate } from '../../Services/authGuard';
 import { MyTicketComponent } from './my_ticket/my-ticket/my-ticket.component';
 
 export const routes: Routes = [
-  { path: '', component: UserComponent },
+  { path: '', component: UserComponent, canActivate :[CanActivate] },
   
 
   {

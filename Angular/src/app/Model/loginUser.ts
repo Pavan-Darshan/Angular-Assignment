@@ -5,7 +5,7 @@ export interface User{
     password :string;
     createdDateTime ?:string;
     lastModifiedDateTime ?:string;
-    dataBaseId ?:string;
+    dataBaseId ?:string ;
 
 
   userType : string ;
@@ -17,7 +17,7 @@ export interface User{
   modifiedSource : string ;
   modifiedSourceType : string;
   modifiedSourceDate : string ;
-  checked : boolean ;
+  theme : boolean ;
 
   address : string ;
   state : string ;
@@ -27,6 +27,6 @@ export interface User{
   postalCode ?: number;
   locale : string ;
   timeZone : string ;
-
+  notification : any ;
    
 }

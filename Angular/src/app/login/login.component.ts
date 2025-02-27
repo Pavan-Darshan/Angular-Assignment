@@ -21,7 +21,8 @@ export class LoginComponent {
 
   loggedUser : User []=[];
   isAccountLogged =false;
-
+  username : string = '';
+  password : string = '';
   constructor(private messageService: MessageService, private activeRoute : ActivatedRoute) {}
 
   ngOnInit(){
@@ -36,7 +37,7 @@ export class LoginComponent {
   this.activeRoute.queryParamMap.subscribe((queries)=>{
   if( Boolean( queries.get('logout'))){
     this.authService.logOut();
-    alert("You are logged out.....!")
+    // alert("You are logged out.....!")
   }
   })
 }
@@ -44,7 +45,8 @@ export class LoginComponent {
  
 
 onLogIn(email :string, password : string){
-let admin =  this.authService.isAdminUser.find((user)=> user.emailAddress === email && user.password === password);
+
+let admin =  this.authService.isAdminUser.find((user)=> user.emailAddress === email && user.password.toString() === password);
         
  if(admin !== undefined){
   this.isAccountLogged=true;
@@ -53,9 +55,10 @@ let admin =  this.authService.isAdminUser.find((user)=> user.emailAddress === em
   this.serverService.isAccountLogged=true;
   this.authService.loggedSuccess();
   this.route.navigate(['/admin/dashboard']);
+ 
   }
   else{
-    let user=this.authService.isUsers.find((user)=> user.emailAddress === email && user.password === password);
+    let user=this.authService.isUsers.find((user)=> user.emailAddress === email && user.password.toString() === password);
 
     if( user !== undefined){
       this.isAccountLogged=true;   
@@ -63,7 +66,8 @@ let admin =  this.authService.isAdminUser.find((user)=> user.emailAddress === em
       this.serverService.loggedUser.push(user);
       this.serverService.isAccountLogged=true;
       this.authService.loggedSuccess();
-      this.route.navigate(['/user/dashboard'])
+      this.route.navigate(['/user/dashboard']);
+      this.password = '';
     }
     else{
       this.show() ;

@@ -11,16 +11,47 @@
        
 
         <div class="notification" class="mobileView">
-            <p-button label="Emails" badge="2" label="Notifications" icon="pi pi-bell" />
-        </div>
-        <!-- <div class="card flex justify-center" class="mobileViewOn">
-            <i class="pi pi-bell text-3xl" pBadge value="2"></i>
-        </div> -->
+            <p-button (click)="notification.toggle($event)" label="Emails" badge={{differenceCount}} label="Notifications" icon="pi pi-bell" />
 
+
+            <p-overlayPanel #notification >
+                <div class="notification" >
+                  
+
+                    <div class="notificationDetails" *ngFor="let issue of receivedData.reverse().slice(0,differenceCount)" >
+                        <div><p-avatar   icon="pi pi-user" class="mr-2"  shape="circle" label={{issue.userName?.slice(0,1)}}/></div>
+                        <div class="names">
+                            <div><p>{{issue.userName}}</p></div>
+                            <div> <p>{{issue.categoryId}} / {{issue.subCategoryId}}</p></div>
+                            <div><p>{{issue.createDateTime}}</p></div>
+                        </div>
+
+                    </div>
+
+                    <div class="clearBtn" *ngIf="!(differenceCount===0)"><button (click)="clearNotification()" >Clear Notifications</button></div>
+ 
+                </div>
+
+            </p-overlayPanel>
+        </div>
+      
         
         <div class="nameTag">
             <div>
-                <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}}/>
+                <p-avatar (click)="op.toggle($event)"  icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}}/>
+                <!-- pop for reset password -->
+                <p-overlayPanel #op >
+                    <div class="menuSetting">
+                        <div class="menu">
+                            <div><p>Profile</p></div>
+                             <div><p (click)="resetUserPassword()">Reset Password</p></div>
+                        </div>
+                        <div class="logMenu">
+                            <p-button  label="Logout" icon="pi pi-sign-out"  routerLink="/" [queryParams] ="{logout : true}" (onClick)=" logOut()"/>
+                        </div>
+                    </div>
+    
+                </p-overlayPanel>
             </div>
            <div class="userName">
                 <div><p>{{loggedUser?.userName}}</p></div>
@@ -87,11 +118,46 @@
  
         <ng-template #footer>
             <div class="logout">
-                <p-button  label="Logout" icon="pi pi-sign-out"  routerLink="/" [queryParams] ="{logout : true}"/>
+                <p-button  label="Logout" icon="pi pi-sign-out"  routerLink="/" [queryParams] ="{logout : true}" (onClick)="logOut()"/>
             </div>
         </ng-template>
     </p-drawer>
     
+</div>
+
+
+
+
+
+<div class="card flex justify-center">
+    
+    <p-dialog header="Reset Password" [modal]="true" [(visible)]="passwordView" >
+        <form  #passwordData="ngForm">
+            <div class="passwordContainer">
+                <div>
+                    <p>User Password</p>
+                    <input type="text" pInputText ngModel required name="currentPassword"/>
+                </div>
+                <div>
+                    <p>New Password</p>
+                    <input type="text" pInputText ngModel required name="newPassword"/>
+                </div>
+                <div>
+                    <p>Confirm Password</p>
+                    <input type="text" pInputText ngModel required name="confirmPassword"/>
+                </div>
+                <div class="passwordResetButton">
+                    <p-button label="Save" icon="pi pi-check" type="Submit" [disabled]="passwordData.invalid" (onClick)="passwordSet(passwordData)"/>
+                    <p-button label="Cancel" icon="pi pi-times" (onClick)="cancelPasswordReset(passwordData)"/>
+                </div>
+            </div>
+        </form>
+    </p-dialog>
+</div>
+
+<div class="card flex justify-center">
+    <p-toast />
+
 </div>
 
 

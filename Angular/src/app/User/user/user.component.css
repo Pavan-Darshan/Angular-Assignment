@@ -29,15 +29,14 @@
     background-color: rgba(0, 0, 0, 0);
     border: none;
     width: 140px; 
-    height: 20px; 
+    height: 100%; 
     font-size: 14px;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px; 
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 1s ease-out;
   }
   
   .dashboardBtn:hover {
@@ -97,4 +96,8 @@
   .footer {
       height: 50px; 
   }
+}
+.dashboardBtn.active-link {
+  background-color: #6a676a; 
+  color: rgb(255, 255, 255); 
 }

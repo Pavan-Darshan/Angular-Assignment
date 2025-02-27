@@ -1,7 +1,7 @@
 .main-container{
 
     width: 100%;
-    height: 97vh;
+    height: 100vh;
    border:1px solid white;
     background-image: linear-gradient(to bottom right,rgb(59, 224, 242),rgb(235, 53, 217));
     display: flex;
@@ -58,10 +58,13 @@ button{
     width: 30%;
     height: 7%;
     border-radius: 10px;
-    box-shadow: 2px 2px 1px 2px rgb(27, 3, 248);
+    background-color: white !important;
+    box-shadow: 2px 2px 1px 2px rgb(27, 3, 248) !important;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black !important;
+    font-size: 14px;
 }
 
 

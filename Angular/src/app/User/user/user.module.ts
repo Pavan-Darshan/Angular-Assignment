@@ -50,13 +50,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import { MyTicketComponent } from './my_ticket/my-ticket/my-ticket.component';
+import { Popover } from 'primeng/popover';
 
 
 
 @NgModule({
   declarations: [UserComponent,UserHeaderComponent, UserFooterComponent,FormComponent ,UserDashboardComponent,MyTicketComponent],
   imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tooltip,OverlayPanelModule,
-             Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,
+             Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,Popover,
              ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,TieredMenuModule,
              FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule, ChartModule,MenuModule,BrowserAnimationsModule],
  

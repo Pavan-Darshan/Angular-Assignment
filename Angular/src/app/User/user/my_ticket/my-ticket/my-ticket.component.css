@@ -1,5 +1,6 @@
 
 
+
 .path{
     width: 100%;
     height: 5%;
@@ -14,7 +15,6 @@
 .path span{
     color: red;
 }
-
 
 
 
@@ -141,37 +141,7 @@
     }
 }
 
-.p-tabpanels {
-    background: rgba(255, 255, 255,0) !important;
 
-}
-:host ::ng-deep .p-tablist-tab-list {
-    width: 100%;
-    height: 25px;
-    font-size: 10px;
-    display: flex;
-    justify-items: flex-end;
-    gap: 10px;
-  
-}
-
-.tablist{
-    width: 100%;
-    height: 20px !important;
-    font-size: 10px !important;
-    border: none !important;
-}
-.p-tab{
-    height: 20px !important;
-    padding: 0;
-    border: none !important;
-    margin-left: 10px;
-}
-
-.p-tab-active {
-    font-size: 16px !important;
-    
-}
 .noIssue{
     text-align: center;
 }
@@ -248,148 +218,6 @@ td {
 } 
 
 
-
-
-
-.kanbanContainer {
-    width: 100%;
-    height: 69vh;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    top: 0px;  
-    flex-wrap: wrap;  
-}
-.kanbanColumn {
-    width: 19%; 
-    height: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    overflow-y: scroll;
-    margin-bottom: 15px;
-}
-
-
-
-
-.kanbanColumn::-webkit-scrollbar {
-    display: none;
-}
-
-.kanbanColumn h3 {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 15px;
-
-}
-.statusName{
-    position: sticky;
-    top: 0%;
-    z-index: 1;
-
-}
-
-.kanbanCard {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-
-.kanbanCard h4 {
-    margin: 0;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.CRITICAL{
-    background-color: red !important;
-    color: rgb(255, 255, 255) !important;
-    padding: 3px 10px 3px 10px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight:normal;
-}
-
-.HIGH{
-    background-color: blue !important;
-    color: rgb(255, 255, 255) !important;
-    padding: 3px 10px 3px 10px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight:normal;
-}
-
-.MEDIUM{
-   background-color: yellow !important;
-   color: rgb(0, 0, 0) !important;
-   padding: 3px 10px 3px 10px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight:normal;
-}
-
-.LOW{
-    background-color: green!important;
-    color: rgb(255, 255, 255) !important;
-    padding: 3px 10px 3px 10px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight:normal;
-}
-
- 
-.OPEN{
-    color: blue;
-   text-shadow: 0px 0px 5px rgb(64, 63, 63);
-}
-
-.INPROGRESS{
-    /* color: yellow;
-   text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-    color: blue;
-   text-shadow: 0px 0px 5px rgb(64, 63, 63);
-}
-.WAITING{
-    /* color: orange;
-   text-shadow: 0px 0px 5px rgb(129, 126, 125); */
-    color: blue;
-   text-shadow: 0px 0px 5px rgb(64, 63, 63);
-}
-
-.FIXED{
-    /* color: green;
-    text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-     color: blue;
-   text-shadow: 0px 0px 5px rgb(64, 63, 63);
-}
-
-.CLOSED{
-    /* color: purple;
-   text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-    color: blue;
-   text-shadow: 0px 0px 5px rgb(64, 63, 63);
-} 
-
-
-
-.kanbanCard p {
-    margin: 5px 0;
-}
-
-.p-overlay-badge{
-    width: 24px;
-    height: 24px;
-    background-color: black;
-    color: yellow;
-    font-size: 22px;
-}
-
-.kanbanCard span{
-    color: rgb(254, 0, 0);
-    font-weight: bold;
-}
 
 
 /* list */
@@ -478,928 +306,262 @@ td {
     width: 100% !important;
 }
   
-/* comment window */
- .commentView{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding-bottom: 60px;
-    z-index: 10;
-    
-}
-.commentDetails{
-    width: 90%;
-    height: 90%;
-    background-color:white;
-   border-radius: 10px;
-    position: absolute;
-    top:5%;
-    left: 5%;
-    color: black;
-}
-.nav{
-    width: 100%;
-    height: 6%;
-    border : none;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #D8DADC;
-}
-.nav i{
-    font-size: 24px;
-    color: black;
-    margin-right: 10px;
-   
-}
-.detailsContainer{
-    width: 100%;
-    height: 94%;
-    display: grid;
-    grid-template-columns: 70% 30%;
-}
-.detailsContainerRight{
-    width: 97%;
-    height: 97%;
-    margin: 1%;
-    border: 1px solid black;
-    border-radius: 10px;
-    overflow: auto;
-    margin-top:2.2%;
-}
-.detailsContainerRight::-webkit-scrollbar {
-    display: none;
-}
-.detailsContainerLeft{
-    width: 98%;
-    height: 97%;
-    display: grid;
-    grid-template-rows: 40% 60%;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 1%;
-}
-.ticketHeader{
-    width: 100%;
-    height: 100%;
-    border-bottom: 1px solid skyblue;
-}
-.ticketHeader>div:first-child{
-    width: 100%;
-    height: 20%;
-}
-.ticketdetails{
-    width: 100%;
-    height: 80%;
-}
-
-.ticketHeader p span{
-    color:rgb(0, 0, 254);
-    margin-left: 5px;
-}
-.ticketHeader p{
-    font-size: 20px;
-}
-.ticketHeader i{
-    color: red;
-}
-.description{
-    width: 100%;
-    height: 80%;
-    border-top: 1px solid rgb(122, 189, 223);
-}
-.description>p{
-    white-space: normal;  
-  word-wrap: break-word;  
-  overflow-wrap: break-word;  
-  word-break: break-all;  
-  max-width: 100%;  
-  
-
-}
-.ticketdetails>div:first-child{
-    margin-top: 10px;
-    width: 100%;
-    height: 25%;
-}
-.ticketdetails p{
-    font-size: 16px;
-
-}
-.comment{
-    width: 100%;
-    height: 100%;
-    margin-top: 10px;
-}
-
-.messageCard{
-    width: 100%;
-    height: 50%;
-    display: grid;
-    grid-template-columns: 7% 93%;
-  
-}
-::ng-deep.p-editor .p-editor-content .ql-editor {
-    height: 110px !important;
-    border: 1px solid black;
-
-}
-
-.commentPost{
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content:flex-end;
-    align-items: center;
-}
-.commentPost>div{
-    width: 80px;
-    height: 80%;
-    background-color: rgb(185, 185, 187);
-    display: flex;
-    justify-content:flex-start;
-    align-items: center;
-    border-radius: 5px;
-    cursor: pointer;
-    
-}
-.commentPost>div span{
-    margin-left: 5px ;
-    font-size: 16px;
-}
-.commentPost>div i{
-    font-size: 14px;
-    margin-left: 10px;
-}
-.messageCard>div:first-child{
-    width: 100%;
-    height: 100%;
-   
-
-}
-.messageCard>div:first-child>.p-avatar{
-    font-size: 32px;
-   margin-left: 10px;
-   margin-top: 30px;
-    
-}
-
-.message {
-    width: 100%;
-    height:150px;
-    margin-top: 10px;
-}
-
-
-
-.detailsCard{
-    width: 100%;
-    height: 30%;
-    display: grid;
-    grid-template-columns: 30% 30% 40%;
-    
-}
-.detailsCard>div {
-    display: flex;
-    flex-direction: column;
-}
-.detailsCard>div>section{
-    display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-    align-items: center;
-}
-.detailsCard>div>section>p{
-    padding: 1.5%;
-}
-.ImageContainer{
-    width: 100% !important;
-    height: 100% !important;
- 
-    display: grid;
-    grid-template-rows: 80% 20%;
-}
-.image{
-    width: 180px;
-    height: 100px;
-    
-}
-::ng-deep .image img{
-    width: 50% !important;
-    height: 90% !important;
-    
-}
-.commentHead{
-    width: 100%;
-    height: 8%;
-}
-.viewCommentHead{
-    width: 100%;
-    height: 5%;
-    background-color: rgb(243, 238, 238);
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    
-}
-.viewCommentHead>p{
-    font-size: 18px;
-}
-.scrollComment{
-    width: 100%;
-    height: 90%;
-    overflow: auto;
-}
-
-.scrollComment::-webkit-scrollbar {
-    display: none;
-}
-.singleComment{
-    width: 94%;
-    box-shadow: 0 0 1px 1px rgb(221, 219, 219);
-    margin: 3%;
-    border-radius: 5px;
-    
-}
-.showComment{
-    width: 100%;
-    height: 100%;
-
-}
-.showComment .head{
-    
-    display: grid;
-    grid-template-columns: 15% 85%;
-    padding: 2px;
-    border-bottom: 1px solid rgb(210, 203, 203);
-}
-
-.showComment .head>div:first-child{
-    width: 100%;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-}
-.showComment .head>div:first-child>.p-avatar{
-   font-size: 24px;
-   background-color: rgba(25, 5, 249,1);
-   
-}
-.showComment .head>div:nth-child(2){
-    width: 100%;
-    display: flex;
-    
-}
-
-.showComment .head>div:nth-child(2)>p:first-child{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-.showComment .head>div:nth-child(2)>p:last-child{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    
-}
-.scrollMessage{
-    width: 96%;
-   padding: 2%;
-   white-space: normal;  
-    word-wrap: break-word;  
-    overflow-wrap: break-word;  
-    word-break: break-all;  
-    max-width: 100%; 
-} 
-
-
-
- /* Edit Form */
-
- .editFormBackground{
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding-bottom: 60px;
-    z-index: 100;
-}
-
-.editForm{
-    width: 50%;
-    height: 90%;
-    background-color: white;
-    color: black;
-    margin: auto;
-    border-radius: 10px;
-    padding-bottom: 30px;
-    position: absolute;
-    top: 20px;
-    left: 25%;
-    z-index: 200;
-    overflow: hidden;
-}
-.editForm>p{
-    width: 100%;
-    background-color: red;
-    padding: 10px;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    
-}
-.editForm>p>i{
-    margin-left: 80%;
-}
-.detailsMain{
-    width: 100%;
-    height: 50%;
-   border: none;
-}
-.detailsMain>section{
-    width: 95%;
-    height: 12%;
-    display: flex;
-    margin: auto;
-    margin-top: 1.5%;
-    gap: 1.5%;
-
-    
-}
-.detailsMain>section>p{
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
-    font-size: 14px;
-   
-}
-.statusClosed>p{
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
-}
-.descriptionEdit{
-    width: 95%;
-    height: 30% !important;
-    overflow: auto;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
-}
-.descriptionEdit>p{
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-   
-}
-
- .statusMain{
-    width: 95%;
-    height: 8%;
-    display: flex;
-    margin: auto;
-
-   
-}
-.statusMain>div{
-    width: 100%;
-    
-}
-.statusMain>div .p-select{
-    width: 97%;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-    margin: 1.5%;
-   
-}
-.editMessageCard{
-    width: 95%;
-    height: 28%;
-    margin: auto;
-    padding: 10px;
-    border: none;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-    overflow: auto;
-
-} 
-.btns{
-    width: 100%;
-    height: 10%;
-    
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
 
 
 
 
 @media only screen and (max-width: 769px) {
-    .row{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        overflow: auto;
-    }
-    .kanbanContainer {
-        flex-direction: column; 
-        height: auto;
-    }
-
-    .kanbanColumn {
-        width: 100%; 
-        padding: 5px;
-    }
-
-    .kanbanColumn h3 {
-        font-size: 14px;  
-        margin-bottom: 10px;
-    }
-
-    .kanbanCard {
-        width: 200px;
-        flex-shrink: 0; 
-        padding: 8px; 
-        margin: 10px; 
-    }
-
-    .kanbanCard p {
-        font-size: 12px; 
-    }
-
-  
-    .noIssue p {
-        font-size: 14px;
-    }
-
-
-/* comment view */
-
-.commentDetails{
-    width: 96%;
-    height: 96%;
-    background-color:white;
-   border-radius: 10px;
-    position: absolute;
-    top:2%;
-    left: 2%;
-    color: black;
-}
-.detailsContainer{
-    width: 100%;
-    height: 96%;
-    display: flex;
-    flex-direction: column;
     
-  
-}
-.detailsContainerLeft{
-    width: 98%;
-    height: 60%;
-    display: grid;
-    grid-template-rows: 40% 60%;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 1%;
-}
-.detailsContainerRight{
-    width: 98%;
-    height: 30%;
-    margin: 1%;
-    border: 1px solid black;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top:1%;
-}
-.viewCommentHead{
-    width: 100%;
-    height: 12%;
-    background-color: rgb(243, 238, 238);
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    
-}
-.viewCommentHead>p{
-    font-size: 18px;
-    font-weight:bold ;
-}
-.detailsCard p{
-    font-size: 13px;
-}
-.ticketdetails p{
-    font-size: 14px;
-}
-
-::ng-deep.p-editor .p-editor-content .ql-editor {
-    height: 70px !important;
-    
-    
-}
-
-.messageCard{
-    width: 100%;
-    height: 25%;
-}
-
-.commentPost>div{
-    width: 10%;
-    height: 100%;
-    background-color: blue;
-    color: white;
-    z-index: 1;
-    margin-top: 125px;
-}
-.ImageContainer button{
-    width: 80px;
-    height: 30px;
-    font-size: 10px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.image{
-    width: 180px;
-    height: 70px;
-    
-}
-
 
 }
 
 @media only screen and (max-width: 480px) {
-    .kanbanColumn {
-        width: 100%;  
-        padding: 3px;
-    }
-
-    .kanbanColumn h3 {
-        font-size: 12px;  
-        margin-bottom: 8px;
-    }
-
-    .kanbanCard {
-        flex-shrink: 0; 
-        padding: 6px;  
-    }
-
-    .kanbanCard p {
-        font-size: 11px;  
-    }
-
    
-    .p-overlay-badge {
-        width: 20px;
-        height: 20px;
-        font-size: 18px;
-    }
 
+}
 
-    /* comment view */
+.main{
+    width: 100%;
+    height: 100%;
+   position: fixed;
+   left: 0;
+   top: 0;
+   background-color: rgba(0, 0, 0, 0.5);
+   
+}
 
-    .ticketHeader p{
-        font-size: 16px;
-    }
-
-.commentDetails{
-    width: 96%;
-    height: 96%;
-    background-color:white;
-   border-radius: 10px;
+    
+.container{
+    width: 40%;  
+    height: 95%;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+    border-radius: 20px;
     position: absolute;
-    top:2%;
-    left: 2%;
-    color: black;
-}
-.detailsContainer{
-    width: 100%;
-    height: 96%;
-    display: flex;
-    flex-direction: column;
-    
-  
-}
-.detailsContainerLeft{
-    width: 98%;
-    height: 65%;
-    display: grid;
-    grid-template-rows: 40% 60%;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 1%;
-    overflow: auto;
-    
-}
-.detailsContainerRight{
-    width: 98%;
-    height: 30%;
-    margin: 1%;
-    border: 1px solid black;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top:1%;
-}
-.viewCommentHead{
-    width: 100%;
-    height: 12%;
-    background-color: rgb(243, 238, 238);
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    
-}
-.viewCommentHead>p{
-    font-size: 18px;
-    font-weight:bold ;
-}
-.detailsCard{
-    width: 100%;
-    height: 50%;
-   display: flex !important;
-   flex-direction: column !important;
-  
-    
-}
-.detailsCard p{
-    font-size: 13px;
-}
-.ticketdetails p{
-    font-size: 14px;
-}
-.messageCard{
-    width: 100%;
-    height: 50%;
-}
-.message{
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
-::ng-deep.p-editor .p-editor-content .ql-editor {
-    height: 80px !important;
-    width: 280px !important;
-    margin-left: 0px !important;
-    
-    
-    
-}
-/* .p-editor .p-editor-toolbar {
-    display: none;
-} */
-.messageCard{
-    width: 100%;
-    height: 25%;
-    display: block;
-}
-.messageCard>div:first-child{
-    display: none;
-}
-
-.commentPost>div{
-    width: 30%;
-    height: 75%;
-    background-color: blue;
-    color: white;
+    left: 30%;
+    top: 2%;
     z-index: 1;
-    margin-top: 210px;
+
 }
-.commentPost{
+.container>div{
     width: 100%;
-    height: 15%;
+   padding: 3%;
+
+}
+.heading{
+    box-shadow: 0 5px 5px -5px rgb(47, 47, 48);
+   height: 60px;
+   display: flex;
+    
+}
+.heading>div:first-child{
+    width: 50%;
     display: flex;
-    justify-content:flex-start;
+    justify-content: flex-start;
     align-items: center;
-    
-    
 }
-.ImageContainer button{
-    width: 80px;
-    height: 30px;
-    font-size: 10px;
-    text-align: center;
-    border-radius: 5px;
+.heading>div:last-child{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
-.commentHead{
+.heading p{
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+}
+
+.priority .p-select,.category .p-select,.subCategory .p-select,.subject input,.description textarea{
     width: 100%;
-    height: 8%;
-    margin-top: 150px;
+}
+.btns{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+
+    
+}
+.btns ::ng-deep.p-button{
+    width: 50%;
+    height:100%;
+    margin-left: 25%;
+   
+}
+
+.timeDetails{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+ 
+}
+
+.timeDetails p{
+    width: 50%;
+   border: 1px solid rgb(162, 157, 157);
+   padding: 5px;
+   border-radius: 5px;
+   font-size: 13px;
 }
 
 
-}
-
-
-
-/*  comment view responsive */
 @media only screen and (max-width: 1440px) {
-    .editForm{
-        width: 90%;
-        height: 90%;
-        background-color: white;
-        color: black;
-        margin: auto;
-        border-radius: 10px;
-        padding-bottom: 30px;
+
+
+    .container{
+        width: 70%;  
+        height: 80%;
+      
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
         position: absolute;
-        top: 20px;
-        left: 5%;
-        z-index: 200;
-        overflow: hidden;
+        left: 15%;
+        top: 8%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    
     }
-    .editForm>p>i{
-        margin-left: 86%;
-    }
-
-
 }
-
 
 @media only screen and (max-width: 1024px) {
-    .editForm{
-        width: 80%;
-        height: 90%;
-        background-color: white;
-        color: black;
-        margin: auto;
-        border-radius: 10px;
-        padding-bottom: 30px;
+
+
+    .container{
+        width: 80%;  
+        height: 70%;
+      
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
         position: absolute;
-        top: 20px;
         left: 10%;
-        z-index: 200;
-        overflow: hidden;
-    }
-    .editForm>p>i{
-        margin-left: 81%;
+        top: 8%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    
     }
 }
 
-@media only screen and (max-width: 769px) {
-    .editForm{
-        width: 90%;
-        height: 90%;
-        background-color: white;
-        color: black;
-        margin: auto;
-        border-radius: 10px;
-        padding-bottom: 30px;
+@media only screen and (max-width: 768px) {
+
+
+    .container{
+        width: 90%;  
+        height: 65%;
+     
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
         position: absolute;
-        top: 20px;
         left: 5%;
-        z-index: 200;
-        overflow: hidden;
-    }
-    .editForm>p>i{
-        margin-left: 78%;
-    }
-    .detailsMain>section>p{
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
-        font-size: 13px;
+        top: 20%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        
+    
     }
 }
 
 @media only screen and (max-width: 426px) {
-    .editForm{
-        width: 90%;
-        height: auto;
-        background-color: white;
-        color: black;
-        margin: auto;
-        border-radius: 10px;
-        padding-bottom: 10px;
+
+
+    .container{
+        width: 90%;  
+        height: 65%;
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
         position: absolute;
-        top: 20px;
         left: 5%;
-        z-index: 200;
-        overflow: hidden;
+        top: 8%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        
+    
     }
-    .editForm>p{
-        width: 100%;
+    .heading p{
+        font-size: 18px;
+        font-weight: bold;
+        color: red;
+    }
+    .btns ::ng-deep.p-button{
+        width: 60%;
+        height:100%;
+        margin-left: 15%;
+       
+    }
+    /* .priority {
         background-color: red;
-        padding: 10px;
-       
-        color: white;
-        font-size: 20px;
-        
+        height: 50px;
+    } */
+    .p-select {
+        height: 60px !important;
     }
-    .editForm>p>i{
-        margin-left: 60%;
-    }
-    .detailsMain{
-        width: 100%;
-        height: auto;
-       border: none;
-    }
-    .detailsMain>section{
-        width: 95%;
-        height: 12%;
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        margin-top: 2%;
-        
-        
-    }
-    .descriptionEdit{
-        width: 95%;
-        height: 30% !important;
-        overflow: auto;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
-    }
-    .descriptionEdit>p{
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-       
-    }
-    .statusMain{
-        width: 95%;
-        height: 10%;
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        margin-top: 3%;
-    
-       
-    }
-    .statusMain>div{
-        margin-top: 3%;
-    }
-    .statusMain>div .p-select{
-        width: 97%;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-        
-       
-    }
-    .editMessageCard{
-        width: 100%;
-        height: 28%;
-        margin: auto;
-        padding: 10px;
-        border: none;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-        overflow: auto;
-        margin-top: 10px;
-    
-    } 
-    
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 80px !important;
-        width: 362px !important;
-        margin-left: 0px !important;
-    }
-    .btns{
-        width: 100%;
-        height: 10%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        margin-top: 16px;
-    }
-
 }
-
-
 
 @media only screen and (max-width: 376px) {
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 50px !important;
-        width: 316px !important;
-        margin-left: 0px !important;
+
+
+    .container{
+        width: 90%;  
+        height: 62%;
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
+        position: absolute;
+        left: 5%;
+        top: 8%;
+         display: flex;
+        flex-direction: column;
+        gap: 10px;
+    
     }
-    .detailsMain>section>p{
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
-        font-size: 12px;
+    .heading p{
+        font-size: 18px;
+        font-weight: bold;
+        color: red;
+    }
+    .btns ::ng-deep.p-button{
+        width: 60%;
+        height:100%;
+        margin-left: 15%;
        
     }
-
 }
-@media only screen and (max-width: 321px) {
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 50px !important;
-        width: 267px !important;
-        margin-left: 0px !important;
-    }
-    .editForm>p>i{
-        margin-left: 52%;
-    }
 
+@media only screen and (max-width: 320px) {
+
+
+    .container{
+        width: 95%;  
+        height: 60%;
+        background-color: white;
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
+        position: absolute;
+        left: 2.5%;
+        top: 8%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    
+    }
+    .heading p{
+        font-size: 16px;
+        font-weight: bold;
+        color: red;
+    }
+    .btns ::ng-deep.p-button{
+        width: 70%;
+        height:100%;
+        margin-left: 10%;
+       
+    }
 }

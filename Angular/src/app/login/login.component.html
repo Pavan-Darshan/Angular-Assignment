@@ -5,20 +5,22 @@
         <div class="Logo-Container"> 
             <img src="app/Images/logo1.png" alt="">
         </div>
-
+       
         <div class="Login-Details">
             <div>
                 <img src="app/Images/icons8-lock.gif" alt="">
             </div>
-            <input type="email" name="email" placeholder="Email Address" #username><br>
+            
+            <input type="email" name="email" placeholder="Email Address" [(ngModel)]="username"><br>
  
-            <input type="password" placeholder="Password" #password><br>
+            <input type="password" placeholder="Password" [(ngModel)]="password"><br>
 
-            <button (click)="onLogIn(username.value,password.value)">Login</button><br>
-
+            <button (click)="onLogIn(username,password)">Login</button><br>
+        
         </div>
-
+  
     </div>
+    
 </div>
 <div class="card flex justify-center">
     <p-toast />
