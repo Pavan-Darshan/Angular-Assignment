@@ -201,8 +201,9 @@ body.dark-mode .kanbanColumn {
 
 }
 body.dark-mode .kanbanCard {
-  background-color: rgb(93, 93, 93);
+  background-color: rgb(80, 80, 80);
   color: white;
+  box-shadow: none !important;
 }
 .p-drawer {
   background-color: var(  --background-color);
@@ -242,3 +243,4 @@ body.dark-mode .p-dialog  {
   color: var(--form-text-color-dark);
   border: 1px solid white;
 }
+

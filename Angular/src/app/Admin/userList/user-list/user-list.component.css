@@ -48,6 +48,10 @@
 .mainDetails.closed {
     width: 80%; 
   }
+
+  .mainDetails.closed ::ng-deep.p-paginator {
+    width: 78% !important;
+  }
  
 
 
@@ -311,6 +315,9 @@ td {
     margin-left: 10%;
     border-radius: 10px;
 
+}
+textarea{
+    padding-left: 15px;
 }
 .address1 .p-floatlabel>label{
     width: 30%;

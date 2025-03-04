@@ -71,6 +71,7 @@ let admin =  this.authService.isAdminUser.find((user)=> user.emailAddress === em
     }
     else{
       this.show() ;
+      this.loggedUser=[];
       this.authService.logOut();
     }
  }

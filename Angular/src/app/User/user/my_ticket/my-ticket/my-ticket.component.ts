@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { ServerService } from '../../../../Services/service/server.service';
 import { DateTime } from '../../../../Model/DateTime';
 import { Router } from '@angular/router';
+import { SharedService } from '../../../../Services/shared.service';
 
 
 interface Priority {
@@ -101,7 +102,7 @@ export class MyTicketComponent {
  
 
 
-  constructor(private serverService : ServerService, private date : DateTime){}
+  constructor(private serverService : ServerService, private date : DateTime, private shareservice : SharedService ){}
   route :Router =inject(Router);
     
   ngOnInit(){
@@ -130,7 +131,7 @@ export class MyTicketComponent {
         },2000)
         this.userIssueOnly();
      
-        
+  
     })
     
 
@@ -139,10 +140,10 @@ export class MyTicketComponent {
   userIssueOnly(){
 
     this.userRepoted = this.featchedIssueList.filter((issue)=>(
-      this.serverService.loggedUser[0].userId === issue.reportedId
-    ))
+      this.serverService.loggedUser[0].userId === issue.reportedId))
 
     this.filteredIssues = this.userRepoted;
+    this.shareservice.updateData(this.userRepoted);
 
   }
  

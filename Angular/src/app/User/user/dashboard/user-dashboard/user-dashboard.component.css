@@ -253,7 +253,7 @@ td {
 
 .kanbanContainer {
     width: 100%;
-    height: 69vh;
+    height: 68vh;
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -267,6 +267,7 @@ td {
     border-radius: 8px;
     overflow-y: scroll;
     margin-bottom: 15px;
+    padding-top: 0px !important;
 }
 
 
@@ -341,35 +342,41 @@ td {
 
  
 .OPEN{
-    color: blue;
+    color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
+   background-color: rgba(0, 0, 0, 1);
+   
 }
 
 .INPROGRESS{
     /* color: yellow;
    text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-    color: blue;
+    color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
+   background-color: rgba(0, 0, 0, 1);
 }
 .WAITING{
     /* color: orange;
    text-shadow: 0px 0px 5px rgb(129, 126, 125); */
-    color: blue;
+    color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
+   background-color: rgba(0, 0, 0, 1);
 }
 
 .FIXED{
     /* color: green;
     text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-     color: blue;
+     color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
+   background-color: rgba(0, 0, 0, 1);
 }
 
 .CLOSED{
     /* color: purple;
    text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-    color: blue;
+    color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
+   background-color: rgba(0, 0, 0, 1);
 } 
 
 
@@ -635,17 +642,17 @@ td {
     display: flex;
     justify-content:flex-end;
     align-items: center;
+    margin-top: 0px;
 }
-.commentPost>div{
-    width: 80px;
-    height: 80%;
-    background-color: rgb(185, 185, 187);
+
+.commentPost button{
+    width: 100px;
+    height: 30px;
     display: flex;
-    justify-content:flex-start;
     align-items: center;
+    justify-content: center;
     border-radius: 5px;
-    cursor: pointer;
-    
+    gap: 8px;
 }
 .commentPost>div span{
     margin-left: 5px ;

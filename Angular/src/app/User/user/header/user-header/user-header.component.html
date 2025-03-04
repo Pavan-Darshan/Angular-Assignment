@@ -1,7 +1,7 @@
 <div class="container">
-
-    <div class="logo">
-        <img src="app/Images/logo2.png" alt="">
+    <div class="logo" >
+        <img *ngIf="themeColor" src="app/Images/logo2.png" alt=""> 
+        <img *ngIf="!themeColor" src="app/Images/logo.png" alt=""> 
     </div>
    <div class="innerContainer">
 
@@ -10,10 +10,39 @@
           </div>
        
 
-        <div class="notification" class="mobileView">
-            <p-button label="Emails" badge="2" label="Notifications" icon="pi pi-bell" />
         
+          <div class="notification" class="mobileView">
+            <p-overlaybadge value="{{differenceCount}}" >
+                <i class="pi pi-bell" (click)="notification.toggle($event)" style="font-size: 1.3rem" ></i>
+            </p-overlaybadge>
+            <!-- <p-button (click)="notification.toggle($event)" label="Emails" badge={{differenceCount}} label="Notifications" icon="pi pi-bell" /> -->
+
+
+            <p-overlayPanel #notification >
+                <div class="notification"  [ngClass]="{notifiNull :(differenceCount===0)}" >
+                  
+                    <div>
+                        <div><p *ngIf="!(differenceCount===0)">Notifications</p> <p *ngIf="(differenceCount===0)">No Notification</p></div> 
+                        <div><p><i *ngIf="!(differenceCount===0)"  class="pi pi-history" (click)="clearNotification()" ></i></p></div>
+                    </div>    
+                    <div>
+                        <div class="notificationDetails" *ngFor="let issue of notificationData" pTooltip="Comment : {{issue.comment}}" tooltipPosition="bottom">
+                            <div><p-avatar   icon="pi pi-user" class="mr-2"  shape="circle" label='{{issue.commenter.slice(0,1)}}'/></div>
+                            <div>
+                                <div class="names" >
+                                    <div><p>{{issue.commenter}}</p></div>
+                                    <div> <p>{{issue.ticketId}} / {{issue.commentedDate}}</p></div>
+                                    <div  class="commmentOverflow"><p>{{issue.comment}}</p></div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+
+            </p-overlayPanel>
         </div>
+      
         <!-- <div class="card flex justify-center" class="mobileViewOn">
             <i class="pi pi-bell text-3xl" pBadge value="2"></i>
         </div> -->
@@ -43,16 +72,11 @@
                 <div><p>User</p></div>
            </div>
         </div>
-        
-
         <div>
             <i class="pi pi-spin pi-cog" style="font-size: 1.3rem" label="Toggle" (click)="visible = true" ></i>
             <p-tieredmenu #menu [model]="items" [popup]="true" />
-
         </div>
-
-    </div>
-    
+    </div>  
 </div>
 
 

@@ -170,7 +170,7 @@
     </div>
 
     <!-- Filter for user -->
-    <div class="filterMain" *ngIf="isFilterHidden">
+    <div class="filterMain" *ngIf="isFilterHidden"> 
         <div class="filterHeading">
             <div><h2>Filter</h2></div>
             <div (click)="filterOpen()"><i class="pi pi-times" ></i></div>
@@ -338,7 +338,7 @@
                     <p-button  type="Submit" [disabled]="createForm.invalid">Save</p-button>
                 </div>
                 <div *ngIf="isEdit" class="buttonContainer2">
-                    <p-button type="Submit" [disabled]="createForm.invalid"></p-button>
+                    <p-button type="Submit" [disabled]="createForm.invalid">Update</p-button>
                      <p-button (onClick)="onUserDelete(createForm)" >Delete</p-button>
                 </div>
             </div>

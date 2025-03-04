@@ -7,11 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
 
   constructor() { }
-  private dataSource = new BehaviorSubject<any>(null);
+  private dataSource = new BehaviorSubject<any[]>([]);
 
   currentData = this.dataSource.asObservable();
 
-  updateData(data: any) {
+  updateData(data: any[]) {
     this.dataSource.next(data); 
   }
 }

@@ -20,7 +20,7 @@
 
 .container{
     width: 100%;
-    height: 93%;   
+    height: 93.7%;   
     margin-top: 0.5%;
 
 }
@@ -267,6 +267,7 @@ td {
     border-radius: 8px;
     overflow-y: scroll;
     margin-bottom: 15px;
+    padding-top: 0px !important;
 }
 
 .loadButton{
@@ -302,6 +303,8 @@ td {
     position: sticky;
     top: 0%;
     z-index: 1;
+    background-color: black;
+   
 
 }
 
@@ -357,34 +360,34 @@ td {
 
  
 .OPEN{
-    color: blue;
+    color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
 }
 
 .INPROGRESS{
     /* color: yellow;
    text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-    color: blue;
+    color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
 }
 .WAITING{
     /* color: orange;
    text-shadow: 0px 0px 5px rgb(129, 126, 125); */
-    color: blue;
+    color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
 }
 
 .FIXED{
     /* color: green;
     text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-     color: blue;
+     color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
 }
 
 .CLOSED{
     /* color: purple;
    text-shadow: 0px 0px 5px rgb(64, 63, 63); */
-    color: blue;
+    color: white;
    text-shadow: 0px 0px 5px rgb(64, 63, 63);
 } 
 
@@ -695,7 +698,7 @@ td {
     padding: 1.5%;
 }
 .ImageContainer{
-    width: 100% !important;
+    width: 100% !important; 
     height: 100% !important;
  
     display: grid;
@@ -825,10 +828,8 @@ td {
 }
 .editForm>p{
     width: 100%;
-    background-color: red;
     padding: 10px;
     text-align: center;
-    color: white;
     font-size: 20px;
     
 }
@@ -1254,10 +1255,8 @@ td {
     }
     .editForm>p{
         width: 100%;
-        background-color: red;
         padding: 10px;
         text-align: center;
-        color: white;
         font-size: 18px;
         
     }
@@ -1338,10 +1337,7 @@ td {
     }
     .editForm>p{
         width: 100%;
-        background-color: red;
         padding: 10px;
-       
-        color: white;
         font-size: 18px;
         
     }
@@ -1443,10 +1439,7 @@ td {
     }
     .editForm>p{
         width: 100%;
-        background-color: red;
         padding: 10px;
-       
-        color: white;
         font-size: 18px;
         
     }
@@ -1466,9 +1459,7 @@ td {
     }
     .editForm>p{
         width: 100%;
-        background-color: red;
         padding: 10px;
-        color: white;
         font-size: 18px;
         
     }

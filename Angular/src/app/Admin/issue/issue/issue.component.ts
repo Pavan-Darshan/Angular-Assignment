@@ -6,6 +6,7 @@ import { User } from '../../../Model/loginUser';
 import { DateTime } from '../../../Model/DateTime';
 import { MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
+import { SharedService } from '../../../Services/shared.service';
 
 
 interface Priority {
@@ -25,7 +26,8 @@ export class IssueComponent implements OnInit,OnChanges{
   
 
   constructor(
-    private serverService : ServerService, private date : DateTime, private messageService: MessageService){}
+    private serverService : ServerService, private date : DateTime, 
+    private messageService: MessageService,  private sharedService :SharedService){}
   
   
 
@@ -69,11 +71,14 @@ export class IssueComponent implements OnInit,OnChanges{
 
   ngOnInit(){
     this.featchIssueData ();
+
    
   }
   ngOnChanges(){
     this.featchIssueData ();
   }
+
+
  
 
 
@@ -112,7 +117,7 @@ export class IssueComponent implements OnInit,OnChanges{
         this.filteredIssues = [...this.featchedIssueList]; // copying data to filter in table list
         this.groupIssuesByStatus(); // type of status
   
-        
+        this.sharedService.updateData(this.featchedIssueList);
     })
     
 
@@ -208,21 +213,24 @@ export class IssueComponent implements OnInit,OnChanges{
     const div = document.createElement('div');
     div.innerHTML = this.text;
     plainText = div.textContent || div.innerText || '';
-    console.log(plainText); 
-
+ 
+    if(plainText === '' || plainText.trim().length === 0) {
+      alert("Message is empty...!");
+    } 
    
-    
+    else{
     //Adding comment-------------------------------->
     viewIssueDetails.comment?.unshift({
       comment:plainText,
       commentedDate: this.date.getCurrentTime(),
       commenter:this.serverService.loggedUser[0].userName
     })
-    this.serverService.onUpdate(''+viewIssueDetails.dataBaseId,viewIssueDetails);
+    this.serverService.onUpdate(''+viewIssueDetails.dataBaseId,viewIssueDetails).subscribe();
 
     this.text='';
         
   }
+}
 
  
 

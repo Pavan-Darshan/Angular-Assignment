@@ -150,12 +150,12 @@ export class FormComponent {
       imageData:this.imageData
   
     }
-    formDetails.reset();
+    
 
     // Alert for Ticket created------------------------------------------------------->
     this.serverService.createTicket(this.newTicket,''+this.loggedUser?.userId) ?
       alert(`Ticket Created Successfully. Ticket ID : ${this.newTicket.ticketId}`) : null;
-
+      formDetails.reset();
     this.route.navigate(['/user/dashboard']);
   }
 

@@ -5,6 +5,9 @@ import { User } from '../../../../Model/loginUser';
 import { MenuItem, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../../Services/login/auth.service';
+import { SharedService } from '../../../../Services/shared.service';
+import { Ticket } from '../../../../Model/Ticket';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-user-header',
@@ -14,10 +17,15 @@ import { AuthService } from '../../../../Services/login/auth.service';
 })
 export class UserHeaderComponent {
   
-  constructor(private messageService: MessageService, private authService : AuthService) {}
+  constructor(private messageService: MessageService, private authService : AuthService , private sharedservice :SharedService) {}
   
   items: MenuItem[] | undefined;
-
+  differenceCount :number =0;
+  currentCount : number = 0 ;
+  userRepoted :Ticket []= [];
+  commentDetails : any[]=[];
+  notificationData : any []=[];
+  featchedIssueList :any[] =[]
     
   checked: boolean = false;
   visible: boolean = false;
@@ -41,6 +49,9 @@ export class UserHeaderComponent {
         this.toggleDarkMode();
         this.themeColor = true;
       }
+
+      this.featchIssueData();
+  
     }
   closeCallback(e :any): void {
       this.drawerRef.close(e);
@@ -50,11 +61,13 @@ export class UserHeaderComponent {
   toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
     this.themeColor = !this.themeColor;
-    console.log(this.themeColor);
+    this.serverService.onThemeChange(""+this.loggedUser?.dataBaseId,this.themeColor).subscribe();
     
   }
   logOut(){
-    this.serverService.onThemeChange(""+this.loggedUser?.dataBaseId,this.themeColor).subscribe(()=>this.authService.isLogged=false);
+    this.serverService.onThemeChange(""+this.loggedUser?.dataBaseId,this.themeColor).subscribe(()=>{
+      this.serverService.loggedUser=[];
+    this.authService.isLogged=false});
   }
 
 
@@ -97,4 +110,85 @@ export class UserHeaderComponent {
   }
 
 
+
+
+
+
+   // Featching issue List --------------------->
+    featchIssueData(){
+      this.serverService.featchIssueList()
+      .pipe(map((response)=>
+        {
+      
+        let data :Ticket [] = [];
+        
+        for(let key in response){
+          if(response.hasOwnProperty(key))
+            data.push({...response[key],dataBaseId:key})
+        }
+        return data;
+      }))
+      .subscribe((res)=>{
+          this.featchedIssueList=res;
+      
+          
+          setInterval(()=>{
+            this.userIssueOnly();
+          
+          },15000)
+       
+    
+      })
+      
+  
+    }
+  
+    userIssueOnly(){
+      
+      this.userRepoted = this.featchedIssueList.filter((issue)=>(
+        this.serverService.loggedUser[0].userId === issue.reportedId));
+
+        this.commentNotification();
+        
+    }
+
+  comment : any[]=[];
+  comments :any[] =[];
+
+  commentNotification(){
+    this.userRepoted.forEach((data)=>{
+     
+      data.comment.forEach((com)=>{
+        if(com.commenter !=''){
+          this.comments.push({...com, ticketId : data.ticketId})
+        }
+       
+      })
+    })
+    this.comment=this.comments;
+    
+      this.notification();
+    
+    this.comments=[];
+  }
+
+
+  notification(){
+    this.serverService.onGetUserNotification(""+this.loggedUser?.dataBaseId).subscribe((count : number)=>{
+      if (count < this.comment?.length) {
+        this.currentCount = this.comment.length;
+        this.differenceCount = this.comment.length-count;
+        this.notificationData = this.comment.reverse().slice(0,this.differenceCount);
+        this.comment=[];
+      }
+    })
+
+    this.featchIssueData();
+  }
+
+  clearNotification(){
+    this.notificationData=[]
+    this.differenceCount=0;
+    this.serverService.onUserNotification(""+this.loggedUser?.dataBaseId,this.currentCount).subscribe(()=>{});
+  }
 }

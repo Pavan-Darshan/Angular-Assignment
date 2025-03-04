@@ -6,6 +6,7 @@ import { User } from '../../../Model/loginUser';
 import { DateTime } from '../../../Model/DateTime';
 import { UserUniqueId } from '../../../Model/user-Id-Create';
 
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -58,11 +59,13 @@ export class UserListComponent implements OnInit {
 
   
 
-  constructor(private sereverService : ServerService, private date : DateTime , private userUniqueId : UserUniqueId){}
+  constructor(private sereverService : ServerService, private date : DateTime ,
+     private userUniqueId : UserUniqueId){}
 
   ngOnInit(){
       
     this.feacthUserDetails();
+   
       
   }
 
@@ -100,10 +103,13 @@ export class UserListComponent implements OnInit {
     }
     else{
     this.createdSourceDate = this.date.getCurrentTime();
-    let newUser : User = {...formdata.value,checked:formdata.value.checked, dataBaseId  : '',createdDateTime : this.date.getCurrentTime(), lastModifiedDateTime : this.date.getCurrentTime(), password :'1111',userId : this.userUniqueId.generateUserId()};
+    let newUser : User = {...formdata.value,checked:formdata.value.checked, dataBaseId  : '',
+      createdDateTime : this.date.getCurrentTime(), lastModifiedDateTime : this.date.getCurrentTime(),
+       password :'1111',userId : this.userUniqueId.generateUserId(), notification : 0};
     this.sereverService.onUserCreate(newUser).subscribe(()=>this.feacthUserDetails())?
     alert("User created and User ID : "+newUser.userId):null;
     this.addForm = false;
+    formdata.reset();
     }
   }
   onSelectUser(user : User){
@@ -146,11 +152,16 @@ export class UserListComponent implements OnInit {
   // update user--------------------------------------->
   onUpdeted(formdata :NgForm){  
     let newData = this.featchedUserList.find((user)=> user.emailAddress === formdata.value.emailAddress);
+    console.log(newData.dataBaseId);
+    
     let updateUserData : User = {...formdata.value, dataBaseId  : newData.dataBaseId, lastModifiedDateTime :DateTime, createdDateTime :newData.createdDateTime, password : newData.password,userId :newData.userId };
+    console.log(updateUserData);
+    
     this.sereverService.onUpdateUser(newData.dataBaseId,updateUserData).subscribe(()=>{this.feacthUserDetails();});
     this.addForm = false;
     this.isCreate =false;
     this.isEdit =false;
+    formdata.reset();
     
 
   }

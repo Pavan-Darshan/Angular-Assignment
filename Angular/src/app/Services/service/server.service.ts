@@ -104,6 +104,14 @@ reSetAdminPassword(password : string){
 onAdminSeniorNotification(count : number){
     return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/admin/adminSenior/notification.json',count)
 }  
+onGetNotificationAdminSenior(){
+    return this.http.get<number>('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/admin/adminSenior/notification.json')
+}
+onUserNotification(databaseID : string,count : number){
+    return this.http.put('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+databaseID+'/notification.json',count)
+} 
 
-
+onGetUserNotification(databaseID : string){
+    return this.http.get<number>('https://angulardatabase-63cfe-default-rtdb.firebaseio.com/LogUser/users/'+databaseID+'/notification.json')
+} 
 }

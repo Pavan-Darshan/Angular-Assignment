@@ -68,6 +68,8 @@ loggedSuccess(){
 
 logOut(){
     this.isLogged = false;
+    this.isAdminUser=[];
+    this.isUsers=[]
 }
 
 isAuthenticated(){

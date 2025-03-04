@@ -300,19 +300,22 @@
                     <div class="commentHead">
                         <h4>Comment</h4>
                     </div>
-                    <div class="messageCard">
-                        <div>
-                            <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{viewIssueDetails.userName?.slice(0,1)}}/>
+                        <div class="messageCard">
+                            <div>
+                                <p-avatar icon="pi pi-user" class="mr-2"  shape="circle" label={{viewIssueDetails.userName?.slice(0,1)}}/>
+                            </div>
+                            <div class="message">
+                                
+                                <p-editor  [(ngModel)]="text" required placeholder="@Type your comment..." name="text"/>
+                            
+                            </div>
                         </div>
-                        <div class="message">
-                            <p-editor  [(ngModel)]="text"  />
+                        <div class="commentPost">
+                        
+                            <p-button (click)=" onSaveComment(viewIssueDetails)"  >Send<i class="pi pi-send"></i></p-button>
+                            
                         </div>
-                    </div>
-                    <div class="commentPost">
-                        <div (click)=" onSaveComment(viewIssueDetails)">
-                            <span>Send<i class="pi pi-send"  ></i> </span>
-                        </div> 
-                    </div>
+                     
                 </div>
             </div>
 

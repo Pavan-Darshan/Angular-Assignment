@@ -1,7 +1,8 @@
 <div class="container">
 
-    <div class="logo">
-        <img src="app/Images/logo2.png" alt=""> 
+    <div class="logo" >
+        <img *ngIf="themeColor" src="app/Images/logo2.png" alt=""> 
+        <img *ngIf="!themeColor" src="app/Images/logo.png" alt=""> 
     </div>
    <div class="innerContainer">
 
@@ -11,25 +12,32 @@
        
 
         <div class="notification" class="mobileView">
-            <p-button (click)="notification.toggle($event)" label="Emails" badge={{differenceCount}} label="Notifications" icon="pi pi-bell" />
+            <p-overlaybadge value="{{differenceCount}}" >
+                <i class="pi pi-bell" (click)="notification.toggle($event)" style="font-size: 1.3rem"></i>
+            </p-overlaybadge>
+            <!-- <p-button (click)="notification.toggle($event)" label="Emails" badge={{differenceCount}} label="Notifications" icon="pi pi-bell" /> -->
 
 
             <p-overlayPanel #notification >
-                <div class="notification" >
+                <div class="notification" [ngClass]="{notifiNull :(differenceCount===0)}">
                   
-
-                    <div class="notificationDetails" *ngFor="let issue of receivedData.reverse().slice(0,differenceCount)" >
-                        <div><p-avatar   icon="pi pi-user" class="mr-2"  shape="circle" label={{issue.userName?.slice(0,1)}}/></div>
-                        <div class="names">
-                            <div><p>{{issue.userName}}</p></div>
-                            <div> <p>{{issue.categoryId}} / {{issue.subCategoryId}}</p></div>
-                            <div><p>{{issue.createDateTime}}</p></div>
+                    <div>
+                        <div><p *ngIf="!(differenceCount===0)">Notifications</p> <p *ngIf="(differenceCount===0)">No Notification</p></div> 
+                        <div><p><i *ngIf="!(differenceCount===0)" (click)="clearNotification()" class="pi pi-history"></i></p></div>
+                    </div>    
+                    <div>
+                        <div class="notificationDetails" *ngFor="let issue of notificationData" pTooltip="Comment : {{issue.priorityId}}" tooltipPosition="bottom">
+                            <div><p-avatar   icon="pi pi-user" class="mr-2"  shape="circle" label={{issue.userName?.slice(0,1)}}/></div>
+                            <div>
+                                <div class="names">
+                                    <div><p>{{issue.userName}}</p></div>
+                                    <div> <p>{{issue.categoryId}} / {{issue.subCategoryId}}</p></div>
+                                    <div><p>{{issue.createDateTime}}</p></div>
+                                </div>
+                            </div>
+    
                         </div>
-
                     </div>
-
-                    <div class="clearBtn" *ngIf="!(differenceCount===0)"><button (click)="clearNotification()" >Clear Notifications</button></div>
- 
                 </div>
 
             </p-overlayPanel>
@@ -159,5 +167,4 @@
     <p-toast />
 
 </div>
-
 
