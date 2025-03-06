@@ -16,7 +16,7 @@
     color: red;
 }
 
-.mainContainer{
+.mainContainer{ 
     width: 100%;
     height: 95%;
     display: flex;
@@ -50,7 +50,7 @@
   }
 
   .mainDetails.closed ::ng-deep.p-paginator {
-    width: 78% !important;
+    width: 80% !important;
   }
  
 
@@ -100,6 +100,15 @@
     margin-top: 0.5%; 
 
 }
+/* .tables.xyz  ::ng-deep.p-paginator-prev{
+   display: none;
+} */
+
+   
+
+
+    
+
 
 
 ::ng-deep th{
@@ -126,7 +135,7 @@ th div{
     display: flex;
     justify-content:center;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
     min-width: 165px; 
     padding: 0 !important;
 
@@ -147,9 +156,12 @@ td {
     overflow:hidden;          
     text-overflow: ellipsis;  
     max-width: 150px;  
- 
-   
+    
   }
+ .p-datatable-tbody > tr > td {
+    padding: 13px !important;
+  }
+
   td p{
     text-align: center;
   }
@@ -173,28 +185,20 @@ td {
 }
 .formCreate{
   
-    width: 80%;
+    width: 70%;
     height: 94%;
-    margin: auto;
     border-radius: 10px;
-    overflow-y: auto;
     position: absolute;
     top: 20px;
-    left: 10%;
-    padding: 1%;
-    
+    left: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
 .containerDetails{
     width: 94%;
     height: 98%;
     border-radius: 10px;
-    overflow-y: auto;
-    position: absolute;
-    top: 1%;
-    left: 3%;
-   
-    
-
     
 }
 .userHeading{
@@ -203,11 +207,12 @@ td {
     border: none;
     display: grid;
     grid-template-columns: 90% 10%;
+    padding-bottom: 5px;
 }
 .userHeading1{
     width: 100%;
-   
     font-size: 20px;
+   
 }
 .userHeading2>i{
     margin-left: 80%;
@@ -247,6 +252,9 @@ td {
     
 }
 
+/* .formContainer .p-floatlabel input{
+    font-size: 16px !important;
+} */
 
 
 .formContainer{
@@ -259,85 +267,70 @@ td {
 .formContainer1{
     border: none !important;
     width: 50% !important ;
-    height: 80% !important;
+    height: 115% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+   
     
 }
 .formContainer2{
     border: none !important;
     width: 50% !important;
-    height: 80% !important;
+    height: 115% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .formContainer1 .p-floatlabel>input,
 .checkBox {
-        margin-top: 14px;
-        margin-bottom: 14px;
         margin-left: 10%;
         width: 80% ;
-        height: 10% !important ;
+        height: 35px !important ;
 }
-.formContainer1 .p-floatlabel>label{
-    width:20% ;
-    margin-left: 10%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    
-}
+
 .formContainer2 .p-floatlabel>input{
-    margin-top: 8px;
-    margin-bottom: 8px;
     margin-left: 10%;
     width: 80% ;
-    height: 8% !important ;
+    height: 35px !important ;
 }
-.formContainer2 .p-floatlabel>label{
-    width: 30%;
-    margin-left: 10%;
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
+
 .address{
     width: 100%;
     height: 80%;
     display: flex;
+    flex-direction: row;
+   
 }
 .address1{
     width: 50%;
-    height: 85%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 .address2{
     width: 50%;
-    height: 85%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
-.address1 .p-floatlabel>input, .address1 .p-floatlabel>textarea {
+
+.address1 .p-floatlabel input, .address2 .p-floatlabel>input{
+    margin-left: 10%;
+    width: 80% ;
+    height: 35px !important ;
+}
+
+textarea{
     width: 80%;
-    height: 5%;
-    margin-top: 1.5%;
+    padding-left: 15px;
     margin-left: 10%;
     border-radius: 10px;
+    border: 1px solid rgb(195, 190, 190);
+}
 
-}
-textarea{
-    padding-left: 15px;
-}
-.address1 .p-floatlabel>label{
-    width: 30%;
-   
-    margin-top: 1.4%;
-    margin-left: 10%;
-
-}
-.address2 .p-floatlabel>input{
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 1.5%;
-
-}
-.address2 .p-floatlabel>label{
-    width: 30%;
-    margin-left: 10%;
-    margin-top: 1.5%;
-
-}
 
 
 .buttonContainer{
@@ -430,26 +423,72 @@ textarea{
     width: 55px;
     height: 25px;
 }
+.filterDetails .p-floatlabel label{
+    font-size: 14px !important;
+}
+::ng-deep.container {
+    font-size: 14px !important;
+}
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
    
 
     .formCreate{
-  
-        width: 90%;
+        width: 86%;
         height: 94%;
-        margin: auto;
         border-radius: 10px;
+        position: absolute;
+        top: 20px;
+        left: 7%;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        
+    }
+    .formContainer1 input,.formContainer2 input,.address input{
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    .container{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding-bottom: 60px;
         overflow-y: auto;
+    
+    }
+
+    .formCreate{
+        width: 90%;
+        height: auto;
+        border-radius: 10px;
         position: absolute;
         top: 20px;
         left: 5%;
-        padding: 1%;
-        
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+       padding: 10px;
+       padding-bottom: 0;
+       margin-bottom: 20px;
     }
-    .userHeading2>i{
-        margin-left: 0% !important;
+
+    .userHeading1{
+        width: 100%;
         font-size: 20px;
+        padding: 5px;
+    }
+   
+    .userHeading2>i{
+        margin-left: 30% !important;
+        font-size: 20px;
+        padding: 5px;
+
         
     }
     .formContainer{
@@ -460,45 +499,79 @@ textarea{
         padding-top: 10px;
     
     }
+    
+    .formContainer{
+        display: flex !important;
+        width: 100% !important;
+        height: 80% !important;
+        padding-top: 10px;
+
+    }
     .formContainer1{
         border: none !important;
         width: 100% !important ;
-        height: auto !important;
+        height: 250px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    
         
     }
     .formContainer2{
         border: none !important;
         width: 100% !important;
-        height: auto !important;
-    }
-    .containerDetails>div:nth-child(2){
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        border: 1px solid #007bff;
-    }
-    .containerDetails>div:nth-child(3) {
-        width: 100%;
-        height: auto;
-        border: 1px solid #007bff;
-        margin-top: 10px;
-        border-radius: 10px;
-        
-    }
-    .address{
-        width: 100%;
-        height: auto;
+        height: 310px !important;
         display: flex;
         flex-direction: column;
+        justify-content: space-around;
+    }
+    .formContainer1 .p-floatlabel>input,
+    .checkBox {
+            margin-left: 10%;
+            width: 80% ;
+            height: 35px !important ;
+    }
+
+    .formContainer2 .p-floatlabel>input{
+        margin-left: 10%;
+        width: 80% ;
+        height: 35px !important ;
+    }
+
+    .address{
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+       
     }
     .address1{
-        width: 100%;
-        height: auto;
+        width: 100% !important;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
     }
     .address2{
+        width: 100% !important;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .address1 .p-floatlabel input, .address2 .p-floatlabel>input{
+        margin-left: 10%;
+        width: 80% ;
+        height: 35px !important ;
+    }
+    .buttonContainer{
+        padding: 10px;
         width: 100%;
-        height: auto;
-        padding-bottom: 5px;
+        height: 6%;
+        display: flex;
+    }
+    .formContainer1 input,.formContainer2 input,.address input{
+        font-size: 14px;
     }
     .mainDetails{
         width: 100vw;
@@ -534,6 +607,10 @@ textarea{
     .mainDetails.closed {
         width: 28%; 
       }
+      th div{ 
+        font-size: 14px;
+    }
+      
   
 }
 
@@ -543,6 +620,18 @@ textarea{
         margin-left: 62%;
         font-size: 20px;
         
+    }
+    :host::ng-deep.p-datatable-tbody > tr > td {
+        padding: 11px !important;
+      }
+      .filterDetails .p-floatlabel label{
+        font-size: 14px !important;
+    }
+    ::ng-deep.container {
+        font-size: 12px !important;
+    }
+    th div{ 
+        font-size: 14px;
     }
 
 }
@@ -557,6 +646,9 @@ textarea{
         border: 1px solid #007bff;
         
     }
+    th div{ 
+        font-size: 14px;
+    }
     .mainDetails.closed {
         width: 58%; 
       }
@@ -569,7 +661,7 @@ textarea{
 @media only screen and (max-width: 1440px) and (min-width :1025px){
 
     .filterMain{
-        width: 40% !important;
+        width: 35% !important;
         height: 98%;
         margin-left: 1%;
         border-radius: 10px;
@@ -577,9 +669,270 @@ textarea{
         
     }
     .mainDetails.closed {
-        width: 58%; 
+        width: 63%; 
       }
+      td {
+        font-size: 14px;
+        border: none !important;
+        white-space: nowrap;       
+        overflow:hidden;          
+        text-overflow: ellipsis;    
+        max-width: 150px;    
+        height: 57px ; 
+       
+      }
+      ::ng-deep.p-paginator {
+    
+        position: fixed !important;
+        top: 87.5%;
+        left :0%;
+        width: 100%;
+      }
+      .mainDetails.closed ::ng-deep.p-paginator {
+        width: 63% !important;
+      }
+      .formCreate{
+  
+        width: 70%;
+        height: 90%;
+        border-radius: 10px;
+        position: absolute;
+        top: 5%;
+        left: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;    
+    }
+    .address{
+        width: 100%;
+        height: 60%;
+        display: flex;
+        flex-direction: row;
+    }
+    .address1{
+        width: 50%;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .address2{
+        width: 50%;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    th div{ 
+        font-size: 14px;
+    }
+   
+}
+@media only screen and (max-width: 1024px){
+
+    .filterMain{
+        width: 30% !important;
+        height: 98%;
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid #007bff;
+        
+    }
+   
+      ::ng-deep.p-datatable-tbody > tr > td {
+        padding: 11px !important;
+      }
+    .mainDetails.closed {
+        width: 68%; 
+      }
+    ::ng-deep.p-paginator {
+    
+        position: fixed !important;
+        top: 85%;
+        left :0%;
+        width: 100%;
+      }
+      .mainDetails.closed ::ng-deep.p-paginator {
+        width: 68% !important;
+      }
+      .formContainer1 input,.formContainer2 input,.address input{
+        font-size: 12px;
+    }
+    .address1{
+        width: 50%;
+        height: 175px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .address2{
+        width: 50%;
+        height: 175px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
+@media only screen and (max-width: 426px){
+
+    .filterMain{
+        width: 50% !important;
+        height: 98%;
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid #007bff;
+        
+    }
+   
+      ::ng-deep.p-datatable-tbody > tr > td {
+        padding: 11px !important;
+      }
+    .mainDetails.closed {
+        width: 48%; 
+      }
+    ::ng-deep.p-paginator {
+    
+        position: fixed !important;
+        top: 85%;
+        left :0%;
+        width: 100%;
+      }
+      .mainDetails.closed ::ng-deep.p-paginator {
+        width: 48% !important;
+        display: none;
+      }
+      ::ng-deep.p-datatable-tbody > tr > td {
+        padding: 9px !important;
+      }
+      .mainDetails.closed  ::ng-deep.p-datatable-tbody > tr > td {
+        padding: 11px !important;
+      }
+      ::ng-deep.p-paginator {
+        flex-wrap: nowrap !important;
+    }
+    ::ng-deep.p-paginator-page,  ::ng-deep.p-paginator-next,  ::ng-deep.p-paginator-last,  ::ng-deep.p-paginator-first,  ::ng-deep.p-paginator-prev
+    {
+        min-width: 20px !important;
+    
+    }
+    .filterDetails .p-floatlabel label{
+        font-size: 13px !important;
+    }
+    ::ng-deep.container {
+        font-size: 13px !important;
+    }
+
+
 }
 
+@media only screen and (max-width: 376px){
 
+   .filterMain{
+        width: 50% !important;
+        height: 98%;
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid #007bff;
+        
+    }
+   
+      ::ng-deep.p-datatable-tbody > tr > td {
+        padding: 11px !important;
+      }
+    .mainDetails.closed {
+        width: 48%; 
+      }
+    ::ng-deep.p-paginator {
+    
+        position: fixed !important;
+        top: 85%;
+        left :0%;
+        width: 100%;
+      }
+      .mainDetails.closed ::ng-deep.p-paginator {
+        /* width: 43% !important; */
+        display: none;
+      }
+      ::ng-deep.p-datatable-tbody > tr > td {
+        padding: 9px !important;
+      }
+      .mainDetails.closed  ::ng-deep.p-datatable-tbody > tr > td {
+        padding: 11px !important;
+      }
+      ::ng-deep.p-paginator {
+        flex-wrap: nowrap !important;
+    }
+    ::ng-deep.p-paginator-page,  ::ng-deep.p-paginator-next,  ::ng-deep.p-paginator-last,  ::ng-deep.p-paginator-first,  ::ng-deep.p-paginator-prev
+    {
+        min-width: 24px !important;
+    }
+    .filterDetails .p-floatlabel label{
+        font-size: 13px !important;
+    }
+    ::ng-deep.container {
+        font-size: 13px !important;
+    }
+
+    ::ng-deep.p-paginator-current {
+        display: none !important;
+      }
+      .userHeading2>i{
+        margin-left: 19% !important;
+    }
+    .buttonContainer2 ::ng-deep.p-button{
+        width: 30%;
+        height: 80%;
+        position: relative;
+        left: -10%;
+        top: 20%;
+    
+    } 
+    th div{ 
+        font-size: 14px;
+    }
+
+}
+
+@media only screen and (max-width: 321px){
+
+    .filterMain{
+        width: 45% !important;
+        height: 98%;
+        margin-left: 1%;
+        border-radius: 10px;
+        border: 1px solid #007bff;
+        
+    }
+    .mainDetails.closed {
+        width: 53%; 
+      }
+    .filterDetails .p-floatlabel label{
+        font-size: 10px !important;
+    }
+    ::ng-deep.p-paginator-page,  ::ng-deep.p-paginator-next,  ::ng-deep.p-paginator-last,  ::ng-deep.p-paginator-first,  ::ng-deep.p-paginator-prev
+    {
+        min-width: 24px !important;
+    }
+    ::ng-deep.container {
+        font-size: 12px !important;
+    }
+    ::ng-deep.p-paginator-current {
+        display: none !important;
+    }
+    .userHeading ::ng-deep.userHeading2>i{
+        margin-left: 15% !important;
+    }
+    .buttonContainer2 ::ng-deep.p-button{
+        width: 30%;
+        height: 80%;
+        position: relative;
+        left: -9%;
+        top: 20%;
+    
+    } 
+    th div{ 
+        font-size: 14px;
+    }
+
+}
 

@@ -148,7 +148,6 @@ export class IssueComponent implements OnInit,OnChanges{
     this.waiting = this.featchedIssueList.filter(issue => issue.statusId === 'Waiting');
     this.fixed = this.featchedIssueList.filter(issue => issue.statusId === 'Fixed');
     this.closed = this.featchedIssueList.filter(issue => issue.statusId === 'Closed');
-
     this.loadOpen();
     this.loadinProgress();
     this.loadwaiting();
@@ -158,35 +157,40 @@ export class IssueComponent implements OnInit,OnChanges{
   }
 
   currentOpen = 0;
-  itemsPerOpen =5;
+  currentinProgress = 0;
+  currentwaiting = 0;
+  currentfixed = 0;
+  currentclosed = 0;
+  items =5;
   loadOpen(){
-    this.groupedIssues.open =this.open.slice(0,this.currentOpen+this.itemsPerOpen);
-    this.currentOpen+=this.itemsPerOpen;
+    
+    this.groupedIssues.open =[];
+    this.groupedIssues.open =this.open.slice(0,this.currentOpen+this.items);
+    this.currentOpen+=this.items; 
   }
 
-  currentinProgress = 0;
-  itemsPerinProgress =5;
   loadinProgress(){
-    this.groupedIssues.inProgress =this.inProgress.slice(0,this.currentinProgress+this.itemsPerinProgress);
-    this.currentinProgress+=this.itemsPerinProgress;
+    this.groupedIssues.inProgress =[];
+    this.groupedIssues.inProgress =this.inProgress.slice(0,this.currentinProgress+this.items);
+    this.currentinProgress+=this.items;
   }
-  currentwaiting = 0;
-  itemsPerwaiting =5;
+
   loadwaiting(){
-    this.groupedIssues.waiting =this.waiting.slice(0,this.currentwaiting+this.itemsPerwaiting);
-    this.currentOpen+=this.itemsPerwaiting;
+    this.groupedIssues.waiting =[]
+    this.groupedIssues.waiting =this.waiting.slice(0,this.currentwaiting+this.items);
+    this.currentwaiting+=this.items;
   }
-  currentfixed = 0;
-  itemsPerfixed =5;
+ 
   loadfixed(){
-    this.groupedIssues.fixed =this.fixed.slice(0,this.currentfixed+this.itemsPerfixed);
-    this.currentfixed+=this.itemsPerfixed;
+    this.groupedIssues.fixed = [];
+    this.groupedIssues.fixed =this.fixed.slice(0,this.currentfixed+this.items);
+    this.currentfixed+=this.items;
   }
-  currentclosed = 0;
-  itemsPerclosed =5;
+
   loadclosed(){
-    this.groupedIssues.closed =this.closed.slice(0,this.currentclosed+this.itemsPerclosed);
-    this.currentclosed+=this.itemsPerclosed;
+    this.groupedIssues.closed =[];
+    this.groupedIssues.closed =this.closed.slice(0,this.currentclosed+this.items);
+    this.currentclosed+=this.items;
   }
 
 

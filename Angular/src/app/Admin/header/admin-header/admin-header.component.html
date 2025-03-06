@@ -11,7 +11,7 @@
           </div>
        
 
-        <div class="notification" class="mobileView">
+        <div class="notifications" class="mobileView">
             <p-overlaybadge value="{{differenceCount}}" >
                 <i class="pi pi-bell" (click)="notification.toggle($event)" style="font-size: 1.3rem"></i>
             </p-overlaybadge>
@@ -20,13 +20,12 @@
 
             <p-overlayPanel #notification >
                 <div class="notification" [ngClass]="{notifiNull :(differenceCount===0)}">
-                  
                     <div>
                         <div><p *ngIf="!(differenceCount===0)">Notifications</p> <p *ngIf="(differenceCount===0)">No Notification</p></div> 
-                        <div><p><i *ngIf="!(differenceCount===0)" (click)="clearNotification()" class="pi pi-history"></i></p></div>
+                        <div><p><i title="Clear Notification" *ngIf="!(differenceCount===0)" (click)="clearNotification()" class="pi pi-history"></i></p></div>
                     </div>    
                     <div>
-                        <div class="notificationDetails" *ngFor="let issue of notificationData" pTooltip="Comment : {{issue.priorityId}}" tooltipPosition="bottom">
+                        <div class="notificationDetails" *ngFor="let issue of notificationData" pTooltip="Priority : {{issue.priorityId}}" tooltipPosition="bottom">
                             <div><p-avatar   icon="pi pi-user" class="mr-2"  shape="circle" label={{issue.userName?.slice(0,1)}}/></div>
                             <div>
                                 <div class="names">
@@ -35,11 +34,9 @@
                                     <div><p>{{issue.createDateTime}}</p></div>
                                 </div>
                             </div>
-    
                         </div>
                     </div>
                 </div>
-
             </p-overlayPanel>
         </div>
       
@@ -111,12 +108,11 @@
                 <i class="pi pi-users mr-2"></i>
                 <span class="font-medium">Team</span>
            </div>
-
            <div>
                 <i class="pi pi-comments mr-2"></i>
                 <span class="font-medium">Messages</span>
            </div>
-           
+         
            <div>
                 <i class="pi pi-calendar mr-2"></i>
                 <span class="font-medium">Calendar</span>
@@ -136,7 +132,7 @@
 
 
 
-
+<!-- Password Reset -->
 <div class="card flex justify-center">
     
     <p-dialog header="Reset Password" [modal]="true" [(visible)]="passwordView" >

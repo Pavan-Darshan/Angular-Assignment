@@ -41,10 +41,22 @@
 .nameTag{
     width: 150px;
     display: flex;
-    gap: 10%;
+  
     justify-content: flex-start;
     align-items: center;
     border-right: 1px solid red;
+}
+.nameTag>div:first-child{
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userName{
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+
 }
 .userName>div:first-child>p{
     font-size: 18px;
@@ -226,10 +238,11 @@ align-items: center;
  display: grid;
  grid-template-columns: 80% 20%;
   position: fixed;
-  top: 0;
+  top: -9px;
   left: 0;
   background-color: rgb(228, 225, 225);
-  z-index: 111;
+  z-index: 1;
+
 }
 .notification>div:nth-child(2){
   width: 100%;
@@ -292,7 +305,14 @@ align-items: center;
     color: black !important;
   }
   
-
+  @media only screen and (max-width: 1024px) {
+    .logo img{
+      width: 60px;
+      height: 50px;
+      
+      
+  }
+  }
 
 
   @media only screen and (max-width: 426px) {
@@ -308,9 +328,9 @@ align-items: center;
         z-index: 10000;
        
     }
-    .mobileView{
+    /* .mobileView{
         display: none !important;
-    }
+    } */
     .mobileViewOn{
         display: block !important;
     }
@@ -321,9 +341,41 @@ align-items: center;
         width: 16rem !important;
         height: 100%;
     }
- 
-    
+    .innerContainer{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 20px;
+      gap: 20px;
   }
+
+  .nameTag{
+    width: 110px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    border-right: 1px solid red;
+}
+.nameTag>div:first-child{
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userName{
+  width: 75px;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification{
+  width: 250px;
+}
+
+}
   @media only screen and (max-width: 376px) {
 
     ::ng-deep.p-drawer-left {
@@ -331,5 +383,13 @@ align-items: center;
         left: 0;
         width: 14rem !important;
         height: 100%;
+    }
+    .passwordContainer{
+      width: 250px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    gap: 20px;
+    
     }
   }

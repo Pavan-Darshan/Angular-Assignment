@@ -54,7 +54,7 @@ ngOnInit(){
       this.themeColor = true;
     }
  
-      // this.featchIssueData();
+      this.featchIssueData();
 }
 
 
@@ -165,7 +165,7 @@ featchIssueData(){
       // this.notification();
     setTimeout(()=>{
       this.notification();
-    },15000)
+    },70000)
           
   })
   

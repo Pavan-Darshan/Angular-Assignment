@@ -79,8 +79,7 @@ export class UserListComponent implements OnInit {
         // setTimeout(()=>{
         //   this.loading=false
         // },2000)
-        
-        console.log(this.featchedUserList);
+  
     })
 
   }

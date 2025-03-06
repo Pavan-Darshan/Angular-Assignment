@@ -113,8 +113,9 @@ body.dark-mode .p-datatable-thead th {
   border: 1px solid var(--paginator-border-light); 
   position: fixed !important;
   top: 84%;
-  left :1%;
-  width: 98%;
+  left :0%;
+  width: 100%;
+  overflow-x: auto;
 }
 
 body.dark-mode .p-paginator {
@@ -232,7 +233,7 @@ body.dark-mode .editForm {
 body.dark-mode .container {
   background-color: var(--form-background-dark);
   color: var(--form-text-color-dark);
-  border: 1px solid white;
+  
 }
 .p-dialog {
   background-color: var(--form-background-light);
@@ -243,4 +244,8 @@ body.dark-mode .p-dialog  {
   color: var(--form-text-color-dark);
   border: 1px solid white;
 }
+/* th.p-datatable-column-sorted{
+  background-color: rgb(255, 255, 255) !important;
+  color: white;
+} */
 

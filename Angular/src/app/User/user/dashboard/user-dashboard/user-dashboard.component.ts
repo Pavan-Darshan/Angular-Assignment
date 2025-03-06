@@ -170,7 +170,7 @@ export class UserDashboardComponent {
       0,
       this.currentwaiting + this.itemsPerwaiting
     );
-    this.currentOpen += this.itemsPerwaiting;
+    this.currentwaiting += this.itemsPerwaiting;
   }
   currentfixed = 0;
   itemsPerfixed = 5;
@@ -208,24 +208,21 @@ export class UserDashboardComponent {
     const div = document.createElement('div');
     div.innerHTML = this.text;
     plainText = div.textContent || div.innerText || '';
-    
-    if(plainText === '' || plainText.trim().length === 0) {
-      alert("Message is empty...!");
-    } 
 
-    else{
-    //Adding comment-------------------------------->
-    viewIssueDetails.comment?.unshift({
-      comment: plainText,
-      commentedDate: this.date.getCurrentTime(),
-      commenter: this.serverService.loggedUser[0].userName,
-    });
-    this.serverService.onUpdate(
-      '' + viewIssueDetails.dataBaseId,
-      viewIssueDetails
-    ).subscribe();
-    this.text = '';
-   }
+    if (plainText === '' || plainText.trim().length === 0) {
+      alert('Message is empty...!');
+    } else {
+      //Adding comment-------------------------------->
+      viewIssueDetails.comment?.unshift({
+        comment: plainText,
+        commentedDate: this.date.getCurrentTime(),
+        commenter: this.serverService.loggedUser[0].userName,
+      });
+      this.serverService
+        .onUpdate('' + viewIssueDetails.dataBaseId, viewIssueDetails)
+        .subscribe();
+      this.text = '';
+    }
   }
 
   Priority: Priority[] = [

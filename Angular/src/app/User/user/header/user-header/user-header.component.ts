@@ -135,7 +135,7 @@ export class UserHeaderComponent {
           setInterval(()=>{
             this.userIssueOnly();
           
-          },15000)
+          },70000)
        
     
       })

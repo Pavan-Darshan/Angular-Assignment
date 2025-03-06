@@ -143,6 +143,7 @@
 
 .p-tabpanels {
     background: rgba(255, 255, 255,0) !important;
+    padding-top: 6px !important;
 
 }
 :host ::ng-deep .p-tablist-tab-list {
@@ -178,7 +179,7 @@
 .p-tabpanel{
     width: 100%;
     height: 100% ;
-   background-color: red !important;
+   
 }
 .tableContainer{
     width: 100%;
@@ -236,7 +237,8 @@ td {
     white-space: nowrap;       
     overflow:hidden;          
     text-overflow: ellipsis;    
-    max-width: 150px;     
+    max-width: 150px;  
+    padding: 10px;   
    
   }
   td p{
@@ -257,7 +259,7 @@ td {
     display: flex;
     justify-content: space-between;
     position: relative;
-    top: 0px;  
+    top: 10px;  
     flex-wrap: wrap;  
 }
 .kanbanColumn {
@@ -496,6 +498,11 @@ td {
 .commentbtn{
     width: 100% !important;
 }
+
+.tableContainer ::ng-deep.p-paginator {
+    width: 98% !important;
+    left: 1% !important;
+  }
   
 /* comment window */
  .commentView{
@@ -511,17 +518,17 @@ td {
 }
 .commentDetails{
     width: 90%;
-    height: 90%;
+    height: 96%;
     background-color:white;
    border-radius: 10px;
     position: absolute;
-    top:5%;
+    top:2%;
     left: 5%;
     color: black;
 }
 .nav{
     width: 100%;
-    height: 6%;
+    height: 7%;
     border : none;
     display: flex;
     justify-content: flex-end;
@@ -608,7 +615,7 @@ td {
     height: 25%;
 }
 .ticketdetails p{
-    font-size: 16px;
+    font-size: 14px;
 
 }
 .comment{
@@ -636,16 +643,19 @@ td {
     display: flex;
     justify-content:flex-end;
     align-items: center;
+  
 }
 .commentPost>div{
     width: 80px;
     height: 80%;
-    background-color: rgb(185, 185, 187);
+    background-color: rgb(0, 0, 255);
     display: flex;
     justify-content:flex-start;
     align-items: center;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
+   
     
 }
 .commentPost>div span{
@@ -681,12 +691,15 @@ td {
     width: 100%;
     height: 30%;
     display: grid;
-    grid-template-columns: 30% 30% 40%;
+    grid-template-columns: 20% 45% 35%;
     
 }
 .detailsCard>div {
     display: flex;
     flex-direction: column;
+}
+.detailsCard>div:nth-child(2){
+    margin-left: 5px;
 }
 .detailsCard>div>section{
     display: flex;
@@ -707,12 +720,14 @@ td {
 .image{
     width: 180px;
     height: 100px;
+    border: 1px solid rgb(166, 162, 162);
+   
     
 }
 ::ng-deep .image img{
     width: 50% !important;
     height: 90% !important;
-    
+    border: 1px solid rgb(166, 162, 162);
 } 
 .commentHead{
     width: 100%;
@@ -767,7 +782,7 @@ td {
 }
 .showComment .head>div:first-child>.p-avatar{
    font-size: 24px;
-   background-color: rgba(25, 5, 249,1);
+   background-color:rgb(237 236 236);
    
 }
 .showComment .head>div:nth-child(2){
@@ -797,6 +812,7 @@ td {
     overflow-wrap: break-word;  
     word-break: break-all;  
     max-width: 100%; 
+    font-size: 13px;
 } 
 
 
@@ -855,21 +871,26 @@ td {
     width: 100%;
     height: 100%;
     padding: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0px 0px 5px 1px rgba(140, 138, 138, 0.5); 
     font-size: 14px;
+    border-radius: 5px;
    
 }
 .statusClosed>p{
     width: 100%;
     height: 100%;
     padding: 10px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0px 0px 5px 1px rgba(140, 138, 138, 0.5); 
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 4px;
 }
 .descriptionEdit{
     width: 95%;
     height: 30% !important;
     overflow: auto;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0px 0px 5px 1px rgba(140, 138, 138, 0.5); 
 }
 .descriptionEdit>p{
     width: 100%;
@@ -892,7 +913,7 @@ td {
 }
 .statusMain>div .p-select{
     width: 97%;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 5px 1px rgba(140, 138, 138, 0.5); 
     margin: 1.5%;
    
 }
@@ -902,7 +923,9 @@ td {
     margin: auto;
     padding: 5px;
     border: none;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 5px 1px rgba(140, 138, 138, 0.5); 
+    border-radius: 10px;
+    margin-top: 10px;
 } 
 .btns{
     width: 100%;
@@ -912,13 +935,301 @@ td {
     align-items: center;
 }
 
+.ImageContainer button{
+    width: 80px;
+    height: 30px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.editForm   ::ng-deep.p-editor .p-editor-content .ql-editor {
+    height: 110px !important;
+    border: 1px solid rgb(227, 226, 226);
+
+}
+
+.editForm>p>i{
+    margin-left: 79%;
+}
 
 
 
+/*  comment view responsive */
+@media only screen and (max-width: 1440px) {
+    .editForm{
+        width: 74%;
+        height: 90%;
+        background-color: white;
+        color: black;
+        margin: auto;
+        border-radius: 10px;
+        padding-bottom: 30px;
+        position: absolute;
+        top: 20px;
+        left: 13%;
+        z-index: 200;
+        overflow: hidden;
+    }
+    .editForm   ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 155px !important;
+        border: 1px solid rgb(227, 226, 226);
+    
+    }
+    .editForm>p>i{
+        margin-left: 83%;
+    }
 
+    td {
+        font-size: 13px;
+        border: none !important;
+        white-space: nowrap;       
+        overflow:hidden;          
+        text-overflow: ellipsis;    
+        max-width: 150px;    
+        height: 52px; 
+       
+      }
+      ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 170px !important;
+        border: 1px solid black;
+    
+    }
 
+}
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
+    .editForm{
+        width: 80%;
+        height: 90%;
+        background-color: white;
+        color: black;
+        margin: auto;
+        border-radius: 10px;
+        padding-bottom: 30px;
+        position: absolute;
+        top: 20px;
+        left: 10%;
+        z-index: 200;
+        overflow: hidden;
+    }
+    .editForm>p>i{
+        margin-left: 79%;
+    }
+    
+    td {
+        font-size: 13px;
+        border: none !important;
+        white-space: nowrap;       
+        overflow:hidden;          
+        text-overflow: ellipsis;    
+        max-width: 150px;    
+        height: 22px; 
+        padding: 0;
+       
+      }
+      ::ng-deep.p-datatable-tbody > tr > td {
+        padding: 10px !important;
+      }
+      ::ng-deep.p-paginator {
+    
+        position: fixed !important;
+        top: 86%;
+        left :1.5%;
+        width: 97%;
+      }
+    .messageCard{
+        width: 100%;
+        height: 50%;
+        display: grid;
+        grid-template-columns: 7% 93%;
+      
+    }
+    .editForm   ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 92px !important;
+        border: 1px solid rgb(227, 226, 226);
+    
+    }
+    ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 80px !important;
+        border: 1px solid black;
+    
+    }
+    .detailsCard>div>section>p{
+        padding: 1%;
+        font-size: 14px;
+    }
+    ::ng-deep.detailsCard>div:nth-child(2){
+        margin-left: 57px !important;
+    }
+    .ImageContainer{
+        width: 100% !important; 
+        height: 87% !important;
+        display: grid;
+        grid-template-rows: 80% 20%;
+    }
+   
+    .image{
+        width: 180px;
+        height: 100px;
+       
+    }
+
+    .messageCard>div:first-child>.p-avatar{
+        font-size: 32px;
+       margin-left: 5px;
+       margin-top: 30px;
+        
+    }
+    .ticketdetails p{
+        font-size: 12px;
+    
+    }
+      
+}
+
+@media only screen and (max-width: 769px) {
+    .editForm{
+        width: 90%;
+        height: 90%;
+        background-color: white;
+        color: black;
+        margin: auto;
+        border-radius: 10px;
+        padding-bottom: 30px;
+        position: absolute;
+        top: 20px;
+        left: 5%;
+        z-index: 200;
+        overflow: hidden;
+    }
+    .editForm>p{
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        font-size: 18px;
+        
+    }
+    .editForm   ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 106px !important;
+        border: 1px solid rgb(227, 226, 226);
+    }
+    .editForm   ::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+            padding: 0 !important;
+    }
+    .editForm>p>i{
+        margin-left: 78% !important;
+    }
+    .detailsMain>section>p{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        
+        font-size: 13px;
+    }
+    td {
+        font-size: 13px;
+        border: none !important;
+        white-space: nowrap;       
+        overflow:hidden;          
+        text-overflow: ellipsis;    
+        max-width: 150px;    
+        height: 22px; 
+      }
+      :host::ng-deep.p-datatable-tbody > tr > td {
+        padding: 10px !important;
+      }
+      ::ng-deep.p-paginator {
+    
+        position: fixed !important;
+        top: 85.5%;
+        left :1.5%;
+        width: 97%;
+      }
+
+      .ticketdetails>div:first-child{
+        margin-top: 10px;
+        width: 100%;
+        height: 20%;
+    }
+    .commentView{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding-bottom: 60px;
+        z-index: 10;
+        overflow-y: auto;
+    }
+
+    .commentDetails{
+        width: 90%;
+        height: auto;
+        background-color:white;
+       border-radius: 10px;
+        position: absolute;
+        top:5%;
+        left: 5%;
+        color: black;
+    }
+
+    :host::ng-deep.detailsContainerLeft{
+        width: 98%;
+        height: 578px;
+        display: grid;
+        grid-template-rows: 40% 60%;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: 1%;
+    }
+
+    .commentPost>div{
+        width: 80px;
+        height: 80%;
+        background-color: rgb(0, 0, 255);
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 0;
+        color: white;
+    }
+
+    .detailsContainerRight{
+        width: 97%;
+   
+        margin: 1%;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-top:2.2%;
+        min-height: 100px;
+        max-height: 400px;
+        
+    }
+    .scrollComment{
+        width: 100%;
+        height: 400px;
+        overflow: auto;
+        padding-bottom: 50px;
+    }
+
+    ::ng-deep.nav{
+        width: 100%;
+        height: 32px !important;
+        border : none;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        background-color: #D8DADC;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
     .row{
         width: 100%;
         display: flex;
@@ -957,6 +1268,7 @@ td {
         font-size: 14px;
     }
 
+      
 
 /* comment view */
 
@@ -966,7 +1278,7 @@ td {
     background-color:white;
    border-radius: 10px;
     position: absolute;
-    top:2%;
+    top: 1% !important;;
     left: 2%;
     color: black;
 }
@@ -1017,9 +1329,8 @@ td {
     font-size: 14px;
 }
 
-::ng-deep.p-editor .p-editor-content .ql-editor {
-    height: 70px !important;
-    
+:host::ng-deep.p-editor .p-editor-content .ql-editor {
+    height: 85px !important;
     
 }
 
@@ -1031,7 +1342,7 @@ td {
 .commentPost>div{
     width: 10%;
     height: 100%;
-    background-color: blue;
+    background-color: rgb(0, 0, 255);
     color: white;
     z-index: 1;
     margin-top: 80px;
@@ -1047,12 +1358,201 @@ td {
 .image{
     width: 180px;
     height: 100px;
-    
 }
+   .ImageContainer{
+        width: 100% !important; 
+        height: 87% !important;
+        display: grid;
+        grid-template-rows: 80% 20%;
+    }
+    button {
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 5px;
+    
+    }
+    .image{
+        width: 180px;
+        height: 100px;
+       
+    }
+
+    .messageCard>div:first-child>.p-avatar{
+        font-size: 32px;
+       margin-left: 5px;
+       margin-top: 30px;
+        
+    }
+    .ticketdetails p{
+        font-size: 12px;
+    }
+    
 
 }
+
 
 @media only screen and (max-width: 426px) {
+    .editFormBackground{
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow-y: auto;
+    }
+    .editForm{
+        width: 90%;
+        height: auto;
+        background-color: white;
+        color: black;
+        margin: auto;
+        border-radius: 10px;
+        padding-bottom: 10px;
+        position: absolute;
+        top: 10px;
+        left: 5%;
+        z-index: 200;
+        overflow: hidden;
+    }
+    .editForm   ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 110px !important;
+        border: 1px solid rgb(227, 226, 226);
+        width: 340px !important;
+    }
+    .editForm ::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+        width: 341px !important;
+    }
+    
+    .editForm>p{
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        
+    }
+    .editForm>p>i{
+        margin-left: 62% !important;
+    }
+    .detailsMain{
+        width: 100%;
+        height: auto;
+       border: none;
+       display: flex;
+       flex-direction: column;
+       gap: 10px;
+       margin-top: 10px;
+
+    }
+    .detailsMain>section{
+        width: 95%;
+        height: 12%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        gap: 10px;
+        
+        
+        
+    }
+    
+    .descriptionEdit{
+        width: 95%;
+        height: 30% !important;
+        overflow: auto;
+   
+    }
+    .descriptionEdit>p{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+       
+    }
+    .statusMain{
+        width: 95%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        gap: 10px;
+        margin-top: 20px;
+    
+       
+    }
+    .statusMain>div{
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+    }
+    .statusClosed p{
+        
+        font-size: 13px;
+        color: red;
+    }
+    .statusMain>div:nth-child(3){
+        margin-top: 10px;
+    }
+    .statusMain>div .p-select{
+        width: 100%;
+        margin-left: 0;
+
+    }
+    .editMessageCard{
+        width: 94%;
+        height: 28%;
+        margin: auto;
+        padding: 10px;
+        border: none;
+        overflow: auto;
+        margin-top: 10px;
+        
+    } 
+    
+    ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 80px !important;
+        width: 362px !important;
+        margin-left: 0px !important;
+    }
+    
+
+    ::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+        width: 355px !important;
+    }
+    .btns{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 16px;
+    }
+    ::ng-deep.p-paginator {
+    
+        position: fixed !important;
+        top: 85%;
+        left :1.5%;
+        width: 97%;
+        flex-wrap: nowrap;
+        gap: 0;
+      }
+      ::ng-deep.p-paginator-current {
+        display: none !important;
+      }
+      .detailsContainerRight{
+        width: 97%;
+   
+        margin: 1%;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-top:2.2%;
+        min-height: 100px;
+        max-height: 400px;
+        
+    }
+    .scrollComment{
+        width: 100%;
+        height: 400px;
+        overflow: auto;
+        padding-bottom: 50px;
+    }
     .kanbanColumn {
         width: 100%;  
         padding: 3px;
@@ -1083,32 +1583,47 @@ td {
     /* comment view */
 
     .ticketHeader p{
-        font-size: 16px;
+        font-size: 14px;
     }
 
+    .commentView{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding-bottom: 60px;
+        z-index: 10;
+        
+    }
 .commentDetails{
     width: 96%;
     height: 96%;
     background-color:white;
    border-radius: 10px;
     position: absolute;
-    top:2%;
+    top:1% !important;
     left: 2%;
     color: black;
+}
+.ticketdetails h4{
+    font-size: 13px;
+}
+.detailsCard div section p{
+    font-size: 13px !important;
 }
 .detailsContainer{
     width: 100%;
     height: 96%;
     display: flex;
     flex-direction: column;
-    
-  
 }
 .detailsContainerLeft{
     width: 98%;
     height: 65%;
-    display: grid;
-    grid-template-rows: 40% 60%;
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     border: 1px solid black;
     border-radius: 10px;
@@ -1125,10 +1640,17 @@ td {
     overflow: hidden;
     margin-top:1%;
 }
+.ticketHeader{
+    width: 100%;
+
+}
+.comment{
+    width: 100%;
+    
+}
 .viewCommentHead{
     width: 100%;
     height: 12%;
-    background-color: rgb(243, 238, 238);
     display: flex;
     justify-content:center;
     align-items: center;
@@ -1140,11 +1662,49 @@ td {
 }
 .detailsCard{
     width: 100%;
-    height: 50%;
+    height: 100%;
    display: flex !important;
    flex-direction: column !important;
-  
+   gap: 5px;
+ 
     
+}
+
+.detailsCard>div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detailsCard>div section>p:first-child{
+    font-weight: bold;
+}
+.detailsCard>div:nth-child(2){
+    margin-left: 0 !important;
+}
+.ImageContainer{
+    width: 100% !important; 
+    height: 100% !important;
+  
+    display: grid;
+    grid-template-rows: 80% 20%;
+    
+}
+.image{
+    width: 150px  !important;
+    height: 150px !important;
+    border: 1px solid rgb(166, 162, 162);
+    
+    
+}
+.detailsCard>div>section{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items: center;
+}
+.detailsCard>div>section>p{
+    padding: 1.5%;
 }
 .detailsCard p{
     font-size: 13px;
@@ -1155,6 +1715,7 @@ td {
 .messageCard{
     width: 100%;
     height: 50%;
+    
 }
 .message{
     position: relative;
@@ -1162,13 +1723,15 @@ td {
     left: 0;
 }
 
-::ng-deep.p-editor .p-editor-content .ql-editor {
+:host::ng-deep.p-editor .p-editor-content .ql-editor {
     height: 80px !important;
-    width: 378px !important;
+    width: 354px !important;
     margin-left: 0px !important;
+    border: 1px soild rgb(199, 193, 193) !important;
     
-    
-    
+}
+.p-editor .p-editor-toolbar {
+    width: 355px !important;
 }
 /* .p-editor .p-editor-toolbar {
     display: none;
@@ -1182,13 +1745,19 @@ td {
     display: none;
 }
 
-.commentPost>div{
-    width: 30%;
-    height: 75%;
-    background-color: blue;
+
+::ng-deep.commentPost>div{
+    width: 80px !important;
+    height: 30px !important;
+    background-color: blue !important;
     color: white;
     z-index: 1;
-    margin-top: 210px;
+    
+}
+::ng-deep.nav{
+    width: 100%;
+    height: 35px !important;
+   
 }
 .commentPost{
     width: 100%;
@@ -1205,235 +1774,75 @@ td {
     font-size: 10px;
     text-align: center;
     border-radius: 5px;
+    cursor: pointer;
 }
 .commentHead{
     width: 100%;
     height: 8%;
-    margin-top: 170px;
+    margin-top: 50px;
 }
+.showComment{
+    width: 100% !important;
+    height: 100%;
 
 }
+.showComment .head>div:nth-child(2)>p:last-child{
+    width: 140%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 13px;
+    padding-right: 5px;
+    
+}
+.scrollMessage{
+    width: 96%;
+   padding: 2%;
+   white-space: normal;  
+    word-wrap: break-word;  
+    overflow-wrap: break-word;  
+    word-break: break-all;  
+    max-width: 100%; 
+    font-size: 13px;
+} 
+:host::ng-deep.p-datatable-tbody > tr > td {
+    padding: 7px !important;
+  }
+
+
+}
+
 
 @media only screen and (max-width: 376px) {
 
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 80px !important;
-        width: 330px !important;
+    .editForm   ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 110px !important;
+        border: 1px solid rgb(227, 226, 226);
+        width: 295px !important;
+    }
+    .editForm ::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+        width: 296px !important;
+    }
+    
+
+
+
+    :host::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 70px !important;
+        width: 310px !important;
         margin-left: 0px !important;
-        
-        
-        
     }
-}
-
-@media only screen and (max-width: 320px) {
-
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 80px !important;
-        width: 280px !important;
-        margin-left: 0px !important;
-        
-        
-        
-    }
-}
-
-@media only screen and (max-width: 769px) {
-    .editForm{
-        width: 90%;
-        height: 90%;
-        background-color: white;
-        color: black;
-        margin: auto;
-        border-radius: 10px;
-        padding-bottom: 30px;
-        position: absolute;
-        top: 20px;
-        left: 5%;
-        z-index: 200;
-        overflow: hidden;
-    }
-    .editForm>p{
-        width: 100%;
-        padding: 10px;
-        text-align: center;
-        font-size: 18px;
-        
-    }
-    .editForm>p>i{
-        margin-left: 76% !important;
-    }
-    .detailsMain>section>p{
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
+    .ticketHeader p{
         font-size: 13px;
-
-       
     }
 
-
-}
-
-
-/*  comment view responsive */
-@media only screen and (max-width: 1440px) {
-    .editForm{
-        width: 90%;
-        height: 90%;
-        background-color: white;
-        color: black;
-        margin: auto;
-        border-radius: 10px;
-        padding-bottom: 30px;
-        position: absolute;
-        top: 20px;
-        left: 5%;
-        z-index: 200;
-        overflow: hidden;
-    }
-    .editForm>p>i{
-        margin-left: 86%;
-    }
-
-
-}
-
-@media only screen and (max-width: 1024px) {
-    .editForm{
-        width: 80%;
-        height: 90%;
-        background-color: white;
-        color: black;
-        margin: auto;
-        border-radius: 10px;
-        padding-bottom: 30px;
-        position: absolute;
-        top: 20px;
-        left: 10%;
-        z-index: 200;
-        overflow: hidden;
-    }
-    .editForm>p>i{
-        margin-left: 81%;
-    }
-}
-
-@media only screen and (max-width: 426px) {
-    .editForm{
-        width: 90%;
-        height: auto;
-        background-color: white;
-        color: black;
-        margin: auto;
-        border-radius: 10px;
-        padding-bottom: 10px;
-        position: absolute;
-        top: 10px;
-        left: 5%;
-        z-index: 200;
-        overflow: hidden;
-    }
-    .editForm>p{
-        width: 100%;
-        padding: 10px;
-        font-size: 18px;
-        
-    }
-    .editForm>p>i{
-        margin-left: 60% !important;
-    }
-    .detailsMain{
-        width: 100%;
-        height: auto;
-       border: none;
-    }
-    .detailsMain>section{
-        width: 95%;
-        height: 12%;
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        margin-top: 1%;
-        
-        
-    }
-    .detailsMain>section>p{
-        margin-top: 5px;
-    }
-    .descriptionEdit{
-        width: 95%;
-        height: 30% !important;
-        overflow: auto;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
-    }
-    .descriptionEdit>p{
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-       
-    }
-    .statusMain{
-        width: 95%;
-        height: 10%;
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        margin-top: 3%;
-    
-       
-    }
-    .statusMain>div{
-        margin-top: 3%;
-    }
-    .statusMain>div .p-select{
-        width: 97%;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-        
-       
-    }
-    .editMessageCard{
-        width: 100%;
-        height: 28%;
-        margin: auto;
-        padding: 10px;
-        border: none;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
-        overflow: auto;
-        margin-top: 10px;
-    
-    } 
-    
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 80px !important;
-        width: 362px !important;
-        margin-left: 0px !important;
-    }
-    .btns{
-        width: 100%;
-        height: 10%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        margin-top: 16px;
-    }
-
-}
-
-
-
-@media only screen and (max-width: 376px) {
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 50px !important;
-        width: 316px !important;
-        margin-left: 0px !important;
+    :host::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+        width: 310px !important;
     }
     .detailsMain>section>p{
         width: 100%;
         height: 100%;
         padding: 10px;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5); 
         font-size: 12px;
        
     }
@@ -1444,18 +1853,39 @@ td {
         
     }
     .editForm>p>i{
-        margin-left: 58% !important;
+        margin-left: 59% !important;
     }
+    ::ng-deep.p-paginator {
+        flex-wrap: nowrap !important;
+    }
+    ::ng-deep.p-paginator-page,  ::ng-deep.p-paginator-next,  ::ng-deep.p-paginator-last,  ::ng-deep.p-paginator-first,  ::ng-deep.p-paginator-prev
+    {
+        min-width: 38px !important;
+    }
+   
 
 }
+
 @media only screen and (max-width: 321px) {
+
     ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 50px !important;
-        width: 267px !important;
+        height: 90px !important;
+        width: 280px !important;
+        margin-left: 0px !important;
+        
+        
+        
+    }
+    :host::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 70px !important;
+        width: 262px !important;
         margin-left: 0px !important;
     }
+    :host::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+        width: 262px !important;
+    }
     .editForm>p>i{
-        margin-left: 52%;
+        margin-left: 56% !important;
     }
     .editForm>p{
         width: 100%;
@@ -1467,5 +1897,19 @@ td {
         margin-left: 50% !important;
     }
 
+    
+    .editForm   ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 110px !important;
+        border: 1px solid rgb(227, 226, 226);
+        width: 250px !important;
+    }
+    .editForm ::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+        width: 250px !important;
+    }
+
+    ::ng-deep.p-paginator-page,  ::ng-deep.p-paginator-next,  ::ng-deep.p-paginator-last,  ::ng-deep.p-paginator-first,  ::ng-deep.p-paginator-prev
+    {
+        min-width: 20px !important;
+    }
 }
 

@@ -55,7 +55,7 @@
                 </p-floatlabel>
             </div>
             <div>
-                <input type="file" (change)="onFileChange($event)" name="file"/>
+                <input type="file" (change)="onFileChange($event)"/>
             </div>
             <div class="card flex justify-center" class="btns">
                 <p-button label="Submit" type="Submit" icon="pi pi-check" [disabled]="formDetails.invalid"/> <p-button label="Cancel" icon="pi pi-times" (onClick)="cancelTicket()"/>

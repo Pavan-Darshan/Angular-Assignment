@@ -169,8 +169,12 @@ export class FormComponent {
   onFileChange(event: any): void {
     const file = event.target.files[0];
 
-    if (file) {
+    if (file && file.type.startsWith('image/')) {
       this.convertToJson(file);
+    }
+    else {
+      alert('Please upload a valid image file.');
+      
     }
   }
 
