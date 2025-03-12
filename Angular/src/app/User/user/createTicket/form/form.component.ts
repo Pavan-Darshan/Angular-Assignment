@@ -39,7 +39,7 @@ export class FormComponent {
   constructor(private serverService :ServerService, 
             private date : DateTime, 
             private ticketUniqueID : TicketUniqueId,
-           private http : HttpClient){}
+           private messageService: MessageService,){}
    route :Router =inject(Router);
 
   ticketID : string='';
@@ -154,7 +154,8 @@ export class FormComponent {
 
     // Alert for Ticket created------------------------------------------------------->
     this.serverService.createTicket(this.newTicket,''+this.loggedUser?.userId) ?
-      alert(`Ticket Created Successfully. Ticket ID : ${this.newTicket.ticketId}`) : null;
+    this.ticketCreated(this.newTicket.ticketId)
+       : null;
       formDetails.reset();
     this.route.navigate(['/user/dashboard']);
   }
@@ -173,8 +174,7 @@ export class FormComponent {
       this.convertToJson(file);
     }
     else {
-      alert('Please upload a valid image file.');
-      
+      this.validImage();
     }
   }
 
@@ -186,4 +186,16 @@ export class FormComponent {
     };
     reader.readAsDataURL(file);
   }
+
+
+  ticketCreated(id : string){
+    this.messageService.add({ severity: 'success', summary: 'Success', 
+      detail: `Ticket Created Successfully. Ticket ID : ` +id, life: 3000 , key : 'tc' })
+  }
+
+  validImage(){
+    this.messageService.add({ severity: 'info', summary: 'Info', 
+      detail: 'Please upload a valid image file.', life: 3000 , key : 'tc' })
+  }
+
 }

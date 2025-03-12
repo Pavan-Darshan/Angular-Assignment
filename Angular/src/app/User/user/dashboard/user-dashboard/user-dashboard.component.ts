@@ -62,6 +62,42 @@ export class UserDashboardComponent {
     { label: 'Access Management', value: 'Access Management' },
   ];
 
+  Priority: Priority[] = [
+    { name: 'Low', code: 'Low' },
+    { name: 'MEDIUM', code: 'MEDIUM' },
+    { name: 'HIGH', code: 'HIGH' },
+    { name: 'CRITICAL', code: 'CRITICAL' },
+  ];
+
+  Assignee: any[] = [
+    { name: 'Admin-Pavan', id: '101' },
+    { name: 'Admin-Darshan', id: '102' },
+  ];
+
+  Status: any[] = [
+    { label: 'Open', id: 'Open' },
+    { label: 'InProgress', id: 'InProgress' },
+    { label: 'Waiting', id: 'Waiting' },
+    { label: 'Fixed', id: 'Fixed' },
+    { label: 'Closed', id: 'Closed' },
+  ];
+
+  
+  groupedIssues: any = {
+    open: [],
+    inProgress: [],
+    waiting: [],
+    fixed: [],
+    closed: [],
+  };
+
+  open: any[] = [];
+  inProgress: any[] = [];
+  waiting: any[] = [];
+  fixed: any[] = [];
+  closed: any[] = [];
+
+
   ngOnInit() {
     this.featchIssueData();
   }
@@ -106,19 +142,6 @@ export class UserDashboardComponent {
 
   // splitting the issues status to array-------------->
 
-  groupedIssues: any = {
-    open: [],
-    inProgress: [],
-    waiting: [],
-    fixed: [],
-    closed: [],
-  };
-
-  open: any[] = [];
-  inProgress: any[] = [];
-  waiting: any[] = [];
-  fixed: any[] = [];
-  closed: any[] = [];
 
   groupIssuesByStatus() {
     this.open = this.featchedIssueList.filter(
@@ -136,6 +159,12 @@ export class UserDashboardComponent {
     this.closed = this.featchedIssueList.filter(
       (issue) => issue.statusId === 'Closed'
     );
+
+    this.open.reverse();
+    this.inProgress.reverse();
+    this.waiting.reverse();
+    this.fixed.reverse();
+    this.closed.reverse();
 
     this.loadOpen();
     this.loadinProgress();
@@ -210,7 +239,7 @@ export class UserDashboardComponent {
     plainText = div.textContent || div.innerText || '';
 
     if (plainText === '' || plainText.trim().length === 0) {
-      alert('Message is empty...!');
+      this.messageEmpty();
     } else {
       //Adding comment-------------------------------->
       viewIssueDetails.comment?.unshift({
@@ -225,25 +254,6 @@ export class UserDashboardComponent {
     }
   }
 
-  Priority: Priority[] = [
-    { name: 'Low', code: 'Low' },
-    { name: 'MEDIUM', code: 'MEDIUM' },
-    { name: 'HIGH', code: 'HIGH' },
-    { name: 'CRITICAL', code: 'CRITICAL' },
-  ];
-
-  Assignee: any[] = [
-    { name: 'Admin-Pavan', id: '101' },
-    { name: 'Admin-Darshan', id: '102' },
-  ];
-
-  Status: any[] = [
-    { label: 'Open', id: 'Open' },
-    { label: 'InProgress', id: 'InProgress' },
-    { label: 'Waiting', id: 'Waiting' },
-    { label: 'Fixed', id: 'Fixed' },
-    { label: 'Closed', id: 'Closed' },
-  ];
 
   // Comment window is opened ------------------------------------->
   onEdit(user: any) {
@@ -263,8 +273,8 @@ export class UserDashboardComponent {
     this.editUserData.lastModifiedDateTime = this.date.getCurrentTime();
     //server
     this.serverService.onUpdate(this.editUserData.dataBaseId, this.editUserData)
-      ? alert('Updated Successfully...')
-      : alert('Not Updated...!');
+      ? this.updateSuccess()
+      : this.notUpdate();
     this.editDisplay = false;
     this.editUserData = '';
     this.featchIssueData();
@@ -378,11 +388,15 @@ export class UserDashboardComponent {
   // download File--------------------------------------------->
 
   downloadImage(Issue: Ticket) {
-    const base64Image = '' + Issue.imageData;
-    const a = document.createElement('a');
-    a.href = base64Image;
-    a.download = 'image.png';
-    a.click();
+    if (Issue.imageData === '' || Issue.imageData === undefined) {
+      this.noFile();
+    } else {
+      const base64Image = '' + Issue.imageData;
+      const a = document.createElement('a');
+      a.href = base64Image;
+      a.download = 'image.png';
+      a.click();
+    }
   }
 
   // file view------------------------------------------>
@@ -393,5 +407,46 @@ export class UserDashboardComponent {
     img.onload = () => {
       document.querySelector('.image')?.appendChild(img);
     };
+  }
+
+ 
+
+  noFile() {
+    this.messageService.add({
+      severity: 'danger',
+      summary: 'Error',
+      detail: "File Doesn't Exist To Download.....",
+      life: 3000,
+      key : 'tc'
+    });
+  }
+
+  messageEmpty() {
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Warn',
+      detail: 'Message Is Empty.....',
+      life: 3000,
+      key : 'tc'
+    });
+  }
+
+  updateSuccess() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Updated Successfully.....',
+      life: 3000,
+      key : 'tc'
+    });
+  }
+  notUpdate() {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Info',
+      detail: 'Not Update.....!',
+      life: 3000,
+      key : 'tc'  
+    });
   }
 }

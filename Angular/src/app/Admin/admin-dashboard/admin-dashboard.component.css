@@ -3,21 +3,25 @@
     height: 75vh;
     display: grid;
     grid-template-columns: auto auto;
-
 }
+
 .compLeft{ 
     width: 100%;
     height: 100%;
-    border-right: 5px solid white;
-    
-
 }
 
 .compRight{
     width: 100%;
     height: 100%;
-  
-   
+}
+
+.chartTitle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    color: #37b136;
 }
 
 .compLeft .p-chart {
@@ -29,9 +33,7 @@
     height: 35vh;
     width: 100%;
 }
-.compRight>div:first-child{
-    border-bottom: 5px solid white;
-}
+
 
 .lineCard{
     width: 100%;
@@ -42,13 +44,65 @@
     height: 50%;
     display: flex;
 }
+.month{
+    width: 100%;
+    height: 40px;
+   
+}
+.month .p-selectbutton{
+    width: 170px !important;
+    height: 25px !important;
+    margin-top: 5px;
+    margin-left: 10px;
+
+   
+}
+::ng-deep.p-togglebutton-label{
+    font-size: 12px !important;
+
+}
+
+::ng-deep .barChart>div{
+
+    margin-left: 1vw!important;
+
+
+ 
+}
+.month select{
+    border-radius: 5px;
+    background-color: #f1f5f9;
+    border: none;
+    height: 25px;
+}
+::ng-deep .lineChart>div{
+    margin-left: 10px;
+    width: 45vw !important;
+    height: 240px !important;
+}
+.spinner{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+}
+.spinner ::ng-deep.p-progressspinner{
+    z-index: 111 !important;
+    width: 100px !important;
+    height: 100px !important;
+}
 
 @media only screen and (max-width: 1025px) {
 
     ::ng-deep .pieChart>div{
         margin-left: 10px;
         width: 240px !important;
-        height: 300px !important;
+        height: 200px !important;
     
       
     }
@@ -56,15 +110,20 @@
     ::ng-deep .doughnut>div{
         margin-left: 10px;
         width: 240px !important;
-        height: 300px !important;
+        height: 200px !important;
     }
 
     ::ng-deep .lineChart>div{
         margin-left: 10px;
         width: 500px !important;
-        height: 300px !important;
+        height: 200px !important;
+    }
+    ::ng-deep .barChart>div{ 
+        height: 440px !important;
+      
     }
 }
+
 @media only screen and (max-width: 769px) {
     .compRight>div:first-child{
         border:none;
@@ -101,7 +160,7 @@
         display: block;
     }
     ::ng-deep .lineChart>div{
-        margin-top: 120px;
+        margin-top: 10px;
         margin-left: 10px;
         width: 740px !important;
         height: 360px !important;
@@ -109,9 +168,18 @@
         padding-bottom: 10px;
       
     }
+    .lineCard .chartTitle{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        color: #37b136;
+        margin-top: 160px !important;
+    }
     ::ng-deep .barChart>div{
         margin-top: 10px;
-        margin-left: 10px;
+        margin-left: 10px !important;
         width: 740px  !important;
         height: 360px !important;
         border-bottom: 1px solid rgb(1, 235, 247);
@@ -119,23 +187,33 @@
       
     }
     ::ng-deep .pieChart>div{
-        margin-top: 30px;
+        margin-top: 70px;
         margin-left: 20px;
         width: 740px !important;
         height: 360px !important;
         border-bottom: 1px solid rgb(1, 235, 247);
-        padding-bottom: 20px;
+        padding-bottom: 50px;
       
+    }
+    .lineCard1 .chartTitle{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        color: #37b136;
+       margin-top: -30px;
     }
     ::ng-deep .doughnut>div{
         margin-top: 30px;
         margin-left: 20px;
         width: 740px !important;
         height: 360px !important;
-        padding-bottom: 30px;
+        padding-bottom: 50px;
     }
 
 }
+
 @media only screen and (max-width: 426px) {
     .container {
         width: 100vw;
@@ -164,14 +242,32 @@
         height: 635px;
         display: block;
     }
+    .chartTitle{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        color: #37b136;
+       margin-top: 12px !important;
+    }
     ::ng-deep .lineChart>div{
-        margin-top: 50px;
+        margin-top: 20px;
         margin-left: 10px;
         width: 400px !important;
         height: 300px !important;
         border-bottom: 1px solid rgb(1, 235, 247);
         padding-bottom: 20px;
       
+    }
+    .lineCard .chartTitle{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        color: #37b136;
+        margin-top: 85px !important;
     }
     ::ng-deep .barChart>div{
         margin-top: 10px;
@@ -182,21 +278,31 @@
         padding-bottom: 20px;
       
     }
+
+    .lineCard1 .chartTitle{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        color: #37b136;
+       margin-top: -32px !important;
+    }
     ::ng-deep .pieChart>div{
-        margin-top: -40px;
+        margin-top: 0px;
         margin-left: 20px;
         width: 400px !important;
         height: 300px !important;
         border-bottom: 1px solid rgb(1, 235, 247);
-        padding-bottom: 20px;
+        padding-bottom: 50px;
       
     }
     ::ng-deep .doughnut>div{
-        margin-top: 10px;
+        margin-top: 40px;
         margin-left: 20px;
         width: 400px !important;
         height: 300px !important;
-        padding-bottom: 30px;
+        padding-bottom: 60px;
       
     }
 
@@ -205,7 +311,7 @@
 @media only screen and (max-width: 376px) {
 
     ::ng-deep .lineChart>div{
-        margin-top: 50px;
+        margin-top: 20px;
         margin-left: 10px;
         width: 345px !important;
         height: 300px !important;
@@ -219,23 +325,24 @@
       
     }
     ::ng-deep .pieChart>div{
-        margin-top: -40px;
+        margin-top: 20px;
         margin-left: 20px;
         width: 345px !important;
         height: 300px !important;
       
     }
     ::ng-deep .doughnut>div{
-        margin-top: 15px;
+        margin-top: 20px;
         margin-left: 20px;
         width: 345px !important;
         height: 300px !important;
     }
 }
+
 @media only screen and (max-width: 325px) {
 
     ::ng-deep .lineChart>div{
-        margin-top: 50px;
+        margin-top: 20px;
         margin-left: 10px;
         width: 280px !important;
         height: 300px !important;
@@ -248,7 +355,7 @@
       
     }
     ::ng-deep .pieChart>div{
-        margin-top: -30px;
+        margin-top: 10px;
         margin-left: 20px;
         width: 280px !important;
         height: 300px !important;

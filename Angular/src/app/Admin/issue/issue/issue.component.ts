@@ -4,7 +4,7 @@ import { ServerService } from '../../../Services/service/server.service';
 import { map } from 'rxjs';
 import { User } from '../../../Model/loginUser';
 import { DateTime } from '../../../Model/DateTime';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
 import { SharedService } from '../../../Services/shared.service';
 
@@ -23,11 +23,12 @@ interface Priority {
   standalone : false,
 })
 export class IssueComponent implements OnInit,OnChanges{
-  
+   
 
   constructor(
     private serverService : ServerService, private date : DateTime, 
-    private messageService: MessageService,  private sharedService :SharedService){}
+    private messageService: MessageService,  private sharedService :SharedService,
+    private confirmationService: ConfirmationService){}
   
   
 
@@ -63,20 +64,42 @@ export class IssueComponent implements OnInit,OnChanges{
   checkStatus : string ='';
   checkAssignee : string ='';
 
-  categories = [
-    { label: 'Hardware', value: 'Hardware' },
-    { label: 'Software', value: 'Software' },
-    { label: 'Access Management', value: 'Access Management' }
-  ];
 
-  ngOnInit(){
-    this.featchIssueData ();
+categories = [
+  { label: 'Hardware', value: 'Hardware' },
+  { label: 'Software', value: 'Software' },
+  { label: 'Access Management', value: 'Access Management' }
+];
 
-   
-  }
-  ngOnChanges(){
-    this.featchIssueData ();
-  }
+Priority : Priority[]= [
+  { name: 'Low', code: 'LOW' },
+  { name: 'MEDIUM', code: 'MEDIUM' },
+  { name: 'HIGH', code: 'HIGH' },
+  { name: 'CRITICAL', code: 'CRITICAL' }
+];
+
+Assignee : any[] = [
+  {name: 'Admin-Pavan',id :'101'},
+  {name : 'Admin-Darshan',id : '102'}
+]
+
+Status : any[] = [
+  { label: 'Open',id :'Open'},
+  {label: 'InProgress',id :'InProgress'},
+  {label: 'Waiting',id :'Waiting'},
+  {label: 'Fixed',id :'Fixed'},
+  {label: 'Closed',id :'Closed'}
+  
+]
+
+ngOnInit(){
+  this.featchIssueData ();
+
+  
+}
+ngOnChanges(){
+  this.featchIssueData ();
+}
 
 
  
@@ -112,15 +135,9 @@ export class IssueComponent implements OnInit,OnChanges{
         setTimeout(()=>{
           this.loading=false
         },2000)
-
-        
         this.filteredIssues = [...this.featchedIssueList]; // copying data to filter in table list
         this.groupIssuesByStatus(); // type of status
-  
-        this.sharedService.updateData(this.featchedIssueList);
     })
-    
-
   }
 
 
@@ -148,6 +165,12 @@ export class IssueComponent implements OnInit,OnChanges{
     this.waiting = this.featchedIssueList.filter(issue => issue.statusId === 'Waiting');
     this.fixed = this.featchedIssueList.filter(issue => issue.statusId === 'Fixed');
     this.closed = this.featchedIssueList.filter(issue => issue.statusId === 'Closed');
+    this.open.reverse();
+    this.inProgress.reverse();
+    this.waiting.reverse();
+    this.fixed.reverse();
+    this.closed.reverse();
+    
     this.loadOpen();
     this.loadinProgress();
     this.loadwaiting();
@@ -219,7 +242,7 @@ export class IssueComponent implements OnInit,OnChanges{
     plainText = div.textContent || div.innerText || '';
  
     if(plainText === '' || plainText.trim().length === 0) {
-      alert("Message is empty...!");
+      this.messageEmpty();
     } 
    
     else{
@@ -238,42 +261,21 @@ export class IssueComponent implements OnInit,OnChanges{
 
  
 
-// Deletre User-------------------------------------------->
+// Deletre Issue-------------------------------------------->
   onDeleteUser(user : User){
-    console.log(user.lastModifiedDateTime?.slice(0,11));
-    let date =user.lastModifiedDateTime
-     let d = new Date(`${date}`)
-     console.log(d.valueOf())
-
-    confirm('Do you want to delete ...?')?
-            ((this.serverService.onDeleteUserIssue(""+user.dataBaseId).subscribe(()=>{})) ? 
-            alert("User ID : "+user.userId+" is deleted"):alert("User ID : "+user.userId+" is not deleted"))
-            :
-            null
+    const userNew = user;
+  this.confirmationService.confirm({
+    accept: ()=>{
+      this.serverService.onDeleteUserIssue(""+user.dataBaseId).subscribe(()=>{
+        this.deletedIssue(userNew);
+        this.editDisplay=false;
+      })
+    },
+    reject : ()=>{
+      this.editDisplay=true;
+    }
+  })
   }
-
-
-  
-  Priority : Priority[]= [
-    { name: 'Low', code: 'LOW' },
-    { name: 'MEDIUM', code: 'MEDIUM' },
-    { name: 'HIGH', code: 'HIGH' },
-    { name: 'CRITICAL', code: 'CRITICAL' }
-  ];
-
-  Assignee : any[] = [
-    {name: 'Admin-Pavan',id :'101'},
-    {name : 'Admin-Darshan',id : '102'}
-  ]
-
-  Status : any[] = [
-    { label: 'Open',id :'Open'},
-    {label: 'InProgress',id :'InProgress'},
-    {label: 'Waiting',id :'Waiting'},
-    {label: 'Fixed',id :'Fixed'},
-    {label: 'Closed',id :'Closed'}
-    
-  ]
 
   onEdit(user : any){
 
@@ -308,8 +310,8 @@ export class IssueComponent implements OnInit,OnChanges{
 
     this.editUserData.lastModifiedDateTime = this.date.getCurrentTime();
 
-   this.serverService.onUpdate(this.editUserData.dataBaseId, this.editUserData).subscribe( ()=> this.featchIssueData()) ? 
-   null:alert("Not Updated...!")
+   this.serverService.onUpdate(this.editUserData.dataBaseId, this.editUserData).subscribe( ()=>{ this.featchIssueData(); this.updateSuccess(); }) ? 
+   null:this.notUpdate()
 
   // checking for toast message-------------------------->
    if(this.checkePriority !=   this.editUserData.priorityId )
@@ -406,11 +408,18 @@ resetFilter(){
 // download File--------------------------------------------->
 
 downloadImage(Issue : Ticket ) {
+
+  if(Issue.imageData === '' || Issue.imageData === undefined)
+  {
+    this.noFile();
+  }
+  else{
   const base64Image = ''+Issue.imageData;
   const a = document.createElement('a');
   a.href = base64Image;
   a.download = 'image.png';
   a.click();
+  }
 }
   
 // file view------------------------------------------>
@@ -423,6 +432,33 @@ fileView(issue : any){
   };
 
 }
+
+// Download ------------------------------------------->
+
+noFile(){
+  this.messageService.add({ severity: 'info', summary: 'Info', 
+    detail: "File Doesn't Exist To Download.....", life: 3000 })
+}
+
+messageEmpty(){
+  this.messageService.add({ severity: 'info', summary: 'Info', 
+    detail: "Message Is Empty.....", life: 3000 })
+}
+
+updateSuccess(){
+  this.messageService.add({ severity: 'info', summary: 'Info', 
+    detail: "Updated Successfully.....", life: 3000 })
+}
+notUpdate(){
+  this.messageService.add({ severity: 'info', summary: 'Info', 
+    detail: "Not Update.....!", life: 3000 })
+}
+deletedIssue(user : User){
+  this.messageService.add({ severity: 'info', summary: 'Info', 
+    detail: "User ID : "+user.userId+" is deleted", life: 3000 })
+
+}
+
 }
 
 

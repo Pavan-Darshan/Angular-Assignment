@@ -2,7 +2,7 @@ import { Component, inject, ViewChild } from '@angular/core';
 import { Drawer } from 'primeng/drawer';
 import { ServerService } from '../../../../Services/service/server.service';
 import { User } from '../../../../Model/loginUser';
-import { MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../../Services/login/auth.service';
 import { SharedService } from '../../../../Services/shared.service';
@@ -17,7 +17,10 @@ import { map } from 'rxjs';
 })
 export class UserHeaderComponent {
   
-  constructor(private messageService: MessageService, private authService : AuthService , private sharedservice :SharedService) {}
+  constructor(
+    private messageService: MessageService,
+    private authService : AuthService ,
+    private confirmationService: ConfirmationService) {}
   
   items: MenuItem[] | undefined;
   differenceCount :number =0;
@@ -25,7 +28,11 @@ export class UserHeaderComponent {
   userRepoted :Ticket []= [];
   commentDetails : any[]=[];
   notificationData : any []=[];
-  featchedIssueList :any[] =[]
+  featchedIssueList :any[] =[];
+
+  comment : any[]=[];
+  comments :any[] =[];
+
     
   checked: boolean = false;
   visible: boolean = false;
@@ -34,25 +41,25 @@ export class UserHeaderComponent {
   @ViewChild('drawerRef') drawerRef!: Drawer;
 
   loggedUser?: User;
-    serverService :ServerService = inject(ServerService);
-    firstLetter:string='';
-    themeColor : boolean = false;
-    passwordView =false;
+  serverService :ServerService = inject(ServerService);
+  firstLetter:string='';
+  themeColor : boolean = false;
+  passwordView =false;
   
   
-    ngOnInit(){
-      this.loggedUser=this.serverService.loggedUser[0];
-      this.firstLetter=this.loggedUser.userName.slice(0,1);
-      if(this.loggedUser.theme)
-      {
-      
-        this.toggleDarkMode();
-        this.themeColor = true;
-      }
-
-      this.featchIssueData();
-  
+  ngOnInit(){
+    this.loggedUser=this.serverService.loggedUser[0];
+    this.firstLetter=this.loggedUser.userName.slice(0,1);
+    if(this.loggedUser.theme)
+    {
+    
+      this.toggleDarkMode();
+      this.themeColor = true;
     }
+
+    this.featchIssueData();
+
+  }
   closeCallback(e :any): void {
       this.drawerRef.close(e);
   }
@@ -65,9 +72,23 @@ export class UserHeaderComponent {
     
   }
   logOut(){
-    this.serverService.onThemeChange(""+this.loggedUser?.dataBaseId,this.themeColor).subscribe(()=>{
-      this.serverService.loggedUser=[];
-    this.authService.isLogged=false});
+
+    this.confirmationService.confirm({
+      accept: ()=>{
+        this.serverService.onThemeChange(""+this.loggedUser?.dataBaseId,this.themeColor).subscribe(()=>{
+          this.serverService.loggedUser=[];
+        this.authService.isLogged=false});
+            
+        },
+       
+      reject : ()=>{
+        null;
+      }
+    })
+
+
+
+ 
   }
 
 
@@ -91,16 +112,16 @@ export class UserHeaderComponent {
   }
 
   passwordNotMatch(){
-    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'New Password and Confirm Password are not matched...', life: 3000 });
+    this.messageService.add({ severity: 'danger', summary: 'Error', detail: 'New Password and Confirm Password are not matched...', life: 3000 });
 
   }
   currentPasswordNotMatch(){
-    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'You entered wrong user password', life: 3000 });
+    this.messageService.add({ severity: 'danger', summary: 'error', detail: 'You entered wrong user password', life: 3000 });
 
   }
 
   successReset(){
-    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your Password is successfully updated.... ', life: 3000 });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Your Password is successfully updated.... ', life: 3000 });
     this.passwordView = false;
   }
 
@@ -110,50 +131,44 @@ export class UserHeaderComponent {
   }
 
 
-
-
-
-
-   // Featching issue List --------------------->
-    featchIssueData(){
-      this.serverService.featchIssueList()
-      .pipe(map((response)=>
-        {
-      
-        let data :Ticket [] = [];
-        
-        for(let key in response){
-          if(response.hasOwnProperty(key))
-            data.push({...response[key],dataBaseId:key})
-        }
-        return data;
-      }))
-      .subscribe((res)=>{
-          this.featchedIssueList=res;
-      
-          
-          setInterval(()=>{
-            this.userIssueOnly();
-          
-          },70000)
-       
+  // Featching issue List --------------------->
+  featchIssueData(){
+    this.serverService.featchIssueList()
+    .pipe(map((response)=>
+      {
     
-      })
+      let data :Ticket [] = [];
       
-  
-    }
-  
-    userIssueOnly(){
-      
-      this.userRepoted = this.featchedIssueList.filter((issue)=>(
-        this.serverService.loggedUser[0].userId === issue.reportedId));
-
-        this.commentNotification();
+      for(let key in response){
+        if(response.hasOwnProperty(key))
+          data.push({...response[key],dataBaseId:key})
+      }
+      return data;
+    }))
+    .subscribe((res)=>{
+        this.featchedIssueList=res;
+    
         
-    }
+        setInterval(()=>{
+          this.userIssueOnly();
+        
+        },70000)
+      
+  
+    })
+    
 
-  comment : any[]=[];
-  comments :any[] =[];
+  }
+
+  userIssueOnly(){
+    
+    this.userRepoted = this.featchedIssueList.filter((issue)=>(
+      this.serverService.loggedUser[0].userId === issue.reportedId));
+
+      this.commentNotification();
+      
+  }
+
 
   commentNotification(){
     this.userRepoted.forEach((data)=>{

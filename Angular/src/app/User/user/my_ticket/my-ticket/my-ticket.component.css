@@ -18,13 +18,6 @@
 
 
 
-.container{
-    width: 100%;
-    height: 93%;   
-    margin-top: 0.5%;
-
-}
-
 
 
 
@@ -310,15 +303,7 @@ td {
 
 
 
-@media only screen and (max-width: 769px) {
-    
-
-}
-
-@media only screen and (max-width: 480px) {
-   
-
-}
+/* edit form */
 
 .main{
     width: 100%;
@@ -331,19 +316,7 @@ td {
 }
 
     
-.container{
-    width: 40%;  
-    height: 95%;
-    background-color: white;
-    border: 1px solid black;
-    box-shadow: 0 0 5px 1px rgb(47, 47, 48);
-    border-radius: 20px;
-    position: absolute;
-    left: 30%;
-    top: 2%;
-    z-index: 1;
 
-}
 .container>div{
     width: 100%;
    padding: 3%;
@@ -394,34 +367,104 @@ td {
     width: 100%;
     display: flex;
     gap: 10px;
- 
 }
 
 .timeDetails p{
     width: 50%;
-   border: 1px solid rgb(162, 157, 157);
+    border: 1px solid rgb(203, 202, 202) !important;
    padding: 5px;
    border-radius: 5px;
    font-size: 13px;
 }
 
+.main{
+    width: 100%;
+    height: 110vh;
+   position: fixed;
+   left: 0;
+   top: -3%;
+   background-color: rgba(0, 0, 0, 0.3);
+   
+}
 
+
+.container{
+    width: 40%;  
+    height: 85%;
+    border: 1px solid black;
+    box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+    border-radius: 20px;
+    position: absolute;
+    left: 30%;
+    top: 6%;
+    z-index: 1; 
+
+}
+.container>div{
+    width: 100%;
+   padding: 3%;
+
+}
+.heading{
+   
+   height: 60px;
+   display: flex;
+    
+}
+.heading>div:first-child{
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.heading>div:last-child{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.heading p{
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+}
+/* ::ng-deep.p-button{
+    background-color: rgb(74, 73, 73) !important;
+    color: white;
+    width: 20%;
+    margin-left: 20px;
+    height: 10%;
+} */
+.priority .p-select,.category .p-select,.subCategory .p-select,.subject input,.description textarea{
+    width: 100%;
+
+}
+.btns{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+
+    
+}
+.btns ::ng-deep.p-button{
+    width: 50%;
+    height:100%;
+    margin-left: 25%;
+   
+}
 @media only screen and (max-width: 1440px) {
 
 
     .container{
-        width: 70%;  
-        height: 80%;
-      
+        width: 50%;  
+        height: 73%;
         border: 1px solid black;
         box-shadow: 0 0 5px 1px rgb(47, 47, 48);
         border-radius: 20px;
         position: absolute;
-        left: 15%;
-        top: 8%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        left: 25%;
+        top: 12% !important;
+        
     
     }
 }
@@ -430,58 +473,14 @@ td {
 
 
     .container{
-        width: 80%;  
-        height: 70%;
-      
+        width: 58%;  
+        height: 85% !important;
         border: 1px solid black;
         box-shadow: 0 0 5px 1px rgb(47, 47, 48);
         border-radius: 20px;
         position: absolute;
-        left: 10%;
-        top: 8%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    
-    }
-}
-
-@media only screen and (max-width: 768px) {
-
-
-    .container{
-        width: 90%;  
-        height: 65%;
-     
-        border: 1px solid black;
-        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
-        border-radius: 20px;
-        position: absolute;
-        left: 5%;
-        top: 20%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        
-    
-    }
-}
-
-@media only screen and (max-width: 426px) {
-
-
-    .container{
-        width: 90%;  
-        height: 65%;
-        border: 1px solid black;
-        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
-        border-radius: 20px;
-        position: absolute;
-        left: 5%;
-        top: 8%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        left: 21%;
+        top: 6% !important;
         
     
     }
@@ -496,13 +495,86 @@ td {
         margin-left: 15%;
        
     }
-    /* .priority {
-        background-color: red;
-        height: 50px;
-    } */
-    .p-select {
-        height: 60px !important;
+
+    .container>div{
+        width: 100%;
+       padding: 2%;
+    
     }
+}
+
+@media only screen and (max-width: 768px) {
+
+
+    .container{
+        width: 70%;  
+        height: 81% !important;
+        background-color: white;
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
+        position: absolute;
+        left: 15%;
+        top: 6%;
+        
+    
+    }
+    .timeDetails p{
+        width: 50%;
+        border: 1px solid rgb(203, 202, 202) !important;
+       padding: 5px;
+       border-radius: 5px;
+       font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+
+
+    .container{
+        width: 90%;  
+        height: 86% !important;
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
+        position: absolute;
+        left: 5%;
+        top: 8%;
+        
+    
+    }
+    .container>div{
+        width: 100%;
+       padding: 2.5%;
+    
+    }
+    .heading p{
+        font-size: 18px;
+        font-weight: bold;
+        color: red;
+    }
+    .btns ::ng-deep.p-button{
+        width: 60%;
+        height:100%;
+        margin-left: 15%;
+       
+    }
+
+    .timeDetails{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .timeDetails p{
+        width: 100%;
+       border: 1px solid rgb(203, 202, 202) !important;
+       padding: 5px;
+       border-radius: 5px;
+       font-size: 12px;
+       padding: 10px !important;
+    }
+  
 }
 
 @media only screen and (max-width: 376px) {
@@ -510,17 +582,19 @@ td {
 
     .container{
         width: 90%;  
-        height: 62%;
+        height: 87% !important;
         border: 1px solid black;
         box-shadow: 0 0 5px 1px rgb(47, 47, 48);
         border-radius: 20px;
         position: absolute;
         left: 5%;
-        top: 8%;
-         display: flex;
-        flex-direction: column;
-        gap: 10px;
+        top: 5% !important;
+        
     
+    }
+    .container>div{
+        width: 100%;
+       padding: 3%;
     }
     .heading p{
         font-size: 18px;
@@ -540,18 +614,17 @@ td {
 
     .container{
         width: 95%;  
-        height: 60%;
-        background-color: white;
+        height: 86% !important;
         border: 1px solid black;
         box-shadow: 0 0 5px 1px rgb(47, 47, 48);
         border-radius: 20px;
         position: absolute;
         left: 2.5%;
         top: 8%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    
+    }
+    .container>div{
+        width: 100%;
+       padding: 3.2%;
     }
     .heading p{
         font-size: 16px;

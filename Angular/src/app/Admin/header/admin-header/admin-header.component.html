@@ -15,8 +15,7 @@
             <p-overlaybadge value="{{differenceCount}}" >
                 <i class="pi pi-bell" (click)="notification.toggle($event)" style="font-size: 1.3rem"></i>
             </p-overlaybadge>
-            <!-- <p-button (click)="notification.toggle($event)" label="Emails" badge={{differenceCount}} label="Notifications" icon="pi pi-bell" /> -->
-
+            
 
             <p-overlayPanel #notification >
                 <div class="notification" [ngClass]="{notifiNull :(differenceCount===0)}">
@@ -122,7 +121,7 @@
  
         <ng-template #footer>
             <div class="logout">
-                <p-button  label="Logout" icon="pi pi-sign-out"  routerLink="/" [queryParams] ="{logout : true}" (onClick)="logOut()"/>
+                <p-button label="Logout" icon="pi pi-sign-out"   routerLink="/"  [queryParams] ="{logout : true}" (onClick)="logOut()"/>
             </div>
         </ng-template>
     </p-drawer>
@@ -161,6 +160,22 @@
 
 <div class="card flex justify-center">
     <p-toast />
+</div>
 
+<div class="card flex justify-center">
+    <p-toast />
+    <p-confirmdialog>
+        <ng-template #message let-message>
+            <div class="flex flex-col items-center w-full gap-4 border-b border-surface-200 dark:border-surface-700">
+                <i [ngClass]="message.icon" class="!text-6xl text-primary-500"></i>
+                <p>Do you want to LogOut...?</p>
+            </div>
+        </ng-template>
+    </p-confirmdialog>    
+</div>
+
+
+<div class="card flex justify-center">
+    <p-toast position="top-center" key="tc" />
 </div>
 

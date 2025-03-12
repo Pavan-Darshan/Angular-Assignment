@@ -18,6 +18,6 @@ export class DateTime{
         }).format(date);
 
         return DateTime
-            }
+    }
 
 }

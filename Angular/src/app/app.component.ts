@@ -13,9 +13,4 @@ export class AppComponent {
   title = 'Angular-Assignment';
 
   
-
-  ngOnInit(){
-   
-  }
-  
 }

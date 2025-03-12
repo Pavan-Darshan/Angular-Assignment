@@ -6,6 +6,7 @@ import { ServerService } from '../../../../Services/service/server.service';
 import { DateTime } from '../../../../Model/DateTime';
 import { Router } from '@angular/router';
 import { SharedService } from '../../../../Services/shared.service';
+import { MessageService } from 'primeng/api';
 
 
 interface Priority {
@@ -102,7 +103,8 @@ export class MyTicketComponent {
  
 
 
-  constructor(private serverService : ServerService, private date : DateTime, private shareservice : SharedService ){}
+  constructor(private serverService : ServerService, private date : DateTime, 
+      private messageService: MessageService ,private shareservice : SharedService ){}
   route :Router =inject(Router);
     
   ngOnInit(){
@@ -251,7 +253,7 @@ onSaveTicket(formDetails : NgForm){
   this.editUserData.lastModifiedDateTime = this.date.getCurrentTime();
 
   this.serverService.onUpdate(this.editUserData.dataBaseId, this.editUserData).subscribe( ()=> this.featchIssueData()) ? 
-  this.editUserData='':alert("Not Updated...!");
+  this.editUserData='':this.notUpdated();
 
 
   this.isEdit=false;
@@ -284,6 +286,11 @@ private convertToJson(file: File): void {
     this.imageData = reader.result as string;
   };
   reader.readAsDataURL(file);
+}
+
+notUpdated(){
+  this.messageService.add({ severity: 'warn', summary: 'Warn', 
+    detail: "Not Updated.....!", life: 3000, key : 'tc'})
 }
 
 }

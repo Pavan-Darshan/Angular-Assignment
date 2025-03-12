@@ -5,6 +5,7 @@ import { User } from '../../../Model/loginUser';
 
 import { DateTime } from '../../../Model/DateTime';
 import { UserUniqueId } from '../../../Model/user-Id-Create';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 @Component({
@@ -60,13 +61,11 @@ export class UserListComponent implements OnInit {
   
 
   constructor(private sereverService : ServerService, private date : DateTime ,
-     private userUniqueId : UserUniqueId){}
+     private userUniqueId : UserUniqueId,   private messageService: MessageService,
+     private confirmationService: ConfirmationService){}
 
   ngOnInit(){
-      
     this.feacthUserDetails();
-   
-      
   }
 
 
@@ -94,7 +93,7 @@ export class UserListComponent implements OnInit {
   onUserData(formdata : NgForm){
     
     if(this.emailValidation(formdata.value.emailAddress)){
-      alert("Eamil is already used.......");
+      this.emailAlready();
       this.addForm = true;
     this.isCreate = true; // Heading Changing
     this.isEdit = false ;
@@ -106,11 +105,12 @@ export class UserListComponent implements OnInit {
       createdDateTime : this.date.getCurrentTime(), lastModifiedDateTime : this.date.getCurrentTime(),
        password :'1111',userId : this.userUniqueId.generateUserId(), notification : 0};
     this.sereverService.onUserCreate(newUser).subscribe(()=>this.feacthUserDetails())?
-    alert("User created and User ID : "+newUser.userId):null;
+    this.userCreated(newUser):null;
     this.addForm = false;
     formdata.reset();
     }
   }
+
   onSelectUser(user : User){
     this.addForm = true;  // Heading Changing
     this.isCreate = false;
@@ -167,12 +167,21 @@ export class UserListComponent implements OnInit {
 
   onUserDelete(formdata : NgForm){
     let deleteUser = this.featchedUserList.find((user)=> user.emailAddress === formdata.value.emailAddress);
+   
 
-    confirm(`Do you want to delete "`+deleteUser.userName+`"`) ? 
-    this.sereverService.onDeleteUser(deleteUser.dataBaseId).subscribe(()=> this.feacthUserDetails()) : null;
-    this.addForm = false;
-    this.isCreate =false;
-    this.isEdit =false;    
+    this.confirmationService.confirm({
+      accept: ()=>{
+        this.sereverService.onDeleteUser(deleteUser.dataBaseId).subscribe(()=> this.feacthUserDetails());
+        
+        this.addForm = false;
+        this.isCreate =false;
+        this.isEdit =false;    
+      },
+      reject : ()=>{
+          null
+      }
+    })
+
   }
 
 
@@ -218,6 +227,19 @@ export class UserListComponent implements OnInit {
         return ((user.emailAddress?.toLowerCase().trim()) === (email.toLowerCase().trim()));
         
       })
+  }
+
+
+
+  emailAlready(){
+    this.messageService.add({ severity: 'info', summary: 'Info', 
+      detail: "Eamil is already used.......", life: 3000 , key : 'tc'})
+  }
+
+  
+  userCreated(user :User){
+    this.messageService.add({ severity: 'success', summary: 'Success', 
+      detail: "User created and User ID : "+user.userId, life: 3000 , key : 'tc' })
   }
   
 }

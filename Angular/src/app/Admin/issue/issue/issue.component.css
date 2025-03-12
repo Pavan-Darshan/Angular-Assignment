@@ -255,7 +255,7 @@ td {
 
 .kanbanContainer {
     width: 100%;
-    height: 63vh;
+    height: 68vh;
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -504,6 +504,13 @@ td {
     left: 1% !important;
   }
   
+
+  ::ng-deep.p-popover:after {
+    margin-left: 82% !important;
+  }
+
+
+
 /* comment window */
  .commentView{
     width: 100%;
@@ -519,12 +526,12 @@ td {
 .commentDetails{
     width: 90%;
     height: 96%;
-    background-color:white;
+    
    border-radius: 10px;
     position: absolute;
     top:2%;
     left: 5%;
-    color: black;
+   
 }
 .nav{
     width: 100%;
@@ -570,6 +577,7 @@ td {
     border: 1px solid black;
     border-radius: 10px;
     margin: 1%;
+    
 }
 .ticketHeader{
     width: 100%;
@@ -633,7 +641,7 @@ td {
 }
 ::ng-deep.p-editor .p-editor-content .ql-editor {
     height: 110px !important;
-    border: 1px solid black;
+    border: 1px solid rgb(227, 226, 226) !important;
 
 }
 
@@ -721,11 +729,14 @@ td {
     width: 180px;
     height: 100px;
     border: 1px solid rgb(166, 162, 162);
-   
+    border-radius: 10px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     
 }
 ::ng-deep .image img{
-    width: 50% !important;
+    width: 90% !important;
     height: 90% !important;
     border: 1px solid rgb(166, 162, 162);
 } 
@@ -744,6 +755,7 @@ td {
 }
 .viewCommentHead>p{
     font-size: 18px;
+    color: black !important;
 }
 .scrollComment{
     width: 100%;
@@ -1074,7 +1086,7 @@ td {
     .image{
         width: 180px;
         height: 100px;
-       
+       border-radius: 10px;
     }
 
     .messageCard>div:first-child>.p-avatar{
@@ -1139,7 +1151,7 @@ td {
         height: 22px; 
       }
       :host::ng-deep.p-datatable-tbody > tr > td {
-        padding: 10px !important;
+        padding: 5px !important;
       }
       ::ng-deep.p-paginator {
     
@@ -1153,70 +1165,6 @@ td {
         margin-top: 10px;
         width: 100%;
         height: 20%;
-    }
-    .commentView{
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        padding-bottom: 60px;
-        z-index: 10;
-        overflow-y: auto;
-    }
-
-    .commentDetails{
-        width: 90%;
-        height: auto;
-        background-color:white;
-       border-radius: 10px;
-        position: absolute;
-        top:5%;
-        left: 5%;
-        color: black;
-    }
-
-    :host::ng-deep.detailsContainerLeft{
-        width: 98%;
-        height: 578px;
-        display: grid;
-        grid-template-rows: 40% 60%;
-        padding: 10px;
-        border: 1px solid black;
-        border-radius: 10px;
-        margin: 1%;
-    }
-
-    .commentPost>div{
-        width: 80px;
-        height: 80%;
-        background-color: rgb(0, 0, 255);
-        display: flex;
-        justify-content:flex-start;
-        align-items: center;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 0;
-        color: white;
-    }
-
-    .detailsContainerRight{
-        width: 97%;
-   
-        margin: 1%;
-        border: 1px solid black;
-        border-radius: 10px;
-        margin-top:2.2%;
-        min-height: 100px;
-        max-height: 400px;
-        
-    }
-    .scrollComment{
-        width: 100%;
-        height: 400px;
-        overflow: auto;
-        padding-bottom: 50px;
     }
 
     ::ng-deep.nav{
@@ -1271,34 +1219,65 @@ td {
       
 
 /* comment view */
+.commentView{
+       overflow-y: auto;
+}
 
+.nav{
+    width: 100%;
+    height: 7%;
+    border : none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #D8DADC;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1111;
+}
 .commentDetails{
     width: 96%;
-    height: 96%;
+    height: auto;
     background-color:white;
    border-radius: 10px;
     position: absolute;
     top: 1% !important;;
     left: 2%;
     color: black;
+
 }
 .detailsContainer{
     width: 100%;
     height: 96%;
     display: flex;
     flex-direction: column;
-    
+    overflow: auto !important;
   
+}
+.ticketdetails{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+
 }
 .detailsContainerLeft{
     width: 98%;
-    height: 60%;
+    height: 570px;
     display: grid;
     grid-template-rows: 40% 60%;
     padding: 10px;
     border: 1px solid black;
     border-radius: 10px;
     margin: 1%;
+    
+}
+
+
+.description{
+   margin-top: 10px !important;
 }
 .detailsContainerRight{
     width: 98%;
@@ -1306,8 +1285,8 @@ td {
     margin: 1%;
     border: 1px solid black;
     border-radius: 10px;
-    overflow: hidden;
     margin-top:1%;
+    max-height: 400px;
 }
 .viewCommentHead{
     width: 100%;
@@ -1316,7 +1295,6 @@ td {
     display: flex;
     justify-content:center;
     align-items: center;
-    
 }
 .viewCommentHead>p{
     font-size: 18px;
@@ -1325,13 +1303,19 @@ td {
 .detailsCard p{
     font-size: 13px;
 }
-.ticketdetails p{
-    font-size: 14px;
+.scrollComment{
+    width: 100%;
+    height: 350px;
+    overflow: auto;
+    padding-bottom: 50px;
 }
 
-:host::ng-deep.p-editor .p-editor-content .ql-editor {
-    height: 85px !important;
+.message ::ng-deep.p-editor .p-editor-content .ql-editor {
+    height: 95px !important;
     
+}
+.nav{
+  
 }
 
 .messageCard{
@@ -1345,7 +1329,7 @@ td {
     background-color: rgb(0, 0, 255);
     color: white;
     z-index: 1;
-    margin-top: 80px;
+    margin-top: 155px;
 }
 .ImageContainer button{
     width: 80px;
@@ -1356,9 +1340,11 @@ td {
 }
 
 .image{
-    width: 180px;
-    height: 100px;
+    width: 160px;
+    height: 85px;
+    border-radius: 10px;
 }
+
    .ImageContainer{
         width: 100% !important; 
         height: 87% !important;
@@ -1376,7 +1362,7 @@ td {
     .image{
         width: 180px;
         height: 100px;
-       
+        border-radius: 10px;
     }
 
     .messageCard>div:first-child>.p-avatar{
@@ -1404,7 +1390,7 @@ td {
         width: 90%;
         height: auto;
         background-color: white;
-        color: black;
+        color: black; 
         margin: auto;
         border-radius: 10px;
         padding-bottom: 10px;
@@ -1438,7 +1424,7 @@ td {
        border: none;
        display: flex;
        flex-direction: column;
-       gap: 10px;
+       gap: 0 !important;
        margin-top: 10px;
 
     }
@@ -1449,11 +1435,18 @@ td {
         flex-direction: column;
         margin: auto;
         gap: 10px;
-        
-        
-        
     }
-    
+    /* .detailsContainerLeft{
+        width: 98%;
+        height: 97%;
+        display: grid;
+        grid-template-rows: 40% 60%;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: 1%;
+        padding-bottom: 10px !important;
+    } */
     .descriptionEdit{
         width: 95%;
         height: 30% !important;
@@ -1506,15 +1499,34 @@ td {
         
     } 
     
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 80px !important;
-        width: 362px !important;
+    .message ::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 95px !important;
+        width: 378px !important;
         margin-left: 0px !important;
+        border: 1px solid rgb(227, 226, 226) !important;
     }
     
 
-    ::ng-deep.p-editor .p-editor-toolbar.ql-snow {
-        width: 355px !important;
+    .message ::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+        width: 380px !important;
+    }
+    .commentPost{
+        margin-top: 70px !important;
+ 
+    }
+    .commentPost>div{
+        width: 80px;
+        height: 30px;
+        background-color: rgb(0, 0, 255);
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        margin-top: 0 !important;
+
+        
     }
     .btns{
         width: 100%;
@@ -1531,14 +1543,13 @@ td {
         left :1.5%;
         width: 97%;
         flex-wrap: nowrap;
-        gap: 0;
+
       }
       ::ng-deep.p-paginator-current {
         display: none !important;
       }
       .detailsContainerRight{
         width: 97%;
-   
         margin: 1%;
         border: 1px solid black;
         border-radius: 10px;
@@ -1546,6 +1557,29 @@ td {
         min-height: 100px;
         max-height: 400px;
         
+    }
+    .description{
+       
+        height: 120px !important;
+        overflow: auto;
+        white-space: nowrap;       
+        overflow:hidden;          
+        text-overflow: ellipsis;    
+        max-height: 100px;   
+    }
+    .ticketdetails{
+        gap: 10px;
+    }
+    .ticketdetails>div:first-child{
+      margin-top: 10px;
+      width: 100%;
+      height: 20%;
+  }
+    
+    .ticketdetails>div:first-child{
+        margin-top: 10px;
+        width: 100%;
+        height: 20%;
     }
     .scrollComment{
         width: 100%;
@@ -1694,8 +1728,6 @@ td {
     width: 150px  !important;
     height: 150px !important;
     border: 1px solid rgb(166, 162, 162);
-    
-    
 }
 .detailsCard>div>section{
     display: flex;
@@ -1746,14 +1778,6 @@ td {
 }
 
 
-::ng-deep.commentPost>div{
-    width: 80px !important;
-    height: 30px !important;
-    background-color: blue !important;
-    color: white;
-    z-index: 1;
-    
-}
 ::ng-deep.nav{
     width: 100%;
     height: 35px !important;
@@ -1779,7 +1803,7 @@ td {
 .commentHead{
     width: 100%;
     height: 8%;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .showComment{
     width: 100% !important;
@@ -1817,7 +1841,7 @@ td {
 
     .editForm   ::ng-deep.p-editor .p-editor-content .ql-editor {
         height: 110px !important;
-        border: 1px solid rgb(227, 226, 226);
+        border: 1px solid rgb(227, 226, 226) !important;
         width: 295px !important;
     }
     .editForm ::ng-deep.p-editor .p-editor-toolbar.ql-snow {
@@ -1827,17 +1851,23 @@ td {
 
 
 
-    :host::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 70px !important;
-        width: 310px !important;
+    .message::ng-deep.p-editor .p-editor-content .ql-editor {
+        height: 90px !important;
+        width: 332px !important;
         margin-left: 0px !important;
+        border: 1px solid rgb(227, 226, 226) !important;
     }
     .ticketHeader p{
         font-size: 13px;
     }
 
-    :host::ng-deep.p-editor .p-editor-toolbar.ql-snow {
-        width: 310px !important;
+
+    .commentPost{
+        margin-top: 90px !important;
+ 
+    }
+    .message::ng-deep.p-editor .p-editor-toolbar.ql-snow {
+        width: 332px !important;
     }
     .detailsMain>section>p{
         width: 100%;
@@ -1862,27 +1892,26 @@ td {
     {
         min-width: 38px !important;
     }
+    .commentHead{
+        width: 100%;
+        height: 8%;
+        margin-top: 30px;
+    }
    
 
 }
 
 @media only screen and (max-width: 321px) {
 
-    ::ng-deep.p-editor .p-editor-content .ql-editor {
+  
+    .message::ng-deep.p-editor .p-editor-content .ql-editor {
         height: 90px !important;
+        width: 279px !important;
+        margin-left: 0px !important;
+        border: 1px solid rgb(227, 226, 226) !important;
+    }
+    .message::ng-deep.p-editor .p-editor-toolbar.ql-snow {
         width: 280px !important;
-        margin-left: 0px !important;
-        
-        
-        
-    }
-    :host::ng-deep.p-editor .p-editor-content .ql-editor {
-        height: 70px !important;
-        width: 262px !important;
-        margin-left: 0px !important;
-    }
-    :host::ng-deep.p-editor .p-editor-toolbar.ql-snow {
-        width: 262px !important;
     }
     .editForm>p>i{
         margin-left: 56% !important;
@@ -1907,9 +1936,13 @@ td {
         width: 250px !important;
     }
 
-    ::ng-deep.p-paginator-page,  ::ng-deep.p-paginator-next,  ::ng-deep.p-paginator-last,  ::ng-deep.p-paginator-first,  ::ng-deep.p-paginator-prev
+    ::ng-deep.p-paginator-page,  ::ng-deep.p-paginator-next,  ::ng-deep.p-paginator-last,
+      ::ng-deep.p-paginator-first,  ::ng-deep.p-paginator-prev
     {
         min-width: 20px !important;
+    }
+    .ticketHeader>div:first-child p{
+        font-size: 16px !important;
     }
 }
 

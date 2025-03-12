@@ -14,8 +14,7 @@
     [totalRecords]="filteredIssues.length"
     [loading]=""
     [paginator]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-  >
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
     <ng-template #caption>
       <div class="flex justify-between" class="search">
         <p-iconField iconPosition="right">
@@ -209,9 +208,10 @@
   </p-table>
 </div>
 
-<div class="card flex justify-center">
-  <p-toast />
-</div>
+
+
+
+<!-- edit form -->
 
 <div class="main" *ngIf="isEdit">
   <form action="" (ngSubmit)="onSaveTicket(formDetails)" #formDetails="ngForm">
@@ -326,4 +326,9 @@
       </div>
     </div>
   </form>
+</div>
+
+
+<div class="card flex justify-center">
+  <p-toast position="top-center" key="tc"/>
 </div>

@@ -1,22 +1,55 @@
+
+
+<div class="card flex justify-center" class="month">
+    <p-selectbutton [options]="monthState" [(ngModel)]="value" optionLabel="label" optionValue="value" aria-labelledby="basic" />
+    <select [(ngModel)]="selectedYear" (change)="onYearChange()" class="form-control">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+</div>
+
+  
 <div class="container">
-    <div class="compLeft">
-        
-        <p-chart type="bar" [data]="barChart" [options]="options" height="70vh" width="50vw" class="barChart " />
+
+    <div class="compLeft" *ngIf="value ">
+        <div class="chartTitle"><p>Issue Status Month Wise</p></div>
+        <p-chart type="bar" [data]="barChart1" [options]="options1" height="70vh" width="48vw" class="barChart " />
        
     </div>
+    <div class="compLeft" *ngIf="!value">
+        <div class="chartTitle"><p>Issue Status Month Wise</p></div>
+        <p-chart type="bar" [data]="barChart2" [options]="options1" height="70vh" width="48vw" class="barChart " />
+       
+    </div>
+  
+
     <div class="compRight">
-        <div class="lineCard">
-            <p-chart class="lineChart" type="line" [data]="lineChart" [options]="options" height="35vh" width="45vw"/>
+        <div class="lineCard" *ngIf="value">
+            <div class="chartTitle"><p>Issue Category  Month Wise</p></div>
+            <p-chart class="lineChart" type="line" [data]="lineChart1" [options]="options" height="35vh" width="45vw"/>
+            
+        </div>
+        <div class="lineCard" *ngIf="!value">
+            <div class="chartTitle"><p>Issue Category  Month Wise</p></div>
+            <p-chart class="lineChart" type="line" [data]="lineChart2" [options]="options" height="35vh" width="45vw"/>
+            
         </div>
         <div class="lineCard1">
             
             <div>
                 <p-chart class="pieChart" type="pie" [data]="pieChart" [options]="" height="35vh" width="22vw"/>
+                <div class="chartTitle"><p>Total Issue Category</p></div>
             </div>
             <div>
                 <p-chart class="doughnut" type="doughnut" [data]="doughnutChart" [options]="" height="35vh" width="22vw"/>
+                <div class="chartTitle"><p>Total Issue Priority</p></div>
             </div>
         </div>
         
     </div>
+</div>
+<div class="card flex justify-center">
+    <p-toast position="top-center" key="tc" />
+</div>
+<div class="card flex justify-center" class="spinner" *ngIf="loadingScreen">
+    <p-progress-spinner strokeWidth="8" fill="transparent" animationDuration="1s"  />
 </div>

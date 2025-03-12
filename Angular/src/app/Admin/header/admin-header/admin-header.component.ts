@@ -1,13 +1,11 @@
-import {  AfterContentChecked, AfterViewChecked, Component, inject, OnDestroy, ViewChild } from '@angular/core';
+import { Component, inject, OnDestroy, ViewChild } from '@angular/core';
 import { Drawer } from 'primeng/drawer';
 import { User } from '../../../Model/loginUser';
 import { ServerService } from '../../../Services/service/server.service';
 import { MenuItem, MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../Services/login/auth.service';
 import { Ticket } from '../../../Model/Ticket';
-import { SharedService } from '../../../Services/shared.service';
 import { map } from 'rxjs';
 
 
@@ -19,31 +17,22 @@ import { map } from 'rxjs';
 })
 export class AdminHeaderComponent implements OnDestroy{
   
-  
-  items: MenuItem[] | undefined;
-  constructor(private router : Router, private messageService: MessageService,
-    private sharedService : SharedService){
- 
-  }
- 
-  ngOnDestroy(): void {
-    this.logOut();
-  }
- 
-  checked: boolean = false;
-  visible: boolean = false;
-  passwordView =false;
-  @ViewChild('drawerRef') drawerRef!: Drawer;
-  loggedUser?: User;
-  serverService :ServerService = inject(ServerService);
-  authService : AuthService = inject(AuthService);
-  firstLetter:string='';
-  themeColor : boolean =false;
-  notificationData : Ticket []=[];
-  differenceCount : number = 0;
-  receivedData: Ticket []=[];
-  currentCount :number =0;
+items: MenuItem[] | undefined;
+checked: boolean = false;
+visible: boolean = false;
+passwordView =false;
+@ViewChild('drawerRef') drawerRef!: Drawer;
+loggedUser?: User;
+serverService :ServerService = inject(ServerService);
+authService : AuthService = inject(AuthService);
+firstLetter:string='';
+themeColor : boolean =false;
+notificationData : Ticket []=[];
+differenceCount : number = 0;
+receivedData: Ticket []=[];
+currentCount :number =0;
 
+constructor( private messageService: MessageService){}
 
   
 ngOnInit(){
@@ -57,51 +46,52 @@ ngOnInit(){
       this.featchIssueData();
 }
 
-
-
-
-  closeCallback(e :any): void {
-      this.drawerRef.close(e);
-  }
-
-
-  toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    this.themeColor = !this.themeColor;
-    if(this.loggedUser?.userId === '101'){
-      this.serverService.onAdminSenior(this.themeColor)
-        .subscribe();
-    }
-    else
-      this.serverService.onAdmin102(this.themeColor).subscribe();
-
-
-  }
-  logOut(){
-    
-    if(this.loggedUser?.userId === '101'){
-      this.serverService.onAdminSenior(this.themeColor)
-        .subscribe(()=>{
-          this.serverService.loggedUser=[];
-          this.authService.isLogged=false});
-        
-    }
-    else
-      this.serverService.onAdmin102(this.themeColor).subscribe(()=>{
-        this.serverService.loggedUser=[];
-        this.authService.isLogged=false});
-  }
-
-
-  
-  
-    
-resetUserPassword(){
-
-this.passwordView =true
-  
+ngOnDestroy(): void {
+  this.logOut();
 }
 
+closeCallback(e :any): void {
+  this.drawerRef.close(e);
+}
+
+
+toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  this.themeColor = !this.themeColor;
+  if(this.loggedUser?.userId === '101'){
+    this.serverService.onAdminSenior(this.themeColor)
+      .subscribe();
+  }
+  else
+    this.serverService.onAdmin102(this.themeColor).subscribe();
+
+
+}
+
+logOut(){
+  
+  if(this.loggedUser?.userId === '101'){
+    this.serverService.onAdminSenior(this.themeColor)
+      .subscribe(()=>{
+        this.serverService.loggedUser=[];
+        this.authService.isLogged=false;
+        });
+    
+  }
+  else{
+    this.serverService.onAdmin102(this.themeColor).subscribe(()=>{
+      this.serverService.loggedUser=[];
+      this.authService.isLogged=false});
+    }
+}
+
+
+resetUserPassword(){
+  this.passwordView =true
+}
+
+
+// Password Reset-------------------------------------->
 passwordSet(data : NgForm){
   ( this.loggedUser?.password.toString() === data.value.currentPassword)?
     ((data.value.newPassword === data.value.confirmPassword)?
@@ -123,17 +113,18 @@ passwordSet(data : NgForm){
   data.reset();
 }
 
+// Toast Messages-------------------------------------->
 passwordNotMatch(){
-  this.messageService.add({ severity: 'info', summary: 'Info', detail: 'New Password and Confirm Password are not matched...', life: 3000 });
+  this.messageService.add({ severity: 'danger', summary: 'Error', detail: 'New Password and Confirm Password are not matched...', life: 3000 , key : 'tc' });
 
 }
 currentPasswordNotMatch(){
-  this.messageService.add({ severity: 'info', summary: 'Info', detail: 'You entered wrong user password', life: 3000 });
+  this.messageService.add({ severity: 'danger', summary: 'Error', detail: 'You entered wrong user password', life: 3000 ,key : 'tc' });
 
 }
 
 successReset(){
-  this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your Password is successfully updated.... ', life: 3000 });
+  this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Your Password is successfully updated.... ', life: 3000 , key : 'tc'});
   this.passwordView = false;
 }
 
@@ -145,7 +136,7 @@ cancelPasswordReset(data : NgForm){
 
 
   
-// Featching issue List --------------------->
+// Featching issue List ------------------------------->
 featchIssueData(){
   
   this.serverService.featchIssueList()
@@ -171,14 +162,9 @@ featchIssueData(){
   
 }
 
-// notification
+// notification---------------------------------------->
 notification(){
-  // this.loggedUser=this.serverService.loggedUser[0];
-  // this.sharedService.currentData.subscribe(data => {
-  //   this.receivedData = data;
-  // });
 
-  
   this.serverService.onGetNotificationAdminSenior().subscribe((count : number)=>{
     if (count  < this.receivedData?.length) {
       this.currentCount=this.receivedData.length;
@@ -187,23 +173,23 @@ notification(){
       this.receivedData=[];
   
     }
-
-    
   })
   this.featchIssueData();
-  
-
 }
 
   
-
+// clear notification---------------------------------->
 clearNotification(){
-
   this.notificationData=[]
   this.differenceCount=0;
   this.serverService.onAdminSeniorNotification(this.currentCount).subscribe(()=>{
-    console.log("sucess");
-    
+    this.notificationCleared();
   });
+}
+
+// Toast notification---------------------------------->
+notificationCleared(){
+  this.messageService.add({ severity: 'contrast', summary: 'Info', 
+    detail: "Notifications are cleared...", life: 3000 , key : 'tc' })
 }
 }

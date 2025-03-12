@@ -1,4 +1,4 @@
-.main-container{
+/* .main-container{
 
     width: 100%;
     height: 100vh;
@@ -165,5 +165,312 @@ button{
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+} */
+
+
+.container{
+    width: 100%;
+    height: 100vh;
+    /* display: grid;
+    grid-template-columns: 50% 50%; */
+    background-color: rgba(155, 158, 244, 0.4); 
+    background-image: url('/app/Images/background.png');
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-blend-mode:color-dodge;
+}
+
+.login{
+    width: 100%;
+    height: 100%;
+  
+ 
+}
+
+.logo-Container{
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0 ,0 , 0,0.1); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+img{
+    width: 80%;
+    height: 90%;
+  
+}
+.heading{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding-top: 5px;
+}
+h2{
+    color: rgb(166, 169, 227);
+}
+.heading p{
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+}
+.login_content{
+    width: 17%;
+    height: 48%;
+    position: absolute;
+    top: 38.5%;
+    left: 56%;
+    background-color: rgba(0 ,0 , 0,0.7);
+    
+}
+.details{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+   padding-top: 8%;
+ 
+}
+.details div{
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+.details div i{
+    font-size: 24px;
+    color: white;
+}
+input{
+    width: 80%;
+
+    height: 32px;
+    padding-left: 5px;
+    border-radius: 7px;
+}
+
+::ng-deep.p-button{
+    background-color: rgb(147, 167, 240) !important;
+    color: black !important;
+}
+
+.social{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
+    align-items: center;
+    
+    
+}
+.social i{
+    color:  rgb(147, 167, 240);
+    font-size: 32px;
+}
+
+.logo-Container1{
+    display: none !important;
+}
+
+@media only screen and (max-width: 1024px) {
+    img{
+        width: 90%;
+        height: 90%;
+      
+    }
+    .login_content{
+        width: 19%;
+        height: 48%;
+        position: absolute;
+        top: 38.5%;
+        left: 56.8%;
+        background-color: rgba(0 ,0 , 0,0.7);
+        
+    }
+    .details div{
+        width: 100%;
+        display: flex;
+        flex-direction: row; 
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    img{
+        width: 100%;
+        height: 90%;
+      
+    }
+    .login_content{
+        width: 21%;
+        height: 48%;
+        position: absolute;
+        top: 38.5%;
+        left: 57.5%;
+        background-color: rgba(0 ,0 , 0,0.7);
+        
+    }
+    h2{
+        font-size: 18px;
+    }
+    .heading p{
+        color: rgb(255, 255, 255);
+        font-size: 12px;
+    }
+    .social i{
+        color:  rgb(147, 167, 240);
+        font-size: 24px;
+    }
+    .details div i{
+        font-size: 20px;
+        color: white;
+    }
+
+    input{
+        width: 80%;
+        height: 28px;
+        padding-left: 5px;
+        border-radius: 7px;
+    }
+    .details div{
+        width: 100%;
+        display: flex;
+        flex-direction: row; 
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    
+    }
+    ::ng-deep.p-button{
+        background-color: rgb(147, 167, 240) !important;
+        color: black !important;
+        width: 80px !important;
+        height: 25px !important;
+        border: none !important;
+    }
+    
+}
+
+
+@media only screen and (max-width: 426px) {
+    .container{
+        width: 100%;
+        height: 100vh;
+        /* display: grid;
+        grid-template-columns: 50% 50%; */
+        background-color: rgba(155, 158, 244, 0.4); 
+        /* background-image: none; */
+        background-image: url('/app/Images/background.png');
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-blend-mode:exclusion;
+    }
+    .logo-Container{
+        display: none !important;
+    }
+    :host::ng-deep.logo-Container1{
+        width: 100%;
+        height: 100%;
+        /* background-color: rgba(0 ,0 , 0,0.1); */
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo-Container1 img{
+        width: 80% !important;
+        height: 80%;
+      
+    }
+
+    .login_content{
+        width: 72%;
+        height: 72%;
+        position: absolute;
+        top: 16%;
+        left: 14%;
+        background-color: rgba(0 ,0 , 0,0.5);
+        
+    }
+    input{
+        width: 75%;
+        height: 24px;
+        padding-left: 5px;
+        border-radius: 5px;
+    }
+
+    .details div i{
+        font-size: 16px;
+        color: white;
+    }
+    h2{
+        font-size: 16px;
+    }
+    .heading p{
+        color: rgb(255, 255, 255);
+        font-size: 12px;
+    }
+    .logo-Container1{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+    }
+    
+    h2{
+        font-size: 32px;
+    }
+    .heading p{
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+    }
+    .social i{
+        color:  rgb(147, 167, 240);
+        font-size: 36px;
+    }
+    .details div i{
+        font-size: 28px;
+        color: white;
+    }
+
+    input{
+        width: 80%;
+        height: 32px !important;
+        padding-left: 5px;
+        border-radius: 7px;
+    }
+    ::ng-deep.p-button{
+        background-color: rgb(147, 167, 240) !important;
+        color: black !important;
+        width: 100px !important;
+        height: 35px !important;
+        border: none !important;
+    }
+}
+@media only screen and (max-width: 321px) {
+    h2{
+        font-size: 28px;
+    }
+    .heading p{
+        color: rgb(255, 255, 255);
+        font-size: 14px;
+    }
+    .social i{
+        color:  rgb(147, 167, 240);
+        font-size: 28px;
     }
 }

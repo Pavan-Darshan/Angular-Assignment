@@ -51,13 +51,14 @@ import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboar
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import { MyTicketComponent } from './my_ticket/my-ticket/my-ticket.component';
 import { Popover } from 'primeng/popover';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
 
 
 @NgModule({
   declarations: [UserComponent,UserHeaderComponent, UserFooterComponent,FormComponent ,UserDashboardComponent,MyTicketComponent],
   imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tooltip,OverlayPanelModule,
-             Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,Popover,
+             Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,Popover,ConfirmDialog,
              ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,TieredMenuModule,
              FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule, ChartModule,MenuModule,BrowserAnimationsModule],
  

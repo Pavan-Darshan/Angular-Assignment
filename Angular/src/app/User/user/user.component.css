@@ -21,7 +21,8 @@
     gap: 10px;
     padding-left: 10px;
     height: 4%; 
-    background-color: #a1c6f1; 
+    /* background-color: #a1c6f1;  */
+    background-image: linear-gradient(to right,rgb(59, 224, 242),rgb(235, 53, 217));
    
   }
   
@@ -66,7 +67,7 @@
       align-items: center;
       height: auto;
       flex-direction: column; 
-      gap: 10px;
+      gap: 0 !important;
   }
 
   .dashboardBtn {
@@ -78,9 +79,7 @@
 
 @media (max-width: 480px) {
   
-  .main {
-      gap: 10px;
-  }
+ 
 
   .dashboardBtn {
       width: 50%; 

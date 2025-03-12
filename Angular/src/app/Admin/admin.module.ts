@@ -43,6 +43,10 @@ import { TieredMenu } from 'primeng/tieredmenu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { MessageService } from 'primeng/api';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialog } from 'primeng/confirmdialog';
+import { SelectButton } from 'primeng/selectbutton';
+import { ProgressSpinner } from 'primeng/progressspinner';
 
 
 
@@ -52,12 +56,13 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
     declarations:[AdminComponent,AdminDashboardComponent,AdminHeaderComponent ,
         AdminFooterComponent,IssueComponent, UserListComponent],
 
-    imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tooltip,
+    imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tooltip,ConfirmDialog,
             Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,OverlayPanelModule,
             ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,TieredMenuModule,
-            FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule, ChartModule,MenuModule,BrowserAnimationsModule],
+            FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule, ChartModule,MenuModule,BrowserAnimationsModule,
+            ProgressSpinner,SelectButton],
 
-            providers: [MessageService],
+            providers: [MessageService,ConfirmationService],
         
     exports:[AdminRoutingModule]
 })

@@ -202,7 +202,7 @@
   padding: 14px;
   margin-bottom: 10px;
   border-radius: 15px;
-  box-shadow: 0 0 2px 2px rgb(211, 208, 208);
+ 
 
 }
 .notifiNull{
@@ -262,6 +262,9 @@ align-items: center;
   justify-content: flex-end;
   align-items: center;
   font-size: 20px;
+}
+::ng-deep.p-popover::before {
+/* profile top arrow */
 }
 
 /* password window */

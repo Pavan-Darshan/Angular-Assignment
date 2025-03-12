@@ -1,9 +1,9 @@
-<div class="main-container">
+<!-- <div class="main-container">
     
     <div class="Login-Container">
         
         <div class="Logo-Container"> 
-            <img src="app/Images/logo1.png" alt="">
+            <img src="app/Images/login_page.png" alt="">
         </div>
        
         <div class="Login-Details">
@@ -21,7 +21,49 @@
   
     </div>
     
-</div>
+</div> -->
 <div class="card flex justify-center">
     <p-toast />
 </div>
+
+
+<div class="container">
+   
+    <div class="logo-Container"> 
+        <img src="app/Images/login_page3.png" alt="">
+    </div>
+    <div class="logo-Container1"> 
+        <img src="app/Images/mobile.jpg" alt="">
+    </div>
+    <div class="login_content">
+        <div class="heading"><h2>Welcome Back</h2><p>USER LOGIN</p></div>
+        <div class="details">
+            <div>
+                <i class="pi pi-user"></i>
+                <input type="text" pInputText [(ngModel)]="username" placeholder="Username" />
+            </div>
+            <div>
+                <i class="pi pi-lock"></i>
+                <input type="password" pInputText [(ngModel)]="password" placeholder="Password" />
+            </div>
+            <div>
+                <p-button label="Login" icon="pi pi-sign-in" (onClick)="onLogIn(username,password)" />
+            </div>
+           
+                   
+          
+        </div>
+        <div class="social">
+            <i class="pi pi-google"></i>
+            <i class="pi pi-facebook"></i>
+            <i class="pi pi-instagram"></i>
+            <i class="pi pi-whatsapp"></i>
+        </div>
+
+    </div>
+    
+</div>
+
+<!-- <div class="name">
+    <p>ISSUE TRACKER</p>
+</div> -->

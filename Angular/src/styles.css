@@ -48,13 +48,11 @@
     --paginator-border-dark: #555;
     --paginator-selected-background-dark: #434344; 
     --paginator-selected-text-dark: #ffffff;
-    --form-background-dark: #333333;
+    --form-background-dark: rgb(63 63 63);
     --form-text-color-dark: white;
-    --form-border-dark: #555;
+    --form-border-dark: #6d6c6c;
     --tab-background-color-dark: black;
-     --tab-text-color-dark: white;
-
-
+    --tab-text-color-dark: white;
 
   }
   
@@ -244,8 +242,74 @@ body.dark-mode .p-dialog  {
   color: var(--form-text-color-dark);
   border: 1px solid white;
 }
+/* body.dark-mode .formCreate{
+  border: 1px solid rgb(179, 179, 237);
+} */
 /* th.p-datatable-column-sorted{
   background-color: rgb(255, 255, 255) !important;
   color: white;
 } */
+.p-editor .p-editor-content .ql-editor, :host::ng-deep.p-editor .p-editor-toolbar.ql-snow  {
+  background-color:  rgb(255, 255, 255) !important;
 
+}
+
+
+
+body.dark-mode  .p-editor .p-editor-content .ql-editor, body.dark-mode .p-editor .p-editor-toolbar.ql-snow  {
+  background-color:  rgb(97, 95, 95) !important;
+
+}  
+.commentDetails{
+  background-color: white;
+  color: black;
+ 
+}
+body.dark-mode .commentDetails{
+  background-color:  rgb(97, 95, 95);
+  color:  var(--form-background-light);
+}
+
+.p-select, input, textarea{
+  background-color: white;
+}
+body.dark-mode .p-select, body.dark-mode  input, body.dark-mode textarea{
+  background-color: rgb(65, 65, 65);
+  color: white !important;
+}
+.p-overlayPanel {
+  background-color: white !important;
+}
+body.dark-mode .p-popover-content{
+  background-color: rgb(63 63 63) !important;
+  color: white !important;
+}
+
+.notificationDetails{
+  box-shadow: 0 0 2px 2px rgb(211, 208, 208);
+}
+body.dark-mode .notificationDetails{
+  box-shadow: 0 0 2px 2px rgb(112, 111, 111) !important;
+}
+.p-selectbutton .p-togglebutton:first-child .p-togglebutton {
+  background-color: rgb(218, 217, 217) !important;
+
+}
+.p-selectbutton .p-togglebutton:last-child .p-togglebutton {
+  background-color: rgb(218, 217, 217) !important;
+}
+.p-togglebutton.p-togglebutton-checked::before {
+  background-color: rgb(255, 255, 255);
+}
+body.dark-mode .p-selectbutton .p-togglebutton:first-child .p-togglebutton {
+  background-color: rgb(218, 217, 217) !important;
+
+}
+
+body.dark-mode .p-selectbutton .p-togglebutton:last-child .p-togglebutton {
+  background-color: rgb(218, 217, 217) !important;
+}
+
+body.dark-mode .p-togglebutton.p-togglebutton-checked::before {
+  background-color: rgb(255, 255, 255);
+}

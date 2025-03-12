@@ -125,7 +125,7 @@
     display: block !important;
 }
 .mobileViewOn{
-    display: none !important;
+    /* display: none !important; */
 }
 .items{
     width: 100%;
@@ -190,7 +190,7 @@
   padding: 14px;
   margin-bottom: 10px;
   border-radius: 15px;
-  box-shadow: 0 0 2px 2px rgb(211, 208, 208);
+  
 
 }
 .notifiNull{
@@ -226,10 +226,10 @@ align-items: center;
  display: grid;
  grid-template-columns: 80% 20%;
   position: fixed;
-  top: 0;
+  top: -9px;
   left: 0;
   background-color: rgb(228, 225, 225);
-  z-index: 111;
+  z-index: 1;
 }
 .notification>div:nth-child(2){
   width: 100%;
@@ -308,9 +308,9 @@ align-items: center;
         z-index: 10000;
        
     }
-    .mobileView{
+    /* .mobileView{
         display: none !important;
-    }
+    } */
     .mobileViewOn{
         display: block !important;
     }
@@ -321,7 +321,9 @@ align-items: center;
         width: 16rem !important;
         height: 100%;
     }
- 
+    .notification{
+      width: 250px;
+    }
     
   }
   @media only screen and (max-width: 376px) {

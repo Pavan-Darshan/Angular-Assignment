@@ -17,7 +17,7 @@
     position: absolute;
     left: 30%;
     top: 8%;
-    z-index: 1;
+    z-index: 1; 
 
 }
 .container>div{
@@ -75,16 +75,42 @@
 
 
     .container{
-        width: 60%;  
-        background-color: white;
+        width: 50%;  
         border: 1px solid black;
         box-shadow: 0 0 5px 1px rgb(47, 47, 48);
         border-radius: 20px;
         position: absolute;
-        left: 20%;
-        top: 8%;
+        left: 25%;
+        top: 12%;
         
     
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+
+
+    .container{
+        width: 58%;  
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
+        position: absolute;
+        left: 21%;
+        top: 4%;
+        
+    
+    }
+    .heading p{
+        font-size: 18px;
+        font-weight: bold;
+        color: red;
+    }
+    .btns ::ng-deep.p-button{
+        width: 60%;
+        height:100%;
+        margin-left: 15%;
+       
     }
 }
 
@@ -92,8 +118,24 @@
 
 
     .container{
-        width: 90%;  
+        width: 70%;  
         background-color: white;
+        border: 1px solid black;
+        box-shadow: 0 0 5px 1px rgb(47, 47, 48);
+        border-radius: 20px;
+        position: absolute;
+        left: 15%;
+        top: 6%;
+        
+    
+    }
+}
+
+@media only screen and (max-width: 426px) {
+
+
+    .container{
+        width: 90%;  
         border: 1px solid black;
         box-shadow: 0 0 5px 1px rgb(47, 47, 48);
         border-radius: 20px;
@@ -103,6 +145,17 @@
         
     
     }
+    .heading p{
+        font-size: 18px;
+        font-weight: bold;
+        color: red;
+    }
+    .btns ::ng-deep.p-button{
+        width: 60%;
+        height:100%;
+        margin-left: 15%;
+       
+    }
 }
 
 @media only screen and (max-width: 376px) {
@@ -110,8 +163,6 @@
 
     .container{
         width: 90%;  
-    
-        background-color: white;
         border: 1px solid black;
         box-shadow: 0 0 5px 1px rgb(47, 47, 48);
         border-radius: 20px;
@@ -139,7 +190,6 @@
 
     .container{
         width: 95%;  
-        background-color: white;
         border: 1px solid black;
         box-shadow: 0 0 5px 1px rgb(47, 47, 48);
         border-radius: 20px;
