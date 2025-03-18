@@ -1,0 +1,82 @@
+<div class="mainContainer">
+    <div class="leftContainer">
+        <full-calendar [options]="calendarOptions" class="myCalender"></full-calendar>
+    </div>
+    <div class="rightContainer"> 
+       <div class="heading">
+            <div>
+                <p-button label="New Event" icon="pi pi-calendar-plus"(onClick)="newEvent()"/>
+            </div>
+       </div>
+       
+      <div class="taskDetails">
+        <div>
+        <p>Taks Details</p>
+        </div>
+
+      </div>
+
+    </div>
+</div>
+
+
+
+<!--  New Event------------------------------------ -->
+
+<div class="newEvent" *ngIf="isNewEvent">
+    <div class="newEvent_container">
+        <div class="newEvent_Heading">
+            <div><p>New Event</p></div>
+            <div ><i class="pi pi-times" (click)="closeNewEvent()"></i></div>
+        </div>
+        <div class="saveBtn">
+            <p-button label="Save" icon="pi pi-save" (onClick)="onSaveEvent()" />
+        </div>
+        
+            <div class="addTitle">
+                <div>
+                    <i class="pi pi-plus" ></i>
+                </div>
+                <div>
+                    <input type="text" pInputText [(ngModel)]="title" placeholder="Add Title"/>
+                </div>
+            </div>
+            <div class="pickDate">
+                <div>
+                    <i class="pi pi-clock" ></i>
+                </div>
+                <div>
+                    <p-datepicker [(ngModel)]="date" [showButtonBar]="true" placeholder="Date"/>
+                </div>
+                
+                <div >
+                    <p-datepicker [(ngModel)]="start" [iconDisplay]="'input'" [showIcon]="true" hourFormat="12" [timeOnly]="true" inputId="templatedisplay" placeholder="Time">
+                        <ng-template #inputicon let-clickCallBack="clickCallBack">
+                            <i class="pi pi-clock" (click)="clickCallBack($event)"></i>
+                        </ng-template>
+                    </p-datepicker>      
+                     
+                </div>
+                <div>
+                    <p>to</p>
+                </div>
+                <div >
+                    <p-datepicker [(ngModel)]="end" [iconDisplay]="'input'" [showIcon]="true" hourFormat="12" [timeOnly]="true" inputId="templatedisplay" placeholder="Time">
+                        <ng-template #inputicon let-clickCallBack="clickCallBack">
+                            <i class="pi pi-clock" (click)="clickCallBack($event)"></i>
+                        </ng-template>
+                    </p-datepicker>      
+                     
+                </div>
+
+            </div>
+            <div class="text">
+                <div>
+                    <i class="pi pi-align-left" ></i>
+                </div>
+                <div>
+                    <textarea  pTextarea  [(ngModel)]="message" placeholder="@Type task details...."></textarea>
+                </div>
+            </div> 
+    </div>
+</div>

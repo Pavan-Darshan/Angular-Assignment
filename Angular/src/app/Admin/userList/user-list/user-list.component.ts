@@ -46,6 +46,7 @@ export class UserListComponent implements OnInit {
   addForm : boolean =false;
   isFilterHidden=false
   isSidebarVisible = false;
+  loading:boolean= true;
 
 //Filter data set----------------------------------->
   filterUserName ='';
@@ -75,9 +76,9 @@ export class UserListComponent implements OnInit {
   
     .subscribe((res)=>{
         this.featchedUserList=res;
-        // setTimeout(()=>{
-        //   this.loading=false
-        // },2000)
+        setTimeout(()=>{
+          this.loading=false
+        },1000)
   
     })
 
@@ -145,24 +146,19 @@ export class UserListComponent implements OnInit {
     this.isCreate = false;
     this.isEdit = false ;
     formdata.reset();
-
   }
 
   // update user--------------------------------------->
   onUpdeted(formdata :NgForm){  
     let newData = this.featchedUserList.find((user)=> user.emailAddress === formdata.value.emailAddress);
-    console.log(newData.dataBaseId);
     
     let updateUserData : User = {...formdata.value, dataBaseId  : newData.dataBaseId, lastModifiedDateTime :DateTime, createdDateTime :newData.createdDateTime, password : newData.password,userId :newData.userId };
-    console.log(updateUserData);
-    
+  
     this.sereverService.onUpdateUser(newData.dataBaseId,updateUserData).subscribe(()=>{this.feacthUserDetails();});
     this.addForm = false;
     this.isCreate =false;
     this.isEdit =false;
     formdata.reset();
-    
-
   }
 
   onUserDelete(formdata : NgForm){
@@ -196,7 +192,6 @@ export class UserListComponent implements OnInit {
   }
 
 
-
   // Side bar filter----------------------------------------------->
   filterApply(filterForm : NgForm){
     this.onFilterUserList = this.featchedUserList.filter((user) => (
@@ -217,7 +212,6 @@ export class UserListComponent implements OnInit {
 
   resetFilter(){
     this.onFilterUserList = this.featchedUserList;
-    
   }
 
 
@@ -230,16 +224,13 @@ export class UserListComponent implements OnInit {
   }
 
 
-
   emailAlready(){
     this.messageService.add({ severity: 'info', summary: 'Info', 
       detail: "Eamil is already used.......", life: 3000 , key : 'tc'})
   }
 
-  
   userCreated(user :User){
     this.messageService.add({ severity: 'success', summary: 'Success', 
       detail: "User created and User ID : "+user.userId, life: 3000 , key : 'tc' })
   }
-  
 }

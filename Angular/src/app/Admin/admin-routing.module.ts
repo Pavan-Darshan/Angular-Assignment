@@ -6,17 +6,19 @@ import { IssueComponent } from './issue/issue/issue.component';
 import { UserListComponent } from './userList/user-list/user-list.component';
 
 import { CanActivate } from '../Services/authGuard';
+import { CalendarComponent } from './calendar/calendar.component';
+import { TaskManagementComponent } from './task-management/task-management.component';
 
 export const routes: Routes = [
   { path: '', component: AdminComponent , canActivate :[CanActivate] },
   
- 
   {
     path: '',component :AdminComponent ,canActivate :[CanActivate],
     children: [
       { path: 'dashboard', component: AdminDashboardComponent, },
       { path: 'issue', component: IssueComponent},
-      { path: 'userList', component: UserListComponent}
+      { path: 'userList', component: UserListComponent},
+      { path: 'calendar', component: TaskManagementComponent}
     ] 
   }
 ];

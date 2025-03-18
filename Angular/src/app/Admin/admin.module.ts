@@ -47,6 +47,11 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { SelectButton } from 'primeng/selectbutton';
 import { ProgressSpinner } from 'primeng/progressspinner';
+import { DatePicker } from 'primeng/datepicker';
+import { Fluid } from 'primeng/fluid';
+import { CalendarComponent } from "./calendar/calendar.component";
+import { TaskManagementComponent } from "./task-management/task-management.component";
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
@@ -54,13 +59,13 @@ import { ProgressSpinner } from 'primeng/progressspinner';
 
 @NgModule({
     declarations:[AdminComponent,AdminDashboardComponent,AdminHeaderComponent ,
-        AdminFooterComponent,IssueComponent, UserListComponent],
+        AdminFooterComponent,IssueComponent, UserListComponent,CalendarComponent,TaskManagementComponent],
 
     imports:[AdminRoutingModule,CommonModule,RouterLink, RoutingModule, HttpClientModule,TabsModule,TableModule,Tooltip,ConfirmDialog,
             Tag,InputIcon,IconField,MultiSelectModule,Slider,ProgressBar,ButtonModule,DialogModule,FormsModule,TieredMenu,OverlayPanelModule,
             ToggleSwitch,DrawerModule,FileUpload,ToastModule,EditorModule,AvatarModule,OverlayBadgeModule,BadgeModule,TieredMenuModule,
             FluidModule,InputTextModule,FloatLabel,Select,DropdownModule, CheckboxModule, ChartModule,MenuModule,BrowserAnimationsModule,
-            ProgressSpinner,SelectButton],
+            ProgressSpinner,SelectButton,DatePicker,Fluid,FullCalendarModule],
 
             providers: [MessageService,ConfirmationService],
         

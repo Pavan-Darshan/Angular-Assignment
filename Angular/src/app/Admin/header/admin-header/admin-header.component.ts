@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../Services/login/auth.service';
 import { Ticket } from '../../../Model/Ticket';
 import { map } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -31,10 +32,11 @@ notificationData : Ticket []=[];
 differenceCount : number = 0;
 receivedData: Ticket []=[];
 currentCount :number =0;
+profileView : boolean = false;
 
 constructor( private messageService: MessageService){}
 
-  
+
 ngOnInit(){
   this.loggedUser=this.serverService.loggedUser[0];
   this.firstLetter=this.loggedUser.userName.slice(0,1);
@@ -43,7 +45,8 @@ ngOnInit(){
       this.themeColor = true;
     }
  
-      this.featchIssueData();
+  this.featchIssueData();
+
 }
 
 ngOnDestroy(): void {
@@ -85,11 +88,15 @@ logOut(){
     }
 }
 
-
+// Password Reset form Open -------------------------->
 resetUserPassword(){
   this.passwordView =true
 }
 
+// Profile Open---------------------------------------->
+profileOpen(){
+  this.profileView = true;
+}
 
 // Password Reset-------------------------------------->
 passwordSet(data : NgForm){
@@ -186,6 +193,14 @@ clearNotification(){
     this.notificationCleared();
   });
 }
+
+// calendar open--------------------------------------->
+calenderOpen(){
+  this.visible = false ;
+
+
+}
+
 
 // Toast notification---------------------------------->
 notificationCleared(){

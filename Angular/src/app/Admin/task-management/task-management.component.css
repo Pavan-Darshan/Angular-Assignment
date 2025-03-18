@@ -1,0 +1,193 @@
+.mainContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.leftContainer{
+    width: 75%;
+    height: 100%;
+  
+}
+.rightContainer{
+    width: 23%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    border: none;
+    box-shadow: 0 0 5px 2px rgb(175, 172, 172);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.heading{
+    width: 100%;
+    height: 8%;
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.taskDetails{
+  width: 100%;
+  height: 92%;
+ 
+}
+
+
+.myCalender{
+    width: 98% !important;
+    height: 560px !important;
+    margin-left: 1%;
+    margin-top: 10px;
+    
+}
+.fc ::ng-deep.fc-toolbar-title{
+    font-size: 20px !important;
+}
+
+::ng-deep.fc-button-group button, ::ng-deep.fc-toolbar-chunk button {
+    background-color: rgb(234, 238, 255) !important;
+    color: black !important;
+    
+    font-size: 12px !important;
+    
+
+}
+
+
+/* Task display */
+
+
+  
+  
+  
+
+  
+
+
+
+
+
+
+
+
+  /* New Event--------------------- */
+  .newEvent{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(4, 4, 4, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+
+  }
+  .newEvent_container{
+    width: 60%;
+    height: 90%;
+    background-color: rgb(255, 254, 254);
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgb(173, 171, 170);
+    overflow: hidden;
+
+  }
+  .newEvent_Heading{
+    width: 100%;
+    height: 5%;
+    background-color: rgb(183, 211, 240);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+    padding: 10px;
+
+  }
+  .newEvent_Heading div:first-child{
+    width: 50%;
+  }
+  .newEvent_Heading div:last-child{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .addTitle{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding-left: 25px;
+  }
+  .pickDate{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding-left: 25px;
+  }
+  .saveBtn{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .saveBtn ::ng-deep.p-button{
+    width: 80px;
+    height: 30px;
+    margin-left: 25px !important;
+  }
+  .addTitle input{
+    width: 842px;
+    border: none;
+  }
+  .addTitle div:last-child{
+    border-bottom: 2px solid #dddbdb;
+  }
+
+  .pickDate ::ng-deep.p-datepicker-input{
+    width: 265px;
+    border: none !important;
+  } 
+  .pickDate div:nth-child(2),  .pickDate div:nth-child(3), .pickDate div:last-child{
+    border-bottom: 2px solid #dddbdb;
+  }
+
+  .text{
+    width: 100%;
+    height: 64%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 25px;
+    margin-top: 1%;
+   
+  }
+  .text textarea{
+  width: 840px ;
+  height: 400px ;
+  max-width: 840px !important;
+  max-height: 400px !important;
+  min-width: 200px !important;
+  min-height: 200px !important;
+  padding: 10px;
+  border: 1px solid #dddbdb;
+  border-radius: 10px;
+  white-space:wrap;       
+  overflow:auto;          
+  text-overflow: ellipsis;  
+  }
+
+  textarea::-webkit-scrollbar {
+    display: none;
+     
+}

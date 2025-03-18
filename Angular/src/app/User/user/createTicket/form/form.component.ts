@@ -7,7 +7,6 @@ import { Comment } from '../../../../Model/comment';
 import { DateTime } from '../../../../Model/DateTime';
 import { Router } from '@angular/router';
 import { TicketUniqueId } from '../../../../Model/ticket-Id-Create';
-import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
 

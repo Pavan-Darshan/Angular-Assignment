@@ -45,6 +45,7 @@ export class UserHeaderComponent {
   firstLetter:string='';
   themeColor : boolean = false;
   passwordView =false;
+  profileView : boolean = false;
   
   
   ngOnInit(){
@@ -91,12 +92,14 @@ export class UserHeaderComponent {
  
   }
 
-
+  // Password resest------------------------------------->
   resetUserPassword(){
- 
   this.passwordView =true
-    
   }
+  // Profile Open---------------------------------------->
+profileOpen(){
+  this.profileView = true;
+}
   
   passwordSet(data : NgForm){
     ( this.loggedUser?.password.toString() === data.value.currentPassword)?

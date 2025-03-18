@@ -34,6 +34,7 @@ export class MyTicketComponent {
   searchValue ='';
   loading : boolean = true;
   isEdit : boolean =false;
+  isView : boolean = false;
 
   filterUserName : string ='';
   filterRepoterId : string ='';
@@ -229,9 +230,12 @@ onCategoryChange() {
 
 editUserData : any;
 editTicket(issue : Ticket){
+
+  if(this.isView)
+    this.isView =false;
+  
   this.isEdit=true;
   this.editUserData =issue;
- 
   this.priorityID = issue.priorityId;
   this.categoryID = issue.categoryId;
   this.subCategoryID = issue.subCategoryId;
@@ -266,6 +270,21 @@ cancelTicket(){
   this.isEdit=false;
 }
 
+
+// view mode-------------------------------------------------------------------------->
+viewDetails : any ;
+viewMode(issue : Ticket){
+setTimeout(()=>{
+  if(this.isEdit)
+    this.isView=false;
+})
+  this.isView = true ;
+  this.viewDetails=issue;
+}
+
+cancelView(){
+  this.isView = false;
+}
 
 
 // Image to json----------------------------------------------------------------------->

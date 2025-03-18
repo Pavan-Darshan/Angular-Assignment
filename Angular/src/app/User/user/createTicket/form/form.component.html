@@ -13,7 +13,6 @@
                     <p-select [(ngModel)]="priorityID" inputId="over_label" optionValue="code" [options]="priority" optionLabel="name" name="priorityID" styleClass="full" required/>
                     <label for="over_label">Priority</label>
                 </p-floatlabel>
-            
             </div>
 
             <!-- category-->
@@ -54,15 +53,16 @@
                     <label for="on_label">Description</label>
                 </p-floatlabel>
             </div>
-            <div>
+            <div class="file">
                 <input type="file" (change)="onFileChange($event)"/>
             </div>
-            <div class="card flex justify-center" class="btns">
-                <p-button label="Submit" type="Submit" icon="pi pi-check" [disabled]="formDetails.invalid"/> <p-button label="Cancel" icon="pi pi-times" (onClick)="cancelTicket()"/>
+            <div class="card flex justify-center" class="btns"  >
+                <p-button label="Submit" type="Submit" icon="pi pi-check" [disabled]="formDetails.invalid" /> <p-button label="Cancel" icon="pi pi-times" (onClick)="cancelTicket()"/>
             </div>
         </div>
     </form>
-</div>
+</div> 
+
 
 
 <div class="card flex justify-center">

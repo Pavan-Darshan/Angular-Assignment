@@ -13,7 +13,6 @@ export const routes: Routes = [
   {
     path: '',component :UserComponent,canActivate :[CanActivate],
     children: [
-
       { path: 'dashboard', component: UserDashboardComponent},
       { path: 'myTicket', component: MyTicketComponent},
       { path: 'createTicket', component: FormComponent}

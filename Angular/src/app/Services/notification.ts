@@ -12,18 +12,16 @@ export class ServiceNotification {
 
     
 
-    
-      loggedUser?: User;
-    receivedData: Ticket []=[];
-    currentCount :number =0;
-    differenceCount : number =0;
-    notificationData : Ticket [] = [];
 
-    constructor(private serverService: ServerService, private sharedService: SharedService ){
-     
-      }
+loggedUser?: User;
+receivedData: Ticket []=[];
+currentCount :number =0;
+differenceCount : number =0;
+notificationData : Ticket [] = [];
 
-    // notification
+constructor(private serverService: ServerService, private sharedService: SharedService ){ }
+
+// notification
 notification(){
 
     

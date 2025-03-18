@@ -143,7 +143,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>
-      <tr class="p-selectable-row">
+      <tr class="p-selectable-row" (click)="viewMode(user)">
         <td>
           <p pTooltip="{{ user.categoryId }}" tooltipPosition="left">
             {{ user.categoryId }}
@@ -328,6 +328,64 @@
   </form>
 </div>
 
+
+<!-- View Form -->
+<div class="viewMain" *ngIf='isView'>
+  <div class = "containerView">
+    <div class="headingView">
+      <div><p>Bug Record View</p></div>
+      <div><i class="pi pi-times" (click)="cancelView()"></i></div>
+    </div>
+    <div class="detailsView">
+      <div>
+        <p>
+          Category : {{ viewDetails.categoryId }}
+        </p>
+      </div>
+      <div>
+        <p >
+          SubCategory : {{viewDetails.subCategoryId }}
+        </p>
+      </div>
+      <div>
+        <p >
+          Subject : {{ viewDetails.subject }}
+        </p>
+      </div>
+      <div>
+        <p pTooltip="{{ viewDetails.description }}" tooltipPosition="left">
+          Description : {{ viewDetails.description }}
+        </p>
+      </div>
+      <div>
+        <p >
+          Status ID : {{ viewDetails.statusId }}
+        </p>
+      </div>
+      <div>
+        <p >
+          priority ID : {{ viewDetails.priorityId }}
+        </p>
+      </div>
+      <div>
+        <p >
+          Created Date-Time : {{ viewDetails.createDateTime }}
+        </p>
+      </div>
+      <div>
+        <p >
+           Last Modified Date-Time :{{ viewDetails.lastModifiedDateTime }}
+        </p>
+      </div>
+      <div>
+        <p>
+          Assignee ID :{{ viewDetails.assigneeId }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <div class="card flex justify-center">
   <p-toast position="top-center" key="tc"/>

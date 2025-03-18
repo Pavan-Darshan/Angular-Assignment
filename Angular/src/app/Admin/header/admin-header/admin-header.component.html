@@ -47,13 +47,13 @@
                 <p-overlayPanel #op >
                     <div class="menuSetting">
                         <div class="menu">
-                            <div><p>Profile</p></div>
+                            <div><p (click)="profileOpen()">Profile</p></div>
                              <div><p (click)="resetUserPassword()">Reset Password</p></div>
                         </div>
                         <div class="logMenu">
                             <p-button  label="Logout" icon="pi pi-sign-out"  routerLink="/" [queryParams] ="{logout : true}" (onClick)=" logOut()"/>
                         </div>
-                    </div>
+                    </div> 
     
                 </p-overlayPanel>
             </div>
@@ -112,9 +112,9 @@
                 <span class="font-medium">Messages</span>
            </div>
          
-           <div>
+           <div routerLink="calendar" (click)="calenderOpen()">
                 <i class="pi pi-calendar mr-2"></i>
-                <span class="font-medium">Calendar</span>
+                <span class="font-medium" >Calendar</span>
            </div>
 
         </div>
@@ -157,6 +157,47 @@
         </form>
     </p-dialog>
 </div>
+
+
+<!-- Profile -->
+
+<div class="card flex justify-center" class="profileView">
+    
+    <p-dialog header="Profile" [modal]="true" [(visible)]="profileView" >
+        <div class="profilePic">
+            <p-avatar  icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}} />
+        </div>
+               
+        <div class="profileDetails">
+            <div>
+                <p>Name    : {{loggedUser?.userName}}</p>
+            </div>
+            <div>
+                <p>Id      : {{loggedUser?.userId}}</p>
+            </div>
+            <div>
+                <p>Type    : {{loggedUser?.userType}}</p>
+            </div>
+            <div>
+                <p>Email   : {{loggedUser?.emailAddress}}</p>
+            </div>
+            <div>
+                <p>Phone   : {{loggedUser?.userPhone}}</p>
+            </div>
+            <div>
+                <p>City    : {{loggedUser?.city}}</p>
+            </div>
+            <div>
+                <p>State   : {{loggedUser?.state}}</p>
+            </div>
+            <div>
+                <p>Country : {{loggedUser?.country}}</p>
+            </div>
+        </div>
+       
+    </p-dialog>
+</div>
+
 
 <div class="card flex justify-center">
     <p-toast />

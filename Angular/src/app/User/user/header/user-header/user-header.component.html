@@ -53,7 +53,7 @@
                 <p-overlayPanel #op >
                     <div class="menuSetting">
                         <div class="menu">
-                            <div><p>Profile</p></div>
+                            <div><p (click)="profileOpen()">Profile</p></div>
                              <div><p (click)="resetUserPassword()">Reset Password</p></div>
                             
                             
@@ -131,6 +131,46 @@
     
 </div>
 
+
+
+<!-- Profile -->
+
+<div class="card flex justify-center" class="profileView">
+    
+    <p-dialog header="Profile" [modal]="true" [(visible)]="profileView" >
+        <div class="profilePic">
+            <p-avatar  icon="pi pi-user" class="mr-2"  shape="circle" label={{loggedUser?.userName?.slice(0,1)}} />
+        </div>
+               
+        <div class="profileDetails">
+            <div>
+                <p>Name    : {{loggedUser?.userName}}</p>
+            </div>
+            <div>
+                <p>Id      : {{loggedUser?.userId}}</p>
+            </div>
+            <div>
+                <p>Type    : {{loggedUser?.userType}}</p>
+            </div>
+            <div>
+                <p>Email   : {{loggedUser?.emailAddress}}</p>
+            </div>
+            <div>
+                <p>Phone   : {{loggedUser?.userPhone}}</p>
+            </div>
+            <div>
+                <p>City    : {{loggedUser?.city}}</p>
+            </div>
+            <div>
+                <p>State   : {{loggedUser?.state}}</p>
+            </div>
+            <div>
+                <p>Country : {{loggedUser?.country}}</p>
+            </div>
+        </div>
+       
+    </p-dialog>
+</div>
 
 
 <!-- Password Reset -->

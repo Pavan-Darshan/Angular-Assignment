@@ -1,0 +1,126 @@
+
+<div class="background-Calender" >
+    <div class="calender">
+        <div class="calenderLeft">
+            <div>
+                <p>Calendar</p>
+            </div>
+            <div>
+                <p-button label="New Event" icon="pi pi-calendar-plus"(onClick)="newEvent()"/>
+                 <p-button label="Today" icon="pi pi-calendar-plus"(onClick)="resetToToday()"/>
+            </div>
+            <div class="card flex justify-center">
+                <p-datepicker class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true" (onSelect)="onChangeDate()" />
+            </div>
+           
+        </div>
+        <div class="calenderRight">
+            <div class="calenderRight1">
+                <div> <p>Task Management</p></div>
+                <div ><i class="pi pi-times" ></i></div>
+            </div>
+            <div class="calenderRight2">
+                <div class="month">
+                    <div>
+                        <p>{{getMonthName(days[0])}} {{days[0].getFullYear()}}</p>
+                    </div>
+                </div>
+                <div class="dateFlow">
+                    
+                    <div class="hour">
+                        <div *ngFor="let time of sideBarTime">
+                          <p>  {{time}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="days" *ngFor="let day of days" >
+                        <div>
+                            <div>{{day.getDate()}}</div>
+                            <div>{{getDayName(day)}}</div>
+                        </div>
+                        <div class="eventCol">
+                            <div *ngFor="let time of sideBarTime">
+                            
+                                   <!-- Displaying events for  day -->
+                                <div *ngFor="let event of getEventsForDay(day)" class="event">
+                                     <div *ngIf="getTime(event,time) " class="eventActive">
+                                        <div>{{ event.title }}</div>
+                                        <div>{{ event.timeFrom | date:'shortTime' }} - {{ event.timeTo | date:'shortTime' }}</div>
+                               
+                                     </div>
+                                </div>
+
+                            </div>
+    
+                        </div>
+                    </div> 
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--  New Event------------------------------------ -->
+
+<div class="newEvent" *ngIf="isNewEvent">
+    <div class="newEvent_container">
+        <div class="newEvent_Heading">
+            <div><p>New Event</p></div>
+            <div ><i class="pi pi-times" (click)="closeNewEvent()"></i></div>
+        </div>
+        <div class="saveBtn">
+            <p-button label="Save" icon="pi pi-save" (onClick)="onSaveEvent()" />
+        </div>
+        
+            <div class="addTitle">
+                <div>
+                    <i class="pi pi-plus" ></i>
+                </div>
+                <div>
+                    <input type="text" pInputText [(ngModel)]="title" placeholder="Add Title"/>
+                </div>
+            </div>
+            <div class="pickDate">
+                <div>
+                    <i class="pi pi-clock" ></i>
+                </div>
+                <div>
+                    <p-datepicker [(ngModel)]="eventDate" [showButtonBar]="true" placeholder="Date"/>
+                </div>
+                
+                <div >
+                    <p-datepicker [(ngModel)]="timeFrom" [iconDisplay]="'input'" [showIcon]="true" hourFormat="12" [timeOnly]="true" inputId="templatedisplay" placeholder="Time">
+                        <ng-template #inputicon let-clickCallBack="clickCallBack">
+                            <i class="pi pi-clock" (click)="clickCallBack($event)"></i>
+                        </ng-template>
+                    </p-datepicker>      
+                     
+                </div>
+                <div>
+                    <p>to</p>
+                </div>
+                <div >
+                    <p-datepicker [(ngModel)]="timeTo" [iconDisplay]="'input'" [showIcon]="true" hourFormat="12" [timeOnly]="true" inputId="templatedisplay" placeholder="Time">
+                        <ng-template #inputicon let-clickCallBack="clickCallBack">
+                            <i class="pi pi-clock" (click)="clickCallBack($event)"></i>
+                        </ng-template>
+                    </p-datepicker>      
+                     
+                </div>
+
+            </div>
+            <div class="text">
+                <div>
+                    <i class="pi pi-align-left" ></i>
+                </div>
+                <div>
+                    <textarea  pTextarea  [(ngModel)]="message" placeholder="@Type task details...."></textarea>
+                </div>
+
+            </div>
+       
+    </div>
+</div>

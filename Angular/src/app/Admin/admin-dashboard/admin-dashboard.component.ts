@@ -315,6 +315,7 @@ this.doughnutChart = {
     },
     scales: {
         x: {
+          
             stacked: false,
             ticks: {
                 color: 'Blue'

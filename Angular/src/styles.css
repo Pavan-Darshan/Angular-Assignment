@@ -242,9 +242,10 @@ body.dark-mode .p-dialog  {
   color: var(--form-text-color-dark);
   border: 1px solid white;
 }
-/* body.dark-mode .formCreate{
-  border: 1px solid rgb(179, 179, 237);
-} */
+body.dark-mode .formCreate{
+  /* border: 1px solid rgb(112, 112, 117); */
+  background-color: rgb(49, 46, 46) !important;
+}
 /* th.p-datatable-column-sorted{
   background-color: rgb(255, 255, 255) !important;
   color: white;
@@ -312,4 +313,20 @@ body.dark-mode .p-selectbutton .p-togglebutton:last-child .p-togglebutton {
 
 body.dark-mode .p-togglebutton.p-togglebutton-checked::before {
   background-color: rgb(255, 255, 255);
+}
+
+.containerView{
+  background-color: white;
+  color: black;
+
+}
+.detailsView div{ 
+  box-shadow: 0 0 2px 2px whitesmoke ;
+}
+body.dark-mode  .containerView{
+  background-color: rgb(59, 57, 57);
+  color: rgb(255, 255, 255);
+}
+body.dark-mode .detailsView div{ 
+  box-shadow: 0 0 2px 2px rgb(72, 72, 72) !important ;
 }

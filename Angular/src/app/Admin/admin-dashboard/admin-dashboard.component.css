@@ -75,6 +75,7 @@
     border: none;
     height: 25px;
 }
+
 ::ng-deep .lineChart>div{
     margin-left: 10px;
     width: 45vw !important;

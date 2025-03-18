@@ -9,8 +9,5 @@ import { Component } from '@angular/core';
   standalone :false
 })
 export class AdminComponent {
-
   // active : boolean=false;
-  
-
 }

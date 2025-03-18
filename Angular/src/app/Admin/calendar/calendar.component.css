@@ -1,0 +1,327 @@
+
+.background-Calender{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(247, 248, 248, 1);
+    width: 100%;
+    height: 100%;
+  }
+  .calender{
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  .calenderLeft{
+    width: 22%;
+    height: 96%;
+    margin: 1%;
+    border: 1px solid #bcb8b8;
+    margin-right: 0.5%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .calenderRight{
+    width: 75%;
+    height: 96%;
+    margin: 1%;
+    border: 1px solid #bcb8b8;
+    margin-left: 0.5%;
+    border-radius: 10px;
+    /* overflow: hidden; */
+    
+  }
+  .calenderLeft div:first-child{
+    width: 100%;
+    height: 5%;
+    background-color: rgb(183, 211, 240);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+  
+
+  }
+  .calenderLeft div:first-child p{
+    margin-left: 10px;
+  }
+  .calenderLeft div:nth-child(3){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .calenderLeft div:nth-child(2){
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 10px;
+    gap: 10px;
+    
+  }
+  .calenderRight1{
+    width: 100%;
+    height: 5%;
+    background-color: rgb(183, 211, 240);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+    padding: 10px;
+  }
+  .calenderRight1 div:first-child{
+    width: 50%;
+  }
+  .calenderRight1 div:last-child{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .calenderRight2{
+    width: 100%;
+    height: 95%;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+
+
+  /* New Event--------------------- */
+  .newEvent{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(4, 4, 4, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+  }
+  .newEvent_container{
+    width: 60%;
+    height: 90%;
+    background-color: rgb(255, 254, 254);
+    border-radius: 10px;
+ 
+    box-shadow: 0 0 5px 2px rgb(173, 171, 170);
+    overflow: hidden;
+
+  }
+  .newEvent_Heading{
+    width: 100%;
+    height: 5%;
+    background-color: rgb(183, 211, 240);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+    padding: 10px;
+
+  }
+  .newEvent_Heading div:first-child{
+    width: 50%;
+  }
+  .newEvent_Heading div:last-child{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .addTitle{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding-left: 25px;
+  }
+  .pickDate{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding-left: 25px;
+  }
+  .saveBtn{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .saveBtn ::ng-deep.p-button{
+    width: 80px;
+    height: 30px;
+    margin-left: 25px !important;
+  }
+  .addTitle input{
+    width: 842px;
+    border: none;
+  }
+  .addTitle div:last-child{
+    border-bottom: 2px solid #dddbdb;
+  }
+
+  .pickDate ::ng-deep.p-datepicker-input{
+    width: 265px;
+    border: none !important;
+  } 
+  .pickDate div:nth-child(2),  .pickDate div:nth-child(3), .pickDate div:last-child{
+    border-bottom: 2px solid #dddbdb;
+  }
+
+  .text{
+    width: 100%;
+    height: 64%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 25px;
+    margin-top: 1%;
+   
+  }
+  .text textarea{
+  width: 840px ;
+  height: 400px ;
+  max-width: 840px !important;
+  max-height: 400px !important;
+  min-width: 200px !important;
+  min-height: 200px !important;
+  padding: 10px;
+  border: 1px solid #dddbdb;
+  border-radius: 10px;
+  white-space:wrap;       
+  overflow:auto;          
+  text-overflow: ellipsis;  
+  }
+
+  textarea::-webkit-scrollbar {
+    display: none;
+     
+}
+
+/* right side */
+.month{
+  height: 10%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 5px;
+}
+.month div{
+  width: 200px;
+  height: 50px;
+  background-color: #e3d9d9;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px 2px #bebebe;
+}
+.dateFlow{
+  width: auto;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  padding-right: 5px;
+  margin-top: 10px;
+ 
+}
+
+.days{
+  width: 250px !important;
+  height: 1594px;
+  min-width:250px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-bottom: 20px;
+
+}
+ 
+.days>div:first-child{
+  height: 50px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  background-color: #ebebeb;
+  position: sticky;
+  top: 0;
+
+}
+.days>div:first-child>div:first-child{
+  font-size: 24px;
+  margin-left: 10px;
+}
+.days>div:first-child>div:last-child{
+  font-size: 13px;
+  margin-left: 10px;
+}
+.dateFlow::-webkit-scrollbar{
+  display: none;
+}
+.eventCol{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+ 
+}
+.event{
+  width: 100%;
+  min-height: 57px !important;
+
+
+}
+.eventActive{
+  width: 100%;
+  min-height: 57px !important;
+  background-color: #d6dcf8;
+  padding: 5% ;
+}
+.event>div:first-child{
+  font-size: 16px;
+}
+.event>div:last-child{
+  font-size: 12px;
+}
+
+.hour{
+  width: 100px !important;
+  height: auto;
+  min-width:100px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 60px;
+  position: sticky;
+  left: 0;
+ 
+}
+
+
+.hour>div{
+  width: 100px;
+  min-height: 57px;
+  padding: 5% ;
+  background-color: #ebebeb;
+  display: flex;
+  font-size: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.dataflow{
+  
+}
